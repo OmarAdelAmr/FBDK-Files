@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE System SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<System Name="testThreads" Comment="System Configuration" >
+  <Identification Standard="61499-1" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.3" Author="JHC" Date="2003-12-05" Remarks="Renamed from NEWSYSTEM." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.2" Author="JHC" Date="2002-11-05" Remarks="Fixed missing (empty) FBD in Application." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2002-01-17" Remarks="Minor cleanup" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2000-05-27" />
+  <Application Name="APP1" >
+    <FBNetwork >
+    </FBNetwork>
+  </Application>
+  <Device Name="DEV1" Type="DeviceType" x="105.882355" y="11.764706" >
+    <FBNetwork >
+      <FB Name="test1" Type="test1" x="1123.5294" y="29.411764" />
+      <FB Name="test2" Type="test2" x="1135.2941" y="552.94116" />
+      <EventConnections>
+        <Connection Source="START.COLD" Destination="test1.ie_init_new_task" dx1="647.05884" />
+        <Connection Source="START.COLD" Destination="test2.ie_init_new_task" dx1="658.8235" />
+      </EventConnections>
+    </FBNetwork>
+  </Device>
+</System>

@@ -1,0 +1,53 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+<META NAME="GENERATOR" CONTENT="Eclipse HTML Editor">
+<TITLE>FUNCTION_BLOCK ZONE_MDL</TITLE>
+</HEAD>
+<BODY>
+<CENTER>
+<H2>FUNCTION_BLOCK ZONE_MDL</H2>
+<TABLE BORDER="1" WIDTH="505">
+	<TR>
+		<TD>An instance of this function block type provides the dynamic model
+		of a heating/cooling zone in the <A HREF="sketch.htm">HVAC example</A>
+		according to the differential equation:
+		<CENTER>C<SUB>v</SUB>V dT/dt = FC<SUB>v</SUB>(T<SUB>i</SUB> - T) + h -
+		(A/R)(T - T<SUB>a</SUB>),</CENTER>
+		where <B>C<SUB>v</SUB></B> is the volumetric heat capacity of air,
+		.018 BTU/ft<SUP>3</SUP>/F<SUP>o</SUP>; <B>V</B> is the volume of the
+		zone in ft<SUP>3</SUP>; <B>T</B> is the zone temperature in <SUP>o</SUP>F;
+		<B>t</B> is time in minutes; <B>F</B> is volumetric air flow in CFM
+		(ft<SUP>3</SUP>/min); <B>T<SUB>i</SUB></B> is inlet air temperature in
+		<SUP>o</SUP>F; <B>h</B> is heat load in BTU/min from computer
+		equipment, cookstoves, etc; <B>A/R</B> is wall heat transfer
+		coefficient in BTU/min/F<SUP>o</SUP>; and <B>T<SUB>a</SUB></B> is
+		outside (ambient) air temperature in <SUP>o</SUP>F.
+		<UL>
+			<LI>The units for variables given above are used for consistency in
+			the differential equation. Units of some of the inputs to the <TT>ZONE_MDL</TT>
+			block are different from those used in the differential equation; see
+			the comments in the <B>src</B> view. These differences are accounted
+			for in the calculation algorithms.</LI>
+		</UL>
+		</TD>
+
+	</TR>
+	<TR>
+		<TD ALIGN="CENTER">[<A HREF="../../../FBViewer.html" TARGET="_blank">Viewer
+		Help</A>]<BR>
+	<TR>
+		<TD><APPLET CODE="FBViewer" ARCHIVE="../../../viewer.jar" WIDTH="500"
+			HEIGHT="450"></APPLET></TD>
+	</TR>
+</TABLE>
+<P><I>Last updated: 2006-04-25.</I><BR>
+&copy;2006 <A HREF="http://www.holobloc.com" TARGET="_blank">Holobloc
+Inc</A><BR>
+Licensed under the <A
+	HREF="http://www.opensource.org/licenses/afl-3.0.php">Academic Free
+License version 3.0</A>.</P>
+</CENTER>
+</BODY>
+</HTML>

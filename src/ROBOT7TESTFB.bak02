@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="ROBOT7TESTFB" Comment="JADE WORKER" >
+  <Identification Standard="61499-1" />
+  <VersionInfo Organization="Fraunhofer IGD" Version="1.0" Author="Ahmed" Date="2014-04-22" />
+  <CompilerInfo header="package fb.rt;" >
+    <Compiler Language="Java" Vendor="Sun" Product="JDK" Version="1.5.0" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Normal Execution Request" >
+        <With Var="NAME" />
+      </Event>
+      <Event Name="SHUTDOWN" >
+      </Event>
+      <Event Name="STATEE" >
+      </Event>
+      <Event Name="ALARME" >
+      </Event>
+      <Event Name="ADDRECEIPEE" Comment="Normal Execution Request" >
+        <With Var="PRODUCTRECIEPE" />
+      </Event>
+      <Event Name="RECEIPEDONEE" >
+      </Event>
+      <Event Name="RPRODUCTSNOE" >
+        <With Var="RPRODUCTNO" />
+      </Event>
+      <Event Name="CURRENTTASKE" >
+      </Event>
+      <Event Name="FINISHEDPRODUCTSE" >
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Execution Confirmation" >
+      </Event>
+      <Event Name="SHUTDOWNO" >
+      </Event>
+      <Event Name="STATEO" >
+        <With Var="STATE" />
+      </Event>
+      <Event Name="ALARMO" >
+        <With Var="ALARM" />
+      </Event>
+      <Event Name="ADDRECEIPEEO" Comment="Execution Confirmation" >
+      </Event>
+      <Event Name="RECEIPEDONEEO" >
+      </Event>
+      <Event Name="RPRODUCTSNOO" >
+      </Event>
+      <Event Name="CURRENTTASKO" >
+        <With Var="CURRENTTASK" />
+      </Event>
+      <Event Name="FINISHEDPRODUCTSO" >
+        <With Var="FINNISHEDPRODUCTS" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="NAME" Type="WSTRING" />
+      <VarDeclaration Name="PRODUCTRECIEPE" Type="WSTRING" />
+      <VarDeclaration Name="RPRODUCTNO" Type="INT" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="STATE" Type="WSTRING" />
+      <VarDeclaration Name="ALARM" Type="WSTRING" />
+      <VarDeclaration Name="CURRENTTASK" Type="WSTRING" />
+      <VarDeclaration Name="FINNISHEDPRODUCTS" Type="INT" />
+    </OutputVars>
+  </InterfaceList>
+</FBType>

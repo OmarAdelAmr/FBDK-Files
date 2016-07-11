@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="REGRESS" Comment="Single-Variable Linear Time Series Regression" >
+  <Identification Standard="IEC 61499-1" Classification="Math" ApplicationDomain="General" Function="Linear Regression" Type="Single Time Series" Description="Single-variable linear time series regression" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.0" Author="JHC" Date="2006-04-28" />
+  <CompilerInfo header="package fb.rt.math;" >
+    <Compiler Language="Java" Vendor="Sun" Product="JDK" Version="1.5.0" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Set N, reset outputs and sample buffer" >
+        <With Var="N" />
+      </Event>
+      <Event Name="REQ" Comment="Sample Clock, Uniform Interval" >
+        <With Var="IN" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" >
+        <With Var="QO" />
+      </Event>
+      <Event Name="CNF" Comment="Execution Confirmation" >
+        <With Var="QO" />
+        <With Var="OUT" />
+        <With Var="SLOPE" />
+        <With Var="DEV" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="IN" Type="REAL" Comment="Sampled Variable" />
+      <VarDeclaration Name="N" Type="UINT" InitialValue="16" Comment="Number of samples in series" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="QO" Type="BOOL" Comment="Sample buffer full, outputs valid" />
+      <VarDeclaration Name="OUT" Type="REAL" Comment="Projected next value of IN" />
+      <VarDeclaration Name="SLOPE" Type="REAL" Comment="Slope of regressed data, IN units per clock period." />
+      <VarDeclaration Name="DEV" Type="REAL" Comment="Estimated standard deviation from regression line" />
+    </OutputVars>
+  </InterfaceList>
+</FBType>

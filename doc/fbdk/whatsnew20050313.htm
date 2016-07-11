@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html; charset=ISO-8859-1"
+ http-equiv="content-type">
+  <title>FBDK - What's New</title>
+  <link rel="icon" href="../../fbicon.png" type="image/png">
+  <meta content="JHC" name="author">
+  <meta content="What's New in the Function Block Development Kit"
+ name="description">
+</head>
+<body>
+<center>
+<table border="1">
+  <tbody>
+    <tr align="center" valign="middle">
+      <td><b><big><big><big>FBDK&nbsp;-<br>
+The&nbsp;Function&nbsp;Block&nbsp;Development Kit:<br>
+What's&nbsp;New</big></big></big></b><br>
+[<a href="gettingstarted.htm">Getting Started</a>]
+[<a href="download.htm">Download</a>] [<a href="README.htm">Terms and
+Conditions</a>]<br>
+      </td>
+      <td> <a href="http://www.holobloc.com"><img alt=""
+ src="../../logo_small.gif" border="0" height="83" width="79"><br>
+Home</a></td>
+    </tr>
+  </tbody>
+</table>
+<p><i>This page documents changes since the 2004-11-19
+release of the FBDK.</i></p>
+</center>
+<h3><a name="FBDK"></a>FBDK [<a href="#FBRT">FBRT</a>] [<A HREF="#MVCD">MVCD</A>]</h3>
+<ul>
+  <li>The FBDK has been tested to work with the <a
+ href="http://java.sun.com/j2se/">J2SE 5.0 SDK</a>, which has a more "modern" look and feel. The FBDK may also work with the J2SE 1.4.2 SDK.</li>
+<LI><A HREF="custom.htm">Customization</A> procedures have been simplified.</LI>
+<LI>Graphical editing of <A HREF="syshelp.htm#Segments">network segments and links</A> is now possible in system configuration diagrams.</LI>
+<LI>The new style of representing <A HREF="params.htm">parameters</A> as parenthesized assignment lists is now supported.</LI>
+<LI>Graphical editing of <A HREF="seqs.htm">service sequences</A> is now supported.</LI>
+  <li><B>XML Parsing Only</B></li>
+  <UL>
+    <LI>Due to increasing complexities in the source format introduced by the new features described above, only parsing of XML-formatted source text is now supported.</LI>
+<LI>Reading of <TT>*.src</TT> files is no longer supported.</LI>
+<LI>Parsing of text from the <B>Source</B> view is no longer supported. </LI>
+</UL>
+</ul>
+<h3><a name="FBRT"></a>FBRT [<a href="#FBDK">FBDK</a>] [<a href="#MVCD">MVCD</a>]</h3>
+<ul>
+  <li>The FBRT has been tested to work with the <a
+ href="http://java.sun.com/j2se/">J2SE 1.4.2 SDK</a> and may not work
+with earlier versions of the SDK.</li>
+  <li>HMI classes formerly located in the <tt>fb.rt.hmi</tt> package
+have been converted to the Java 2 <a
+ href="http://java.sun.com/docs/books/tutorial/uiswing/learn/index.html">Swing</a>
+GUI and are now located in the<tt> fb.rt.swing</tt> package; however,
+IEC 61499 source code for these classes is still located in the <tt>fbdk/src/hmi</tt>
+folder.</li>
+  <li>Internal implementation of the abstract superclass <tt>(fb.rt.FBInstance)
+    </tt>of all FB types has been changed; you should <b>re-generate
+and </b><b>recompile </b>all library elements you have previously
+created (use the&nbsp; <b>File=&gt;SaveAs=&gt;Java</b> menu item).</li>
+  <li>Internal implementation of the <tt>fb.rt.net</tt> classes has
+been changed to provide "pluggable" presentation protocols. This will
+not affect you unless you have subclassed these communication service
+interfaces.<br>
+  </li>
+</ul>
+<h3><a name="MVCD"></a>MVCD [<a href="#FBDK">FBDK</a>] [<a href="#FBRT">FBRT</a>]</h3>
+<ul>
+  <li>Substantial improvements and additions have been made to the <a
+ href="../despats/mvc/index.htm">MVCD framework</a>.</li>
+  <li>Process control and sortation/inspection applications have been
+incorporated into the framework and a new pallet handling example has
+been added.<br>
+  </li>
+</ul>
+<center>
+<hr><i>Last updated:&nbsp; 2005-03-13.<br>
+&copy;2004,2005 Rockwell Automation. All rights reserved.</i>
+</center>
+</body>
+</html>

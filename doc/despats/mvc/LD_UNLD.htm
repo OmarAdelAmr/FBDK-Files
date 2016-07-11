@@ -1,0 +1,60 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+<META NAME="GENERATOR" CONTENT="Visual Page 1.1 for Windows">
+<TITLE>ADAPTER LD_UNLD</TITLE>
+</HEAD>
+
+<BODY>
+
+<H2 ALIGN="CENTER">ADAPTER LD_UNLD</H2>
+<P>This adapter interface represents the operation of transferring a
+workpiece from an &quot;upstream&quot; piece of transfer equipment
+represented by a Model/View composite which acts as the <B>provider </B>of
+the plug adapter to a &quot;downstream&quot; piece of equipment
+represented by a second Model/View composite which acts as the <B>acceptor</B>
+with a corresponding socket adapter (see IEC 61499 for definitions of
+these terms).</P>
+
+<P>As illustrated in the <TT>normal_operation</TT> sequence shown <A
+	HREF="#viewer">below</A>, the typical operation of this interaction
+consists of the following sequence:</P>
+
+<OL>
+	<LI>An event in the upstream equipment, e.g., arrival of a workpiece at
+	the unload position, causes a <TT>LD</TT> event, typically interpreted
+	as a &quot;load&quot; command, to the transmitted to the downstream
+	equipment.
+	<LI>A subsequent event in the downstream equipment, e.g., completion of
+	the load setup, causes an <TT>UNLD</TT> event, typically interpreted as
+	a command to release the workpiece, to be sent to the upstream
+	equipment.
+	<LI>Subsequently a <TT>CNF</TT> event, typically interpreted as
+	confirmation of the workpiece release, is passed from the upstream to
+	the downstream equipment to complete the operation.
+</OL>
+
+<CENTER>
+<P><A NAME="viewer"></A>[<A HREF="../../FBViewer.html" TARGET="help">Viewer
+Help</A>]<BR>
+<TABLE BORDER="1">
+	<TR>
+		<TD><APPLET CODE="FBViewer" WIDTH="421" HEIGHT="370"
+			ARCHIVE="../../viewer.jar"> </APPLET>
+
+		</CENTER>
+		</TD>
+	</TR>
+</TABLE>
+</P>
+<P><I>Last updated: 2006-04-19.</I><BR>
+&copy;2006 <A HREF="http://www.holobloc.com" TARGET="_blank">Holobloc
+Inc</A><BR>
+Licensed under the <A
+	HREF="http://www.opensource.org/licenses/afl-3.0.php">Academic Free
+License version 3.0</A>.</P>
+</CENTER>
+</BODY>
+</HTML>

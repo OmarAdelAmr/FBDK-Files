@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="FB_INT_UINT" Comment="INT to UINT conversion with limiting" >
+  <Identification Standard="61499-1-D.1" Classification="Type conversion functions" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.0" Author="JHC" Date="2006-06-08" />
+  <CompilerInfo header="package fb.rt.math;" classdef="class FB_INT_UINT extends FBFunction1" >
+    <Compiler Language="Java" Vendor="IBM" Product="VisualAge" Version="3.0" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="REQ" >
+        <With Var="IN" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="CNF" >
+        <With Var="OUT" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="IN" Type="INT" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="OUT" Type="UINT" Comment="Converted value,-1&#60;OUT&#60;32767" />
+    </OutputVars>
+  </InterfaceList>
+</FBType>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE System SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<System Name="ROBOT_HMI" Comment="System Configuration" >
+  <Identification Standard="61499-1" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.3" Author="JHC" Date="2003-12-05" Remarks="Renamed from NEWSYSTEM." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.2" Author="JHC" Date="2002-11-05" Remarks="Fixed missing (empty) FBD in Application." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2002-01-17" Remarks="Minor cleanup" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2000-05-27" />
+  <Application Name="APP1" >
+    <FBNetwork >
+    </FBNetwork>
+  </Application>
+  <Device Name="ROBOT_HMI_DEVICE" Type="FRAME_DEVICE" x="1055.5555" y="427.77777" >
+    <Parameter Name="BOUNDS" Value="[1100,300,600,400]" />
+    <Parameter Name="GRID" Value="[1,1]" />
+    <Resource Name="ROBOT_HMI_PROCESSOR" Type="PANEL_RESOURCE" x="1361.1111" y="672.22217" >
+      <Parameter Name="ROWS" Value="2" />
+      <Parameter Name="COLS" Value="2" />
+      <FBNetwork >
+        <FB Name="ROBOT" Type="ROBOTA1FB" x="4205.555" y="11.111111" >
+          <Parameter Name="NAME" Value="&#34;RobotAgent&#34;" />
+        </FB>
+        <FB Name="SCANNER" Type="E_CYCLE" x="2805.5554" y="377.77777" >
+          <Parameter Name="DT" Value="t#200ms" />
+        </FB>
+        <FB Name="ADDRECIPETASK" Type="IN_EVENT" x="911.1111" y="222.22221" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;ADD RECEIPE TASK&#34;" />
+        </FB>
+        <FB Name="RECIPETASKS" Type="IN_CHOICE" x="2822.2222" y="1238.8888" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="CHOICES" Value="&#34;Drilling,Milling,Assembly,Painting,Shaping&#34;" />
+        </FB>
+        <FB Name="RECIPEDONE" Type="IN_EVENT" x="600.0" y="1350.0" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;&#34;RECEIPE DONE&#34;&#34;" />
+        </FB>
+        <FB Name="RECIPEDONESPACE" Type="XSPACE" x="1172.2222" y="1327.7777" />
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="ROBOT.STARTE" dx1="1555.5555" />
+          <Connection Source="ROBOT.STARTO" Destination="SCANNER.START" dx1="27.777777" dx2="255.55554" dy="-66.666664" />
+          <Connection Source="SCANNER.EO" Destination="ROBOT.STATEE" dx1="455.55554" />
+          <Connection Source="SCANNER.EO" Destination="ROBOT.ALARME" dx1="455.55554" />
+          <Connection Source="SCANNER.EO" Destination="ROBOT.CURRENTTASKE" dx1="688.88885" />
+          <Connection Source="SCANNER.EO" Destination="ROBOT.FINISHEDPRODUCTSE" dx1="688.88885" />
+          <Connection Source="START.COLD" Destination="ADDRECIPETASK.INIT" dx1="227.77777" />
+          <Connection Source="ADDRECIPETASK.INITO" Destination="RECIPETASKS.INIT" dx1="300.0" />
+          <Connection Source="ADDRECIPETASK.IND" Destination="ROBOT.ADDRECIPEE" dx1="1177.7777" />
+          <Connection Source="RECIPETASKS.INITO" Destination="RECIPEDONE.INIT" dx1="27.777777" dx2="155.55554" dy="-1255.5555" />
+          <Connection Source="RECIPEDONE.INITO" Destination="RECIPEDONESPACE.INIT" dx1="161.1111" />
+          <Connection Source="RECIPEDONE.IND" Destination="ROBOT.RECIPEDONEE" dx1="1327.7777" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="RECIPETASKS.OUT" Destination="ROBOT.PRODUCTRECIPE" dx1="794.4444" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+  </Device>
+</System>

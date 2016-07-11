@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="FIFO_UINT" Comment="A FIFO queue of UINTs" >
+  <Identification Standard="61499-1" />
+  <VersionInfo Organization="Holobloc Inc." Version="0.0" Author="JHC" Date="2005-12-09" Remarks="Derived from STACK_INT." />
+  <CompilerInfo header="package fb.rt.student;" >
+    <Compiler Language="Java" Vendor="Sun" Product="JDK" Version="1.5" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="RST" Comment="Empty the queue" >
+      </Event>
+      <Event Name="PUSH" Comment="Push the value of IN to the end of the queue if possible." >
+        <With Var="IN" />
+      </Event>
+      <Event Name="PULL" Comment="Pull the value of OUT from the front of the queue if possible." >
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="RSTO" Comment="Reset confirmation" >
+        <With Var="N" />
+        <With Var="OK" />
+        <With Var="OUT" />
+      </Event>
+      <Event Name="PUSHO" Comment="PUSH confirmation" >
+        <With Var="N" />
+        <With Var="OK" />
+      </Event>
+      <Event Name="PULLO" Comment="PULL confirmation" >
+        <With Var="OK" />
+        <With Var="OUT" />
+        <With Var="N" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="IN" Type="UINT" Comment="Input to be pushed" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="OK" Type="BOOL" Comment="OUT value valid" />
+      <VarDeclaration Name="N" Type="UINT" Comment="Number of elements in queue" />
+      <VarDeclaration Name="OUT" Type="UINT" Comment="Data from last PULL - meaningless if OK = FALSE" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <InternalVars>
+      <VarDeclaration Name="BUF" Type="UINT" ArraySize="128" Comment="Circular buffer" />
+      <VarDeclaration Name="PTR" Type="UINT" Comment="Location for next PUSH" />
+      <VarDeclaration Name="OUTPTR" Type="UINT" Comment="Location for next PULL" />
+    </InternalVars>
+  <Algorithm Name="PUSH" >
+    <ST Text="IF N = 128 THEN&#10;OK := FALSE;&#10;ELSE&#10;OK := TRUE;&#10;BUF[PTR] := IN;&#10;PTR := (PTR+1)%128;&#10;N := N+1;&#10;END_IF;&#10;PUSHO.serviceEvent(this);&#10;" />
+  </Algorithm>
+  <Algorithm Name="PULL" >
+    <ST Text="IF N = 0 THEN&#10;OK := FALSE;&#10;ELSE&#10;OK := TRUE;&#10;OUT := BUF[OUTPTR];&#10;OUTPTR := (OUTPTR+1)%128;&#10;N := N-1;&#10;END_IF;&#10;PULLO.serviceEvent(this);&#10;" />
+  </Algorithm>
+  <Algorithm Name="RST" >
+    <ST Text="PTR := 0;&#10;OUTPTR := 0;&#10;N := 0;&#10;OUT := 0;&#10;OK := FALSE;&#10;RSTO.serviceEvent(this);&#10;" />
+  </Algorithm>
+  </BasicFB>
+</FBType>

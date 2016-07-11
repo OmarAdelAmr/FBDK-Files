@@ -1,0 +1,44 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+<META NAME="GENERATOR" CONTENT="Eclipse HTML Editor">
+<META NAME="Standard" CONTENT="IEC 61499-1">
+<META NAME="Classification" CONTENT="Math">
+<META NAME="ApplicationDomain" CONTENT="General">
+<META NAME="Function" CONTENT="Linear Regression">
+<META NAME="Type" CONTENT="Single Time Series">
+<META NAME="Description"
+	CONTENT="Single-variable linear time series regression">
+<TITLE>FUNCTION_BLOCK REGRESS</TITLE>
+</HEAD>
+<BODY>
+<H2 ALIGN="CENTER">FUNCTION_BLOCK REGRESS</H2>
+<P>An instance of this function block type performs <A
+	HREF="http://en.wikipedia.org/wiki/Linear_regression">linear
+regression</A> on a series of <TT>N</TT> sampled values of the input
+variable <TT>IN</TT>. The sampling is assumed to occur at uniform time
+intervals, triggered by the <TT>REQ</TT> event input. Upon the
+occurrence of an <TT>INIT</TT> event, the sample buffer is emptied and
+the <TT>QO</TT> output remains <B>false</B> until the first <TT>N</TT>
+samples have been taken, and thereafter remains <B>true</B> until the
+next occurrence of an <TT>INIT</TT> event.</P>
+<P>See the <A HREF="REGRESS.java">Java source code</A> for details
+of the operation of this function block type.</P>
+<CENTER>[<A NAME="Viewer" HREF="../FBViewer.html"
+	TARGET="_blank">Viewer Help</A>]<BR>
+<TABLE BORDER="1">
+	<TR>
+		<TD><APPLET CODE="FBViewer" ARCHIVE="../viewer.jar" WIDTH="574"
+			HEIGHT="400"></APPLET></TD>
+	</TR>
+</TABLE>
+<P><I>Last updated: 2007-10-17.</I><BR>
+&copy;2006,2007 <A HREF="http://www.holobloc.com" TARGET="_blank">Holobloc
+Inc</A><BR>
+Licensed under the <A
+	HREF="http://www.opensource.org/licenses/afl-3.0.php">Academic Free
+License version 3.0</A>.</P>
+</CENTER>
+</BODY>
+</HTML>

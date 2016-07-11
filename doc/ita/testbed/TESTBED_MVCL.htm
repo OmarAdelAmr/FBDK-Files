@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+<META NAME="GENERATOR" CONTENT="Eclipse HTML Editor">
+<TITLE>SYSTEM TESTBED_MVCL</TITLE>
+</HEAD>
+<BODY>
+<H3>5. Develop and Test Controllers</H3>
+<P><A HREF="../../despats/mvc/DRILL_MVCL.htm#Viewer"></A>The <A
+	HREF="TESTBED_MVCL.htm#Viewer"><TT>TESTBED_MVCL</TT></A> system
+configuration implements the layered <A
+	HREF="../../despats/mvc/syseng2.htm#5"><B>Model+View+Control</B>
+testing architecture</A> for the <A HREF="sketch.htm">Sortation/Inspection
+testbed</A>.</P>
+<UL>
+	<LI>The <TT>MODEL</TT> device encapsulates the functionality of
+	both the <B>Model</B> and <B>View</B> layers of the architecture as in
+	the <A HREF="TESTBED_MVL.htm"><TT>TESTBED_MVL</TT></A> configuration.</LI>
+	<LI>The <TT>CONTROL</TT> device contains both the <B>HMI</B> and <B>Controller</B>
+	elements, including the logic for sequencing and interlocking of
+	operations among the modeled physical elements. Control is achieved
+	through instances of the function block types <A HREF="SORT_CTL.htm"><TT>SORT_CTL</TT></A>,
+	<A HREF="FEED_CTL.htm"><TT>FEED_CTL</TT></A> and <A HREF="REJ_CTL.htm"><TT>REJ_CTL</TT></A>.
+	In addition, the <TT>CHUTE_ACTUATORS</TT> resource contains instances
+	of the <A HREF="CTU_OUT.htm"><TT>CTU_OUT</TT></A> type provide counting
+	and display of successful assemblies accomplished as well as
+	unassembled rings and pegs lost.</LI>
+	<LI>Inter-layer communication is implemented with the <A
+		HREF="../../despats/publsubl/index.htm" TARGET="_top">local
+	multicast</A> pattern.</LI>
+</UL>
+<CENTER>
+<P><IMG ALT="" SRC="TESTBED_MVCL.gif" HEIGHT="360" WIDTH="640">
+</P>
+<P>[<A NAME="Viewer" HREF="../../FBViewer.html" TARGET="_blank">Viewer
+Help</A>]<BR>
+<TABLE BORDER="1">
+	<TR>
+		<TD><APPLET CODE="FBViewer" ARCHIVE="../../viewer.jar"
+			HEIGHT="710" WIDTH="1028"> </APPLET></TD>
+	</TR>
+</TABLE>
+</P>
+<P><I>Last updated: 2007-09-22.</I><BR>
+&copy;2004 Rockwell Automation.<BR>
+&copy;2006,2007 <A HREF="http://www.holobloc.com" TARGET="_blank">Holobloc
+Inc</A>.<BR>
+Licensed under the <A
+	HREF="http://www.opensource.org/licenses/afl-3.0.php">Academic Free
+License version 3.0</A>.</P>
+</CENTER>
+</BODY>
+</HTML>

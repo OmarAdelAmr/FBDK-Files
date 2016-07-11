@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE System SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<System Name="WORKER_HMI_Bachelor" Comment="System Configuration" >
+  <Identification Standard="61499-1" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.3" Author="JHC" Date="2003-12-05" Remarks="Renamed from NEWSYSTEM." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.2" Author="JHC" Date="2002-11-05" Remarks="Fixed missing (empty) FBD in Application." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2002-01-17" Remarks="Minor cleanup" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2000-05-27" />
+  <Application Name="APP1" >
+    <FBNetwork >
+    </FBNetwork>
+  </Application>
+  <Device Name="WORKER_HMI_DEVICE" Type="FRAME_DEVICE" x="1052.9412" y="429.41174" >
+    <Parameter Name="BOUNDS" Value="[1100,300,600,400]" />
+    <Parameter Name="GRID" Value="[1,1]" />
+    <Resource Name="WORKER_HMI_PROCESSOR" Type="PANEL_RESOURCE" x="1358.8235" y="670.5882" >
+      <Parameter Name="ROWS" Value="6" />
+      <Parameter Name="COLS" Value="2" />
+      <FBNetwork >
+        <FB Name="MainAppGUIFB" Type="MainAppGUIFB" x="935.2941" y="205.88235" />
+        <FB Name="NewHumanTaskGUIFB" Type="NewHumanTaskGUIFB" x="4211.7646" y="1023.5294" />
+        <FB Name="NewRobotTaskGUIFB" Type="NewRobotTaskGUIFB" x="4170.5884" y="11.764706" />
+        <FB Name="NewProductGUIFB" Type="NewProductGUIFB" x="3676.4705" y="1511.7646" />
+        <FB Name="ExecuteProduct" Type="ExecuteProduct" x="3135.294" y="2458.8235" />
+        <EventConnections>
+          <Connection Source="MainAppGUIFB.oe_init_new_robot_task" Destination="NewRobotTaskGUIFB.ie_init_new_task" dx1="376.47058" />
+          <Connection Source="MainAppGUIFB.oe_init_new_human_task" Destination="NewHumanTaskGUIFB.ie_init_new_human_task" dx1="1664.7058" />
+          <Connection Source="MainAppGUIFB.oe_init_new_product" Destination="NewProductGUIFB.ie_init_new_product" dx1="1182.3529" />
+          <Connection Source="MainAppGUIFB.oe_execute_product" Destination="ExecuteProduct.ie_init_execute_product" dx1="782.3529" />
+          <Connection Source="ExecuteProduct.oe_close_execute_product_frame" Destination="MainAppGUIFB.ie_init_main_gui" dx1="29.411764" dx2="5.882353" dy="-2582.3528" />
+          <Connection Source="NewProductGUIFB.oe_close_newProduct_window" Destination="MainAppGUIFB.ie_init_main_gui" dx1="29.411764" dx2="5.882353" dy="-1605.8823" />
+          <Connection Source="NewHumanTaskGUIFB.oe_close_new_human_task_window" Destination="MainAppGUIFB.ie_init_main_gui" dx1="29.411764" dx2="0.0" dy="-1105.8823" />
+          <Connection Source="NewRobotTaskGUIFB.oe_close_newTask_window" Destination="MainAppGUIFB.ie_init_main_gui" dx1="29.411764" dx2="0.0" dy="-176.47058" />
+          <Connection Source="START.COLD" Destination="MainAppGUIFB.ie_init_main_gui" dx1="505.88235" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="MainAppGUIFB.ov_product_name" Destination="ExecuteProduct.iv_product_name" dx1="688.2353" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+  </Device>
+</System>

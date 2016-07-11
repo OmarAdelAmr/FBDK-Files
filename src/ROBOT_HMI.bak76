@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE System SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<System Name="ROBOT_HMI" Comment="System Configuration" >
+  <Identification Standard="61499-1" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.3" Author="JHC" Date="2003-12-05" Remarks="Renamed from NEWSYSTEM." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.2" Author="JHC" Date="2002-11-05" Remarks="Fixed missing (empty) FBD in Application." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2002-01-17" Remarks="Minor cleanup" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2000-05-27" />
+  <Application Name="APP1" >
+    <FBNetwork >
+    </FBNetwork>
+  </Application>
+  <Device Name="ROBOT_HMI_DEVICE" Type="FRAME_DEVICE" x="1055.5555" y="427.77777" >
+    <Parameter Name="BOUNDS" Value="[1100,300,600,400]" />
+    <Parameter Name="GRID" Value="[1,1]" />
+    <Resource Name="ROBOT_HMI_PROCESSOR" Type="PANEL_RESOURCE" x="1361.1111" y="672.22217" >
+      <Parameter Name="ROWS" Value="10" />
+      <Parameter Name="COLS" Value="2" />
+      <FBNetwork >
+        <FB Name="ROBOT" Type="ROBOTA1FB" x="3955.5554" y="11.111111" >
+          <Parameter Name="NAME" Value="&#34;RobotAgent&#34;" />
+        </FB>
+        <FB Name="ADDRECIPETASK" Type="IN_EVENT" x="1977.7777" y="2366.6665" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;ADD RECEIPE TASK&#34;" />
+        </FB>
+        <FB Name="RECIPETASKS" Type="IN_CHOICE" x="2705.5554" y="2605.5554" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="CHOICES" Value="&#34;Drilling,Milling,Assembly,Painting,Shaping&#34;" />
+        </FB>
+        <FB Name="RECIPEDONE" Type="IN_EVENT" x="327.77777" y="1538.8888" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;RECEIPE DONE&#34;" />
+        </FB>
+        <FB Name="MYSTATETYPE" Type="OUT_ANY" x="6172.222" y="66.666664" >
+          <Parameter Name="QI" Value="1" />
+        </FB>
+        <FB Name="ALARMTYPE" Type="OUT_ANY" x="7344.4443" y="1461.1111" >
+          <Parameter Name="QI" Value="1" />
+        </FB>
+        <FB Name="ALARM" Type="OUT_BOOL" x="6933.333" y="1472.2222" >
+          <Parameter Name="LABEL" Value="&#34;                                    ALARM&#34;" />
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="C0" Value="[0,255,0]" />
+          <Parameter Name="C1" Value="[255,0,0]" />
+        </FB>
+        <FB Name="CURRENTTASKLABEL" Type="FB_LABEL" x="5455.555" y="2522.2222" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;                                   CURRENT SKILL&#34;" />
+        </FB>
+        <FB Name="CURRENTTASK" Type="OUT_ANY" x="6144.4443" y="2444.4443" >
+          <Parameter Name="QI" Value="1" />
+        </FB>
+        <FB Name="FINISHEDPRODUCTSLABEL" Type="FB_LABEL" x="5411.111" y="3444.4443" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;                               FINISHED PRODCUTS&#34;" />
+        </FB>
+        <FB Name="FINISHEDPRODUCTS" Type="OUT_ANY" x="6211.111" y="3638.8887" >
+          <Parameter Name="QI" Value="1" />
+        </FB>
+        <FB Name="WORKERSTATETYPE" Type="OUT_ANY" x="7944.4443" y="33.333332" >
+          <Parameter Name="QI" Value="1" />
+        </FB>
+        <FB Name="STARTROBOT" Type="IN_EVENT" x="611.1111" y="400.0" >
+          <Parameter Name="LABEL" Value="&#34;START ROBOT AGENT&#34;" />
+          <Parameter Name="QI" Value="1" />
+        </FB>
+        <FB Name="STOPROBOT" Type="IN_EVENT" x="1311.1111" y="411.11108" >
+          <Parameter Name="LABEL" Value="&#34;STOP ROBOT AGENT&#34;" />
+        </FB>
+        <FB Name="ADDMYSKILLS" Type="IN_EVENT" x="1711.1111" y="1227.7777" >
+          <Parameter Name="LABEL" Value="&#34;ADD NEW SKILL&#34;" />
+          <Parameter Name="QI" Value="1" />
+        </FB>
+        <FB Name="MYSKILLS" Type="IN_CHOICE" x="2416.6665" y="1411.1111" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="CHOICES" Value="&#34;Drilling,Milling,Assembly,Painting,Shaping&#34;" />
+        </FB>
+        <FB Name="ROBOTHEARTBEAT" Type="OUT_EVENT" x="3588.8887" y="3549.9998" >
+          <Parameter Name="DT" Value="t#200ms" />
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;                      ROBOT AGENT HEART BEAT&#34;" />
+          <Parameter Name="FLASH" Value="[0,0,255]" />
+        </FB>
+        <FB Name="CLOCK" Type="E_CYCLE" x="2105.5554" y="3438.8887" >
+          <Parameter Name="DT" Value="t#400ms" />
+        </FB>
+        <FB Name="HEARTBEATSPACE" Type="XSPACE" x="4388.8887" y="3172.2222" />
+        <FB Name="TASKDONE" Type="IN_EVENT" x="872.22217" y="1461.1111" >
+          <Parameter Name="LABEL" Value="&#34;TASK DONE&#34;" />
+          <Parameter Name="QI" Value="1" />
+        </FB>
+        <FB Name="MYSTATE" Type="OUT_BOOL" x="5683.333" y="55.555553" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;                                        MYSTATE&#34;" />
+          <Parameter Name="C0" Value="[0,255,0]" />
+          <Parameter Name="C1" Value="[255,0,0]" />
+        </FB>
+        <FB Name="WORKERSTATE" Type="OUT_BOOL" x="7199.9995" y="55.555553" >
+          <Parameter Name="LABEL" Value="&#34;                                   WORKERSTATE&#34;" />
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="C0" Value="[0,255,0]" />
+          <Parameter Name="C1" Value="[255,0,0]" />
+        </FB>
+        <FB Name="NEXTTASKLABEL" Type="FB_LABEL" x="7661.111" y="2677.7776" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;                                   NEXT SKILL&#34;" />
+        </FB>
+        <FB Name="NEXTTASK" Type="OUT_ANY" x="8316.666" y="2766.6665" >
+          <Parameter Name="QI" Value="1" />
+        </FB>
+        <EventConnections>
+          <Connection Source="ADDRECIPETASK.INITO" Destination="RECIPETASKS.INIT" dx1="300.0" />
+          <Connection Source="ADDRECIPETASK.IND" Destination="ROBOT.ADDRECIPEE" dx1="1177.7777" />
+          <Connection Source="RECIPETASKS.INITO" Destination="RECIPEDONE.INIT" dx1="27.777777" dx2="155.55554" dy="-1255.5555" />
+          <Connection Source="RECIPEDONE.IND" Destination="ROBOT.RECIPEDONEE" dx1="1327.7777" />
+          <Connection Source="ALARM.INITO" Destination="ALARMTYPE.INIT" dx1="327.77777" />
+          <Connection Source="ROBOT.ALARMO" Destination="ALARM.REQ" dx1="144.44444" />
+          <Connection Source="ALARMTYPE.INITO" Destination="CURRENTTASKLABEL.INIT" dx1="27.777777" dx2="11.111111" dy="-1544.4443" />
+          <Connection Source="CURRENTTASKLABEL.INITO" Destination="CURRENTTASK.INIT" dx1="105.55555" />
+          <Connection Source="ALARM.CNF" Destination="ALARMTYPE.REQ" dx1="211.1111" />
+          <Connection Source="ROBOT.CURRENTTASKO" Destination="CURRENTTASK.REQ" dx1="1655.5555" />
+          <Connection Source="ROBOT.FINISHEDPRODUCTSO" Destination="FINISHEDPRODUCTS.REQ" dx1="1849.9999" />
+          <Connection Source="FINISHEDPRODUCTSLABEL.INITO" Destination="FINISHEDPRODUCTS.INIT" dx1="350.0" />
+          <Connection Source="WORKERSTATETYPE.INITO" Destination="ALARM.INIT" dx1="27.777777" dx2="0.0" dy="-88.888885" />
+          <Connection Source="STARTROBOT.INITO" Destination="STOPROBOT.INIT" dx1="33.333332" />
+          <Connection Source="STOPROBOT.IND" Destination="ROBOT.STOPE" dx1="1416.6666" />
+          <Connection Source="START.COLD" Destination="ROBOT.INITE" dx1="2400.0" />
+          <Connection Source="ADDMYSKILLS.INITO" Destination="MYSKILLS.INIT" dx1="255.55554" />
+          <Connection Source="ADDMYSKILLS.IND" Destination="ROBOT.MYSKILLE" dx1="544.4444" />
+          <Connection Source="STOPROBOT.INITO" Destination="ADDMYSKILLS.INIT" dx1="50.0" />
+          <Connection Source="MYSKILLS.INITO" Destination="ADDRECIPETASK.INIT" dx1="27.777777" dx2="288.8889" dy="-1494.4443" />
+          <Connection Source="ROBOTHEARTBEAT.INITO" Destination="HEARTBEATSPACE.INIT" dx1="138.88889" />
+          <Connection Source="HEARTBEATSPACE.INITO" Destination="STARTROBOT.INIT" dx1="288.8889" dx2="172.22221" dy="-2677.7776" />
+          <Connection Source="ROBOT.INITO" Destination="ROBOTHEARTBEAT.INIT" dx1="77.77777" dx2="433.3333" dy="-227.77777" />
+          <Connection Source="STARTROBOT.IND" Destination="ROBOT.STARTE" dx1="588.88885" />
+          <Connection Source="STARTROBOT.IND" Destination="CLOCK.START" dx1="872.22217" />
+          <Connection Source="STOPROBOT.IND" Destination="CLOCK.STOP" dx1="388.8889" />
+          <Connection Source="CLOCK.EO" Destination="ROBOTHEARTBEAT.REQ" dx1="333.3333" />
+          <Connection Source="CLOCK.EO" Destination="ROBOT.MYSTATEE" dx1="1088.8888" />
+          <Connection Source="CLOCK.EO" Destination="ROBOT.WORKERSTATEE" dx1="1088.8888" />
+          <Connection Source="CLOCK.EO" Destination="ROBOT.ALARME" dx1="1088.8888" />
+          <Connection Source="CLOCK.EO" Destination="ROBOT.CURRENTTASKE" dx1="1088.8888" />
+          <Connection Source="CLOCK.EO" Destination="ROBOT.FINISHEDPRODUCTSE" dx1="1088.8888" />
+          <Connection Source="RECIPEDONE.INITO" Destination="TASKDONE.INIT" dx1="172.22221" />
+          <Connection Source="TASKDONE.IND" Destination="ROBOT.TASKDONEE" dx1="1100.0" />
+          <Connection Source="TASKDONE.INITO" Destination="MYSTATE.INIT" dx1="1594.4443" />
+          <Connection Source="MYSTATE.INITO" Destination="MYSTATETYPE.INIT" dx1="38.888885" />
+          <Connection Source="ROBOT.MYSTATEO" Destination="MYSTATE.REQ" dx1="83.33333" />
+          <Connection Source="MYSTATE.CNF" Destination="MYSTATETYPE.REQ" dx1="33.333332" />
+          <Connection Source="MYSTATETYPE.INITO" Destination="WORKERSTATE.INIT" dx1="83.33333" />
+          <Connection Source="WORKERSTATE.INITO" Destination="WORKERSTATETYPE.INIT" dx1="44.444443" />
+          <Connection Source="ROBOT.WORKERSTATEO" Destination="WORKERSTATE.REQ" dx1="516.6666" />
+          <Connection Source="WORKERSTATE.CNF" Destination="WORKERSTATETYPE.REQ" dx1="50.0" />
+          <Connection Source="CLOCK.EO" Destination="ROBOT.NEXTTASKE" dx1="1088.8888" />
+          <Connection Source="CURRENTTASK.INITO" Destination="NEXTTASKLABEL.INIT" dx1="533.3333" />
+          <Connection Source="NEXTTASKLABEL.INITO" Destination="NEXTTASK.INIT" dx1="150.0" />
+          <Connection Source="ROBOT.NEXTTASKO" Destination="NEXTTASK.REQ" dx1="2100.0" />
+          <Connection Source="NEXTTASK.INITO" Destination="FINISHEDPRODUCTSLABEL.INIT" dx1="27.777777" dx2="216.66666" dy="-2872.2222" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="RECIPETASKS.OUT" Destination="ROBOT.PRODUCTRECIPE" dx1="566.6666" />
+          <Connection Source="ROBOT.ALARMTYPE" Destination="ALARMTYPE.IN" dx1="661.1111" />
+          <Connection Source="ROBOT.ALARM" Destination="ALARM.IN" dx1="766.6666" />
+          <Connection Source="ROBOT.CURRENTTASK" Destination="CURRENTTASK.IN" dx1="605.55554" />
+          <Connection Source="ROBOT.FINISHEDPRODUCTS" Destination="FINISHEDPRODUCTS.IN" dx1="2066.6665" />
+          <Connection Source="MYSKILLS.OUT" Destination="ROBOT.MYSKILL" dx1="400.0" />
+          <Connection Source="ROBOT.MYSTATE" Destination="MYSTATE.IN" dx1="300.0" />
+          <Connection Source="ROBOT.MYSTATETYPE" Destination="MYSTATETYPE.IN" dx1="716.6666" />
+          <Connection Source="ROBOT.WORKERSTATETYPE" Destination="WORKERSTATETYPE.IN" dx1="1194.4445" />
+          <Connection Source="ROBOT.WORKERSTATE" Destination="WORKERSTATE.IN" dx1="827.7778" />
+          <Connection Source="ROBOT.NEXTTASK" Destination="NEXTTASK.IN" dx1="1450.0" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+  </Device>
+</System>

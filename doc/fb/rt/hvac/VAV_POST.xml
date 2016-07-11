@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="VAV_POST" Comment="Variable Air Valve Model post-calculations" >
+  <Identification Standard="61499-1" Classification="Simulation" ApplicationDomain="HVAC" Function="Flow Sensor" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.0" Author="JHC" Date="2006-04-10" />
+  <CompilerInfo header="package fb.rt.hvac;" >
+    <Compiler Language="Java" Vendor="Sun" Product="JDK" Version="1.5.0" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="CLK" Comment="Perform post-model calculations" >
+        <With Var="POS" />
+        <With Var="FSF" />
+        <With Var="SFS" />
+        <With Var="FD" />
+        <With Var="ADMAX" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="CNF" Comment="Post-calculations complete" >
+        <With Var="FLOW" />
+        <With Var="AD" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="POS" Type="UINT" Comment="Damper position, percent FS" />
+      <VarDeclaration Name="FSF" Type="REAL" InitialValue="1000.0" Comment="Air Flow at Damper Full Open, CFM" />
+      <VarDeclaration Name="FD" Type="REAL" Comment="Maximum random flow deviation in CFM" />
+      <VarDeclaration Name="SFS" Type="REAL" InitialValue="1000.0" Comment="Air Flow at Sensor Full Scale, CFM" />
+      <VarDeclaration Name="ADMAX" Type="UINT" InitialValue="4096" Comment="Maximum Flow Sensor A/D converter value + 1, default is 12 bits" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="FLOW" Type="REAL" Comment="Air flow, CFM" />
+      <VarDeclaration Name="AD" Type="UINT" Comment="Flow sensor A/D converter value" />
+    </OutputVars>
+  </InterfaceList>
+</FBType>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="MECH2_DIAG" Comment="Diagnostics for a Bidirectional Mechanism (Clocked)" >
+  <Identification Standard="61499-1" Classification="Diagnostics" ApplicationDomain="Mechanisms" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2004-10-20" Remarks="Renamed to replace old MECH2_DIAG." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2004-08-26" Remarks="Derived from MECH2_DIAG." />
+  <CompilerInfo header="package fb.rt.mva; import fb.rt.math.*;" >
+    <Compiler Language="Java" Vendor="Sun" Product="JDK" Version="1.4.2" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="CLK" Comment="Diagnostic Clock" >
+        <With Var="HOME" />
+        <With Var="END" />
+        <With Var="NR" />
+        <With Var="FWD" />
+        <With Var="REV" />
+        <With Var="NF" />
+        <With Var="MSGF" />
+        <With Var="MSGR" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="FLT" Comment="Fault Indication" >
+        <With Var="DIAG" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="FWD" Type="BOOL" Comment="Forward Actuation Command from Controller" />
+      <VarDeclaration Name="REV" Type="BOOL" Comment="Reverse Actuation Command from Controller" />
+      <VarDeclaration Name="HOME" Type="BOOL" Comment="HOME(Fully Retracted)Sensor" />
+      <VarDeclaration Name="END" Type="BOOL" Comment="END(Fully Advanced)Sensor" />
+      <VarDeclaration Name="NF" Type="UINT" Comment="Forward Motion Timeout Period in CLK cycles" />
+      <VarDeclaration Name="NR" Type="UINT" Comment="Reverse Motion Timeout Period in CLK cycles" />
+      <VarDeclaration Name="MSGF" Type="WSTRING" InitialValue="&#34;TIMEOUT_ADVANCING&#34;" Comment="Message for fault on forward motion" />
+      <VarDeclaration Name="MSGR" Type="WSTRING" InitialValue="&#34;TIMEOUT_RETRACTING&#34;" Comment="Message for fault on reverse motion" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="DIAG" Type="WSTRING" Comment="Diagnostic String" />
+    </OutputVars>
+  </InterfaceList>
+  <FBNetwork >
+    <FB Name="MONF" Type="MECH1_DIAG" Comment="Monitor Forward Motion" x="272.2222" y="11.111111" />
+    <FB Name="MONR" Type="MECH1_DIAG" Comment="Monitor reverse motion" x="272.2222" y="811.1111" />
+    <FB Name="DIAG_SEL" Type="E_SEL_WSTRING" Comment="Diagnostic String Selector" x="1033.3333" y="11.111111" />
+    <EventConnections>
+      <Connection Source="MONF.FLT" Destination="DIAG_SEL.EI0" dx1="61.111107" />
+      <Connection Source="MONR.FLT" Destination="DIAG_SEL.EI1" dx1="61.111107" />
+      <Connection Source="DIAG_SEL.EO" Destination="FLT" dx1="1638.8888" />
+      <Connection Source="CLK" Destination="MONF.CLK" dx1="166.66666" />
+      <Connection Source="CLK" Destination="MONR.CLK" dx1="166.66666" />
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="FWD" Destination="MONF.FWD" dx1="161.1111" />
+      <Connection Source="END" Destination="MONF.END" dx1="161.1111" />
+      <Connection Source="REV" Destination="MONR.FWD" dx1="166.66666" />
+      <Connection Source="HOME" Destination="MONR.END" dx1="133.33333" />
+      <Connection Source="MSGF" Destination="DIAG_SEL.IN0" dx1="899.99994" />
+      <Connection Source="MSGR" Destination="DIAG_SEL.IN1" dx1="899.99994" />
+      <Connection Source="DIAG_SEL.OUT" Destination="DIAG" dx1="1655.5555" />
+      <Connection Source="NF" Destination="MONF.N" dx1="183.33333" />
+      <Connection Source="NR" Destination="MONR.N" dx1="183.33333" />
+    </DataConnections>
+  </FBNetwork>
+</FBType>

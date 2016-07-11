@@ -1,0 +1,133 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+<META NAME="GENERATOR" CONTENT="Visual Page 1.1 for Windows">
+<TITLE>Building a System</TITLE>
+</HEAD>
+<BODY>
+<H3><A NAME="Create" />Create a New System Configuration</H3>
+<P>You can create a new system configuration in the <B>FBEditor</B>
+by:</P>
+<UL>
+	<LI>Opening a file containing an existing system configuration
+	(one with a <TT>*.sys</TT> filename); or</LI>
+	<LI>Clicking the <B>File =&gt; New =&gt; System</B> menu item.</LI>
+</UL>
+<H3><A NAME="System" />System Diagram</H3>
+<P>You open the system diagram for editing by clicking on the
+corresponding element with the system name in the navigation tree. On
+this diagram you can add, edit and delete <A HREF="#Devices">device
+instances</A> as well as <A HREF="#Segments">network segments and links</A>.</P>
+<P>The figure below shows the result of opening the system diagram
+for the <TT>TEST_NW</TT> example in the <TT>fbdk/src/test</TT>directory
+(the examples in this directory are used mostly for regression testing
+when changes are made to the FBDK).</P>
+<CENTER><IMG SRC="TEST_NW.gif"></CENTER>
+<H3><A NAME="Devices" />Devices and Resources</H3>
+<P>You can add, edit and delete device instances in a system diagram
+in the same manner as for FB instances in a <A HREF="fbdfrm.htm">function
+block diagram</A>.</P>
+<P>You can open <B>devices</B> for editing by clicking on the
+corresponding device in the navigation tree.</P>
+<P>When a device diagram is open for editing, you can add, edit and
+delete <B>resources, FB instances</B> and <B>connections</B> in the
+device in the same manner as for devices in a system diagram. However,
+you cannot edit or delete resources that are defined as part of the <B>device
+type</B>.</P>
+<P>You can <A HREF="fbdfrm.htm">edit a resource's function block
+diagram</A> in the normal way after opening the diagram for editing by
+clicking on the resource in the navigation tree. However, you cannot
+edit or delete FB instances that are defined as part of the <B>resource
+type</B>.</P>
+<H3><A NAME="Segments" />Network Segments and Links</H3>
+<P><A
+	HREF="http://www.holobloc.com/stds/iec/sc65bwg7tf3/html/news.htm">IEC
+Standard 61499-1</A>, published in January 2005, defines a textual syntax
+for <B>network segments and links</B> and their <A HREF="params.htm">parameters</A>,
+and <A HREF="http://www.holobloc.com/stds/iec/sc65bwg7tf3/html/news.htm">IEC
+Standard 61499-2</A>, also published in January 2005, defines a graphic
+model and XML syntax for these elements.</P>
+<P>This version of the FBDK supports these elements as follows:</P>
+<UL>
+	<LI><B>Segments</B> are added to the diagram with the <B>New</B>
+	item of its popup menu. This pops up a dialog as shown below which lets
+	you edit the name, type, length (in hundredths of a text line height)
+	and comment of the segment. The name and type are freely editable, and
+	any string in the form of an IEC 61131-3 identifier is acceptable as
+	long it does not conflict with the names of other objects in the
+	diagram. The drop-down list also provides entries for Ethernet,
+	ControlNet, DeviceNet, localhost (socket connections on the local
+	workstation) and LocalBus (connections using the <A
+		HREF="../despats/publsubl/index.htm">local multicast</A> pattern).</LI>
+	<P></P>
+	<CENTER><IMG SRC="segnew.png"></CENTER>
+	<P></P>
+	<UL>
+		<LI>A segment can be edited by using the <B>Edit</B> item of its
+		pop-up menu; this invokes the same dialog as was used for its
+		creation.</LI>
+		<LI>A segment can be deleted from the diagram by using the <B>Delete</B>
+		item of its pop-up menu.</LI>
+		<LI><A HREF="params.htm">Parameters</A> of a segment are edited
+		with a dialog as illustrated below, invoked from the <B>Edit =>
+		Parameters</B> item of its pop-up menu. The name of the parameter must
+		have the form of an IEC 61131-3 identifier. Parameter values and
+		comments are freely editable.</LI>
+		<P></P>
+		<CENTER><IMG SRC="segedit.gif"></CENTER>
+		<P></P>
+	</UL>
+	<LI>A <B>link</B> can be drawn from a <B>segment</B> to a <B>device</B>
+	using the <A HREF="dndconn.htm">Alt+Drag</A> gesture.</LI>
+	<UL>
+		<LI>A segment can be deleted from the diagram by using the <B>Delete</B>
+		item of its pop-up menu.</LI>
+		<LI>The comment of the link can be edited using the <B>Edit</B>
+		item of its popup menu.</LI>
+		<LI><A HREF="params.htm">Parameters</A> of a link are edited in a
+		similar manner to parameters of a segment, using a dialog invoked from
+		the <B>Edit => Parameters</B> item of its pop-up menu.</LI>
+	</UL>
+</UL>
+<H3><A NAME="Applications" />Applications</H3>
+<UL>
+	<LI>You can add an application to a system by using the <B>New
+	=> Application</B> item of the popup menu for the <A HREF="#System">system
+	diagram</A>. This opens a dialog box in which you can edit the
+	application's name and comment.</LI>
+	<LI>Once you have created the application's name and comment, you
+	can edit them in the <B>Text Area</B> with the <B>XML</B> view turned
+	on, and record your changes with the <IMG SRC="parse.gif"><B>Parse</B>
+	button.</LI>
+	<LI>You can <A HREF="fbdfrm.htm">edit an application's
+	function block diagram</A> in the normal way after opening the diagram for
+	editing by clicking on the application in the navigation tree.</LI>
+</UL>
+<H3><A NAME="Mapping" />Mapping</H3>
+<P>You can <I>map</I> a <I>function block instance</I> from an <I>application</I>
+to a <I>device</I> or <I>resource</I> with the <B>Map</B> item of the
+popup menu for the function block instance in its application diagram.
+The destination of the mapping operation is chosen from the sub-menu of
+the <B>Map</B> item. All feasible <I>event</I> and <I>data
+connections</I> are also copied at the same time. Any errors detected during
+the mapping operation are displayed in the <A
+	HREF="FBEditorHelp.htm#description">Status Line</A>.</P>
+<H3>Testing</H3>
+<P>See the separate documentation on <A HREF="systest.htm">Testing
+System Configurations</A>.
+<A NAME="Saving" />
+<H3>Saving</H3>
+<P>When your editing is complete, save your work with the <A
+	HREF="saveas.htm">File=&gt;Save As... dialog</A>.<BR>
+<IMG SRC="../note.gif">Of course, it is a good idea to <B>save
+your work</B> from time to time while editing, too!</P>
+<HR>
+<CENTER>
+<P><I>Last updated: 2007-10-12.</I><BR>
+&copy;2002-2005 Rockwell Automation. All rights reserved.<BR>
+&copy;2007 <A HREF="http://www.holobloc.com" TARGET="_blank">Holobloc
+Inc</A>. All rights reserved.</P>
+</CENTER>
+</BODY>
+</HTML>

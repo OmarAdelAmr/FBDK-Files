@@ -1,0 +1,75 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+<META NAME="GENERATOR" CONTENT="Eclipse HTML Editor">
+<TITLE>SYSTEM DRILL_VIEWL</TITLE>
+</HEAD>
+<BODY>
+<H3>2. Develop and Test Views</H3>
+<P>The <TT>DRILL_VIEWL</TT> system configuration shown <A HREF="#Viewer">below</A>
+implements the layered <A HREF="../../despats/mvc/syseng.htm"
+	TARGET="_parent"><B>View</B> testing architecture</A> for the <A
+	HREF="drillex.htm" TARGET="_parent">drilling example</A>. The <TT>HMI</TT>
+device encapsulates the functionality of the human interface layer, and
+the <TT>VIEW</TT> device encapsulates the functionality of the view
+layer. The <TT>VIEW</TT> device contains two instances of the
+specialized <A HREF="../../common/VIEW_PANEL.htm"><TT>VIEW_PANEL</TT></A> resource
+type to provide the necessary layout of View elements for the drilling
+example. Inter-layer communication is implemented with the <A
+	HREF="../publsubl/index.htm" TARGET="_top">local multicast</A> pattern,
+e.g., by using <TT>PUBL_3/SUBL_3</TT> for linking the <TT>MECH_HMIL/MECH_VIEWL</TT>
+pairs.</P>
+<CENTER>
+<P><IMG SRC="../../note.gif" HEIGHT="24"
+	WIDTH="32">Click on a graphic element to navigate to its
+documentation.<BR>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0" HEIGHT="300">
+	<TBODY>
+		<TR>
+			<TD NOWRAP="nowrap" VALIGN="top"><IMG SRC="images/DRILL_VIEWL.gif"
+				USEMAP="#DRILL_VIEWL" ALIGN="bottom" BORDER="0" HEIGHT="200"
+				WIDTH="375"></TD>
+			<TD NOWRAP="nowrap" VALIGN="top"><IMG SRC="images/DRILL_VIEWL2.gif"
+				USEMAP="#DRILL_VIEWL2" ALIGN="bottom" BORDER="0" HEIGHT="300"
+				WIDTH="220"></TD>
+		</TR>
+	</TBODY>
+</TABLE>
+</P>
+</CENTER>
+<CENTER>
+<P>[<A NAME="Viewer"></A><A HREF="../../FBViewer.html" TARGET="help">Viewer
+Help</A>]<BR>
+<TABLE BORDER="1">
+	<TBODY>
+		<TR>
+			<TD><APPLET CODE="FBViewer" ARCHIVE="../../viewer.jar" ALIGN="bottom"
+				HEIGHT="475" WIDTH="750"> </APPLET> <BR>
+			</TD>
+		</TR>
+	</TBODY>
+</TABLE>
+</P>
+<MAP NAME="DRILL_VIEWL">
+	<AREA SHAPE="Rect" COORDS="-3,117,353,191" HREF="MECH_HMIL.htm">
+	<AREA SHAPE="Rect" COORDS="2,92,334,117" HREF="MECHC_HMIL.htm">
+	<AREA SHAPE="Rect" COORDS="2,44,351,94" HREF="MECH_HMIL.htm">
+</MAP> <MAP NAME="DRILL_VIEWL2">
+	<AREA SHAPE="Rect" COORDS="54,193,153,293" HREF="XSPACE.htm">
+	<AREA SHAPE="Rect" COORDS="30,42,129,142" HREF="XSPACE.htm">
+	<AREA SHAPE="Rect" COORDS="-4,166,155,193" HREF="MECHC_VIEWL.htm">
+	<AREA SHAPE="Rect" COORDS="30,191,55,218" HREF="SOL_VIEWL.htm">
+	<AREA SHAPE="Rect" COORDS="30,141,56,168" HREF="SOL_VIEWL.htm">
+	<AREA SHAPE="Rect" COORDS="128,92,154,168" HREF="MECH_VIEWL.htm">
+	<AREA SHAPE="Rect" COORDS="3,191,30,292" HREF="MECH_VIEWL.htm">
+	<AREA SHAPE="Rect" COORDS="3,42,30,169" HREF="MECH_VIEWL.htm">
+</MAP>
+<HR>
+<I>Last updated: 2006-04-17.</I><BR>
+&copy;2006 Holobloc Inc.<BR>
+Licensed under the <A
+	HREF="http://www.opensource.org/licenses/afl-3.0.php">Academic Free
+License version 3.0</A>.</CENTER>
+</BODY>
+</HTML>

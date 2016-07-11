@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE Graph SYSTEM "../gui/graph.dtd" >
+<Graph penWidth="2" image="batch/mpp_bkgd.png">
+	<Font />
+	<Component ID="V101" y="209" class="VValve" x="572"
+		textPosition="LEFT" />
+	<Component ID="V102" y="434" class="CValve" x="551"
+		selectedPaint="[255,0,255]" textPosition="BOTTOM" />
+	<Component ID="V103" y="448" class="VValve" x="371"
+		selectedPaint="[255,0,255]" textPosition="RIGHT" />
+	<Component ID="V104" y="146" class="CValve" x="440"
+		selectedPaint="[255,0,255]" textPosition="TOP" />
+	<Component ID="V105" y="472" class="MValve" x="597"
+		selectedPaint="[255,0,255]" textPosition="RIGHT" />
+	<Component ID="V201" y="434" class="HValve" x="174"
+		selectedPaint="[0,0,255]" textPosition="BOTTOM" />
+	<Component ID="V202" y="297" class="VValve" x="172"
+		selectedPaint="[0,0,255]" textPosition="RIGHT" />
+	<Component ID="V203" y="475" class="VValve" x="454"
+		selectedPaint="[0,0,255]" textPosition="LEFT" />
+	<Component ID="V204" y="64" class="HValve" x="219"
+		selectedPaint="[0,0,255]" textPosition="BOTTOM" />
+	<Component ID="V301" y="362" class="VValve" x="371"
+		selectedPaint="[0,0,255]" textPosition="RIGHT" />
+	<Component ID="V302" y="394" class="VValve" x="215"
+		selectedPaint="[0,0,255]" textPosition="LEFT" />
+	<Component ID="V303" y="400" class="HValve" x="344"
+		selectedPaint="[0,0,255]" textPosition="TOP" />
+	<Component ID="V304" y="400" class="HValve" x="406"
+		selectedPaint="[0,0,255]" textPosition="BOTTOM" />
+	<Component ID="V401" y="25" class="HValve" x="425"
+		textPosition="BOTTOM" />
+	<Component ID="V402" y="352" class="VValve" x="278"
+		textPosition="RIGHT" />
+	<Component ID="V403" y="360" class="VValve" x="454"
+		textPosition="RIGHT" />
+	<Component ID="V404" y="475" class="VValve" x="215"
+		textPosition="LEFT" />
+	<Component ID="P100" y="434" class="PumpLeft" x="498"
+		selectedPaint="[255,0,255]" textPosition="BOTTOM" />
+	<Component ID="P200" y="434" class="PumpRight" x="249"
+		selectedPaint="[0,0,255]" textPosition="BOTTOM" />
+	<Component ID="LA100hi" y="234" class="LevelSwitch" x="605"
+		selectedPaint="[255,0,0]" textPosition="TOP" />
+	<Component ID="LS200" y="228" class="LevelSwitch" x="65"
+		textPosition="TOP" />
+	<Component ID="LS300hi" y="206" class="LevelSwitch" x="310"
+		selectedPaint="[255,0,0]" textPosition="BOTTOM" />
+	<Component ID="LS300lo" y="277" class="LevelSwitch" x="310"
+		textPosition="BOTTOM" />
+	<Component ID="E100" y="385" class="Heater" x="572"
+		textPosition="TOP" selectedPaint="[255,0,0]" />
+	<Component ID="T100" y="334" class="VTank" x="572"
+		textPosition="LEFT" selectedPaint="batch/whiteLiquor.png" dia="20"
+		height="150" width="104" deselectedPaint="[255,255,255]"
+		REND_ID="T100" label="White Liquor" />
+	<Component ID="T200" y="175" class="VTank" x="147"
+		textPosition="LEFT" selectedPaint="batch/impLiquor.png" dia="22"
+		height="150" width="104" deselectedPaint="[255,255,255]"
+		REND_ID="T200" label="Impreg Liquor" />
+	<Component ID="T400" y="102" class="VTank" x="572"
+		textPosition="LEFT" selectedPaint="batch/blackLiquor.png" dia="22"
+		height="150" width="105" deselectedPaint="[255,255,255]"
+		REND_ID="T400" label="Black Liquor" />
+	<Component ID="T300" label="Digester" y="241" class="VReactor"
+		x="370" textPosition="LEFT" selectedPaint="batch/empty.png" dia="18"
+		height="160" width="72" deselectedPaint="batch/empty.png"
+		REND_ID="T300" />
+	<Component ID="PI300" label="%0 6.2f kPa" y="235" class="Indicator"
+		x="445" REND_ID="PI300" />
+	<Component ID="TI300" label=" %0 6.2f C  " y="275" class="Indicator"
+		x="445" REND_ID="TI300" />
+	<Component ID="TI100" label=" %0 6.2f C  " y="385" class="Indicator"
+		x="660" REND_ID="TI100" />
+	<Component class="Path" ID="V101" x="572" y="176">
+		<lineTo x="572" y="190" />
+		<moveTo x="572" y="228" />
+		<lineTo x="572" y="260" />
+	</Component>
+	<Component class="Path" ID="V102" x="502" y="434"
+		selectedPaint="[255,0,255]">
+		<lineTo x="572" y="434" />
+		<lineTo x="572" y="408" />
+	</Component>
+	<Component class="Path" ID="V103" x="371" y="381"
+		selectedPaint="[255,0,255]">
+		<lineTo x="371" y="526" />
+		<lineTo x="584" y="526" />
+		<lineTo x="584" y="408" />
+		<moveTo x="363" y="400" />
+		<lineTo x="387" y="400" />
+	</Component>
+	<Component class="Path" ID="V104" x="455" y="146"
+		selectedPaint="[255,0,255]">
+		<lineTo x="501" y="146" />
+		<lineTo x="501" y="260" />
+		<lineTo x="547" y="260" />
+		<lineTo x="547" y="268" />
+		<moveTo x="370" y="146" />
+		<lineTo x="424" y="146" />
+		<moveTo x="370" y="169" />
+		<lineTo x="370" y="25" />
+		<lineTo x="406" y="25" />
+		<moveTo x="238" y="64" />
+		<lineTo x="370" y="64" />
+	</Component>
+	<Component class="Path" ID="V105" x="597" y="408"
+		selectedPaint="[255,0,255]">
+		<lineTo x="597" y="564" />
+	</Component>
+	<Component class="Path" ID="V201" x="146" y="250"
+		selectedPaint="[0,0,255]">
+		<lineTo x="146" y="434" />
+		<lineTo x="233" y="434" />
+		<moveTo x="215" y="413" />
+		<lineTo x="215" y="456" />
+	</Component>
+	<Component class="Path" ID="V202" x="172" y="250"
+		selectedPaint="[0,0,255]">
+		<lineTo x="172" y="325" />
+		<lineTo x="520" y="325" />
+	</Component>
+	<Component class="Path" ID="V203" x="454" y="379"
+		selectedPaint="[0,0,255]">
+		<lineTo x="454" y="534" />
+		<lineTo x="44" y="534" />
+		<lineTo x="44" y="188" />
+		<lineTo x="94" y="188" />
+		<moveTo x="425" y="400" />
+		<lineTo x="454" y="400" />
+		<moveTo x="454" y="420" />
+		<lineTo x="486" y="420" />
+	</Component>
+	<Component class="Path" ID="V204" x="146" y="101"
+		selectedPaint="[0,0,255]">
+		<lineTo x="146" y="64" />
+		<lineTo x="370" y="64" />
+		<moveTo x="370" y="169" />
+		<lineTo x="370" y="25" />
+		<lineTo x="406" y="25" />
+		<moveTo x="370" y="146" />
+		<lineTo x="421" y="146" />
+	</Component>
+	<Component class="Path" ID="V301" x="371" y="312"
+		selectedPaint="[0,0,255]">
+		<lineTo x="371" y="429" />
+		<moveTo x="363" y="400" />
+		<lineTo x="397" y="400" />
+	</Component>
+	<Component class="Path" ID="V302" x="371" y="312"
+		selectedPaint="[0,0,255]">
+		<lineTo x="371" y="318" />
+		<lineTo x="215" y="318" />
+		<lineTo x="215" y="456" />
+		<moveTo x="193" y="434" />
+		<lineTo x="233" y="434" />
+	</Component>
+	<Component class="Path" ID="V303" x="266" y="420"
+		selectedPaint="[0,0,255]">
+		<lineTo x="278" y="420" />
+		<lineTo x="278" y="367" />
+		<moveTo x="278" y="400" />
+		<lineTo x="387" y="400" />
+		<moveTo x="371" y="381" />
+		<lineTo x="371" y="430" />
+	</Component>
+	<Component class="Path" ID="V304" x="363" y="400"
+		selectedPaint="[0,0,255]">
+		<lineTo x="454" y="400" />
+		<moveTo x="454" y="373" />
+		<lineTo x="454" y="469" />
+		<moveTo x="454" y="420" />
+		<lineTo x="486" y="420" />
+		<moveTo x="371" y="381" />
+		<lineTo x="371" y="430" />
+	</Component>
+	<Component class="Path" ID="V401" x="455" y="146">
+		<lineTo x="425" y="146" />
+		<moveTo x="370" y="146" />
+		<lineTo x="424" y="146" />
+		<moveTo x="370" y="169" />
+		<lineTo x="370" y="25" />
+		<lineTo x="547" y="25" />
+		<lineTo x="547" y="38" />
+		<moveTo x="238" y="64" />
+		<lineTo x="370" y="64" />
+	</Component>
+	<Component class="Path" ID="V402" x="266" y="420">
+		<lineTo x="278" y="420" />
+		<lineTo x="278" y="9" />
+		<lineTo x="573" y="9" />
+		<lineTo x="573" y="26" />
+		<moveTo x="278" y="400" />
+		<lineTo x="329" y="400" />
+	</Component>
+	<Component class="Path" ID="V403" x="454" y="469">
+		<lineTo x="454" y="160" />
+		<lineTo x="520" y="160" />
+		<moveTo x="425" y="400" />
+		<lineTo x="453" y="400" />
+		<moveTo x="454" y="420" />
+		<lineTo x="486" y="420" />
+	</Component>
+	<Component class="Path" ID="V404" x="624" y="155">
+		<lineTo x="671" y="155" />
+		<lineTo x="671" y="549" />
+		<lineTo x="215" y="549" />
+		<lineTo x="215" y="413" />
+		<moveTo x="193" y="434" />
+		<lineTo x="233" y="434" />
+	</Component>
+	<Component class="Path" ID="P100" x="425" y="400"
+		selectedPaint="[255,0,255]">
+		<lineTo x="454" y="400" />
+		<lineTo x="454" y="420" />
+		<lineTo x="486" y="420" />
+		<moveTo x="454" y="373" />
+		<lineTo x="454" y="469" />
+	</Component>
+	<Component class="Path" ID="P200" x="266" y="420"
+		selectedPaint="[0,0,255]">
+		<lineTo x="278" y="420" />
+		<lineTo x="278" y="367" />
+		<moveTo x="278" y="400" />
+		<lineTo x="329" y="400" />
+	</Component>
+</Graph>

@@ -1,0 +1,72 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+<META NAME="GENERATOR" CONTENT="Eclipse HTML Editor">
+<TITLE>Library Elements</TITLE>
+</HEAD>
+<BODY>
+<H2 ALIGN="center">Building and Testing Library Elements - General</H2>
+<P>The instructions below explain the general process for building IEC
+61499 library elements. For instuctions on specific library element
+types, click on the type desired in the frame shown above.</P>
+<OL>
+	<LI>Start the <B>FBEditor</B> application by running the <A
+		HREF="custom.htm#FBEditor"><TT>fbeditor.bat</TT></A> file (or by
+	double-clicking on a library element file icon if the appropriate <A
+		HREF="custom.htm#assoc">file associations</A> have been established).
+	</LI>
+	<LI>Create a new library element in the editor by:
+	<UL>
+		<LI>Opening a file containing an existing library element, or</LI>
+		<LI>Clicking the <B>File =&gt; New =&gt; XXXX</B> menu item, where <B>XXXX</B>
+		is the desired library element type. Here is how the screen will look
+		if you do this with <B>XXXX</B> = <B>FB Type =&gt; Basic</B>.<BR>
+		<TABLE BORDER="0">
+			<TR>
+				<TD HEIGHT="150" ALIGN="right" VALIGN="middle"><FONT
+					FACE="sans-serif" COLOR="red" SIZE="-1"><B>==&gt;<BR>
+				Navigation</B></FONT></TD>
+				<TD ROWSPAN="2"><IMG SRC="newlibel.png"></TD>
+				<TD HEIGHT="150" ALIGN="left" VALIGN="middle"><FONT
+					FACE="sans-serif" COLOR="red" SIZE="-1"><B>&lt;==<BR>
+				Worksheet/<BR>
+				Viewport</B></FONT></TD>
+			</TR>
+			<TR>
+				<TD HEIGHT="100" ALIGN="right" VALIGN="middle"><FONT
+					FACE="sans-serif" COLOR="red" SIZE="-1"><B>==&gt;<BR>
+				Text</B></FONT></TD>
+			</TR>
+		</TABLE>
+		</LI>
+	</UL>
+	</LI>
+	<LI>Edit the function block's elements, using the list of items in the
+	<B>Navigation</B> area as a guide to the sequence of steps to be
+	followed.</LI>
+	<LI>When it makes sense, you can edit the graphical layout of various
+	elements in the <B>Worksheet/Viewport</B> area, or edit and parse
+	textual elements in the <B>Text</B> area.</LI>
+	<LI>When your editing is complete, <B>save your work</B> with the <B>File=&gt;Save
+	As=&gt;XML...</B> menu item.
+	<UL>
+		<LI><IMG SRC="../note.gif" ALIGN="bottom" BORDER="0" HEIGHT="24"
+			WIDTH="32">It is a good idea to <B>save your work</B> from time to
+		time while editing, too!</LI>
+		<LI><IMG SRC="../note.gif" ALIGN="bottom" BORDER="0" HEIGHT="24"
+			WIDTH="32">Steps 6 and 7 do not apply when editing <I>system
+		configurations</I>.</LI>
+	</UL>
+	</LI>
+	<LI>Generate and compile a Java<SUP>TM</SUP> source file with the <B>File=&gt;Save
+	As=&gt;Java...</B> menu item.</LI>
+	<LI>Test the library element by clicking the <B>Run=&gt;Launch</B> menu
+	item (when this item is enabled).</LI>
+</OL>
+<CENTER>
+<HR>
+<I>Last updated: 2006-03-15.</I><BR>
+&copy;2006 Holobloc Inc. All rights reserved.</CENTER>
+</BODY>
+</HTML>

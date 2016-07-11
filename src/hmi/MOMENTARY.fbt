@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="MOMENTARY" Comment="Momentary-contact push button" >
+  <Identification Standard="61499-1" Classification="HMI" Function="Pushbutton" Type="Momentary" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.0" Author="JHC" Date="2007-08-30" />
+  <CompilerInfo header="package fb.rt.hmi; import java.awt.*; import java.awt.event.*;" classdef="public class MOMENTARY extends IN_EVENT" >
+    <Compiler Language="Java" Vendor="Sun" Product="JDK" Version="1.6.0" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Service Initialization" >
+        <With Var="QI" />
+        <With Var="LABEL" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" >
+        <With Var="QO" />
+        <With Var="OUT" />
+      </Event>
+      <Event Name="IND" Comment="Event Indication" >
+        <With Var="QO" />
+        <With Var="OUT" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="QI" Type="BOOL" InitialValue="true" />
+      <VarDeclaration Name="LABEL" Type="WSTRING" Comment="Label" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="QO" Type="BOOL" />
+      <VarDeclaration Name="OUT" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <Service RightInterface="Button" LeftInterface="MOMENTARY" >
+    <ServiceSequence Name="normal_establishment" >
+      <ServiceTransaction >
+        <InputPrimitive Interface="MOMENTARY" Event="INIT+" Parameters="LABEL" />
+        <OutputPrimitive Interface="Button" Event="setLabel" Parameters="LABEL" />
+        <OutputPrimitive Interface="MOMENTARY" Event="INITO+" />
+      </ServiceTransaction>
+    </ServiceSequence>
+    <ServiceSequence Name="normal_termination" >
+      <ServiceTransaction >
+        <InputPrimitive Interface="MOMENTARY" Event="INIT-" />
+        <OutputPrimitive Interface="MOMENTARY" Event="INITO-" />
+      </ServiceTransaction>
+    </ServiceSequence>
+    <ServiceSequence Name="normal_operation" >
+      <ServiceTransaction >
+        <InputPrimitive Interface="Button" Event="actionPerformed" Parameters="QI=1" />
+        <OutputPrimitive Interface="MOMENTARY" Event="IND+" Parameters="OUT" />
+      </ServiceTransaction>
+    </ServiceSequence>
+    <ServiceSequence Name="operation_inhibited" >
+      <ServiceTransaction >
+        <InputPrimitive Interface="Button" Event="actionPerformed" Parameters="QI=0" />
+      </ServiceTransaction>
+    </ServiceSequence>
+  </Service>
+</FBType>

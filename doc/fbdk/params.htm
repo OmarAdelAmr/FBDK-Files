@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+<TITLE>FBEditor Help - Parameters</TITLE>
+<LINK REL="icon" HREF="../../fbicon.png" TYPE="image/png">
+</HEAD>
+<BODY>
+<CENTER>
+<H2>Parameters</H2>
+<FORM>
+<INPUT TYPE="button" VALUE="About" ONCLICK="window.location = '#About';">
+<INPUT TYPE="button" VALUE="Editing" ONCLICK="window.location = '#Editing';">
+<INPUT TYPE="button" VALUE="Viewing" ONCLICK="window.location = '#Viewing';">
+<INPUT TYPE="button" VALUE="Saving" ONCLICK="window.location = '#Saving';">
+<INPUT TYPE="button" VALUE="Hiding" ONCLICK="window.location = '#Hiding';"></FORM>
+</CENTER>
+<A NAME="About"></A>
+<H3>What's a Parameter?</H3>
+<P><A HREF="http://www.holobloc.com/stds/iec/sc65bwg7tf3/html/news.htm"
+	TARGET="_blank">IEC 61499-1</A> uses the ISO 2382 definition of <B>parameter</B>
+as &quot;A variable that is given a constant value for a specified
+application and that may denote the application.&quot; In the IEC 61499
+world, the only variables that can be treated this way are <B>input
+variables</B> of function blocks, devices and resources.</P>
+<A NAME="Editing"></A>
+<H3>Editing Parameters</H3>
+<P>You can set the value of a parameter from the popup menu of an
+unconnected input variable of a function block, device or resource. This
+menu will show a <B>Connect</B> item with sub-items corresponding to
+other variables that can be connected to it, as well as a default value
+for the variable if it is to be treated as a parameter.</P>
+<BLOCKQUOTE><IMG SRC="../note.gif">The value for a parameter of <TT>BOOL</TT>
+type can be chosen from the two possible values <TT>1</TT> and <TT>0</TT>.</BLOCKQUOTE>
+<P>Once an initial parameter value has been set, you can edit the
+parameter value by double-clicking on the parameter value or using the <B>Edit</B>
+item of its pop-up menu. This will open a <A HREF="#dialog">dialog box</A>
+with a text field for entering the modified parameter value. You can set
+the new parameter value by pressing the <B>OK</B> button or using the <B>Enter</B>
+key while typing. If the format of the entered data is incorrect, the
+data will not be entered and an <TT>INVALID_OBJECT</TT> error message
+will be displayed in the status line under the dialog box's title.</P>
+<CENTER>
+<A NAME="dialog"></A>
+<IMG SRC= "params.png">
+</CENTER>
+<A NAME="Viewing"></A>
+<H3>Viewing Parameters</H3>
+<P><A HREF="http://www.holobloc.com/stds/iec/sc65bwg7tf3/html/news.htm"
+	TARGET="_blank">IEC 61499-1</A>, as published in January 2005, adopts
+the <A
+	HREF="http://www.holobloc.com/stds/iec/sc65bwg7tf3/html/news.htm#1131-3">IEC
+61131-3</A> style for representation of parameters as a list of
+name/value pairs associated with the declaration of an instance of an
+element instead of "constant" connections in a connection list. The <A
+	HREF="FBEditor.html" TARGET="_top">FBEditor</A> application now
+supports this style of representation in the <B>Source</B> text view.
+The added complexity of this representation is one of the reasons that
+parsing of text from this view is no longer supported.</P>
+<A NAME="Saving"></A>
+<H3>Saving Parameters</H3>
+<P><A HREF="http://www.holobloc.com/stds/iec/sc65bwg7tf3/html/news.htm"
+	TARGET="_blank">IEC 61499-2</A>,as published in January 2005, also
+defines the representation of parameter lists rather than "constant
+connections" in its XML DTD. The <A HREF="FBEditor.html" TARGET="_top">FBEditor</A>
+application now supports this style of representation in the <B>XML</B>
+text view and the <B>File Save as XML</B> format. The old "constant
+connection" style will also be properly parsed when reading old files
+with the <B>File Open...</B> menu option, but the file will be saved in
+the new style.</P>
+<A NAME="Hiding"></A>
+<H3>Hiding Parameters</H3>
+<P>Some variables can be identified <I>a priori</I> as being parameters,
+namely:
+<UL>
+	<LI>Parameters of <A HREF="syshelp.htm#Segments">network segments and
+	links</A></LI>
+	<LI>The input variables of <B>resources</B> and <B>devices</B></LI>
+	<LI>Those input variables of <B>function blocks</B> which are
+	associated with no event inputs, or only the <TT>INIT</TT> input, in
+	the function block <B>type</B> declaration.</LI>
+</UL>
+<P>This information can be used by software tools to suppress the
+display of parameters as an option to remove clutter from the display of
+function block networks. In the <A HREF="FBEditor.html" TARGET="_top"><B>FBEditor</B></A>
+application, parameter hiding is controlled from a <B>Parameters</B>
+checkbox item in a popup menu.</P>
+<P ALIGN="CENTER"><I>Last updated: 2006-03-18.</I><BR>
+&copy;2006 Holobloc Inc. All rights reserved.
+</BODY>
+</HTML>

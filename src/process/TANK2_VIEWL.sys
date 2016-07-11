@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE System SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<System Name="TANK2_VIEWL" Comment="2-Tank Control System View+HMI" >
+  <Identification Standard="61499-1" Classification="Simulation" ApplicationDomain="Process Control" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.0" Author="JHC" Date="2005-06-28" Remarks="Adapted from TANK_VIEWL" />
+  <Device Name="HMI" Type="FRAME_DEVICE" x="594.4444" y="11.111111" >
+    <Parameter Name="BOUNDS" Value="[100,100,150,150]" />
+    <Parameter Name="GRID" Value="[4,1]" />
+    <Resource Name="TANK1" Type="PANEL_RESOURCE" x="66.666664" y="11.111111" >
+      <FBNetwork >
+        <FB Name="TANK1_LEVEL" Type="PUBL_1" x="1694.4443" y="444.44443" />
+        <FB Name="TANK_1" Type="FB_SLIDER" x="533.3333" y="11.111111" >
+          <Parameter Name="W" Value="100" />
+          <Parameter Name="H" Value="25" />
+          <Parameter Name="FGD" Value="[0,0,255]" />
+          <Parameter Name="BKGD" Value="[0,0,255]" />
+          <Parameter Name="IVAL" Value="50" />
+        </FB>
+        <FB Name="LLBL" Type="FB_LABEL" x="1200.0" y="11.111111" >
+          <Parameter Name="LABEL" Value="&#34;TANK 1&#34;" />
+        </FB>
+        <EventConnections>
+          <Connection Source="TANK_1.INITO" Destination="LLBL.INIT" dx1="27.777777" />
+          <Connection Source="TANK_1.IND" Destination="TANK1_LEVEL.REQ" dx1="127.77777" />
+          <Connection Source="START.COLD" Destination="TANK_1.INIT" dx1="33.333332" />
+          <Connection Source="LLBL.INITO" Destination="TANK1_LEVEL.INIT" dx1="27.777777" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="TANK_1.OUT" Destination="TANK1_LEVEL.SD_1" dx1="27.777777" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+    <Resource Name="TANK2" Type="PANEL_RESOURCE" x="66.666664" y="11.111111" >
+      <FBNetwork >
+        <FB Name="TANK2_LEVEL" Type="PUBL_1" x="1694.4443" y="444.44443" />
+        <FB Name="TANK_2" Type="FB_SLIDER" x="533.3333" y="11.111111" >
+          <Parameter Name="W" Value="100" />
+          <Parameter Name="H" Value="25" />
+          <Parameter Name="FGD" Value="[0,0,255]" />
+          <Parameter Name="BKGD" Value="[0,0,255]" />
+          <Parameter Name="IVAL" Value="50" />
+        </FB>
+        <FB Name="LLBL" Type="FB_LABEL" x="1200.0" y="11.111111" >
+          <Parameter Name="LABEL" Value="&#34;TANK 2&#34;" />
+        </FB>
+        <EventConnections>
+          <Connection Source="TANK_2.INITO" Destination="LLBL.INIT" dx1="27.777777" />
+          <Connection Source="TANK_2.IND" Destination="TANK2_LEVEL.REQ" dx1="127.77777" />
+          <Connection Source="START.COLD" Destination="TANK_2.INIT" dx1="33.333332" />
+          <Connection Source="LLBL.INITO" Destination="TANK2_LEVEL.INIT" dx1="27.777777" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="TANK_2.OUT" Destination="TANK2_LEVEL.SD_1" dx1="27.777777" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+    <Resource Name="VALVE" Type="PANEL_RESOURCE" x="94.44444" y="627.7778" >
+      <FBNetwork >
+        <FB Name="VALVE_POS" Type="PUBL_1" x="1694.4443" y="466.66666" />
+        <FB Name="VALVE" Type="FB_SLIDER" x="527.7778" y="11.111111" >
+          <Parameter Name="W" Value="100" />
+          <Parameter Name="H" Value="25" />
+          <Parameter Name="FGD" Value="[0,255,0]" />
+          <Parameter Name="BKGD" Value="[0,255,0]" />
+          <Parameter Name="IVAL" Value="50" />
+        </FB>
+        <FB Name="VLBL" Type="FB_LABEL" x="1277.7777" y="11.111111" >
+          <Parameter Name="LABEL" Value="&#34; VALVE&#34;" />
+        </FB>
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="VALVE.INIT" dx1="27.777777" />
+          <Connection Source="VALVE.INITO" Destination="VLBL.INIT" dx1="138.88889" />
+          <Connection Source="VALVE.IND" Destination="VALVE_POS.REQ" dx1="72.22222" />
+          <Connection Source="VLBL.INITO" Destination="VALVE_POS.INIT" dx1="27.777777" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="VALVE.OUT" Destination="VALVE_POS.SD_1" dx1="33.333332" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+    <Resource Name="PUMP" Type="PANEL_RESOURCE" x="750.0" y="644.4444" >
+      <FBNetwork >
+        <FB Name="PUMP_POS" Type="PUBL_1" x="1705.5555" y="11.111111" />
+        <FB Name="PUMP" Type="FB_SLIDER" x="544.4444" y="11.111111" >
+          <Parameter Name="W" Value="100" />
+          <Parameter Name="H" Value="25" />
+          <Parameter Name="FGD" Value="[255,0,0]" />
+          <Parameter Name="BKGD" Value="[255,0,0]" />
+          <Parameter Name="IVAL" Value="50" />
+        </FB>
+        <FB Name="PLBL" Type="FB_LABEL" x="1238.8888" y="11.111111" >
+          <Parameter Name="LABEL" Value="&#34; PUMP&#34;" />
+        </FB>
+        <FB Name="PCONV" Type="UNSCALE" x="1150.0" y="727.7778" >
+          <Parameter Name="MAX" Value="360" />
+        </FB>
+        <EventConnections>
+          <Connection Source="PUMP.INITO" Destination="PLBL.INIT" dx1="27.777777" />
+          <Connection Source="PLBL.INITO" Destination="PUMP_POS.INIT" dx1="27.777777" />
+          <Connection Source="PUMP.IND" Destination="PCONV.REQ" dx1="55.555553" />
+          <Connection Source="PCONV.CNF" Destination="PUMP_POS.REQ" dx1="166.66666" />
+          <Connection Source="START.COLD" Destination="PUMP.INIT" dx1="27.777777" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="PUMP.OUT" Destination="PCONV.IN" dx1="27.777777" />
+          <Connection Source="PCONV.OUT" Destination="PUMP_POS.SD_1" dx1="222.22221" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+  </Device>
+  <Device Name="VIEW" Type="FRAME_DEVICE" x="594.4444" y="555.55554" >
+    <Parameter Name="BOUNDS" Value="[250,100,238,208]" />
+    <Parameter Name="GRID" Value="[2,3]" />
+    <Resource Name="TANK1" Type="VIEW_PANEL" x="200.0" y="11.111111" >
+      <Parameter Name="SIZE" Value="[1,1]" />
+      <Parameter Name="DIA" Value="75" />
+      <FBNetwork >
+        <FB Name="TANK" Type="MECH_VIEW" x="894.4444" y="11.111111" >
+          <Parameter Name="STYLE" Value="VSTYLE#CYLINDER" />
+          <Parameter Name="LEN" Value="1" />
+          <Parameter Name="DIR" Value="3" />
+          <Parameter Name="BKGD" Value="[255,255,255]" />
+          <Parameter Name="WKPC" Value="[0,0,255]" />
+        </FB>
+        <FB Name="TANK1_LEVEL" Type="SUBL_1" x="505.55554" y="11.111111" />
+        <EventConnections>
+          <Connection Source="TANK1_LEVEL.INITO" Destination="TANK.INIT" dx1="27.777777" />
+          <Connection Source="TANK1_LEVEL.IND" Destination="TANK.REQ" dx1="27.777777" />
+          <Connection Source="START.COLD" Destination="TANK1_LEVEL.INIT" dx1="27.777777" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="TANK1_LEVEL.RD_1" Destination="TANK.POS" dx1="27.777777" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+    <Resource Name="VALVE" Type="VIEW_PANEL" x="805.55554" y="11.111111" >
+      <Parameter Name="DIA" Value="75" />
+      <Parameter Name="SIZE" Value="[1,1]" />
+      <FBNetwork >
+        <FB Name="VALVE_POS" Type="SUBL_1" x="461.11108" y="11.111111" />
+        <FB Name="VALVE" Type="VALVE_VIEW" x="944.4444" y="11.111111" >
+          <Parameter Name="FGD" Value="[0,255,0]" />
+        </FB>
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="VALVE_POS.INIT" dx1="33.333332" />
+          <Connection Source="VALVE_POS.INITO" Destination="VALVE.INIT" dx1="33.333332" />
+          <Connection Source="VALVE_POS.IND" Destination="VALVE.REQ" dx1="44.444443" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="VALVE_POS.RD_1" Destination="VALVE.POS" dx1="33.333332" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+    <Resource Name="PIPE1" Type="VIEW_PANEL" x="1438.8888" y="11.111111" >
+      <Parameter Name="DIA" Value="38" />
+      <Parameter Name="SIZE" Value="[2,2]" />
+      <Parameter Name="VERTICAL" Value="1" />
+      <FBNetwork >
+        <FB Name="SPC" Type="XSPACE" x="644.4444" y="11.111111" >
+          <Parameter Name="DIMS" Value="[1,1]" />
+        </FB>
+        <FB Name="PIPE" Type="PIPE_VIEW" x="1288.8888" y="11.111111" >
+          <Parameter Name="FGD" Value="[0,255,0]" />
+          <Parameter Name="DIR" Value="[2,3]" />
+          <Parameter Name="W" Value="3" />
+        </FB>
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="SPC.INIT" dx1="38.888885" />
+          <Connection Source="SPC.INITO" Destination="PIPE.INIT" dx1="27.777777" />
+        </EventConnections>
+      </FBNetwork>
+    </Resource>
+    <Resource Name="PIPE2" Type="VIEW_PANEL" x="211.1111" y="872.22217" >
+      <Parameter Name="DIA" Value="75" />
+      <Parameter Name="SIZE" Value="[1,2]" />
+      <FBNetwork >
+        <FB Name="SPC2" Type="XSPACE" x="483.3333" y="11.111111" >
+          <Parameter Name="DIA" Value="15" />
+          <Parameter Name="DIMS" Value="[1,1]" />
+        </FB>
+        <FB Name="PIPE" Type="PIPE_VIEW" x="1005.55554" y="11.111111" >
+          <Parameter Name="DIR" Value="[0,1]" />
+          <Parameter Name="DIA" Value="60" />
+        </FB>
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="SPC2.INIT" dx1="27.777777" />
+          <Connection Source="SPC2.INITO" Destination="PIPE.INIT" dx1="27.777777" />
+        </EventConnections>
+      </FBNetwork>
+    </Resource>
+    <Resource Name="PUMP" Type="VIEW_PANEL" x="816.6666" y="849.99994" >
+      <Parameter Name="DIA" Value="25" />
+      <Parameter Name="SIZE" Value="[3,3]" />
+      <Parameter Name="VERTICAL" Value="1" />
+      <FBNetwork >
+        <FB Name="PUMP_POS" Type="SUBL_1" x="1055.5555" y="11.111111" />
+        <FB Name="SPCUL" Type="XSPACE" Comment="Upper Left Space" x="627.7778" y="11.111111" >
+          <Parameter Name="DIMS" Value="[2,1]" />
+        </FB>
+        <FB Name="PUMP" Type="PUMP_VIEW" x="1788.8888" y="11.111111" >
+          <Parameter Name="FGD" Value="[255,0,0]" />
+          <Parameter Name="IX" Value="[0,0,255]" />
+          <Parameter Name="DIR" Value="1" />
+          <Parameter Name="DIA" Value="50" />
+        </FB>
+        <FB Name="PIPE" Type="PIPE_VIEW" x="2861.111" y="11.111111" >
+          <Parameter Name="DIR" Value="[1,3]" />
+        </FB>
+        <FB Name="SPCUR" Type="XSPACE" Comment="Upper-Right Space" x="2377.7776" y="11.111111" >
+          <Parameter Name="DIMS" Value="[1,2]" />
+          <Parameter Name="DIA" Value="20" />
+        </FB>
+        <EventConnections>
+          <Connection Source="PUMP_POS.INITO" Destination="PUMP.INIT" dx1="27.777777" />
+          <Connection Source="PUMP_POS.IND" Destination="PUMP.REQ" dx1="44.444443" />
+          <Connection Source="START.COLD" Destination="SPCUL.INIT" dx1="27.777777" />
+          <Connection Source="SPCUL.INITO" Destination="PUMP_POS.INIT" dx1="66.666664" />
+          <Connection Source="PUMP.INITO" Destination="SPCUR.INIT" dx1="27.777777" />
+          <Connection Source="SPCUR.INITO" Destination="PIPE.INIT" dx1="27.777777" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="PUMP_POS.RD_1" Destination="PUMP.ANGLE" dx1="66.666664" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+    <Resource Name="TANK2" Type="VIEW_PANEL" x="1377.7777" y="855.55554" >
+      <Parameter Name="SIZE" Value="[1,1]" />
+      <Parameter Name="DIA" Value="75" />
+      <FBNetwork >
+        <FB Name="TANK" Type="MECH_VIEW" x="894.4444" y="11.111111" >
+          <Parameter Name="STYLE" Value="VSTYLE#CYLINDER" />
+          <Parameter Name="LEN" Value="1" />
+          <Parameter Name="DIR" Value="3" />
+          <Parameter Name="BKGD" Value="[255,255,255]" />
+          <Parameter Name="WKPC" Value="[0,0,255]" />
+        </FB>
+        <FB Name="TANK2_LEVEL" Type="SUBL_1" x="505.55554" y="11.111111" />
+        <EventConnections>
+          <Connection Source="TANK2_LEVEL.INITO" Destination="TANK.INIT" dx1="27.777777" />
+          <Connection Source="TANK2_LEVEL.IND" Destination="TANK.REQ" dx1="27.777777" />
+          <Connection Source="START.COLD" Destination="TANK2_LEVEL.INIT" dx1="27.777777" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="TANK2_LEVEL.RD_1" Destination="TANK.POS" dx1="27.777777" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+  </Device>
+</System>

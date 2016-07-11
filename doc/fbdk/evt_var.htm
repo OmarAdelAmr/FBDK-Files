@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META CONTENT="text/html; charset=ISO-8859-1" HTTP-EQUIV="content-type">
+<TITLE>FBDK: Event and Variable Dialogs</TITLE>
+</HEAD>
+<BODY>
+<CENTER>
+<H2>Event and Variable Dialogs</H2>
+</CENTER>
+<P>When editing the interface of a FB type, resource type, or device
+type, similar dialog styles are used both <I>create </I>event inputs and
+outputs and input, output and internal variables, and to <I>edit</I>
+existing elements. A new event or variable is created by using the <B>New</B>
+item of the library element's popup menu, and an existing event or
+variable is edited by double-clicking on its <I>type name</I> or
+selecting the <B>Edit </B>option of the popup menu of the type name. The
+table below shows the dialog for each type, and where it can be used.<BR>
+</P>
+<UL>
+	<LI>When creating a new element, the <B>Name </B>field has the default
+	value <TT>*Name*</TT>, which must be edited to a valid IEC 61131-3
+	identifier.</LI>
+	<LI>You can type in an <B>event</B> type in the <B>Type</B> field of
+	the event name, or leave it blank for the default <TT>EVENT </TT>type.
+	<BR>
+	<IMG ALT="" SRC="../note.gif" HEIGHT="24" WIDTH="32"> IEC 61499 has
+	special rules for connecting events that are not of the default type!<BR>
+	</LI>
+	<LI>You can select the data type for a <B>variable</B> from the
+	drop-down list.</LI>
+	<LI>If the data type that you want to use does not appear in the list,
+	you can add a new type by selecting it in the file chooser and pressing
+	the <B>Add</B> button.</LI>
+	<LI>You can enter the number of elements to be included in a
+	single-dimensional array variable in between the square brackets <TT>[]</TT>
+	.<BR>
+	</LI>
+	<LI>Pressing the <B>OK</B> button or pressing the <B>Enter </B>key when
+	editing in the <B>Name</B> or <B>Comment</B> fields, the <B>Type</B>
+	field of the Event dialog, or the array size field of the Variable
+	dialog will cause the dialog to attempt to close and save the current
+	values for the edited element. If an error is found, the window will
+	not close and an error message will appear in the status field below
+	the title bar.<BR>
+	</LI>
+	<LI>Pressing the <B>Cancel</B> button will close the window and cancel
+	any changes entered in the <B>Name</B>, <B>Type</B> and <B>Comment</B>
+	fields.</LI>
+</UL>
+</DIV>
+<BR>
+<CENTER>
+<TABLE ALIGN="center" BORDER="1">
+	<TBODY>
+		<TR>
+			<TD ALIGN="center" VALIGN="middle" NOWRAP>Add an event input or
+			output to a FB type.</TD>
+			<TD WIDTH="405">Add an input variable to a FB type, resource type, or
+			device type, or an output or internal variable to an FB type.</TD>
+		</TR>
+		<TR>
+			<TD ALIGN="center" VALIGN="top"><IMG SRC="dlgevt.png"></TD>
+			<TD ALIGN="center"><IMG SRC="dlgvar.png"></TD>
+		</TR>
+	</TBODY>
+</TABLE>
+<HR>
+<I>Last updated: 2006-05-16.</I><BR>
+&copy;2006 Holobloc Inc. All rights reserved.</CENTER>
+</BODY>
+</HTML>

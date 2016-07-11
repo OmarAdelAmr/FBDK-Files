@@ -1,0 +1,66 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+<META NAME="GENERATOR" CONTENT="Eclipse HTML Editor">
+<TITLE>SYSTEM CODEC_TEST</TITLE>
+</HEAD>
+
+<BODY>
+
+<H2 ALIGN="CENTER">SYSTEM CODEC_TEST</H2>
+<P>The system configuration shown <A HREF="#Viewer">below</A> tests the
+proper operation of <TT>PUBLISH</TT> and <TT>SUBSCRIBE</TT> blocks over
+the full range of <A HREF="http://www.ietf.org/rfc/rfc0768.txt"
+	TARGET="_blank">multicast UDP</A> addresses, and tests the encoding and
+decoding of all the IEC 61131-3 <I>elementary data types</I> required by
+the <A HREF="../index.htm" TARGET="_blank">Compliance Profile</A> for
+IEC 61499 Feasibility Demonstrations . This is done through pairs of
+panels designed to test the various families of elementary data types,
+supplemented by a <TT>MONITOR</TT> panel containing instances of the <A
+	HREF="CHOICE_TBL.htm"><TT>CHOICE_TBL</TT></A>, <A HREF="UDP_LISTEN.htm"><TT>UDP_LISTEN</TT></A>
+and <A HREF="OUT_TEXT.htm"><TT>OUT_TEXT</TT></A> types to enable
+monitoring of the corresponding UDP multicast channels to check for
+correct encoding. Each pair of panels is represented both by its <I>device
+configurations</I> and its corresponding <I>application.</I></P>
+<UL>
+	<LI>Only the connections involved in distributable event and data flows
+	are shown for each application. Initialization paths, parameter
+	connections, and auxiliary graphical elements such as labels are not
+	shown.</LI>
+</UL>
+<CENTER>
+<P><I>This is an interactive map. Each panel is
+linked to documentation of its respective application.</I></P>
+<P ALIGN="CENTER"><IMG SRC="images/CODEC_TEST.gif" WIDTH="750"
+	HEIGHT="590" ALIGN="BOTTOM" BORDER="0" USEMAP="#CODEC_TEST"></P>
+<P>[<A NAME="Viewer"></A><A HREF="../../FBViewer.html" TARGET="help">Viewer
+Help</A>]<BR>
+<TABLE BORDER="1">
+	<TR>
+		<TD><APPLET CODE="FBViewer" WIDTH="1000" HEIGHT="700" ALIGN="BOTTOM"
+			ARCHIVE="../../viewer.jar"> </APPLET></TD>
+	</TR>
+</TABLE>
+</P>
+<MAP NAME="CODEC_TEST">
+	<AREA SHAPE="Rect" COORDS="353,3,745,190" HREF="MONITOR.htm">
+	<AREA SHAPE="Rect" COORDS="350,191,750,307" HREF="TEST_TIMES.htm">
+	<AREA SHAPE="Rect" COORDS="352,306,748,396" HREF="TEST_STRINGS.htm">
+	<AREA SHAPE="Rect" COORDS="352,395,747,461" HREF="TEST_ARRAY.htm">
+	<AREA SHAPE="Rect" COORDS="351,461,747,529" HREF="TEST_COLOR.htm">
+	<AREA SHAPE="Rect" COORDS="7,473,349,587" HREF="TEST_REALS.htm">
+	<AREA SHAPE="Rect" COORDS="6,358,352,473" HREF="TEST_UINTS.htm">
+	<AREA SHAPE="Rect" COORDS="7,194,348,356" HREF="TEST_INTS.htm">
+	<AREA SHAPE="Rect" COORDS="6,2,348,191" HREF="TEST_BITS.htm">
+</MAP>
+<P><I>Last updated: 2006-04-24.</I><BR>
+&copy;2006 <A HREF="http://www.holobloc.com" TARGET="_blank">Holobloc
+Inc</A><BR>
+Licensed under the <A
+	HREF="http://www.opensource.org/licenses/afl-3.0.php">Academic Free
+License version 3.0</A>.</P>
+</CENTER>
+</BODY>
+</HTML>

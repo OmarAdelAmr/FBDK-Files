@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="TEST_NEB" Comment="Test NE function on bit strings" >
+  <Identification Standard="61499-1" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.0" Author="JHC" Date="2006-09-14" />
+  <CompilerInfo header="package fb.rt.test;" classdef="SimpleFB" >
+    <Compiler Language="Java" Vendor="Sun" Product="JDK" Version="1.5.0" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="REQ" Comment="Normal Execution Request" >
+        <With Var="INBY" />
+        <With Var="INW" />
+        <With Var="IND" />
+        <With Var="INL" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="CNF" Comment="Execution Confirmation" >
+        <With Var="QBY" />
+        <With Var="QW" />
+        <With Var="QD" />
+        <With Var="QL" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="INBY" Type="BYTE" />
+      <VarDeclaration Name="INW" Type="WORD" />
+      <VarDeclaration Name="IND" Type="DWORD" />
+      <VarDeclaration Name="INL" Type="LWORD" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="QBY" Type="BOOL" />
+      <VarDeclaration Name="QW" Type="BOOL" />
+      <VarDeclaration Name="QD" Type="BOOL" />
+      <VarDeclaration Name="QL" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+  <Algorithm Name="REQ" >
+    <FBD >
+      <FB Name="NEBY" Type="NE_BYTE" x="233.33333" y="11.111111" >
+        <Parameter Name="IN2" Value="0" />
+      </FB>
+      <FB Name="NEW" Type="NE_WORD" x="738.88885" y="111.11111" >
+        <Parameter Name="IN2" Value="0" />
+      </FB>
+      <FB Name="NED" Type="NE_DWORD" x="1344.4443" y="11.111111" >
+        <Parameter Name="IN2" Value="0" />
+      </FB>
+      <FB Name="NEL" Type="NE_LWORD" x="1905.5555" y="122.22221" >
+        <Parameter Name="IN2" Value="0" />
+      </FB>
+      <DataConnections>
+        <Connection Source="INBY" Destination="NEBY.IN1" dx1="116.666664" />
+        <Connection Source="NEBY.Q" Destination="QBY" dx1="633.3333" />
+        <Connection Source="INW" Destination="NEW.IN1" dx1="638.88885" />
+        <Connection Source="NEW.Q" Destination="QW" dx1="1138.8888" />
+        <Connection Source="IND" Destination="NED.IN1" dx1="1250.0" />
+        <Connection Source="NED.Q" Destination="QD" dx1="1777.7777" />
+        <Connection Source="INL" Destination="NEL.IN1" dx1="1811.1111" />
+        <Connection Source="NEL.Q" Destination="QL" dx1="2333.3333" />
+      </DataConnections>
+    </FBD>
+  </Algorithm>
+  </BasicFB>
+</FBType>

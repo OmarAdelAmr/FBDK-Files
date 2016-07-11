@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE System SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<System Name="Test_6" Comment="System Configuration" >
+  <Identification Standard="61499-1" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.3" Author="JHC" Date="2003-12-05" Remarks="Renamed from NEWSYSTEM." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.2" Author="JHC" Date="2002-11-05" Remarks="Fixed missing (empty) FBD in Application." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2002-01-17" Remarks="Minor cleanup" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2000-05-27" />
+  <Application Name="APP1" >
+    <FBNetwork >
+    </FBNetwork>
+  </Application>
+  <Device Name="DEV1" Type="FRAME_DEVICE" x="1050.0" y="338.8889" >
+    <Parameter Name="BOUNDS" Value="[110,110,300,300]" />
+    <Parameter Name="GRID" Value="[1,1]" />
+    <Resource Name="RES1" Type="PANEL_RESOURCE" x="1411.1111" y="772.22217" >
+      <Parameter Name="ROWS" Value="2" />
+      <Parameter Name="COLS" Value="2" />
+      <FBNetwork >
+        <FB Name="Alfa" Type="WORKER4TESTFB" x="2055.5554" y="127.77777" >
+          <Parameter Name="NAME" Value="&#34;AlfaR&#34;" />
+          <Parameter Name="SKILL" Value="&#34;shaping&#34;" />
+        </FB>
+        <FB Name="Beta" Type="WORKER4TESTFB" x="2388.889" y="1233.3333" >
+          <Parameter Name="SKILL" Value="&#34;milling&#34;" />
+          <Parameter Name="NAME" Value="&#34;BetaW&#34;" />
+        </FB>
+        <FB Name="Request1" Type="IN_EVENT" x="744.4444" y="1483.3333" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;Reguest&#34;" />
+        </FB>
+        <FB Name="AlfaJob" Type="OUT_ANY" x="3949.9998" y="11.111111" >
+          <Parameter Name="TYPE" Value="&#34;&#34;" />
+          <Parameter Name="IVAL" Value="&#34;&#34;" />
+          <Parameter Name="W" Value="0" />
+          <Parameter Name="QI" Value="1" />
+        </FB>
+        <FB Name="BetaJob" Type="OUT_ANY" x="3977.7776" y="2377.7776" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="W" Value="0" />
+          <Parameter Name="IVAL" Value="&#34;&#34;" />
+          <Parameter Name="TYPE" Value="&#34;&#34;" />
+        </FB>
+        <FB Name="AlfaStatus" Type="OUT_BOOL" x="3938.8887" y="1166.6666" >
+          <Parameter Name="LABEL" Value="&#34;AlfaJob&#34;" />
+          <Parameter Name="C0" Value="[255,0,0]" />
+          <Parameter Name="C1" Value="[255,255,255]" />
+          <Parameter Name="QI" Value="1" />
+        </FB>
+        <FB Name="BetaStatus" Type="OUT_BOOL" x="3972.2222" y="3549.9998" >
+          <Parameter Name="C0" Value="[255,0,0]" />
+          <Parameter Name="C1" Value="[255,255,255]" />
+          <Parameter Name="LABEL" Value="&#34;BetaJob&#34;" />
+          <Parameter Name="QI" Value="1" />
+        </FB>
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="Alfa.INIT" dx1="672.22217" />
+          <Connection Source="START.COLD" Destination="Beta.INIT" dx1="711.1111" />
+          <Connection Source="Request1.IND" Destination="Beta.NSKILL" dx1="1116.6666" />
+          <Connection Source="Request1.IND" Destination="Alfa.NSKILL" dx1="655.55554" />
+          <Connection Source="START.COLD" Destination="Request1.INIT" dx1="327.77777" />
+          <Connection Source="Alfa.NSKILL_CNF" Destination="AlfaJob.REQ" dx1="177.77777" />
+          <Connection Source="Beta.NSKILL_CNF" Destination="BetaJob.REQ" dx1="577.7778" />
+          <Connection Source="Beta.INITO" Destination="BetaJob.INIT" dx1="600.0" />
+          <Connection Source="Alfa.INITO" Destination="AlfaJob.INIT" dx1="150.0" />
+          <Connection Source="Alfa.INITO" Destination="AlfaStatus.INIT" dx1="1072.2222" />
+          <Connection Source="Alfa.NSKILL_CNF" Destination="AlfaStatus.REQ" dx1="1050.0" />
+          <Connection Source="Beta.INITO" Destination="BetaStatus.INIT" dx1="677.7778" />
+          <Connection Source="Beta.NSKILL_CNF" Destination="BetaStatus.REQ" dx1="655.55554" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="Beta.JOB" Destination="BetaJob.IN" dx1="494.44443" />
+          <Connection Source="Alfa.JOB" Destination="AlfaJob.IN" dx1="266.66666" />
+          <Connection Source="Alfa.STATUS" Destination="AlfaStatus.IN" dx1="1005.55554" />
+          <Connection Source="Beta.STATUS" Destination="BetaStatus.IN" dx1="577.7778" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+  </Device>
+</System>

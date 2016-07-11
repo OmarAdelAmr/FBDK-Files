@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE System SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<System Name="TestEDELAY" Comment="System Configuration" >
+  <Identification Standard="61499-1" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.3" Author="JHC" Date="2003-12-05" Remarks="Renamed from NEWSYSTEM." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.2" Author="JHC" Date="2002-11-05" Remarks="Fixed missing (empty) FBD in Application." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2002-01-17" Remarks="Minor cleanup" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2000-05-27" />
+  <Application Name="APP1" >
+    <FBNetwork >
+    </FBNetwork>
+  </Application>
+  <Device Name="DEV1" Type="FRAME_DEVICE" x="833.3333" y="11.111111" >
+    <Parameter Name="BOUNDS" Value="[0,0,100,100]" />
+    <Resource Name="RES1" Type="PANEL_RESOURCE" x="11.111111" y="777.7778" >
+      <FBNetwork >
+        <FB Name="data" Type="OUT_EVENT" x="1788.8888" y="50.0" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="DT" Value="t#100ms" />
+          <Parameter Name="LABEL" Value="&#34;test&#34;" />
+        </FB>
+        <FB Name="dly" Type="E_DELAY" x="800.0" y="355.55554" >
+          <Parameter Name="DT" Value="t#300ms" />
+        </FB>
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="data.INIT" dx1="1011.1111" />
+          <Connection Source="data.INITO" Destination="dly.START" dx1="27.777777" dx2="188.88889" dy="-111.11111" />
+          <Connection Source="dly.EO" Destination="dly.START" dx1="122.22221" dx2="72.22222" dy="-177.77777" />
+          <Connection Source="dly.EO" Destination="data.REQ" dx1="288.8889" />
+        </EventConnections>
+      </FBNetwork>
+    </Resource>
+  </Device>
+</System>

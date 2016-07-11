@@ -1,0 +1,70 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+<META NAME="GENERATOR" CONTENT="Eclipse HTML Editor">
+<TITLE>SYSTEM VAV_MVL</TITLE>
+</HEAD>
+<BODY>
+<H3>4. Develop and Test Models</H3>
+<P>The <TT>VAV_MVL</TT> system configuration shown <A HREF="#Viewer">below</A>
+implements the layered <A HREF="../../../despats/mvc/syseng2.htm#4"><B>Model+View</B>
+testing architecture</A> for the <A HREF="sketch.htm">HVAC example</A>.</P>
+<UL>
+	<LI>The <TT>RECORDER</TT> and <TT>CTRL</TT> devices encapsulate the
+	functionality of the <B>HMI</B> layer of the architecture. The <TT>SP</TT>
+	(setpoint) output of the <TT>FACEPLATE</TT> is wired to the <TT>DAMPER_ACT</TT>
+	multicast publisher block to provide manual control of the Variable Air
+	Volume (VAV) damper actuation:
+	<UL>
+		<LI>When <TT>SP &gt; 67%</TT>, the VAV motor moves to open the damper.</LI>
+		<LI>When <TT>SP &lt; 33%</TT>, the VAV motor moves to close the
+		damper.</LI>
+		<LI>When <TT>68% &gt; SP &gt; 32%</TT>, the damper remains in its
+		current position.</LI>
+	</UL>
+	</LI>
+	<LI>The <TT>VIEW</TT> device of the <TT><A HREF="VAV_VIEWL.htm">VAV_VIEWL</A></TT>
+	configuration is replaced by the <TT>ZONE</TT> device encapsulating the
+	functionality of both the <B>Model</B> and <B>View</B> layers:
+	<UL>
+		<LI>As before, there are two instances of the specialized <TT><A
+			HREF="../../../common/VIEW_PANEL.htm">VIEW_PANEL</A></TT> resource
+		type to provide the necessary layout of <B>View</B> elements for the
+		HVAC example.
+		<LI>In addition, the <TT>MODEL</TT> resource of the <TT>ZONE</TT>
+		device contains the models for the room and the VAV (Variable Air
+		Volume) unit as instances of the <TT><A HREF="ZONE_MDLL.htm">ZONE_MDLL</A></TT>
+		and <TT><A HREF="VAV_MDLL.htm">VAV_MDLL</A></TT> types, respectively.</LI>
+		<LI>The simulation is run at 10 times real time by setting the <TT>DT</TT>
+		parameter of the simulation clock (<TT>VAV_CLK</TT>) to <TT>t#100s</TT>
+		and the <TT>DT</TT> parameter of the <TT>DAMPER</TT> block to <TT>t#1s</TT>.</LI>
+		<LI>The <TT>ROOM</TT> block is updated ten times more slowly than the
+		<TT>DAMPER</TT> block, since the zone characteristic time is more than
+		an order of magnitude greater than the damper valve actuation time.</LI>
+		<LI>Since the <TT>RECORDER</TT> block is triggered by the publication
+		of the <TT>TEMP</TT> output of the <TT>ROOM</TT> block, each point
+		plotted on the recorder represents 10 seconds of simulated time.</LI>
+	</UL>
+	</LI>
+</UL>
+<P><A HREF="animation.htm">This animation</A> shows typical results of
+running this simulation configuration.</P>
+<CENTER>
+<P>[<A NAME="Viewer" HREF="../../../FBViewer.html" TARGET="_blank">Viewer
+Help</A>]<BR>
+<TABLE BORDER="1">
+	<TR>
+		<TD><APPLET CODE="FBViewer" ARCHIVE="../../../viewer.jar" WIDTH="825"
+			HEIGHT="550"></APPLET></TD>
+	</TR>
+</TABLE>
+<P><I>Last updated: 2006-04-25.</I><BR>
+&copy;2006 <A HREF="http://www.holobloc.com" TARGET="_blank">Holobloc
+Inc</A><BR>
+Licensed under the <A
+	HREF="http://www.opensource.org/licenses/afl-3.0.php">Academic Free
+License version 3.0</A>.</P>
+</CENTER>
+</BODY>
+</HTML>

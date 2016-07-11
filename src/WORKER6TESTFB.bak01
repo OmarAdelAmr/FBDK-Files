@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="WORKER6TESTFB" Comment="JADE WORKER" >
+  <Identification Standard="61499-1" />
+  <VersionInfo Organization="Fraunhofer IGD" Version="1.0" Author="Ahmed" Date="2014-04-22" />
+  <CompilerInfo header="package fb.rt;" >
+    <Compiler Language="Java" Vendor="Sun" Product="JDK" Version="1.5.0" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Normal Execution Request" >
+        <With Var="NAME" />
+      </Event>
+      <Event Name="NSKILL" Comment="Normal Execution Request" >
+        <With Var="SKILL" />
+      </Event>
+      <Event Name="NJOB" >
+      </Event>
+      <Event Name="NSTATE" >
+      </Event>
+      <Event Name="JOBDONE" >
+      </Event>
+      <Event Name="MSTATE" >
+        <With Var="MSTATUS" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Execution Confirmation" >
+        <With Var="JOB" />
+        <With Var="STATUS" />
+      </Event>
+      <Event Name="NSKILL_CNF" >
+      </Event>
+      <Event Name="NJOB_CNF" >
+        <With Var="JOB" />
+      </Event>
+      <Event Name="NSTATE_CNF" >
+        <With Var="STATUS" />
+      </Event>
+      <Event Name="JOBDONE_CNF" >
+      </Event>
+      <Event Name="MSTATE_CNF" >
+        <With Var="STATUS" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="NAME" Type="WSTRING" />
+      <VarDeclaration Name="SKILL" Type="WSTRING" />
+      <VarDeclaration Name="MSTATUS" Type="BOOL" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="JOB" Type="WSTRING" />
+      <VarDeclaration Name="STATUS" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+</FBType>

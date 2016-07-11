@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+<TITLE>RESOURCE_TYPE VIEW_PANEL</TITLE>
+</HEAD>
+
+<BODY>
+
+<H2 ALIGN="CENTER">RESOURCE_TYPE VIEW_PANEL</H2>
+<P>An instance of this resource type encapsulates an instance of a
+Java&trade; <A
+	HREF="http://java.sun.com/j2se/1.4.2/docs/api/javax/swing/JPanel.html">JPanel</A>
+with a specialized <A
+	HREF="http://java.sun.com/j2se/1.4.2/docs/api/java/awt/LayoutManager.html">LayoutManager</A>
+to implement a grid-like layout based on a characteristic dimension <TT>DIA</TT>
+in pixels. This panel and its layout manager implement the following
+rules:</P>
+<OL>
+	<LI>The preferred width of the panel is <TT>SIZE[0]*DIA</TT> pixels,
+	and its preferred height is <TT>SIZE[1]*DIA</TT> pixels.</LI>
+	<LI>If the <TT>DIA</TT> input of the resource is configured to a
+	positive non-zero value, this value will override the value of any <TT>DIA</TT>
+	input declared as <TT>UINT</TT> in any component function block
+	contained in the resource.</LI>
+	<LI>The background color of the panel is given by the <TT>BKGD</TT>
+	input, and does not override the default or configured background color
+	of a component function block.</LI>
+	<LI>If the value of the <TT>VERTICAL</TT> input is <TT>FALSE</TT> (<TT>0</TT>)
+	(the default value), the layout is equivalent to a left-justified Java<SUP>TM</SUP>
+	<A
+		HREF="http://java.sun.com/j2se/1.4.2/docs/api/java/awt/FlowLayout.html">FlowLayout</A>.
+	
+	<LI>If the value of the <TT>VERTICAL</TT> input is <TT>TRUE</TT> (<TT>1</TT>),
+	the layout is similar to a Java<SUP>TM</SUP> <A
+		HREF="http://java.sun.com/j2se/1.4.2/docs/api/java/awt/FlowLayout.html">FlowLayout</A>,
+	except that components &quot;flow&quot; first to the upper left corner
+	and are then aligned one beneath the other until a component no longer
+	fits in the column. At this point the next component &quot;flows&quot;
+	to the top of the next column, whose left margin is defined as the
+	right edge of the widest component in the previous column.
+</OL>
+
+<CENTER>
+<P>[<A HREF="../FBViewer.html" TARGET="help">Viewer Help</A>]<BR>
+<TABLE BORDER="1">
+	<TR>
+		<TD><APPLET CODE="FBViewer" WIDTH="592" HEIGHT="453" ALIGN="BOTTOM"
+			ARCHIVE="../viewer.jar"> </APPLET></TD>
+	</TR>
+</TABLE>
+</P>
+<P><I>Last updated: 2006-04-17.</I><BR>
+&copy;2006 <A HREF="http://www.holobloc.com" TARGET="_blank">Holobloc
+Inc</A><BR>
+Licensed under the <A
+	HREF="http://www.opensource.org/licenses/afl-3.0.php">Academic Free
+License version 3.0</A>.</P>
+</CENTER>
+</CENTER>
+</BODY>
+
+</HTML>

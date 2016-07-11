@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+<META NAME="GENERATOR" CONTENT="Eclipse HTML Editor">
+<META NAME="Standard" CONTENT="IEC 61499">
+<META NAME="Classification" CONTENT="Simulation">
+<META NAME="ApplicationDomain" CONTENT="Assembly">
+<META NAME="Function" CONTENT="Control/Diagnostics">
+<META NAME="Type" CONTENT="Pick &amp; Place">
+<TITLE>SYSTEM PNP_MVCDR</TITLE>
+</HEAD>
+<BODY>
+<H3>7. Perform Distribution Design</H3>
+<P><A HREF="#Viewer">This system configuration</A> illustrates a <A
+	HREF="syseng2.htm#7">distribution design</A> of the <A
+	HREF="pnpsket.htm">pick and place</A> example in which the <B>Model+View</B>
+functions are located in a remote device named <TT>PNP</TT>, the <B>Control+HMI</B>
+functions are in a local device named <TT>CONTROL</TT>; and the <B>Diagnostic
+</B>functions are in a local device named <TT>DIAGNOSTICS</TT>.</P>
+<P><A HREF="../publsubl/index.htm">Local multicast</A>
+communications between the <TT>PNP</TT> device and other devices are
+replaced with distributed multicast communications using the <A
+	HREF="../tags/index.htm" TARGET="_blank">Tagged Data</A> Design
+Pattern:</P>
+<UL>
+	<LI>A <TT>TAGS</TT> resource in the <TT>PNP</TT> device provides
+	mapping between remote and local multicast communication of the sensor
+	and actuator data of the two-dimensional pick-and-place unit as well as
+	the conveyor's <TT>PRESENT</TT> sensor and the <TT>MAGNET</TT> actuator
+	state, which are used by both the conveyor and pick-and-place unit
+	models.</LI>
+	<LI>Similarly, mapping between local and remote multicast of this
+	data is implemented in the <TT>TAGS</TT> resource of the <TT>CONTROL</TT>
+	devices, where local multicast of data is shared between the <TT>CONTROL</TT>
+	and <TT>DIAGNOSTICS</TT> devices.</LI>
+</UL>
+<CENTER>[<A NAME="Viewer" HREF="../../FBViewer.html"
+	TARGET="_blank">Viewer Help</A>]<BR>
+<TABLE BORDER="1">
+	<TR>
+		<TD><APPLET CODE="FBViewer" ARCHIVE="../../viewer.jar"
+			WIDTH="906" HEIGHT="612"></APPLET></TD>
+	</TR>
+</TABLE>
+<BR>
+<I>Last updated: 2007-10-15.</I><BR>
+&copy;2006,2007 <A HREF="http://www.holobloc.com" TARGET="_blank">Holobloc
+Inc</A><BR>
+Licensed under the <A
+	HREF="http://www.opensource.org/licenses/afl-3.0.php">Academic Free
+License version 3.0</A>.</CENTER>
+</BODY>
+</HTML>

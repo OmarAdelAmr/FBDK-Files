@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="TEST_BYTE" Comment="Test BYTE AND,OR,XOR" >
+  <Identification Standard="IEC 61499-1" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.1" Author="JHC" Date="2006-09-06" Remarks="Made a SimpleFB" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.0" Author="JHC" Date="2006-09-02" Remarks="Converted from TEST_BOOL." />
+  <CompilerInfo header="package fb.rt.test;" classdef="SimpleFB" >
+    <Compiler Language="Java" Vendor="Sun" Product="JDK" Version="1.5.0" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="REQ" >
+        <With Var="I1" />
+        <With Var="I2" />
+        <With Var="I3" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="CNF" >
+        <With Var="Q" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="I1" Type="BYTE" />
+      <VarDeclaration Name="I2" Type="BYTE" />
+      <VarDeclaration Name="I3" Type="BYTE" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="Q" Type="BYTE" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+  <Algorithm Name="REQ" >
+    <FBD >
+      <FB Name="n1" Type="NOT_BYTE" x="61.111107" y="11.111111" />
+      <FB Name="n2" Type="NOT_BYTE" x="127.77777" y="416.66666" />
+      <FB Name="a1" Type="AND_BYTE" x="466.66666" y="11.111111" />
+      <FB Name="a2" Type="AND_BYTE" x="627.7778" y="472.2222" />
+      <FB Name="o1" Type="OR_BYTE" x="1038.8888" y="11.111111" />
+      <FB Name="x1" Type="XOR_BYTE" x="1461.1111" y="11.111111" />
+      <DataConnections>
+        <Connection Source="I1" Destination="n1.IN" />
+        <Connection Source="I2" Destination="n2.IN" dx1="55.555553" />
+        <Connection Source="I2" Destination="a1.IN2" dx1="394.44443" />
+        <Connection Source="n2.OUT" Destination="a2.IN2" dx1="27.777777" />
+        <Connection Source="n1.OUT" Destination="a1.IN1" dx1="27.777777" />
+        <Connection Source="I1" Destination="a2.IN1" dx1="555.55554" />
+        <Connection Source="a1.OUT" Destination="o1.IN1" dx1="327.77777" />
+        <Connection Source="a2.OUT" Destination="o1.IN2" dx1="27.777777" />
+        <Connection Source="o1.OUT" Destination="x1.IN1" dx1="27.777777" />
+        <Connection Source="I3" Destination="x1.IN2" dx1="1388.8888" />
+        <Connection Source="x1.OUT" Destination="Q" dx1="1866.6666" />
+      </DataConnections>
+    </FBD>
+  </Algorithm>
+  </BasicFB>
+</FBType>

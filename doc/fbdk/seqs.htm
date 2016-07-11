@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+<META NAME="GENERATOR" CONTENT="Eclipse HTML Editor">
+<TITLE>Service Sequences</TITLE>
+</HEAD>
+<BODY>
+<H2 ALIGN="center">Editing Service Sequences</H2>
+<P>A <A HREF="howtosi.htm">service interface function block type</A>
+(SIFB type) is characterized by its <I>service specification</I>, which
+may consist of a number of <I>service transactions</I>. Each service
+transaction consists of zero or one <I>input primitive</I> represented
+by an arrow coming into one of the two interfaces of the service,
+followed by zero or more <I>output primitives</I>.</P>
+<OL>
+	<LI>You can change the name of the left or right service interface from
+	the <B>Edit</B> item of the service's popup menu in the navigation
+	tree. The figure below shows the result of replacing <TT>RESOURCE</TT>
+	with <TT>DEVICE</TT> in the <A HREF="howtosi.htm">SIFB template</A>.<BR>
+	<CENTER><IMG SRC="newsifb2.png"></CENTER>
+	</LI>
+	<LI>You can <B>add a sequence</B> to the service with the <B>New</B>
+	item of the service's popup menu in the navigation tree. This opens a <A
+		HREF="namecomment.htm">dialog</A> that lets you edit the new
+	sequence's name and comment.<IMG SRC="../note.gif">You can reopen this
+	dialog whenever the sequence is displayed in the <B>Worksheet</B> by
+	double-clicking on the sequence name or using the <B>Edit</B> item of
+	its popup menu.</LI>
+	<LI>You can <B>remove a sequence</B> when it is displayed in the <B>Worksheet</B>
+	by using the <B>Alt+Del</B> keychord on its name or the <B>Delete</B>
+	item of its popup menu.</LI>
+	<LI>You can <B>move a sequence up or down</B> by selecting it in the
+	navigation tree, then using the <B>Move Up/Down</B> <IMG
+		SRC="updown.png"> buttons in the menu bar.</LI>
+	<LI>You can <B>add a transaction to a sequence</B> from the <B>New</B>
+	menu item of the sequence's name when it is displayed in the <B>Worksheet</B>.
+	This pops up a dialog as shown below that lets you edit the interface,
+	name and parameters of the transaction's initial input primitive.<BR>
+	<CENTER><IMG SRC="addtran.png"></CENTER>
+	</LI>
+	<LI>You can <B>move a transaction up or down in a sequence</B> by
+	selecting its input primitive, then using the <B>Move Up/Down</B> <IMG
+		SRC="updown.png"> buttons in the menu bar.<IMG SRC="../note.gif"
+		HEIGHT="24" WIDTH="32">Even if a transaction doesn't have an actual
+	input primitive, you can use a "dummy" input primitive for this purpose
+	and delete it when you're done editing the sequence.</LI>
+	<LI>You can <B>remove a transaction from a sequence</B> by deleting all
+	its primitives (see below).</LI>
+	<LI>You can <B>add a primitive to a transaction</B> by using the <B>New</B>
+	item of the popup menu of any primitive in the transaction.</LI>
+	<LI>You can <B>move an output primitive up or down</B> in a transaction
+	with the <B>Move Up/Down</B> <IMG SRC="updown.png"> buttons in the menu
+	bar. <IMG SRC="../note.gif" HEIGHT="24" WIDTH="32">An <B>input
+	primitive</B> if present is always the first one in a transaction, so
+	it can't be moved up or down within the transaction. That's why you can
+	use it as a "handle" to move the whole transaction up or down in the
+	sequence.</LI>
+	<LI>You can <B>edit a primitive</B> by double-clicking on its name or
+	using the <B>Edit</B> item of its popup menu.</LI>
+	<LI>You can <B>delete a primitive</B> from its popup menu or by using
+	the <B>Alt+Del</B> keychord.</LI>
+</OL>
+<CENTER>
+<HR ALIGN="center">
+<I>Last updated: 2006-04-25.</I><BR>
+&copy;2002-2005 Rockwell Automation. All rights reserved.<BR>
+&copy;2006 <A HREF="http://www.holobloc.com" TARGET="_blank">Holobloc
+Inc</A>. All rights reserved.</CENTER>
+</BODY>
+</HTML>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="OUT_QO_US" Comment="Combined display of QO &#38; UINT STATUS outputs with event notification" >
+  <Identification Standard="61499-1" Classification="HMI" Function="Output" Type="QO + UINT STATUS" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.0" Author="JHC" Date="2007-12-25" />
+  <CompilerInfo header="package fb.rt.hmi;" >
+    <Compiler Language="Java" Vendor="Sun" Product="JDK" Version="1.6.0" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" >
+        <With Var="LBL" />
+      </Event>
+      <Event Name="REQ" Comment="Normal Execution Request" >
+        <With Var="QO" />
+        <With Var="STATUS" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" >
+      </Event>
+      <Event Name="CNF" Comment="Execution Confirmation" >
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="LBL" Type="WSTRING" Comment="Label to be displayed in leftmost field, next to event notification output" />
+      <VarDeclaration Name="QO" Type="BOOL" Comment="QO value to be displayed" />
+      <VarDeclaration Name="STATUS" Type="UINT" />
+    </InputVars>
+  </InterfaceList>
+  <FBNetwork >
+    <FB Name="EVT" Type="OUT_EVENT" Comment="Event notification display with main label (LBL)" x="188.88889" y="11.111111" />
+    <FB Name="QO_OUT" Type="OUT_BOOL" x="866.6666" y="11.111111" >
+      <Parameter Name="LABEL" Value="&#34;   &#34;" />
+      <Parameter Name="C0" Value="[255,0,0]" />
+      <Parameter Name="C1" Value="[0,255,0]" />
+    </FB>
+    <FB Name="ST_OUT" Type="OUT_ANY" x="1538.8888" y="11.111111" >
+      <Parameter Name="W" Value="4" />
+      <Parameter Name="TYPE" Value="&#34;UINT&#34;" />
+    </FB>
+    <FB Name="REQ_SPLT" Type="E_SPLIT" x="238.88889" y="1038.8888" />
+    <EventConnections>
+      <Connection Source="INIT" Destination="EVT.INIT" dx1="83.33333" />
+      <Connection Source="EVT.INITO" Destination="QO_OUT.INIT" dx1="83.33333" />
+      <Connection Source="QO_OUT.INITO" Destination="ST_OUT.INIT" dx1="33.333332" />
+      <Connection Source="QO_OUT.CNF" Destination="ST_OUT.REQ" dx1="50.0" />
+      <Connection Source="ST_OUT.INITO" Destination="INITO" dx1="1977.7777" />
+      <Connection Source="ST_OUT.CNF" Destination="CNF" dx1="1955.5554" />
+      <Connection Source="REQ" Destination="REQ_SPLT.EI" dx1="127.77777" />
+      <Connection Source="REQ_SPLT.EO1" Destination="EVT.REQ" dx1="50.0" dx2="138.88889" dy="-155.55554" />
+      <Connection Source="REQ_SPLT.EO2" Destination="QO_OUT.REQ" dx1="122.22221" />
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="LBL" Destination="EVT.LABEL" dx1="83.33333" />
+      <Connection Source="QO" Destination="QO_OUT.IN" dx1="772.22217" />
+      <Connection Source="STATUS" Destination="ST_OUT.IN" dx1="1372.2222" />
+    </DataConnections>
+  </FBNetwork>
+</FBType>

@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+<TITLE>FBEditor - Customizing</TITLE>
+</HEAD>
+<BODY>
+<CENTER>
+<H2>Customizing the FBEditor<BR>
+<FONT SIZE="+0"> [<A HREF="#Starting">Starting the FBEditor</A>]
+[<A HREF="#ini">The <TT>editor.ini</TT> File</A>] [<A
+	HREF="FBEditor.html">Return to FBEditor Help</A>]</FONT></H2>
+<P>The procedures described below have only been tested with the
+Windows&trade; XP operating system and may have to be modified for other
+operating systems.</P>
+</CENTER>
+<A NAME="Starting"></A>
+<H3>Starting the FBEditor</H3>
+<UL>
+	<LI>After the <A
+		HREF="http://java.sun.com/javase/downloads/index.jsp" TARGET="_blank">JDK&trade;
+	6</A> has been installed, the FBEditor can be started by double-clicking on
+	the icon of the <TT>editor.jar</TT> file or selecting the <B>Open</B>
+	option of its pop-up menu.</LI>
+	<LI>The FBEditor can also be started by double-clicking on the
+	icon of the <TT>fbeditor.bat</TT> file or selecting the <B>Open</B>
+	option of its pop-up menu.</LI>
+	<LI>The <TT>fbeditor.bat</TT> file can also be invoked in a
+	command prompt window.</LI>
+	<LI><A NAME="assoc"></A>Files containing IEC 61499 library
+	elements, e.g., <TT>*.fbt</TT> and <TT>*.res</TT> files, can be opened
+	by double-clicking by associating their file types with the <TT>fbeditor.bat</TT>
+	file.</LI>
+	<LI>IEC 61499 library files can also be opened by dragging their
+	icons onto the icon of the <TT>fbeditor.bat</TT> file.</LI>
+	<LI><IMG SRC="../note.gif">If <TT>fbeditor.bat</TT> is not
+	located in an <TT>fbdk</TT> subdirectory of your home directory, e.g.,
+	<TT>C:\fbdk</TT>, you should edit the first line of <TT>fbeditor.bat</TT>
+	to change the working directory to the home of the <TT>fbeditor.bat</TT>
+	file.</LI>
+</UL>
+<A NAME="ini"></A>
+<H3>The <TT>editor.ini</TT> File</H3>
+<P>Each line of this file consists of a parameter name followed by a
+parameter value. The allowed parameter names and values are given in the
+following table. If no value for a parameter is given in the <TT>editor.ini</TT>
+file the default value applies. Different values for these parameters
+will need to be given for different Java&trade; Development Kit (JDK)
+and Java Runtime Environment (JRE) installations and for non-Windows
+operating systems.</P>
+<TABLE BORDER="1">
+	<TBODY>
+		<TR>
+			<TD ALIGN="center"><B>Parameter Name</B></TD>
+			<TD ALIGN="center"><B>Explanation</B></TD>
+			<TD ALIGN="center"><B>Default</B></TD>
+		</TR>
+		<TR>
+			<TD ALIGN="center" VALIGN="middle"><TT>browser</TT></TD>
+			<TD VALIGN="middle">The command to run the Web browser for help
+			files.</TD>
+			<TD ALIGN="center" VALIGN="middle"><TT>\\Program
+			Files\\Mozilla Firefox\\firefox</TT></TD>
+		</TR>
+		<TR>
+			<TD ALIGN="center" VALIGN="middle"><TT>java</TT></TD>
+			<TD VALIGN="middle">The command to run the Java&trade; Runtime
+			Environment (JRE) executable.</TD>
+			<TD ALIGN="center" VALIGN="middle"><TT>java</TT></TD>
+		</TR>
+		<TR>
+			<TD ALIGN="center" VALIGN="middle"><TT>javac</TT></TD>
+			<TD VALIGN="middle">The command to execute the Java compiler.</TD>
+			<TD ALIGN="center" VALIGN="middle"><TT>\\Program
+			Files\\Java\\jdk1.6.0_03\\bin\\javac</TT></TD>
+		</TR>
+		<TR>
+			<TD ALIGN="center" VALIGN="middle"><TT>timeout</TT></TD>
+			<TD VALIGN="middle">The initial timeout period for management
+			commands to remote devices.</TD>
+			<TD ALIGN="center"><TT>t#2s</TT></TD>
+		</TR>
+	</TBODY>
+</TABLE>
+<CENTER>
+<P><I>Last updated: 2007-10-19.</I><BR>
+&copy;2006,2007 <A HREF="http://www.holobloc.com" TARGET="_blank">Holobloc
+Inc</A>. All rights reserved.<BR>
+<FONT SIZE="-2" FACE="sans-serif">Java and JDK are trademarks or
+registered trademarks of Sun Microsystems, Inc. in the United States and
+other countries.<BR>
+Windows is a registered trademark of Microsoft Corporation in the United
+States and other countries.</P>
+</CENTER>
+</BODY>
+</HTML>

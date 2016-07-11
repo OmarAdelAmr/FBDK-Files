@@ -1,0 +1,47 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+<META NAME="GENERATOR" CONTENT="Eclipse HTML Editor">
+<TITLE>FUNCTION_BLOCK WP_SENSE</TITLE>
+</HEAD>
+<BODY>
+<H2 ALIGN="center">FUNCTION_BLOCK WP_SENSE</H2>
+<P>An instance of <A HREF="#Viewer">this function block type</A> models
+the operation of a dual set of sensors which can sense both the presence
+of a workpiece at a position POS between the two positions <TT>P0</TT>
+and <TT>P1</TT> inclusive, and whether the type of the workpiece given
+by the <TT>STYLE</TT> input matches the reference style <TT>REFSTYLE</TT>
+(an instance of the <A HREF="../../common/VSTYLE.htm"><TT>VSTYLE</TT></A>
+data type) when the workpiece is present. The operation of the block is
+triggered by an event at the <TT>SENSE</TT> input and results in an
+event at the <TT>IND</TT> output when the value of either or both of the
+<TT>PRESENT</TT> and <TT>MATCH</TT> sensors changes. It is typically
+used to position a sensor pair at a specified location along a conveyor
+modelled by an instance of the <A HREF="../../despats/mvc/CNV_MDL.htm"><TT>CNV_MDL</TT></A>
+type or its enclosing <A HREF="../../despats/mvc/CNV_MDLL.htm"><TT>CNV_MDLL</TT></A>
+or <A HREF="../../despats/mvc/CNVG_MDLL.htm"><TT>CNVG_MDLL</TT></A>
+types, for instance as in the <A TARGET="_parent" HREF="index.htm">sortation/inspection
+testbed</A>.<BR>
+</P>
+<CENTER>
+<P>[<A NAME="Viewer" HREF="../../FBViewer.html"
+	TARGET="help">Viewer Help</A>]<BR>
+<TABLE BORDER="1">
+	<TBODY>
+		<TR>
+			<TD><APPLET CODE="FBViewer" ARCHIVE="../../viewer.jar" HEIGHT="421"
+				WIDTH="468"> </APPLET><BR>
+			</TD>
+		</TR>
+	</TBODY>
+</TABLE>
+</P>
+<P><I>Last updated: 2006-04-17.</I><BR>
+&copy;2006 Holobloc Inc.<BR>
+Licensed under the <A
+	HREF="http://www.opensource.org/licenses/afl-3.0.php">Academic Free
+License version 3.0</A>.</P>
+</CENTER>
+</BODY>
+</HTML>

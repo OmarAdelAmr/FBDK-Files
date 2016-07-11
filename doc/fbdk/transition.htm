@@ -1,0 +1,46 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+<META NAME="GENERATOR" CONTENT="Eclipse HTML Editor">
+<TITLE>FBEditor Help - Editing EC Transitions</TITLE>
+</HEAD>
+<BODY>
+<H2 ALIGN="center">Editing EC Transitions</H2>
+<H3>Adding a Transition to an ECC</H3>
+<P>You can add a transition between any two states of an ECC using <A
+	HREF="dndconn.htm">drag-and-drop editing</A> in the same manner as
+connections in a function block diagram (FBD).</P>
+<H3>Deleting a Transition</H3>
+<P>You can delete a transition by using the <B>Delete</B> item of its
+popup menu or by using the <B>Alt+Del</B> keychord.</P>
+<H3>The EC Transition Dialog</H3>
+<P>You can use this dialog both for editing an existing transition. You
+invoke it by double-clicking an existing EC transition or clicking the <B>Edit</B>
+item of its popup menu. The dialog contains a drop-down list for
+selecting the event (if any) in the transition condition. An editable
+drop-down list lets you select a Boolean variable as a guard condition,
+or to type in a Boolean expression in the IEC 61131-3 ST (Structured
+Text) language as the guard condition (if any).<BR>
+</P>
+<P ALIGN="center"><IMG ALT="" SRC="dlgtran.gif" HEIGHT="143" WIDTH="342"><BR>
+</P>
+<P>You can close the dialog without making any changes to the action by
+pressing the <B>Cancel </B>button or the <IMG SRC="close.png"
+	ALIGN="middle"> in the upper right corner of the dialog. If you press
+the <B>OK </B>button, the requested changes (if any) will be made and
+the dialog will close. If both the Event and Guard Condition fields are
+empty when you press the <B>OK </B>button, an error message will be
+displayed and the dialog will not close. <IMG ALT="" SRC="../note.gif"
+	HEIGHT="24" WIDTH="32">The FBEditor does not detect whether the guard
+condition is a proper Boolean expression; this will only be caught by
+the compiler when the <B>File==&gt;SaveAs==&gt;Java...</B> menu item is
+chosen.<BR>
+</P>
+<CENTER>
+<P></P>
+<HR ALIGN="center">
+<I>Last updated: 2006-03-17.</I><BR>
+&copy;2006 Holobloc Inc. All rights reserved.</CENTER>
+</BODY>
+</HTML>

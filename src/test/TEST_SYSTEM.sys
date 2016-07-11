@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE System SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<System Name="TEST_SYSTEM" Comment="Test adding FB to Device" >
+  <Identification Standard="61499-1" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.0" Author="JHC" Date="2006-03-22" Remarks="Test adding FB to Device." />
+  <Application Name="APP1" >
+    <FBNetwork >
+    </FBNetwork>
+  </Application>
+  <Device Name="DEV1" Type="DeviceType" x="105.55555" y="11.111111" >
+    <Resource Name="RES2" Type="ResourceType" x="11.111111" y="1083.3333" >
+      <FBNetwork >
+        <FB Name="FOO2" Type="IN_ANY" x="783.3333" y="11.111111" />
+        <FB Name="BAR2" Type="IN_ANY" x="1344.4443" y="11.111111" />
+        <EventConnections>
+          <Connection Source="FOO2.INITO" Destination="BAR2.INIT" dx1="33.333332" />
+          <Connection Source="FOO2.IND" Destination="BAR2.REQ" dx1="55.555553" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="FOO2.QO" Destination="BAR2.QI" dx1="133.33333" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+    <FBNetwork >
+      <FB Name="FOO" Type="IN_ANY" x="783.3333" y="11.111111" />
+      <FB Name="BAR" Type="IN_ANY" x="1455.5555" y="11.111111" />
+      <EventConnections>
+        <Connection Source="FOO.INITO" Destination="BAR.INIT" dx1="50.0" />
+      </EventConnections>
+    </FBNetwork>
+  </Device>
+</System>

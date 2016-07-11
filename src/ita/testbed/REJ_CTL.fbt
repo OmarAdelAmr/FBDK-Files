@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="REJ_CTL" Comment="Peg/Ring Assembly Inspect/Reject Control" >
+  <Identification Standard="61499-1" Classification="Inspection" ApplicationDomain="Testbed Simulation" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.2" Author="JHC" Date="2006-02-27" Remarks="Added SENSE to each transition" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2002-05-08" Remarks="Renamed inputs &#38; outputs" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2002-04-19" />
+  <CompilerInfo header="package fb.rt.ita.testbed;" >
+    <Compiler Language="Java" Vendor="IBM" Product="Jikes" Version="1.06" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="SENSE" >
+        <With Var="ASSEMBLY_DETECT" />
+        <With Var="RING_ASSEMBLED" />
+        <With Var="REJECT_AREA_DETECT" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="CMD" >
+        <With Var="REJECT_SOLENOID" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="ASSEMBLY_DETECT" Type="BOOL" />
+      <VarDeclaration Name="RING_ASSEMBLED" Type="BOOL" />
+      <VarDeclaration Name="REJECT_AREA_DETECT" Type="BOOL" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="REJECT_SOLENOID" Type="BOOL" Comment="REJECT SOLENOID" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <InternalVars>
+      <VarDeclaration Name="REJ_BIT" Type="BOOL" Comment="Bit to be output to REJECT_SOLENOID" />
+    </InternalVars>
+    <ECC >
+      <ECState Name="START" Comment="Waiting for Inspection" x="1305.5555" y="100.0" >
+        <ECAction Algorithm="INIT" Output="CMD" />
+      </ECState>
+      <ECState Name="WAIT" Comment="Between Inspect and Reject stations" x="1911.1111" y="1144.4445" >
+        <ECAction Algorithm="INSPECT" />
+      </ECState>
+      <ECState Name="WAIT2" Comment="Waiting to clear Reject area" x="444.44443" y="1116.6666" >
+        <ECAction Algorithm="REJECT" Output="CMD" />
+      </ECState>
+      <ECTransition Source="START" Destination="WAIT" Condition="SENSE&#38;ASSEMBLY_DETECT &#38; NOT RING_ASSEMBLED" x="1911.1111" y="388.8889" />
+      <ECTransition Source="WAIT" Destination="WAIT2" Condition="SENSE&#38;REJECT_AREA_DETECT" x="444.44443" y="1444.4443" />
+      <ECTransition Source="START" Destination="WAIT2" Condition="REJECT_AREA_DETECT" x="944.4444" y="511.11108" />
+      <ECTransition Source="WAIT2" Destination="START" Condition="SENSE&#38;NOT REJECT_AREA_DETECT" x="444.44443" y="100.0" />
+    </ECC>
+  <Algorithm Name="INIT" Comment="Clear Reject Solenoid" >
+    <ST Text="REJECT_SOLENOID := FALSE;&#10;REJ_BIT := FALSE;&#10;" />
+  </Algorithm>
+  <Algorithm Name="INSPECT" Comment="Inspection failed, set REJ_BIT" >
+    <ST Text="REJ_BIT := TRUE;&#10;" />
+  </Algorithm>
+  <Algorithm Name="REJECT" Comment="Set state of Reject Solenoid" >
+    <ST Text="REJECT_SOLENOID := REJ_BIT;&#10;" />
+  </Algorithm>
+  </BasicFB>
+</FBType>

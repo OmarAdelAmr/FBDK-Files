@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+<META NAME="GENERATOR" CONTENT="Eclipse HTML Editor">
+<META NAME="Standard" CONTENT="IEC 61499">
+<META NAME="Classification" CONTENT="Simulation">
+<META NAME="ApplicationDomain" CONTENT="Assembly">
+<META NAME="Function" CONTENT="Control">
+<META NAME="Type" CONTENT="Pick &amp; Place">
+<TITLE>SYSTEM PNP_MVCL</TITLE>
+</HEAD>
+<BODY>
+<H3>5. Develop and Test Controllers</H3>
+<P><A HREF="#Viewer">This system configuration</A> implements the
+layered <A HREF="syseng2.htm#5"><B>Model+View+Control</B> testing
+architecture</A> for the <A HREF="pnpsket.htm">pick and place example</A>.<BR>
+</P>
+<CENTER>
+<P><IMG SRC="images/PNP_MVCL.png"></P>
+</CENTER>
+<UL>
+	<LI>The <B>Model/View</B> functionality of the <TT>PNP</TT>
+	devices is the same as in the <A HREF="PNP_MVL.htm"><TT>PNP_MVL</TT></A>
+	configuration.</LI>
+	<LI>The conveyor control HMI is moved to the <TT>CNV_CTL</TT>
+	panel in the <TT>PNP</TT> device, since the control of the conveyor is
+	not the focus of this example.</LI>
+	<LI>The <TT>CONTROL</TT> device contains five resources to perform
+	<B>HMI</B> and/or <B>Controller</B> functions:
+	<OL>
+		<LI>The <TT>MODE_CTL</TT> resource utilizes an instance of the <A
+			HREF="MODE_AMS.htm"><TT>MODE_AMS</TT></A> function block type and
+		associated HMI elements to implement the state transitions among <TT>AUTO,
+		MANUAL</TT> and <TT>STOPPED</TT> control modes. These modes are broadcast
+		to the other control elements using the <A
+			HREF="../publsubl/index.htm">local multicast</A> pattern.
+		<UL>
+			<LI>The <TT>STOP</TT> button is implemented as an instance of
+			the <A HREF="../../common/IMG_BOOL.htm"><TT>IMG_BOOL</TT></A>
+			type.</LI>
+		</UL>
+		</LI>
+		<LI>The <TT>AUTO_CTL</TT> resource utilizes an instance of the <A
+			HREF="PNP_CTL_LD.htm"><TT>PNP_CTL_LD</TT></A> type to implement the
+		control functions required for the automated sequential control of the
+		pick and place system. Sensor values and the <TT>AUTO</TT> control
+		mode are obtained, and actuator values are broadcast, using the <A
+			HREF="../publsubl/index.htm">local multicast</A> pattern.</LI>
+		<LI>The <TT>ACTUATORS</TT> resource performs the same HMI
+		functions as in the <TT>PNP_MVL</TT> configuration, with the following
+		differences:
+		<UL>
+			<LI>Changes made in the check box inputs are only passed to the
+			actuators when the controller is in the <TT>MANUAL</TT> mode (except
+			for the MAGNET value, which is passed to its actuator any time it is
+			changed.</LI>
+			<LI>As a result, the check boxes only indicate the most recent
+			value manually entered and may not show the actual current values of
+			the actuator data.</LI>
+		</UL>
+		</LI>
+		<LI>The <TT>ACT_STATE</TT> resource shows the current actuator
+		values.</LI>
+		<LI>The <TT>SENSORS</TT> resource performs the same HMI functions
+		as in the <TT>PNP_MVL</TT> configuration, with the exception of the <TT>FAULT</TT>
+		indicator.</LI>
+	</OL>
+	</LI>
+</UL>
+<CENTER>[<A NAME="Viewer" HREF="../../FBViewer.html"
+	TARGET="_blank">Viewer Help</A>]<BR>
+<TABLE BORDER="1">
+	<TR>
+		<TD><APPLET CODE="FBViewer" ARCHIVE="../../viewer.jar"
+			WIDTH="914" HEIGHT="574"></APPLET></TD>
+	</TR>
+</TABLE>
+<BR>
+<I>Last updated: 2007-09-24.</I><BR>
+&copy;2006,2007 <A HREF="http://www.holobloc.com" TARGET="_blank">Holobloc
+Inc</A><BR>
+Licensed under the <A
+	HREF="http://www.opensource.org/licenses/afl-3.0.php">Academic Free
+License version 3.0</A>.</CENTER>
+</BODY>
+</HTML>

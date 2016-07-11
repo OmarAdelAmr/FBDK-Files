@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="PNP_CTL_LD" Comment="Pick and Place AUTO Control with LD Algorithm" >
+  <Identification Standard="IEC 61499" ApplicationDomain="Discrete Assembly" Function="Pick&#38;Place" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.2" Author="JHC" Date="2006-09-16" Remarks="Converted to SimpleFB." />
+  <VersionInfo Organization="Holobloc Inc" Version="0.1" Author="JHC" Date="2006-07-07" Remarks="Added LOADED sensor + associated logic." />
+  <VersionInfo Organization="Holobloc Inc" Version="0.0" Author="JHC" Date="2006-06-26" Remarks="Updated sensor/actuator names and state machine" />
+  <CompilerInfo header="package fb.rt.mach;" classdef="SimpleFB" >
+    <Compiler Language="Java" Vendor="Sun" Product="JDK" Version="1.5.0" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="REQ" Comment="Execute control if AUTO mode is ON" >
+        <With Var="HOMEx" />
+        <With Var="ENDx" />
+        <With Var="HOMEy" />
+        <With Var="ENDy" />
+        <With Var="PRESENT" />
+        <With Var="LOADED" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="CNF" Comment="AUTO mode control executed" >
+        <With Var="FWDx" />
+        <With Var="FWDy" />
+        <With Var="REVy" />
+        <With Var="REVx" />
+        <With Var="MAGNET" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="PRESENT" Type="BOOL" Comment="Workpiece Sensor at end of Conveyor" />
+      <VarDeclaration Name="LOADED" Type="BOOL" Comment="Workpiece Sensor on XY transport" />
+      <VarDeclaration Name="HOMEx" Type="BOOL" Comment="x-axis at HOME position" />
+      <VarDeclaration Name="ENDx" Type="BOOL" Comment="x-axis at END position" />
+      <VarDeclaration Name="HOMEy" Type="BOOL" Comment="y-axis at HOME position" />
+      <VarDeclaration Name="ENDy" Type="BOOL" Comment="y-axis at END position" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="FWDx" Type="BOOL" Comment="Drive x-axis Motor Forward (toward ENDx)" />
+      <VarDeclaration Name="REVx" Type="BOOL" Comment="Drive x-axis Motor 1 in Reverse (toward HOMEx)" />
+      <VarDeclaration Name="FWDy" Type="BOOL" Comment="Drive y-axis Motor Forward (toward ENDy)" />
+      <VarDeclaration Name="REVy" Type="BOOL" Comment="Drive y-axis Motor 2 in Reverse (toward HOMEy)" />
+      <VarDeclaration Name="MAGNET" Type="BOOL" Comment="Electromagnet ON (grasp workpiece)" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+  <Algorithm Name="REQ" Comment="AUTO control algorithm" >
+    <LD >
+      <Rung Output="MAGNET" Expression="PRESENT LOADED ! &#38; HOMEx &#38; HOMEy  &#38; LOADED ENDx ! ENDy ! | &#38; |" />
+      <Rung Output="FWDx" Expression="LOADED ENDx ! &#38;" />
+      <Rung Output="FWDy" Expression="LOADED ENDx &#38; ENDy ! &#38;" />
+      <Rung Output="REVx" Expression="LOADED ! HOMEx ! &#38;" />
+      <Rung Output="REVy" Expression="LOADED ! HOMEy ! &#38;" />
+    </LD>
+  </Algorithm>
+  </BasicFB>
+</FBType>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE System SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<System Name="DRILL_VIEWL" Comment="Drill System View + HMI" >
+  <Identification Standard="61499-1" Classification="Simulation" ApplicationDomain="Transfer Lines" Function="Drillingd" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2004-10-18" Remarks="Changed loader/unloader to SOL_VIEWL." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2002-04-25" Remarks="Adapted from TESTBED_VIEWL" />
+  <Device Name="HMI" Type="FRAME_DEVICE" x="594.1176" y="100.0" >
+    <Parameter Name="BOUNDS" Value="[100,100,375,200]" />
+    <Parameter Name="GRID" Value="[1,1]" />
+    <Resource Name="RES1" Type="PANEL_RESOURCE" x="123.5294" y="11.7647" >
+      <FBNetwork >
+        <FB Name="SUPPLY" Type="MECH_HMIL" x="455.55554" y="138.88889" >
+          <Parameter Name="FGD" Value="COLOR#yellow" />
+        </FB>
+        <FB Name="LOAD" Type="MECH_HMIL" x="905.55554" y="11.111111" />
+        <FB Name="DRILL" Type="MECH_HMIL" x="1833.3333" y="511.11108" >
+          <Parameter Name="BKGD" Value="COLOR#gray" />
+          <Parameter Name="FGD" Value="COLOR#yellow" />
+        </FB>
+        <FB Name="SLIDE" Type="MECHC_HMIL" x="1372.2222" y="272.2222" >
+          <Parameter Name="FGD" Value="COLOR#yellow" />
+        </FB>
+        <FB Name="UNLOAD" Type="MECH_HMIL" x="2288.889" y="11.111111" />
+        <FB Name="TAKEOFF" Type="MECH_HMIL" x="2727.7776" y="227.77777" >
+          <Parameter Name="FGD" Value="COLOR#yellow" />
+        </FB>
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="SUPPLY.INIT" dx1="33.333332" />
+          <Connection Source="SUPPLY.INITO" Destination="LOAD.INIT" dx1="27.777777" />
+          <Connection Source="LOAD.INITO" Destination="SLIDE.INIT" dx1="27.777777" />
+          <Connection Source="SLIDE.INITO" Destination="DRILL.INIT" dx1="27.777777" />
+          <Connection Source="DRILL.INITO" Destination="UNLOAD.INIT" dx1="44.444443" />
+          <Connection Source="UNLOAD.INITO" Destination="TAKEOFF.INIT" dx1="27.777777" />
+        </EventConnections>
+      </FBNetwork>
+    </Resource>
+  </Device>
+  <Device Name="VIEW" Type="FRAME_DEVICE" x="605.8823" y="682.3529" >
+    <Parameter Name="BOUNDS" Value="[475,100,220,300]" />
+    <Resource Name="INPUT" Type="VIEW_PANEL" x="258.8235" y="11.7647" >
+      <Parameter Name="TRACE" Value="0" />
+      <Parameter Name="DIA" Value="25" />
+      <Parameter Name="SIZE" Value="[6,5]" />
+      <Parameter Name="VERTICAL" Value="1" />
+      <FBNetwork >
+        <FB Name="SUPPLY" Type="MECH_VIEWL" Comment="Supply transfer mechanism" x="494.44443" y="11.111111" >
+          <Parameter Name="LEN" Value="5" />
+          <Parameter Name="DIR" Value="1" />
+        </FB>
+        <FB Name="SP1" Type="XSPACE" x="1077.7777" y="700.0" >
+          <Parameter Name="LBLS" Value="[&#34;SUPPLY&#34;,&#34;FEED&#34;,&#34;DRILL&#34;]" />
+          <Parameter Name="DIMS" Value="[4,4]" />
+        </FB>
+        <FB Name="LOAD" Type="SOL_VIEWL" Comment="Loader mechanism" x="1611.1111" y="11.111111" >
+          <Parameter Name="LEN" Value="1" />
+          <Parameter Name="DIR" Value="1" />
+        </FB>
+        <FB Name="SP3" Type="XSPACE" x="2183.3333" y="11.111111" >
+          <Parameter Name="DIMS" Value="[1,2]" />
+        </FB>
+        <FB Name="DRILL" Type="MECH_VIEWL" x="2600.0" y="294.44443" >
+          <Parameter Name="BKGD" Value="COLOR#gray" />
+          <Parameter Name="LEN" Value="3" />
+          <Parameter Name="DIR" Value="1" />
+        </FB>
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="SUPPLY.INIT" dx1="33.333332" dx2="5.8824" dy="-1.0" />
+          <Connection Source="SUPPLY.INITO" Destination="SP1.INIT" dx1="33.333332" dx2="541.1765" dy="400.0" />
+          <Connection Source="SP1.INITO" Destination="LOAD.INIT" dx1="83.33333" dx2="0.0" dy="841.1765" />
+          <Connection Source="LOAD.INITO" Destination="SP3.INIT" dx1="88.888885" />
+          <Connection Source="SP3.INITO" Destination="DRILL.INIT" dx1="33.333332" dx2="105.8824" dy="-1.0" />
+        </EventConnections>
+      </FBNetwork>
+    </Resource>
+    <Resource Name="OUTPUT" Type="VIEW_PANEL" x="1041.1764" y="11.7647" >
+      <Parameter Name="DIA" Value="25" />
+      <Parameter Name="SIZE" Value="[6,5]" />
+      <FBNetwork >
+        <FB Name="SLIDE" Type="MECHC_VIEWL" x="572.2222" y="11.111111" >
+          <Parameter Name="LEN" Value="6" />
+        </FB>
+        <FB Name="TAKEOFF" Type="MECH_VIEWL" Comment="Takeoff Transfer" x="1161.1111" y="11.111111" >
+          <Parameter Name="LEN" Value="4" />
+          <Parameter Name="DIR" Value="1" />
+        </FB>
+        <FB Name="UNLOAD" Type="SOL_VIEWL" Comment="Unloader Mechanism" x="1716.6666" y="11.111111" >
+          <Parameter Name="LEN" Value="1" />
+          <Parameter Name="DIR" Value="1" />
+        </FB>
+        <FB Name="SP1" Type="XSPACE" x="2216.6665" y="655.55554" >
+          <Parameter Name="LBLS" Value="[&#34;TAKEOFF&#34;,&#34;SLIDE&#34;]" />
+          <Parameter Name="DIMS" Value="[3,4]" />
+        </FB>
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="SLIDE.INIT" dx1="44.444443" />
+          <Connection Source="SLIDE.INITO" Destination="TAKEOFF.INIT" dx1="111.11111" />
+          <Connection Source="TAKEOFF.INITO" Destination="UNLOAD.INIT" dx1="66.666664" />
+          <Connection Source="UNLOAD.INITO" Destination="SP1.INIT" dx1="88.888885" />
+        </EventConnections>
+      </FBNetwork>
+    </Resource>
+  </Device>
+</System>

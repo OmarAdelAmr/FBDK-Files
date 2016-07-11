@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="SPINNER" Comment="Spinner for UINT{0..100} input" >
+  <Identification Standard="61499-1" Classification="HMI" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.1" Author="JHC" Date="2007-09-03" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.0" Author="JHC" Date="2007-08-30" />
+  <CompilerInfo header="package fb.rt.hmi;" >
+    <Compiler Language="Java" Vendor="Sun" Product="JDK" Version="1.6.0" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization" >
+        <With Var="QI" />
+      </Event>
+      <Event Name="REQ" Comment="Request" >
+        <With Var="QI" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" >
+        <With Var="QO" />
+        <With Var="OUT" />
+      </Event>
+      <Event Name="IND" Comment="User changed choice or REQ serviced" >
+        <With Var="QO" />
+        <With Var="OUT" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="QI" Type="BOOL" InitialValue="true" Comment="Input Event Qualifier / Output Enable" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="QO" Type="BOOL" Comment="Event Qualifier" />
+      <VarDeclaration Name="OUT" Type="UINT" Comment="Current Spinner Value {0..100}" />
+    </OutputVars>
+  </InterfaceList>
+</FBType>

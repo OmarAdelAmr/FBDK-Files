@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="E_CTU" Comment="Event-Driven Up Counter" >
+  <Identification Standard="61499-1-A.18" Classification="Event-driven blocks" Function="Up-counter" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.2" Author="JHC" Date="2006-09-07" Remarks="Changed package to fb.rt.events." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2001-04-27" Remarks="XML version" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="1999-01-22" Remarks="SRC version" />
+  <CompilerInfo header="package fb.rt.events;" >
+    <Compiler Language="Java" Vendor="Sun" Product="JDK" Version="1.5.0" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="CU" Comment="Count Up" >
+        <With Var="PV" />
+      </Event>
+      <Event Name="R" Comment="Reset" >
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="CUO" Comment="Count Up Output Event" >
+        <With Var="Q" />
+        <With Var="CV" />
+      </Event>
+      <Event Name="RO" Comment="Reset Output Event" >
+        <With Var="Q" />
+        <With Var="CV" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="PV" Type="UINT" Comment="Preset Value" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="Q" Type="BOOL" Comment="CV>=PV" />
+      <VarDeclaration Name="CV" Type="UINT" />
+    </OutputVars>
+  </InterfaceList>
+</FBType>

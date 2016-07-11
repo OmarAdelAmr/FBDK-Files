@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+  <meta content="text/html; charset=ISO-8859-1"
+ http-equiv="content-type">
+  <title>FBDK - What's New</title>
+  <link rel="icon" href="../../fbicon.png" type="image/png">
+  <meta content="JHC" name="author">
+  <meta content="What's New in the Function Block Development Kit"
+ name="description">
+</head>
+<body>
+<center>
+<H2>What's&nbsp;New</H2>
+<p><i>This page documents changes since the 20050311 release of the FBDK.</i></p>
+</center>
+<h3><a name="FBDK"></a>FBDK [<a href="#FBRT">FBRT</a>] [<A HREF="#MVCD">MVCD</A>]</h3>
+<ul>
+<LI>This is the first maintenance release of the FBDK by <A HREF="http://www.holobloc.com" TARGET="_top">Holobloc, Inc.</A> under license from Rockwell Automation.</LI>
+  <li>The FBDK has been tested to work with the J2SE 1.4.2 SDK and the <a
+ href="http://java.sun.com/j2se/">J2SE 5.0 SDK</a>, which has a more "modern" look and feel.</li>
+<LI><A HREF="launchdlg.htm">Initialization of remote devices</A> now uses the host IP address instead of <TT>localhost</TT> for the management port.</LI>
+<LI>Source files in the <TT>src</TT> subdirectory hierarchy have been scanned with the <B>XMLChecker</B> application and updated for compliance with the current <A HREF="http://www.holobloc.com/xml/">XML DTDs</A> defined by <A HREF="http://www.holobloc.com/stds/iec/sc65bwg7tf3/html/news.htm">IEC 61499-2</A>.</LI>
+<LI>Implementation of the <B>File Save As HTML</B> option has been updated so that emitted code works better with current JVM implementations.</LI>
+<LI>Implementation of the <B>File Save As XML</B> option has been updated to emit correct syntax for resource types and device types.</LI>
+</ul>
+<h3><a name="FBRT"></a>FBRT [<a href="#FBDK">FBDK</a>] [<a href="#MVCD">MVCD</a>]</h3>
+<ul>
+  <li>The FBRT has been tested to work with the <a
+ href="http://java.sun.com/j2se/">J2SE 5.0 SDK</a> and may not work
+with earlier versions of the SDK.</li>
+  <li>Various details of the FBRT implementation have been modified for future compatibility with the <A HREF="http://java.sun.com/products/cldc/index.jsp">J2ME CLDC</A> profile for embedded devices.</li>
+  <li>Errors in the initialization of variables of type <TT>LINT</TT> and <TT>TIME</TT> from strings have been corrected.</li>
+  <li>Many small improvements have been made in efficiency of the runtime classes.</li>
+</ul>
+<h3><a name="MVCD"></a>MVCD [<a href="#FBDK">FBDK</a>] [<a href="#FBRT">FBRT</a>]</h3>
+<ul>
+  <li>The <TT>DRIVE</TT> function block type is no longer used. Its timing function has been replaced by a clock pulse distribution mechanism using <TT>PUBL_0/SUBL_0</TT> blocks, and its motion simulation function has been integrated into models, e.g., <TT><A HREF="../despats/mvc/MECH2_MDL.htm">MECH2_MDL</A></TT>.</li>
+</ul>
+<center>
+<hr><i>Last updated:&nbsp; 2005-05-21.<br>
+</i>
+</center>
+</body>
+</html>

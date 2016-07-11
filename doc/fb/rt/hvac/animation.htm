@@ -1,0 +1,62 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+<META NAME="GENERATOR" CONTENT="Eclipse HTML Editor">
+<TITLE>SYSTEM VAV_MVL</TITLE>
+</HEAD>
+<BODY>
+<H3>3. Animate operational sequences</H3>
+<P>The graphic below shows the results of running the <A
+	HREF="VAV_MVL.htm"><TT>VAV_MVL</TT></A> system configuration with the
+following sequence of events:</P>
+<OL>
+	<LI>The outside air is at 100F, and the heat load is at 100KBTU/hr, for
+	instance due to computer equipment in the room. The Variable Air Volume
+	(VAV) damper is closed, and the room temperature begins to rise.</LI>
+	<LI>The VAV damper is opened to approximately 80% (note the simulated
+	sensor noise on the green trace). The room temperature begins to fall
+	toward the supply air temperature of 62F; it will not fall all the way
+	due to internal heat load in the room and heat transfer in through the
+	outside walls.</LI>
+</OL>
+<CENTER>
+<TABLE BORDER=1>
+	<TR ALIGN=CENTER VALIGN=MIDDLE>
+		<TH>Variable</TH>
+		<TH>Channel</TH>
+		<TH>Color</TH>
+	</TR>
+	<TR ALIGN=CENTER VALIGN=MIDDLE>
+		<TH>Room Temperature</TH>
+		<TD><TT>TEMP</TT></TD>
+		<TD>yellow</TD>
+	</TR>
+	<TR ALIGN=CENTER VALIGN=MIDDLE>
+		<TH>Flow Sensor</TH>
+		<TD><TT>DAMPER_SENSE</TT></TD>
+		<TD>green</TD>
+	</TR>
+	<TR ALIGN=CENTER VALIGN=MIDDLE>
+		<TH>Outside Air Temperature</TH>
+		<TD><TT>PARAMS.RD_1</TT></TD>
+		<TD>cyan</TD>
+	</TR>
+	<TR ALIGN=CENTER VALIGN=MIDDLE>
+		<TH>Supply Air Temperature</TH>
+		<TD><TT>PARAMS.RD_2</TT></TD>
+		<TD>blue</TD>
+	</TR>
+	<TR>
+		<TD COLSPAN=3><IMG SRC="images/animation.png"></TD>
+	</TR>
+</TABLE>
+<P><I>Last updated: 2006-04-25.</I><BR>
+&copy;2006 <A HREF="http://www.holobloc.com" TARGET="_blank">Holobloc
+Inc</A><BR>
+Licensed under the <A
+	HREF="http://www.opensource.org/licenses/afl-3.0.php">Academic Free
+License version 3.0</A>.</P>
+</CENTER>
+</BODY>
+</HTML>

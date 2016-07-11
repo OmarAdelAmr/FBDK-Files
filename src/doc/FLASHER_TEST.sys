@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE System SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<System Name="FLASHER_TEST" Comment="Flasher Test System Configuration" >
+  <Identification Standard="61499-1" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.4" Author="JHC" Date="2007-11-07" Remarks="Changed RUNSTOP to RADIO_BOOL+E_SWITCH." />
+  <VersionInfo Organization="Holobloc Inc" Version="0.3" Author="JHC" Date="2006-10-26" Remarks="Adapted to new FLASHER4 without INITO." />
+  <VersionInfo Organization="Holobloc Inc" Version="0.2" Author="JHC" Date="2006-10-25" Remarks="Moved to doc folder." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2001-07-31" Remarks="Changed IN_TIME to IN_ANY, adjusted height." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2001-02-22" />
+  <Device Name="FLASHER" Type="FRAME_DEVICE" x="622.22217" y="88.888885" >
+    <Parameter Name="BOUNDS" Value="[100,100,350,100]" />
+    <Parameter Name="GRID" Value="[1,1]" />
+    <Resource Name="RES1" Type="PANEL_RESOURCE" x="94.44444" y="22.222221" >
+      <FBNetwork >
+        <FB Name="DT" Type="IN_ANY" x="1100.0" y="733.3333" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="TYPE" Value="&#34;TIME&#34;" />
+          <Parameter Name="IVAL" Value="t#250ms" />
+        </FB>
+        <FB Name="PERIODIC" Type="E_CYCLE" x="1561.1111" y="11.111111" />
+        <FB Name="MODE" Type="IN_CHOICE" x="1933.3333" y="1111.1111" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="CHOICES" Value="&#34;FLASH_ALL,COUNT_UP,COUNT_DOWN,CHASE_UP,CHASE_DOWN&#34;" />
+        </FB>
+        <FB Name="FLASHIT" Type="FLASHER4" x="2038.8888" y="11.111111" />
+        <FB Name="LEDS" Type="LED_HMI" x="2605.5554" y="11.111111" />
+        <FB Name="RUNSTOP" Type="RADIO_BOOL" x="511.11108" y="11.111111" >
+          <Parameter Name="LABEL1" Value="&#34;RUN&#34;" />
+          <Parameter Name="LABEL0" Value="&#34;STOP&#34;" />
+        </FB>
+        <FB Name="RS_GATE" Type="E_SWITCH" x="1050.0" y="11.111111" />
+        <EventConnections>
+          <Connection Source="DT.INITO" Destination="MODE.INIT" dx1="311.11108" dx2="188.2353" dy="-1.0" />
+          <Connection Source="MODE.INITO" Destination="LEDS.INIT" dx1="188.88889" />
+          <Connection Source="MODE.IND" Destination="FLASHIT.INIT" dx1="38.888885" dx2="72.22222" dy="-283.3333" />
+          <Connection Source="PERIODIC.EO" Destination="FLASHIT.REQ" dx1="27.777777" dx2="229.4118" dy="-1.0" />
+          <Connection Source="FLASHIT.CNF" Destination="LEDS.REQ" dx1="27.777777" />
+          <Connection Source="START.COLD" Destination="RUNSTOP.INIT" dx1="27.777777" />
+          <Connection Source="RUNSTOP.INITO" Destination="DT.INIT" dx1="27.777777" />
+          <Connection Source="RUNSTOP.IND" Destination="RS_GATE.EI" dx1="72.22222" />
+          <Connection Source="RS_GATE.EO0" Destination="PERIODIC.STOP" dx1="27.777777" />
+          <Connection Source="RS_GATE.EO1" Destination="DT.REQ" dx1="27.777777" dx2="44.444443" dy="449.99997" />
+          <Connection Source="DT.IND" Destination="PERIODIC.START" dx1="38.888885" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="DT.OUT" Destination="PERIODIC.DT" dx1="72.22222" dx2="23.5294" dy="652.9412" />
+          <Connection Source="MODE.I" Destination="FLASHIT.MODE" dx1="105.55555" dx2="44.444443" dy="-883.3333" />
+          <Connection Source="FLASHIT.LED3" Destination="LEDS.LED3" dx1="27.777777" />
+          <Connection Source="FLASHIT.LED2" Destination="LEDS.LED2" dx1="33.333332" />
+          <Connection Source="FLASHIT.LED1" Destination="LEDS.LED1" dx1="38.888885" />
+          <Connection Source="FLASHIT.LED0" Destination="LEDS.LED0" dx1="44.444443" />
+          <Connection Source="RUNSTOP.OUT" Destination="RS_GATE.G" dx1="94.44444" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+  </Device>
+</System>

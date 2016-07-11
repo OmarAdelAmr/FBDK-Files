@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE System SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<System Name="Test_8" Comment="System Configuration" >
+  <Identification Standard="61499-1" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.3" Author="JHC" Date="2003-12-05" Remarks="Renamed from NEWSYSTEM." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.2" Author="JHC" Date="2002-11-05" Remarks="Fixed missing (empty) FBD in Application." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2002-01-17" Remarks="Minor cleanup" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2000-05-27" />
+  <Application Name="APP1" >
+    <FBNetwork >
+    </FBNetwork>
+  </Application>
+  <Device Name="D1" Type="FRAME_DEVICE" x="494.44443" y="466.66666" >
+    <Parameter Name="BOUNDS" Value="[300,300,300,300]" />
+    <Parameter Name="GRID" Value="[1,1]" />
+    <Resource Name="R1" Type="PANEL_RESOURCE" x="594.4444" y="616.6666" >
+      <Parameter Name="ROWS" Value="2" />
+      <Parameter Name="COLS" Value="2" />
+      <FBNetwork >
+        <FB Name="W1" Type="WORKER4TESTFB" x="1372.2222" y="672.22217" >
+          <Parameter Name="NAME" Value="&#34;N&#34;" />
+        </FB>
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="W1.INIT" dx1="872.22217" />
+        </EventConnections>
+      </FBNetwork>
+    </Resource>
+  </Device>
+</System>

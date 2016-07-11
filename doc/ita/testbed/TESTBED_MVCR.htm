@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+<META NAME="GENERATOR" CONTENT="Eclipse HTML Editor">
+<TITLE>SYSTEM TESTBED_MVCR</TITLE>
+</HEAD>
+<BODY>
+<H3>7. Perform Distribution Design</H3>
+<P><A HREF="#Viewer">This system configuration</A> illustrates a <A
+	HREF="../../despats/mvc/syseng2.htm#7">distribution design</A> of the <A
+	HREF="TESTBED_MVCL.htm"><TT>TESTBED_MVCL</TT></A> example in which the
+<B>Model+View</B> functions are located in a remote device named <TT>MODEL</TT>
+and the <B>Control+HMI</B> functions are in a local device named <TT>CONTROL</TT>.
+Each of the<TT> MODEL </TT>and <TT>CONTROL </TT>devices contains a <TT>SENSORS
+</TT>resource and an <TT>ACTUATORS </TT>resource with the following
+functionality: <BR>
+</P>
+<CENTER>
+<TABLE BORDER="1" CELLPADDING="2" CELLSPACING="2">
+	<TBODY>
+		<TR>
+			<TH VALIGN="top">Resource<BR>
+			</TH>
+			<TH VALIGN="top">Function<BR>
+			</TH>
+		</TR>
+		<TR>
+			<TD VALIGN="top"><TT>MODEL.SENSORS<BR>
+			</TT></TD>
+			<TD VALIGN="top">Gather sensor data and publish it as a <TT>WORD</TT>.<BR>
+			</TD>
+		</TR>
+		<TR>
+			<TD VALIGN="top"><TT>CONTROL.SENSORS<BR>
+			</TT></TD>
+			<TD VALIGN="top">Subscribe to sensor data and publish it locally
+			to <B>Control </B>and <B>HMI </B>resources.<BR>
+			</TD>
+		</TR>
+		<TR>
+			<TD VALIGN="top"><TT>MODEL.ACTUATORS<BR>
+			</TT></TD>
+			<TD VALIGN="top">Subscribe to actuator data and publish it
+			locally.<BR>
+			</TD>
+		</TR>
+		<TR>
+			<TD VALIGN="top"><TT>CONTROL.ACTUATORS<BR>
+			</TT></TD>
+			<TD VALIGN="top">Gather actuator data from <B>Control</B> and <B>HMI</B>
+			resources and publish it as a <TT>WORD.</TT><BR>
+			</TD>
+		</TR>
+	</TBODY>
+</TABLE>
+</CENTER>
+<P><IMG ALT="NOTE -" SRC="../../note.gif" HEIGHT="24" WIDTH="32">
+Bit positions of the packed sensor and actuator data are documented <A
+	HREF="sensact.htm">here</A>.</P>
+<P ALIGN="center">[<A NAME="Viewer" HREF="../../FBViewer.html"
+	TARGET="help">Viewer Help</A>]<BR>
+<TABLE BORDER="1">
+	<TBODY>
+		<TR>
+			<TD><APPLET CODE="FBViewer" ARCHIVE="../../viewer.jar"
+				HEIGHT="661" WIDTH="994"> </APPLET><BR>
+			</TD>
+		</TR>
+	</TBODY>
+</TABLE>
+</P>
+<HR>
+<P ALIGN="center"><I>Last updated: 2007-10-15.</I><BR>
+&copy;2004 Rockwell Automation, &copy;2007 <A
+	HREF="http://www.holobloc.com" TARGET="_blank">Holobloc Inc.</A><BR>
+Licensed under the <A
+	HREF="http://www.opensource.org/licenses/afl-3.0.php">Academic Free
+License version 3.0</A>.</P>
+</BODY>
+</HTML>

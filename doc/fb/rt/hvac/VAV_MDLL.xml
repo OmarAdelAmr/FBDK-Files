@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="VAV_MDLL" Comment="Variable Air Valve Model with Local Comms" >
+  <Identification Standard="61499-1" Classification="Simulation" ApplicationDomain="HVAC" Function="Variable Air Valve" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.1" Author="JHC" Date="2006-05-01" Remarks="Changed FV to FD." />
+  <VersionInfo Organization="Holobloc Inc" Version="0.0" Author="JHC" Date="2006-04-12" />
+  <CompilerInfo header="package fb.rt.hvac; import fb.rt.net.*; import fb.rt.mva.*;" classdef="public class VAV_MDLL extends FBMVCD" >
+    <Compiler Language="Java" Vendor="Sun" Product="JDK" Version="1.5.0" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization" >
+        <With Var="DT" />
+        <With Var="TACT" />
+        <With Var="FSF" />
+        <With Var="FD" />
+        <With Var="SFS" />
+        <With Var="ADMAX" />
+        <With Var="UI_ID" />
+        <With Var="REND_ID" />
+        <With Var="SENSE_ID" />
+        <With Var="ACT_ID" />
+      </Event>
+      <Event Name="CLK" Comment="VAV simulation clock" >
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization complete" >
+        <With Var="FLOW" />
+      </Event>
+      <Event Name="IND" Comment="Follows every CLK event" >
+        <With Var="FLOW" />
+        <With Var="AD" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="UI_ID" Type="WSTRING" Comment="User input channel ID from View" />
+      <VarDeclaration Name="REND_ID" Type="WSTRING" Comment="Rendering data channel ID to View" />
+      <VarDeclaration Name="SENSE_ID" Type="WSTRING" Comment="Sensor data channel ID to Controller" />
+      <VarDeclaration Name="ACT_ID" Type="WSTRING" Comment="Actuator Channel ID" />
+      <VarDeclaration Name="DT" Type="UINT" InitialValue="10" Comment="Clock period, sec" />
+      <VarDeclaration Name="TACT" Type="UINT" InitialValue="95" Comment="Damper actuation time, sec" />
+      <VarDeclaration Name="FSF" Type="REAL" InitialValue="1000.0" Comment="Air Flow at Damper Full Open, CFM" />
+      <VarDeclaration Name="FD" Type="REAL" Comment="Maximum random flow deviation in CFM" />
+      <VarDeclaration Name="SFS" Type="REAL" InitialValue="1000.0" Comment="Air Flow at Sensor Full Scale, CFM" />
+      <VarDeclaration Name="ADMAX" Type="UINT" InitialValue="4096" Comment="Maximum Flow Sensor A/D converter value + 1, default is 12 bits" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="FLOW" Type="REAL" Comment="Air flow, CFM" />
+      <VarDeclaration Name="AD" Type="UINT" Comment="Flow sensor A/D converter value" />
+    </OutputVars>
+  </InterfaceList>
+  <FBNetwork >
+    <FB Name="MDL" Type="VAV_MDL" x="1077.7777" y="122.22221" />
+    <FB Name="UI" Type="SUBL_1" x="272.2222" y="11.111111" />
+    <FB Name="ACT" Type="SUBL_2" x="277.77777" y="827.7778" />
+    <FB Name="REND" Type="PUBL_2" x="1977.7777" y="11.111111" />
+    <FB Name="SENSE" Type="PUBL_1" x="1977.7777" y="949.99994" />
+    <EventConnections>
+      <Connection Source="UI.INITO" Destination="ACT.INIT" dx1="50.0" dx2="100.0" dy="550.0" />
+      <Connection Source="ACT.INITO" Destination="REND.INIT" dx1="122.22221" />
+      <Connection Source="MDL.INDS" Destination="REND.REQ" dx1="116.666664" />
+      <Connection Source="REND.INITO" Destination="SENSE.INIT" dx1="166.66666" dx2="66.666664" dy="783.3333" />
+      <Connection Source="SENSE.INITO" Destination="INITO" dx1="2416.6665" />
+      <Connection Source="REND.CNF" Destination="SENSE.REQ" dx1="38.888885" dx2="94.44444" dy="644.4444" />
+      <Connection Source="SENSE.CNF" Destination="IND" dx1="2383.3333" />
+      <Connection Source="INIT" Destination="UI.INIT" dx1="166.66666" />
+      <Connection Source="CLK" Destination="MDL.CLK" dx1="972.22217" />
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="DT" Destination="MDL.DT" dx1="988.88885" />
+      <Connection Source="TACT" Destination="MDL.TACT" dx1="949.99994" />
+      <Connection Source="FSF" Destination="MDL.FSF" dx1="972.22217" />
+      <Connection Source="FD" Destination="MDL.FD" dx1="988.88885" />
+      <Connection Source="SFS" Destination="MDL.SFS" dx1="972.22217" />
+      <Connection Source="ADMAX" Destination="MDL.ADMAX" dx1="922.22217" />
+      <Connection Source="UI.RD_1" Destination="MDL.FAULT" dx1="249.99998" />
+      <Connection Source="UI_ID" Destination="UI.ID" dx1="150.0" />
+      <Connection Source="ACT.RD_1" Destination="MDL.OPEN" dx1="172.22221" />
+      <Connection Source="ACT.RD_2" Destination="MDL.CLOSE" dx1="211.1111" />
+      <Connection Source="REND_ID" Destination="REND.ID" dx1="1805.5555" />
+      <Connection Source="MDL.POS" Destination="REND.SD_1" dx1="200.0" />
+      <Connection Source="MDL.FLOW" Destination="REND.SD_2" dx1="211.1111" />
+      <Connection Source="MDL.FLOW" Destination="FLOW" dx1="1572.2222" />
+      <Connection Source="MDL.AD" Destination="SENSE.SD_1" dx1="61.111107" />
+      <Connection Source="SENSE_ID" Destination="SENSE.ID" dx1="1788.8888" />
+      <Connection Source="ACT_ID" Destination="ACT.ID" dx1="127.77777" />
+    </DataConnections>
+  </FBNetwork>
+</FBType>

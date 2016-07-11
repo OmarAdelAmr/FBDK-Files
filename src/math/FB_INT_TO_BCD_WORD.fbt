@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="FB_INT_TO_BCD_WORD" Comment="Convert INT to 4 BCD digits" >
+  <Identification Standard="61499-1" Classification="Simple FB" Function="BCD conversion" Type="INT to WORD" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.0" Author="JHC" Date="2007-08-27" />
+  <CompilerInfo header="package fb.rt.math;" classdef="SimpleFB" >
+    <Compiler Language="Java" Vendor="Sun" Product="JDK" Version="1.6.0" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="REQ" Comment="Normal Execution Request" >
+        <With Var="QI" />
+        <With Var="IN" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="CNF" Comment="Execution Confirmation" >
+        <With Var="QO" />
+        <With Var="STATUS" />
+        <With Var="OUT" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="QI" Type="BOOL" Comment="Input event qualifier" />
+      <VarDeclaration Name="IN" Type="INT" Comment="0&#60;=IN&#60;=9999" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="QO" Type="BOOL" Comment="Output event qualifier" />
+      <VarDeclaration Name="STATUS" Type="UINT" Comment="0=OK, 2=conversion error per 61499-1 Table D.1" />
+      <VarDeclaration Name="OUT" Type="WORD" Comment="BCD value of IN" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+  <Algorithm Name="REQ" Comment="Normally executed algorithm" >
+    <Other Language="Java" Text="QO.value=QI.value;&#10;" />
+  </Algorithm>
+  </BasicFB>
+</FBType>

@@ -1,0 +1,1597 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE System SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<System Name="AgSYS" Comment="System Configuration" >
+  <Identification Standard="61499-1" />
+  <VersionInfo Organization="TUT" Version="1.0" Author="Unknown" Date="2010-04-25" />
+  <Application Name="APP1" >
+    <FBNetwork >
+    </FBNetwork>
+  </Application>
+  <Device Name="HMI" Type="FRAME_DEVICE" x="1088.8888" y="144.44444" >
+    <Parameter Name="BOUNDS" Value="[200,0,800,450]" />
+    <Parameter Name="GRID" Value="[3,4]" />
+    <Resource Name="HMIPanelMain" Type="PANEL_RESOURCE" x="144.44444" y="100.0" >
+      <FBNetwork >
+        <FB Name="dest" Type="IN_EVENT" x="1544.4443" y="16.666666" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;Destroy Agents&#34;" />
+        </FB>
+        <FB Name="JADEKiller" Type="JADEDestroyerFB" x="2177.7776" y="527.7778" />
+        <FB Name="mode" Type="IN_CHOICE" x="3488.8887" y="11.111111" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="CHOICES" Value="&#34;Manual,Automatic&#34;" />
+        </FB>
+        <FB Name="check" Type="OUT_EVENT" x="4905.555" y="94.44444" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="DT" Value="t#200ms" />
+          <Parameter Name="LABEL" Value="&#34;pulse&#34;" />
+        </FB>
+        <FB Name="test_dly" Type="E_DELAY" x="4333.333" y="1111.1111" >
+          <Parameter Name="DT" Value="t#200ms" />
+        </FB>
+        <FB Name="upd" Type="PUBL_0" x="5505.555" y="88.888885" />
+        <FB Name="mrg" Type="E_MERGE" x="3577.7776" y="1111.1111" />
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="dest.INIT" dx1="1038.8888" />
+          <Connection Source="dest.IND" Destination="JADEKiller.REQ" dx1="172.22221" />
+          <Connection Source="dest.INITO" Destination="mode.INIT" dx1="944.4444" />
+          <Connection Source="mode.INITO" Destination="check.INIT" dx1="61.111107" />
+          <Connection Source="test_dly.EO" Destination="check.REQ" dx1="111.11111" />
+          <Connection Source="check.CNF" Destination="upd.REQ" dx1="183.33333" />
+          <Connection Source="upd.INITO" Destination="mrg.EI1" dx1="27.777777" dx2="283.3333" dy="-155.55554" />
+          <Connection Source="upd.CNF" Destination="mrg.EI2" dx1="27.777777" dx2="416.66666" dy="-272.2222" />
+          <Connection Source="mrg.EO" Destination="test_dly.START" dx1="50.0" />
+          <Connection Source="check.INITO" Destination="upd.INIT" dx1="188.88889" />
+        </EventConnections>
+      </FBNetwork>
+    </Resource>
+    <Resource Name="WS2" Type="PANEL_RESOURCE" x="1027.7777" y="94.44444" >
+      <Parameter Name="ROWS" Value="4" />
+      <Parameter Name="COLS" Value="2" />
+      <FBNetwork >
+        <FB Name="ws2_label" Type="FB_LABEL" x="1066.6666" y="11.111111" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;WS 2&#34;" />
+        </FB>
+        <FB Name="ws2_m1" Type="IN_BOOL" x="1794.4443" y="11.111111" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;MOTOR 1&#34;" />
+        </FB>
+        <FB Name="ws2_m2" Type="IN_BOOL" x="2661.111" y="11.111111" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;MOTOR 2&#34;" />
+        </FB>
+        <FB Name="ws2_m3" Type="IN_BOOL" x="3444.4443" y="11.111111" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;MOTOR 3&#34;" />
+        </FB>
+        <FB Name="ws2_m4" Type="IN_BOOL" x="4294.4443" y="11.111111" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;MOTOR 4&#34;" />
+        </FB>
+        <FB Name="ws2_m5" Type="IN_BOOL" x="5088.8887" y="11.111111" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;MOTOR 5&#34;" />
+        </FB>
+        <FB Name="ws2_op_in" Type="IN_EVENT" x="6083.333" y="11.111111" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;Input Pallet&#34;" />
+        </FB>
+        <FB Name="ws2_op_out" Type="IN_EVENT" x="6927.7773" y="11.111111" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;Remove pallet&#34;" />
+        </FB>
+        <FB Name="ws2_motors" Type="PUBL_5" x="4033.3333" y="1200.0" />
+        <FB Name="ws2_op_load" Type="PUBL_0" x="6672.222" y="938.88885" />
+        <FB Name="ws2_op_unload" Type="PUBL_0" x="6688.8887" y="1883.3333" />
+        <FB Name="mrg" Type="E_MERGE" x="3283.3333" y="1227.7777" />
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="ws2_label.INIT" dx1="305.55554" />
+          <Connection Source="ws2_label.INITO" Destination="ws2_m1.INIT" dx1="305.55554" />
+          <Connection Source="ws2_m1.INITO" Destination="ws2_m2.INIT" dx1="433.3333" />
+          <Connection Source="ws2_m2.INITO" Destination="ws2_m3.INIT" dx1="66.666664" />
+          <Connection Source="ws2_m3.INITO" Destination="ws2_m4.INIT" dx1="433.3333" />
+          <Connection Source="ws2_m4.INITO" Destination="ws2_m5.INIT" dx1="61.111107" />
+          <Connection Source="ws2_m5.INITO" Destination="ws2_op_in.INIT" dx1="27.777777" dx2="0.0" dy="-1.0" />
+          <Connection Source="ws2_op_in.INITO" Destination="ws2_op_out.INIT" dx1="72.22222" />
+          <Connection Source="ws2_m1.IND" Destination="ws2_m2.REQ" dx1="172.22221" />
+          <Connection Source="ws2_m2.IND" Destination="ws2_m3.REQ" dx1="144.44444" />
+          <Connection Source="ws2_m3.IND" Destination="ws2_m4.REQ" dx1="166.66666" />
+          <Connection Source="ws2_m4.IND" Destination="ws2_m5.REQ" dx1="150.0" />
+          <Connection Source="ws2_op_in.IND" Destination="ws2_op_load.REQ" dx1="27.777777" dx2="77.77777" dy="-1.0" />
+          <Connection Source="ws2_op_out.IND" Destination="ws2_op_unload.REQ" dx1="27.777777" dx2="150.0" dy="1405.5555" />
+          <Connection Source="ws2_op_out.INITO" Destination="ws2_motors.INIT" dx1="27.777777" dx2="122.22221" dy="-66.666664" />
+          <Connection Source="ws2_motors.INITO" Destination="ws2_op_load.INIT" dx1="1311.1111" />
+          <Connection Source="ws2_op_load.INITO" Destination="ws2_op_unload.INIT" dx1="211.1111" dx2="288.8889" dy="544.4444" />
+          <Connection Source="ws2_m5.CNF" Destination="mrg.EI1" dx1="27.777777" dx2="94.44444" dy="-183.33333" />
+          <Connection Source="ws2_m5.IND" Destination="mrg.EI2" dx1="27.777777" dx2="150.0" dy="-294.44443" />
+          <Connection Source="mrg.EO" Destination="ws2_motors.REQ" dx1="216.66666" />
+          <Connection Source="ws2_m3.CNF" Destination="ws2_m4.REQ" dx1="72.22222" />
+          <Connection Source="ws2_m4.CNF" Destination="ws2_m5.REQ" dx1="66.666664" />
+          <Connection Source="ws2_m2.CNF" Destination="ws2_m3.REQ" dx1="61.111107" />
+          <Connection Source="ws2_m1.CNF" Destination="ws2_m2.REQ" dx1="77.77777" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="ws2_m1.OUT" Destination="ws2_motors.SD_1" dx1="127.77777" />
+          <Connection Source="ws2_m2.OUT" Destination="ws2_motors.SD_2" dx1="44.444443" />
+          <Connection Source="ws2_m3.OUT" Destination="ws2_motors.SD_3" dx1="27.777777" />
+          <Connection Source="ws2_m4.OUT" Destination="ws2_motors.SD_4" dx1="27.777777" dx2="166.66666" dy="1633.3333" />
+          <Connection Source="ws2_m5.OUT" Destination="ws2_motors.SD_5" dx1="27.777777" dx2="83.33333" dy="1694.4443" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+    <Resource Name="WS4" Type="PANEL_RESOURCE" x="1888.8888" y="83.33333" >
+      <Parameter Name="ROWS" Value="4" />
+      <Parameter Name="COLS" Value="2" />
+      <FBNetwork >
+        <FB Name="ws4_label" Type="FB_LABEL" x="1066.6666" y="11.111111" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;WS 4&#34;" />
+        </FB>
+        <FB Name="ws4_m1" Type="IN_BOOL" x="1794.4443" y="11.111111" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;MOTOR 1&#34;" />
+        </FB>
+        <FB Name="ws4_m2" Type="IN_BOOL" x="2661.111" y="11.111111" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;MOTOR 2&#34;" />
+        </FB>
+        <FB Name="ws4_m3" Type="IN_BOOL" x="3444.4443" y="11.111111" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;MOTOR 3&#34;" />
+        </FB>
+        <FB Name="ws4_m4" Type="IN_BOOL" x="4294.4443" y="11.111111" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;MOTOR 4&#34;" />
+        </FB>
+        <FB Name="ws4_m5" Type="IN_BOOL" x="5088.8887" y="11.111111" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;MOTOR 5&#34;" />
+        </FB>
+        <FB Name="ws4_op_in" Type="IN_EVENT" x="6094.4443" y="11.111111" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;Input Pallet&#34;" />
+        </FB>
+        <FB Name="ws4_op_out" Type="IN_EVENT" x="6927.7773" y="11.111111" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;Remove pallet&#34;" />
+        </FB>
+        <FB Name="ws4_motors" Type="PUBL_5" x="4033.3333" y="1194.4445" />
+        <FB Name="ws4_op_load" Type="PUBL_0" x="6672.222" y="933.3333" />
+        <FB Name="ws4_op_unload" Type="PUBL_0" x="6688.8887" y="1883.3333" />
+        <FB Name="mrg" Type="E_MERGE" x="3283.3333" y="1227.7777" />
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="ws4_label.INIT" dx1="305.55554" />
+          <Connection Source="ws4_label.INITO" Destination="ws4_m1.INIT" dx1="305.55554" />
+          <Connection Source="ws4_m1.INITO" Destination="ws4_m2.INIT" dx1="433.3333" />
+          <Connection Source="ws4_m2.INITO" Destination="ws4_m3.INIT" dx1="66.666664" />
+          <Connection Source="ws4_m3.INITO" Destination="ws4_m4.INIT" dx1="433.3333" />
+          <Connection Source="ws4_m4.INITO" Destination="ws4_m5.INIT" dx1="61.111107" />
+          <Connection Source="ws4_m5.INITO" Destination="ws4_op_in.INIT" dx1="27.777777" dx2="0.0" dy="-1.0" />
+          <Connection Source="ws4_op_in.INITO" Destination="ws4_op_out.INIT" dx1="72.22222" />
+          <Connection Source="ws4_m1.IND" Destination="ws4_m2.REQ" dx1="172.22221" />
+          <Connection Source="ws4_m2.IND" Destination="ws4_m3.REQ" dx1="144.44444" />
+          <Connection Source="ws4_m3.IND" Destination="ws4_m4.REQ" dx1="166.66666" />
+          <Connection Source="ws4_m4.IND" Destination="ws4_m5.REQ" dx1="150.0" />
+          <Connection Source="ws4_op_in.IND" Destination="ws4_op_load.REQ" dx1="27.777777" dx2="77.77777" dy="-1.0" />
+          <Connection Source="ws4_op_out.IND" Destination="ws4_op_unload.REQ" dx1="27.777777" dx2="150.0" dy="1405.5555" />
+          <Connection Source="ws4_op_out.INITO" Destination="ws4_motors.INIT" dx1="27.777777" dx2="122.22221" dy="-66.666664" />
+          <Connection Source="ws4_motors.INITO" Destination="ws4_op_load.INIT" dx1="1311.1111" />
+          <Connection Source="ws4_op_load.INITO" Destination="ws4_op_unload.INIT" dx1="211.1111" dx2="288.8889" dy="544.4444" />
+          <Connection Source="ws4_m5.CNF" Destination="mrg.EI1" dx1="27.777777" dx2="94.44444" dy="-183.33333" />
+          <Connection Source="ws4_m5.IND" Destination="mrg.EI2" dx1="27.777777" dx2="150.0" dy="-294.44443" />
+          <Connection Source="mrg.EO" Destination="ws4_motors.REQ" dx1="216.66666" />
+          <Connection Source="ws4_m3.CNF" Destination="ws4_m4.REQ" dx1="72.22222" />
+          <Connection Source="ws4_m4.CNF" Destination="ws4_m5.REQ" dx1="66.666664" />
+          <Connection Source="ws4_m2.CNF" Destination="ws4_m3.REQ" dx1="61.111107" />
+          <Connection Source="ws4_m1.CNF" Destination="ws4_m2.REQ" dx1="77.77777" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="ws4_m1.OUT" Destination="ws4_motors.SD_1" dx1="127.77777" />
+          <Connection Source="ws4_m2.OUT" Destination="ws4_motors.SD_2" dx1="44.444443" />
+          <Connection Source="ws4_m3.OUT" Destination="ws4_motors.SD_3" dx1="27.777777" />
+          <Connection Source="ws4_m4.OUT" Destination="ws4_motors.SD_4" dx1="27.777777" dx2="166.66666" dy="1633.3333" />
+          <Connection Source="ws4_m5.OUT" Destination="ws4_motors.SD_5" dx1="27.777777" dx2="83.33333" dy="1694.4443" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+    <Resource Name="empt1" Type="PANEL_RESOURCE" x="2722.2222" y="55.555553" >
+    </Resource>
+    <Resource Name="Start_Lifter" Type="PANEL_RESOURCE" x="216.66666" y="650.0" >
+      <Parameter Name="ROWS" Value="3" />
+      <Parameter Name="COLS" Value="1" />
+      <FBNetwork >
+        <FB Name="SL_label" Type="FB_LABEL" x="1066.6666" y="11.111111" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;Start Lifter&#34;" />
+        </FB>
+        <FB Name="m1" Type="IN_BOOL" x="1811.1111" y="11.111111" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;MOTOR 1&#34;" />
+        </FB>
+        <FB Name="m2" Type="IN_BOOL" x="2661.111" y="11.111111" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;MOTOR 2&#34;" />
+        </FB>
+        <FB Name="SL_motors" Type="PUBL_2" x="4033.3333" y="1200.0" />
+        <FB Name="mrg" Type="E_MERGE" x="3283.3333" y="1311.1111" />
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="SL_label.INIT" dx1="305.55554" />
+          <Connection Source="m1.INITO" Destination="m2.INIT" dx1="433.3333" />
+          <Connection Source="m1.IND" Destination="m2.REQ" dx1="172.22221" />
+          <Connection Source="mrg.EO" Destination="SL_motors.REQ" dx1="216.66666" />
+          <Connection Source="m1.CNF" Destination="m2.REQ" dx1="77.77777" />
+          <Connection Source="m2.INITO" Destination="SL_motors.INIT" dx1="905.55554" />
+          <Connection Source="m2.CNF" Destination="mrg.EI1" dx1="261.1111" />
+          <Connection Source="m2.IND" Destination="mrg.EI2" dx1="222.22221" />
+          <Connection Source="SL_label.INITO" Destination="m1.INIT" dx1="383.3333" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="m1.OUT" Destination="SL_motors.SD_1" dx1="111.11111" />
+          <Connection Source="m2.OUT" Destination="SL_motors.SD_2" dx1="44.444443" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+    <Resource Name="ML1" Type="PANEL_RESOURCE" x="1066.6666" y="666.6666" >
+      <Parameter Name="ROWS" Value="3" />
+      <Parameter Name="COLS" Value="2" />
+      <FBNetwork >
+        <FB Name="ml1_label" Type="FB_LABEL" x="1066.6666" y="11.111111" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;Main Line 1&#34;" />
+        </FB>
+        <FB Name="ml1_m1" Type="IN_BOOL" x="1772.2222" y="138.88889" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;MOTOR 1&#34;" />
+        </FB>
+        <FB Name="ml1_m2" Type="IN_BOOL" x="2661.111" y="11.111111" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;MOTOR 2&#34;" />
+        </FB>
+        <FB Name="ml1_m3" Type="IN_BOOL" x="3444.4443" y="11.111111" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;MOTOR 3&#34;" />
+        </FB>
+        <FB Name="ml1_m4" Type="IN_BOOL" x="4294.4443" y="11.111111" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;MOTOR 4&#34;" />
+        </FB>
+        <FB Name="ml1_m5" Type="IN_BOOL" x="5088.8887" y="11.111111" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;MOTOR 5&#34;" />
+        </FB>
+        <FB Name="ml1_motors" Type="PUBL_5" x="4033.3333" y="1200.0" />
+        <FB Name="mrg" Type="E_MERGE" x="3283.3333" y="1227.7777" />
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="ml1_label.INIT" dx1="305.55554" />
+          <Connection Source="ml1_m1.INITO" Destination="ml1_m2.INIT" dx1="433.3333" />
+          <Connection Source="ml1_m2.INITO" Destination="ml1_m3.INIT" dx1="66.666664" />
+          <Connection Source="ml1_m3.INITO" Destination="ml1_m4.INIT" dx1="433.3333" />
+          <Connection Source="ml1_m4.INITO" Destination="ml1_m5.INIT" dx1="61.111107" />
+          <Connection Source="ml1_m1.IND" Destination="ml1_m2.REQ" dx1="172.22221" />
+          <Connection Source="ml1_m2.IND" Destination="ml1_m3.REQ" dx1="144.44444" />
+          <Connection Source="ml1_m3.IND" Destination="ml1_m4.REQ" dx1="166.66666" />
+          <Connection Source="ml1_m4.IND" Destination="ml1_m5.REQ" dx1="150.0" />
+          <Connection Source="ml1_m5.CNF" Destination="mrg.EI1" dx1="27.777777" dx2="94.44444" dy="-183.33333" />
+          <Connection Source="ml1_m5.IND" Destination="mrg.EI2" dx1="27.777777" dx2="150.0" dy="-294.44443" />
+          <Connection Source="mrg.EO" Destination="ml1_motors.REQ" dx1="216.66666" />
+          <Connection Source="ml1_m3.CNF" Destination="ml1_m4.REQ" dx1="72.22222" />
+          <Connection Source="ml1_m4.CNF" Destination="ml1_m5.REQ" dx1="66.666664" />
+          <Connection Source="ml1_m2.CNF" Destination="ml1_m3.REQ" dx1="61.111107" />
+          <Connection Source="ml1_m1.CNF" Destination="ml1_m2.REQ" dx1="77.77777" />
+          <Connection Source="ml1_m5.INITO" Destination="ml1_motors.INIT" dx1="27.777777" />
+          <Connection Source="ml1_label.INITO" Destination="ml1_m1.INIT" dx1="350.0" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="ml1_m1.OUT" Destination="ml1_motors.SD_1" dx1="127.77777" />
+          <Connection Source="ml1_m2.OUT" Destination="ml1_motors.SD_2" dx1="44.444443" />
+          <Connection Source="ml1_m3.OUT" Destination="ml1_motors.SD_3" dx1="27.777777" />
+          <Connection Source="ml1_m4.OUT" Destination="ml1_motors.SD_4" dx1="27.777777" dx2="166.66666" dy="1633.3333" />
+          <Connection Source="ml1_m5.OUT" Destination="ml1_motors.SD_5" dx1="27.777777" dx2="83.33333" dy="1694.4443" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+    <Resource Name="ML2" Type="PANEL_RESOURCE" x="1894.4443" y="650.0" >
+      <Parameter Name="ROWS" Value="3" />
+      <Parameter Name="COLS" Value="2" />
+      <FBNetwork >
+        <FB Name="label" Type="FB_LABEL" x="1066.6666" y="11.111111" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;Main Line 2&#34;" />
+        </FB>
+        <FB Name="m1" Type="IN_BOOL" x="1788.8888" y="11.111111" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;MOTOR 1&#34;" />
+        </FB>
+        <FB Name="m2" Type="IN_BOOL" x="2661.111" y="11.111111" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;MOTOR 2&#34;" />
+        </FB>
+        <FB Name="m3" Type="IN_BOOL" x="3444.4443" y="11.111111" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;MOTOR 3&#34;" />
+        </FB>
+        <FB Name="m4" Type="IN_BOOL" x="4294.4443" y="11.111111" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;MOTOR 4&#34;" />
+        </FB>
+        <FB Name="m5" Type="IN_BOOL" x="5088.8887" y="11.111111" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;MOTOR 5&#34;" />
+        </FB>
+        <FB Name="ml2_motors" Type="PUBL_5" x="4033.3333" y="1200.0" />
+        <FB Name="mrg" Type="E_MERGE" x="3283.3333" y="1227.7777" />
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="label.INIT" dx1="305.55554" />
+          <Connection Source="m1.INITO" Destination="m2.INIT" dx1="433.3333" />
+          <Connection Source="m2.INITO" Destination="m3.INIT" dx1="66.666664" />
+          <Connection Source="m3.INITO" Destination="m4.INIT" dx1="433.3333" />
+          <Connection Source="m4.INITO" Destination="m5.INIT" dx1="61.111107" />
+          <Connection Source="m1.IND" Destination="m2.REQ" dx1="172.22221" />
+          <Connection Source="m2.IND" Destination="m3.REQ" dx1="144.44444" />
+          <Connection Source="m3.IND" Destination="m4.REQ" dx1="166.66666" />
+          <Connection Source="m4.IND" Destination="m5.REQ" dx1="150.0" />
+          <Connection Source="m5.CNF" Destination="mrg.EI1" dx1="27.777777" dx2="94.44444" dy="-183.33333" />
+          <Connection Source="m5.IND" Destination="mrg.EI2" dx1="27.777777" dx2="150.0" dy="-294.44443" />
+          <Connection Source="mrg.EO" Destination="ml2_motors.REQ" dx1="216.66666" />
+          <Connection Source="m3.CNF" Destination="m4.REQ" dx1="72.22222" />
+          <Connection Source="m4.CNF" Destination="m5.REQ" dx1="66.666664" />
+          <Connection Source="m2.CNF" Destination="m3.REQ" dx1="61.111107" />
+          <Connection Source="m1.CNF" Destination="m2.REQ" dx1="77.77777" />
+          <Connection Source="m5.INITO" Destination="ml2_motors.INIT" dx1="27.777777" dx2="0.0" dy="-66.666664" />
+          <Connection Source="label.INITO" Destination="m1.INIT" dx1="350.0" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="m1.OUT" Destination="ml2_motors.SD_1" dx1="127.77777" />
+          <Connection Source="m2.OUT" Destination="ml2_motors.SD_2" dx1="44.444443" />
+          <Connection Source="m3.OUT" Destination="ml2_motors.SD_3" dx1="27.777777" />
+          <Connection Source="m4.OUT" Destination="ml2_motors.SD_4" dx1="27.777777" dx2="166.66666" dy="1633.3333" />
+          <Connection Source="m5.OUT" Destination="ml2_motors.SD_5" dx1="27.777777" dx2="83.33333" dy="1694.4443" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+    <Resource Name="End_Lifter" Type="PANEL_RESOURCE" x="2711.111" y="633.3333" >
+      <Parameter Name="ROWS" Value="3" />
+      <Parameter Name="COLS" Value="1" />
+      <FBNetwork >
+        <FB Name="EL_label" Type="FB_LABEL" x="1066.6666" y="11.111111" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;Start Lifter&#34;" />
+        </FB>
+        <FB Name="m1" Type="IN_BOOL" x="1811.1111" y="11.111111" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;MOTOR 1&#34;" />
+        </FB>
+        <FB Name="m2" Type="IN_BOOL" x="2661.111" y="11.111111" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;MOTOR 2&#34;" />
+        </FB>
+        <FB Name="EL_motors" Type="PUBL_2" x="4033.3333" y="1200.0" />
+        <FB Name="mrg" Type="E_MERGE" x="3283.3333" y="1311.1111" />
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="EL_label.INIT" dx1="305.55554" />
+          <Connection Source="m1.INITO" Destination="m2.INIT" dx1="433.3333" />
+          <Connection Source="m1.IND" Destination="m2.REQ" dx1="172.22221" />
+          <Connection Source="mrg.EO" Destination="EL_motors.REQ" dx1="216.66666" />
+          <Connection Source="m1.CNF" Destination="m2.REQ" dx1="77.77777" />
+          <Connection Source="m2.INITO" Destination="EL_motors.INIT" dx1="905.55554" />
+          <Connection Source="m2.CNF" Destination="mrg.EI1" dx1="261.1111" />
+          <Connection Source="m2.IND" Destination="mrg.EI2" dx1="222.22221" />
+          <Connection Source="EL_label.INITO" Destination="m1.INIT" dx1="383.3333" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="m1.OUT" Destination="EL_motors.SD_1" dx1="111.11111" />
+          <Connection Source="m2.OUT" Destination="EL_motors.SD_2" dx1="44.444443" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+    <Resource Name="empt2" Type="PANEL_RESOURCE" x="255.55554" y="1211.1111" >
+    </Resource>
+    <Resource Name="WS1" Type="PANEL_RESOURCE" x="1083.3333" y="1211.1111" >
+      <Parameter Name="ROWS" Value="4" />
+      <Parameter Name="COLS" Value="2" />
+      <FBNetwork >
+        <FB Name="label" Type="FB_LABEL" x="1066.6666" y="11.111111" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;WS 1&#34;" />
+        </FB>
+        <FB Name="m1" Type="IN_BOOL" x="1805.5555" y="105.55555" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;MOTOR 1&#34;" />
+        </FB>
+        <FB Name="m2" Type="IN_BOOL" x="2661.111" y="11.111111" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;MOTOR 2&#34;" />
+        </FB>
+        <FB Name="m3" Type="IN_BOOL" x="3444.4443" y="11.111111" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;MOTOR 3&#34;" />
+        </FB>
+        <FB Name="m4" Type="IN_BOOL" x="4294.4443" y="11.111111" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;MOTOR 4&#34;" />
+        </FB>
+        <FB Name="m5" Type="IN_BOOL" x="5088.8887" y="11.111111" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;MOTOR 5&#34;" />
+        </FB>
+        <FB Name="op_in" Type="IN_EVENT" x="6083.333" y="11.111111" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;Input Pallet&#34;" />
+        </FB>
+        <FB Name="op_out" Type="IN_EVENT" x="6927.7773" y="11.111111" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;Remove pallet&#34;" />
+        </FB>
+        <FB Name="ws1_motors" Type="PUBL_5" x="4033.3333" y="1200.0" />
+        <FB Name="ws1_op_load" Type="PUBL_0" x="6672.222" y="938.88885" />
+        <FB Name="ws1_op_unload" Type="PUBL_0" x="6688.8887" y="1883.3333" />
+        <FB Name="mrg" Type="E_MERGE" x="3283.3333" y="1227.7777" />
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="label.INIT" dx1="305.55554" />
+          <Connection Source="m1.INITO" Destination="m2.INIT" dx1="433.3333" />
+          <Connection Source="m2.INITO" Destination="m3.INIT" dx1="66.666664" />
+          <Connection Source="m3.INITO" Destination="m4.INIT" dx1="433.3333" />
+          <Connection Source="m4.INITO" Destination="m5.INIT" dx1="61.111107" />
+          <Connection Source="m5.INITO" Destination="op_in.INIT" dx1="27.777777" dx2="0.0" dy="-1.0" />
+          <Connection Source="op_in.INITO" Destination="op_out.INIT" dx1="72.22222" />
+          <Connection Source="m1.IND" Destination="m2.REQ" dx1="172.22221" />
+          <Connection Source="m2.IND" Destination="m3.REQ" dx1="144.44444" />
+          <Connection Source="m3.IND" Destination="m4.REQ" dx1="166.66666" />
+          <Connection Source="m4.IND" Destination="m5.REQ" dx1="150.0" />
+          <Connection Source="op_in.IND" Destination="ws1_op_load.REQ" dx1="27.777777" dx2="77.77777" dy="-1.0" />
+          <Connection Source="op_out.IND" Destination="ws1_op_unload.REQ" dx1="27.777777" dx2="150.0" dy="1405.5555" />
+          <Connection Source="op_out.INITO" Destination="ws1_motors.INIT" dx1="27.777777" dx2="122.22221" dy="-66.666664" />
+          <Connection Source="ws1_motors.INITO" Destination="ws1_op_load.INIT" dx1="1311.1111" />
+          <Connection Source="ws1_op_load.INITO" Destination="ws1_op_unload.INIT" dx1="211.1111" dx2="288.8889" dy="544.4444" />
+          <Connection Source="m5.CNF" Destination="mrg.EI1" dx1="27.777777" dx2="94.44444" dy="-183.33333" />
+          <Connection Source="m5.IND" Destination="mrg.EI2" dx1="27.777777" dx2="150.0" dy="-294.44443" />
+          <Connection Source="mrg.EO" Destination="ws1_motors.REQ" dx1="216.66666" />
+          <Connection Source="m3.CNF" Destination="m4.REQ" dx1="72.22222" />
+          <Connection Source="m4.CNF" Destination="m5.REQ" dx1="66.666664" />
+          <Connection Source="m2.CNF" Destination="m3.REQ" dx1="61.111107" />
+          <Connection Source="m1.CNF" Destination="m2.REQ" dx1="77.77777" />
+          <Connection Source="label.INITO" Destination="m1.INIT" dx1="383.3333" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="m1.OUT" Destination="ws1_motors.SD_1" dx1="127.77777" />
+          <Connection Source="m2.OUT" Destination="ws1_motors.SD_2" dx1="44.444443" />
+          <Connection Source="m3.OUT" Destination="ws1_motors.SD_3" dx1="27.777777" />
+          <Connection Source="m4.OUT" Destination="ws1_motors.SD_4" dx1="27.777777" dx2="166.66666" dy="1633.3333" />
+          <Connection Source="m5.OUT" Destination="ws1_motors.SD_5" dx1="27.777777" dx2="83.33333" dy="1694.4443" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+    <Resource Name="WS3" Type="PANEL_RESOURCE" x="1911.1111" y="1216.6666" >
+      <Parameter Name="ROWS" Value="4" />
+      <Parameter Name="COLS" Value="2" />
+      <FBNetwork >
+        <FB Name="label" Type="FB_LABEL" x="1066.6666" y="11.111111" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;WS 3&#34;" />
+        </FB>
+        <FB Name="m1" Type="IN_BOOL" x="1805.5555" y="105.55555" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;MOTOR 1&#34;" />
+        </FB>
+        <FB Name="m2" Type="IN_BOOL" x="2661.111" y="11.111111" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;MOTOR 2&#34;" />
+        </FB>
+        <FB Name="m3" Type="IN_BOOL" x="3444.4443" y="11.111111" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;MOTOR 3&#34;" />
+        </FB>
+        <FB Name="m4" Type="IN_BOOL" x="4294.4443" y="11.111111" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;MOTOR 4&#34;" />
+        </FB>
+        <FB Name="m5" Type="IN_BOOL" x="5088.8887" y="11.111111" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;MOTOR 5&#34;" />
+        </FB>
+        <FB Name="op_in" Type="IN_EVENT" x="6083.333" y="11.111111" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;Input Pallet&#34;" />
+        </FB>
+        <FB Name="op_out" Type="IN_EVENT" x="6927.7773" y="11.111111" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;Remove pallet&#34;" />
+        </FB>
+        <FB Name="ws3_motors" Type="PUBL_5" x="4033.3333" y="1200.0" />
+        <FB Name="ws3_op_load" Type="PUBL_0" x="6672.222" y="938.88885" />
+        <FB Name="ws3_op_unload" Type="PUBL_0" x="6688.8887" y="1883.3333" />
+        <FB Name="mrg" Type="E_MERGE" x="3283.3333" y="1227.7777" />
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="label.INIT" dx1="305.55554" />
+          <Connection Source="m1.INITO" Destination="m2.INIT" dx1="433.3333" />
+          <Connection Source="m2.INITO" Destination="m3.INIT" dx1="66.666664" />
+          <Connection Source="m3.INITO" Destination="m4.INIT" dx1="433.3333" />
+          <Connection Source="m4.INITO" Destination="m5.INIT" dx1="61.111107" />
+          <Connection Source="m5.INITO" Destination="op_in.INIT" dx1="27.777777" dx2="0.0" dy="-1.0" />
+          <Connection Source="op_in.INITO" Destination="op_out.INIT" dx1="72.22222" />
+          <Connection Source="m1.IND" Destination="m2.REQ" dx1="172.22221" />
+          <Connection Source="m2.IND" Destination="m3.REQ" dx1="144.44444" />
+          <Connection Source="m3.IND" Destination="m4.REQ" dx1="166.66666" />
+          <Connection Source="m4.IND" Destination="m5.REQ" dx1="150.0" />
+          <Connection Source="op_in.IND" Destination="ws3_op_load.REQ" dx1="27.777777" dx2="77.77777" dy="-1.0" />
+          <Connection Source="op_out.IND" Destination="ws3_op_unload.REQ" dx1="27.777777" dx2="150.0" dy="1405.5555" />
+          <Connection Source="op_out.INITO" Destination="ws3_motors.INIT" dx1="27.777777" dx2="122.22221" dy="-66.666664" />
+          <Connection Source="ws3_motors.INITO" Destination="ws3_op_load.INIT" dx1="1311.1111" />
+          <Connection Source="ws3_op_load.INITO" Destination="ws3_op_unload.INIT" dx1="211.1111" dx2="288.8889" dy="544.4444" />
+          <Connection Source="m5.CNF" Destination="mrg.EI1" dx1="27.777777" dx2="94.44444" dy="-183.33333" />
+          <Connection Source="m5.IND" Destination="mrg.EI2" dx1="27.777777" dx2="150.0" dy="-294.44443" />
+          <Connection Source="mrg.EO" Destination="ws3_motors.REQ" dx1="216.66666" />
+          <Connection Source="m3.CNF" Destination="m4.REQ" dx1="72.22222" />
+          <Connection Source="m4.CNF" Destination="m5.REQ" dx1="66.666664" />
+          <Connection Source="m2.CNF" Destination="m3.REQ" dx1="61.111107" />
+          <Connection Source="m1.CNF" Destination="m2.REQ" dx1="77.77777" />
+          <Connection Source="label.INITO" Destination="m1.INIT" dx1="383.3333" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="m1.OUT" Destination="ws3_motors.SD_1" dx1="127.77777" />
+          <Connection Source="m2.OUT" Destination="ws3_motors.SD_2" dx1="44.444443" />
+          <Connection Source="m3.OUT" Destination="ws3_motors.SD_3" dx1="27.777777" />
+          <Connection Source="m4.OUT" Destination="ws3_motors.SD_4" dx1="27.777777" dx2="166.66666" dy="1633.3333" />
+          <Connection Source="m5.OUT" Destination="ws3_motors.SD_5" dx1="27.777777" dx2="83.33333" dy="1694.4443" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+    <Resource Name="empt3" Type="PANEL_RESOURCE" x="2738.8887" y="1216.6666" >
+    </Resource>
+  </Device>
+  <Device Name="Control" Type="FRAME_DEVICE" x="1077.7777" y="655.55554" >
+    <Resource Name="ControlContainer" Type="PANEL_RESOURCE" x="11.111111" y="777.7778" >
+      <FBNetwork >
+        <FB Name="ws2_4_CNTR" Type="AgentFB" x="999.99994" y="11.111111" >
+          <Parameter Name="NAME" Value="&#34;ws2_4&#34;" />
+        </FB>
+        <FB Name="ws2_3_CNTR" Type="AgentFB" x="2250.0" y="11.111111" >
+          <Parameter Name="NAME" Value="&#34;ws2_3&#34;" />
+        </FB>
+        <FB Name="ws2_2_CNTR" Type="AgentFB" x="3583.3333" y="11.111111" >
+          <Parameter Name="NAME" Value="&#34;ws2_2&#34;" />
+        </FB>
+        <FB Name="ws2_1_CNTR" Type="AgentFB" x="5255.555" y="11.111111" >
+          <Parameter Name="NAME" Value="&#34;ws2_1&#34;" />
+        </FB>
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="ws2_4_CNTR.INIT" dx1="527.7778" />
+          <Connection Source="ws2_4_CNTR.INITO" Destination="ws2_3_CNTR.INIT" dx1="50.0" />
+          <Connection Source="ws2_3_CNTR.INITO" Destination="ws2_2_CNTR.INIT" dx1="55.555553" />
+          <Connection Source="ws2_2_CNTR.INITO" Destination="ws2_1_CNTR.INIT" dx1="38.888885" />
+        </EventConnections>
+      </FBNetwork>
+    </Resource>
+  </Device>
+  <Device Name="Model" Type="FRAME_DEVICE" x="1083.3333" y="1155.5555" >
+    <Resource Name="WS2_model" Type="PANEL_RESOURCE" x="655.55554" y="422.2222" >
+      <FBNetwork >
+        <FB Name="ws2_1" Type="CNV_MDL" x="6138.8887" y="2455.5554" >
+          <Parameter Name="WKPC" Value="[255,255,0]" />
+          <Parameter Name="STYLE" Value="VSTYLE#PALLET" />
+          <Parameter Name="VF" Value="10" />
+        </FB>
+        <FB Name="ws2_2" Type="CNV_MDL" x="6166.6665" y="150.0" >
+          <Parameter Name="WKPC" Value="[255,255,0]" />
+          <Parameter Name="STYLE" Value="VSTYLE#PALLET" />
+          <Parameter Name="VF" Value="10" />
+        </FB>
+        <FB Name="ws2_3" Type="CNV_MDL" x="3877.7776" y="166.66666" >
+          <Parameter Name="VF" Value="10" />
+          <Parameter Name="STYLE" Value="VSTYLE#PALLET" />
+          <Parameter Name="WKPC" Value="[255,255,0]" />
+        </FB>
+        <FB Name="ws2_4" Type="CNV_MDL" x="1761.1111" y="105.55555" >
+          <Parameter Name="VF" Value="10" />
+          <Parameter Name="STYLE" Value="VSTYLE#PALLET" />
+          <Parameter Name="WKPC" Value="[255,255,0]" />
+        </FB>
+        <FB Name="ws2_5" Type="CNV_MDL" x="1844.4443" y="3572.2222" >
+          <Parameter Name="WKPC" Value="[255,255,0]" />
+          <Parameter Name="STYLE" Value="VSTYLE#PALLET" />
+          <Parameter Name="VF" Value="10" />
+        </FB>
+        <FB Name="ws2_pos" Type="PUBL_5" x="7655.555" y="194.44444" />
+        <FB Name="ws2_sty" Type="PUBL_5" x="7633.333" y="2527.7776" />
+        <FB Name="ws2_motors" Type="SUBL_5" x="550.0" y="933.3333" />
+        <FB Name="ws2_op_load" Type="SUBL_0" x="488.88885" y="2172.2222" />
+        <FB Name="ws2_op_unload" Type="SUBL_0" x="488.88885" y="2994.4443" />
+        <FB Name="split5" Type="E_SPLIT" x="4022.2222" y="3577.7776" />
+        <FB Name="split4" Type="E_SPLIT" x="3599.9998" y="3222.2222" />
+        <FB Name="split3" Type="E_SPLIT" x="3222.2222" y="3100.0" />
+        <FB Name="split2" Type="E_SPLIT" x="2777.7776" y="2916.6665" />
+        <FB Name="split1" Type="E_SPLIT" x="2300.0" y="2561.111" />
+        <FB Name="upd" Type="SUBL_0" x="1405.5555" y="2522.2222" />
+        <FB Name="sync_prev_1" Type="ConvSync" x="5338.8887" y="3472.2222" >
+          <Parameter Name="STYLE1" Value="VSTYLE#NONE" />
+        </FB>
+        <FB Name="sync1_2" Type="ConvSync" x="5661.111" y="1661.1111" >
+          <Parameter Name="STYLE1" Value="VSTYLE#NONE" />
+        </FB>
+        <FB Name="sync2_3" Type="ConvSync" x="5083.333" y="466.66666" >
+          <Parameter Name="STYLE1" Value="VSTYLE#NONE" />
+        </FB>
+        <FB Name="sync4_5" Type="ConvSync" x="1955.5554" y="1666.6666" >
+          <Parameter Name="STYLE1" Value="VSTYLE#NONE" />
+        </FB>
+        <FB Name="sync3_4" Type="ConvSync" x="3011.111" y="538.88885" >
+          <Parameter Name="STYLE1" Value="VSTYLE#NONE" />
+        </FB>
+        <FB Name="ml1_out1" Type="SUBL_2" x="4594.4443" y="3277.7776" />
+        <FB Name="ws2_in" Type="PUBL_0" x="5961.111" y="3844.4443" />
+        <FB Name="ml1_in1" Type="SUBL_0" x="833.3333" y="3872.2222" />
+        <FB Name="ws2_out" Type="PUBL_2" x="2805.5554" y="3705.5554" />
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="ws2_motors.INIT" dx1="155.55554" />
+          <Connection Source="ws2_motors.INITO" Destination="ws2_pos.INIT" dx1="1777.7777" />
+          <Connection Source="ws2_pos.INITO" Destination="ws2_sty.INIT" dx1="27.777777" dx2="0.0" dy="-249.99998" />
+          <Connection Source="ws2_sty.INITO" Destination="ws2_op_load.INIT" dx1="27.777777" dx2="5.5555553" dy="-2627.7776" />
+          <Connection Source="ws2_op_load.INITO" Destination="ws2_op_unload.INIT" dx1="27.777777" dx2="0.0" dy="-2266.6665" />
+          <Connection Source="ws2_op_load.IND" Destination="ws2_3.LOAD" dx1="1494.4443" />
+          <Connection Source="ws2_op_unload.IND" Destination="ws2_3.UNLD" dx1="1916.6666" />
+          <Connection Source="ws2_pos.CNF" Destination="ws2_sty.REQ" dx1="27.777777" dx2="0.0" dy="-366.66666" />
+          <Connection Source="split1.EO2" Destination="split2.EI" dx1="100.0" />
+          <Connection Source="split1.EO1" Destination="ws2_1.CLK" dx1="1938.8888" />
+          <Connection Source="split2.EO2" Destination="split3.EI" dx1="72.22222" />
+          <Connection Source="split2.EO1" Destination="ws2_2.CLK" dx1="1844.4443" />
+          <Connection Source="split3.EO2" Destination="split4.EI" dx1="44.444443" />
+          <Connection Source="split3.EO1" Destination="ws2_3.CLK" dx1="244.44443" dx2="5.5555553" dy="-3227.7776" />
+          <Connection Source="split4.EO2" Destination="split5.EI" dx1="55.555553" />
+          <Connection Source="split4.EO1" Destination="ws2_5.CLK" dx1="27.777777" dx2="161.1111" dy="-3333.3333" />
+          <Connection Source="ws2_op_unload.INITO" Destination="upd.INIT" dx1="361.11108" />
+          <Connection Source="upd.IND" Destination="split1.EI" dx1="316.66666" />
+          <Connection Source="split5.EO2" Destination="ws2_pos.REQ" dx1="2422.2222" />
+          <Connection Source="split5.EO1" Destination="ws2_4.CLK" dx1="27.777777" dx2="5.5555553" dy="-3699.9998" />
+          <Connection Source="sync3_4.CNF" Destination="ws2_3.UNLD" dx1="111.11111" />
+          <Connection Source="sync3_4.CNF" Destination="ws2_4.LOAD" dx1="27.777777" dx2="0.0" dy="-600.0" />
+          <Connection Source="split4.EO1" Destination="sync4_5.REQ" dx1="27.777777" dx2="5.5555553" dy="-3333.3333" />
+          <Connection Source="sync4_5.CNF" Destination="ws2_4.UNLD" dx1="27.777777" dx2="0.0" dy="-1749.9999" />
+          <Connection Source="sync4_5.CNF" Destination="ws2_5.LOAD" dx1="27.777777" dx2="83.33333" dy="-1749.9999" />
+          <Connection Source="split3.EO1" Destination="sync3_4.REQ" dx1="27.777777" dx2="5.5555553" dy="-3211.111" />
+          <Connection Source="split1.EO1" Destination="sync1_2.REQ" dx1="1677.7777" />
+          <Connection Source="sync1_2.CNF" Destination="ws2_2.LOAD" dx1="55.555553" />
+          <Connection Source="sync1_2.CNF" Destination="ws2_1.UNLD" dx1="83.33333" />
+          <Connection Source="split2.EO1" Destination="sync2_3.REQ" dx1="1183.3333" />
+          <Connection Source="upd.INITO" Destination="ml1_out1.INIT" dx1="1450.0" />
+          <Connection Source="ml1_out1.IND" Destination="sync_prev_1.REQ" dx1="127.77777" />
+          <Connection Source="sync_prev_1.CNF" Destination="ws2_in.REQ" dx1="77.77777" />
+          <Connection Source="ml1_out1.INITO" Destination="ws2_in.INIT" dx1="750.0" />
+          <Connection Source="sync_prev_1.CNF" Destination="ws2_1.LOAD" dx1="322.2222" />
+          <Connection Source="ws2_op_unload.INITO" Destination="ml1_in1.INIT" dx1="27.777777" />
+          <Connection Source="ml1_in1.IND" Destination="ws2_5.UNLD" dx1="527.7778" />
+          <Connection Source="ml1_in1.INITO" Destination="ws2_out.INIT" dx1="394.44443" />
+          <Connection Source="ws2_sty.CNF" Destination="ws2_out.REQ" dx1="27.777777" dx2="94.44444" dy="-2738.8887" />
+          <Connection Source="sync2_3.CNF" Destination="ws2_3.LOAD" dx1="27.777777" dx2="0.0" dy="-527.7778" />
+          <Connection Source="sync2_3.CNF" Destination="ws2_2.UNLD" dx1="144.44444" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="ws2_1.POS" Destination="ws2_pos.SD_1" dx1="622.22217" />
+          <Connection Source="ws2_2.POS" Destination="ws2_pos.SD_2" dx1="822.22217" />
+          <Connection Source="ws2_3.POS" Destination="ws2_pos.SD_3" dx1="2550.0" />
+          <Connection Source="ws2_4.POS" Destination="ws2_pos.SD_4" dx1="4200.0" />
+          <Connection Source="ws2_5.POS" Destination="ws2_pos.SD_5" dx1="4405.555" />
+          <Connection Source="ws2_1.STYLO" Destination="ws2_sty.SD_1" dx1="627.7778" />
+          <Connection Source="ws2_2.STYLO" Destination="ws2_sty.SD_2" dx1="788.88885" />
+          <Connection Source="ws2_3.STYLO" Destination="ws2_sty.SD_3" dx1="2472.2222" />
+          <Connection Source="ws2_4.STYLO" Destination="ws2_sty.SD_4" dx1="4083.3333" />
+          <Connection Source="ws2_5.STYLO" Destination="ws2_sty.SD_5" dx1="4488.8887" />
+          <Connection Source="ws2_motors.RD_2" Destination="ws2_2.MTR_ON" dx1="1877.7777" />
+          <Connection Source="ws2_motors.RD_3" Destination="ws2_3.MTR_ON" dx1="1122.2222" />
+          <Connection Source="ws2_motors.RD_4" Destination="ws2_4.MTR_ON" dx1="350.0" />
+          <Connection Source="ws2_motors.RD_5" Destination="ws2_5.MTR_ON" dx1="577.7778" />
+          <Connection Source="ws2_3.END" Destination="sync3_4.END1" dx1="27.777777" dx2="11.111111" dy="4094.4443" />
+          <Connection Source="ws2_motors.RD_3" Destination="sync3_4.MOTOR1" dx1="800.0" />
+          <Connection Source="ws2_motors.RD_4" Destination="sync3_4.MOTOR2" dx1="838.88885" />
+          <Connection Source="ws2_4.STYLO" Destination="sync3_4.STYLE2" dx1="633.3333" />
+          <Connection Source="ws2_motors.RD_1" Destination="ws2_1.MTR_ON" dx1="3555.5554" />
+          <Connection Source="ws2_4.END" Destination="sync4_5.END1" dx1="27.777777" dx2="94.44444" dy="4155.555" />
+          <Connection Source="ws2_motors.RD_4" Destination="sync4_5.MOTOR1" dx1="666.6666" />
+          <Connection Source="ws2_motors.RD_5" Destination="sync4_5.MOTOR2" dx1="650.0" />
+          <Connection Source="ws2_5.STYLO" Destination="sync4_5.STYLE2" dx1="27.777777" dx2="5.5555553" dy="416.66666" />
+          <Connection Source="ws2_1.END" Destination="sync1_2.END1" dx1="188.88889" dx2="527.7778" dy="1783.3333" />
+          <Connection Source="ws2_motors.RD_1" Destination="sync1_2.MOTOR1" dx1="3233.3333" />
+          <Connection Source="ws2_motors.RD_2" Destination="sync1_2.MOTOR2" dx1="3144.4443" />
+          <Connection Source="ws2_2.STYLO" Destination="sync1_2.STYLE2" dx1="27.777777" dx2="150.0" dy="3888.8887" />
+          <Connection Source="ws2_motors.RD_2" Destination="sync2_3.MOTOR1" dx1="1522.2222" />
+          <Connection Source="ws2_motors.RD_3" Destination="sync2_3.MOTOR2" dx1="1600.0" />
+          <Connection Source="ws2_3.STYLO" Destination="sync2_3.STYLE2" dx1="650.0" />
+          <Connection Source="ws2_2.END" Destination="sync2_3.END1" dx1="27.777777" dx2="11.111111" dy="4111.111" />
+          <Connection Source="ws2_motors.RD_1" Destination="sync_prev_1.MOTOR1" dx1="3000.0" />
+          <Connection Source="ws2_5.END" Destination="ws2_out.SD_1" dx1="88.888885" />
+          <Connection Source="ws2_motors.RD_5" Destination="ws2_out.SD_2" dx1="1066.6666" />
+          <Connection Source="ml1_out1.RD_1" Destination="sync_prev_1.END1" dx1="366.66666" />
+          <Connection Source="ml1_out1.RD_2" Destination="sync_prev_1.MOTOR2" dx1="122.22221" />
+          <Connection Source="ws2_1.STYLO" Destination="sync_prev_1.STYLE2" dx1="27.777777" dx2="5.5555553" dy="1544.4443" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+    <Resource Name="WS4_model" Type="PANEL_RESOURCE" x="655.55554" y="422.2222" >
+      <FBNetwork >
+        <FB Name="ws4_1" Type="CNV_MDL" x="6138.8887" y="2455.5554" >
+          <Parameter Name="WKPC" Value="[255,255,0]" />
+          <Parameter Name="STYLE" Value="VSTYLE#PALLET" />
+          <Parameter Name="VF" Value="10" />
+        </FB>
+        <FB Name="ws4_2" Type="CNV_MDL" x="6166.6665" y="150.0" >
+          <Parameter Name="WKPC" Value="[255,255,0]" />
+          <Parameter Name="STYLE" Value="VSTYLE#PALLET" />
+          <Parameter Name="VF" Value="10" />
+        </FB>
+        <FB Name="ws4_3" Type="CNV_MDL" x="3877.7776" y="166.66666" >
+          <Parameter Name="VF" Value="10" />
+          <Parameter Name="STYLE" Value="VSTYLE#PALLET" />
+          <Parameter Name="WKPC" Value="[255,255,0]" />
+        </FB>
+        <FB Name="ws4_4" Type="CNV_MDL" x="1761.1111" y="105.55555" >
+          <Parameter Name="VF" Value="10" />
+          <Parameter Name="STYLE" Value="VSTYLE#PALLET" />
+          <Parameter Name="WKPC" Value="[255,255,0]" />
+        </FB>
+        <FB Name="ws4_5" Type="CNV_MDL" x="1833.3333" y="3588.8887" >
+          <Parameter Name="WKPC" Value="[255,255,0]" />
+          <Parameter Name="STYLE" Value="VSTYLE#PALLET" />
+          <Parameter Name="VF" Value="10" />
+        </FB>
+        <FB Name="ws4_pos" Type="PUBL_5" x="7655.555" y="194.44444" />
+        <FB Name="ws4_sty" Type="PUBL_5" x="7633.333" y="2527.7776" />
+        <FB Name="ws4_motors" Type="SUBL_5" x="550.0" y="933.3333" />
+        <FB Name="ws4_op_load" Type="SUBL_0" x="488.88885" y="2172.2222" />
+        <FB Name="ws4_op_unload" Type="SUBL_0" x="488.88885" y="2994.4443" />
+        <FB Name="split5" Type="E_SPLIT" x="4022.2222" y="3577.7776" />
+        <FB Name="split4" Type="E_SPLIT" x="3599.9998" y="3222.2222" />
+        <FB Name="split3" Type="E_SPLIT" x="3222.2222" y="3100.0" />
+        <FB Name="split2" Type="E_SPLIT" x="2777.7776" y="2916.6665" />
+        <FB Name="split1" Type="E_SPLIT" x="2300.0" y="2561.111" />
+        <FB Name="upd" Type="SUBL_0" x="1405.5555" y="2522.2222" />
+        <FB Name="sync1_2" Type="ConvSync" x="5661.111" y="1661.1111" >
+          <Parameter Name="STYLE1" Value="VSTYLE#NONE" />
+        </FB>
+        <FB Name="sync2_3" Type="ConvSync" x="5161.111" y="650.0" >
+          <Parameter Name="STYLE1" Value="VSTYLE#NONE" />
+        </FB>
+        <FB Name="sync4_5" Type="ConvSync" x="1955.5554" y="1666.6666" >
+          <Parameter Name="STYLE1" Value="VSTYLE#NONE" />
+        </FB>
+        <FB Name="sync3_4" Type="ConvSync" x="3011.111" y="538.88885" >
+          <Parameter Name="STYLE1" Value="VSTYLE#NONE" />
+        </FB>
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="ws4_motors.INIT" dx1="155.55554" />
+          <Connection Source="ws4_motors.INITO" Destination="ws4_pos.INIT" dx1="1777.7777" />
+          <Connection Source="ws4_pos.INITO" Destination="ws4_sty.INIT" dx1="27.777777" dx2="0.0" dy="-249.99998" />
+          <Connection Source="ws4_sty.INITO" Destination="ws4_op_load.INIT" dx1="27.777777" dx2="5.5555553" dy="-2627.7776" />
+          <Connection Source="ws4_op_load.INITO" Destination="ws4_op_unload.INIT" dx1="27.777777" dx2="0.0" dy="-2266.6665" />
+          <Connection Source="ws4_op_load.IND" Destination="ws4_3.LOAD" dx1="1494.4443" />
+          <Connection Source="ws4_op_unload.IND" Destination="ws4_3.UNLD" dx1="1916.6666" />
+          <Connection Source="ws4_pos.CNF" Destination="ws4_sty.REQ" dx1="27.777777" dx2="0.0" dy="-366.66666" />
+          <Connection Source="split1.EO2" Destination="split2.EI" dx1="100.0" />
+          <Connection Source="split1.EO1" Destination="ws4_1.CLK" dx1="1938.8888" />
+          <Connection Source="split2.EO2" Destination="split3.EI" dx1="72.22222" />
+          <Connection Source="split2.EO1" Destination="ws4_2.CLK" dx1="1844.4443" />
+          <Connection Source="split3.EO2" Destination="split4.EI" dx1="44.444443" />
+          <Connection Source="split3.EO1" Destination="ws4_3.CLK" dx1="244.44443" dx2="5.5555553" dy="-3227.7776" />
+          <Connection Source="split4.EO2" Destination="split5.EI" dx1="55.555553" />
+          <Connection Source="split4.EO1" Destination="ws4_5.CLK" dx1="27.777777" dx2="161.1111" dy="-3333.3333" />
+          <Connection Source="ws4_op_unload.INITO" Destination="upd.INIT" dx1="361.11108" />
+          <Connection Source="upd.IND" Destination="split1.EI" dx1="316.66666" />
+          <Connection Source="split5.EO2" Destination="ws4_pos.REQ" dx1="2422.2222" />
+          <Connection Source="split5.EO1" Destination="ws4_4.CLK" dx1="27.777777" dx2="5.5555553" dy="-3699.9998" />
+          <Connection Source="sync3_4.CNF" Destination="ws4_3.UNLD" dx1="111.11111" />
+          <Connection Source="sync3_4.CNF" Destination="ws4_4.LOAD" dx1="27.777777" dx2="0.0" dy="-600.0" />
+          <Connection Source="split4.EO1" Destination="sync4_5.REQ" dx1="27.777777" dx2="5.5555553" dy="-3333.3333" />
+          <Connection Source="sync4_5.CNF" Destination="ws4_4.UNLD" dx1="27.777777" dx2="0.0" dy="-1749.9999" />
+          <Connection Source="sync4_5.CNF" Destination="ws4_5.LOAD" dx1="27.777777" dx2="83.33333" dy="-1749.9999" />
+          <Connection Source="split3.EO1" Destination="sync3_4.REQ" dx1="27.777777" dx2="5.5555553" dy="-3211.111" />
+          <Connection Source="split1.EO1" Destination="sync1_2.REQ" dx1="1677.7777" />
+          <Connection Source="sync1_2.CNF" Destination="ws4_2.LOAD" dx1="55.555553" />
+          <Connection Source="sync1_2.CNF" Destination="ws4_1.UNLD" dx1="83.33333" />
+          <Connection Source="split2.EO1" Destination="sync2_3.REQ" dx1="1183.3333" />
+          <Connection Source="sync2_3.CNF" Destination="ws4_3.LOAD" dx1="27.777777" dx2="0.0" dy="-716.6666" />
+          <Connection Source="sync2_3.CNF" Destination="ws4_2.UNLD" dx1="150.0" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="ws4_1.POS" Destination="ws4_pos.SD_1" dx1="622.22217" />
+          <Connection Source="ws4_2.POS" Destination="ws4_pos.SD_2" dx1="822.22217" />
+          <Connection Source="ws4_3.POS" Destination="ws4_pos.SD_3" dx1="2550.0" />
+          <Connection Source="ws4_4.POS" Destination="ws4_pos.SD_4" dx1="4200.0" />
+          <Connection Source="ws4_5.POS" Destination="ws4_pos.SD_5" dx1="4405.555" />
+          <Connection Source="ws4_1.STYLO" Destination="ws4_sty.SD_1" dx1="627.7778" />
+          <Connection Source="ws4_2.STYLO" Destination="ws4_sty.SD_2" dx1="788.88885" />
+          <Connection Source="ws4_3.STYLO" Destination="ws4_sty.SD_3" dx1="2472.2222" />
+          <Connection Source="ws4_4.STYLO" Destination="ws4_sty.SD_4" dx1="4083.3333" />
+          <Connection Source="ws4_5.STYLO" Destination="ws4_sty.SD_5" dx1="4488.8887" />
+          <Connection Source="ws4_motors.RD_2" Destination="ws4_2.MTR_ON" dx1="1877.7777" />
+          <Connection Source="ws4_motors.RD_3" Destination="ws4_3.MTR_ON" dx1="1122.2222" />
+          <Connection Source="ws4_motors.RD_4" Destination="ws4_4.MTR_ON" dx1="350.0" />
+          <Connection Source="ws4_motors.RD_5" Destination="ws4_5.MTR_ON" dx1="577.7778" />
+          <Connection Source="ws4_3.END" Destination="sync3_4.END1" dx1="27.777777" dx2="11.111111" dy="4094.4443" />
+          <Connection Source="ws4_motors.RD_3" Destination="sync3_4.MOTOR1" dx1="800.0" />
+          <Connection Source="ws4_motors.RD_4" Destination="sync3_4.MOTOR2" dx1="838.88885" />
+          <Connection Source="ws4_4.STYLO" Destination="sync3_4.STYLE2" dx1="633.3333" />
+          <Connection Source="ws4_motors.RD_1" Destination="ws4_1.MTR_ON" dx1="3555.5554" />
+          <Connection Source="ws4_4.END" Destination="sync4_5.END1" dx1="27.777777" dx2="11.111111" dy="4155.555" />
+          <Connection Source="ws4_motors.RD_4" Destination="sync4_5.MOTOR1" dx1="666.6666" />
+          <Connection Source="ws4_motors.RD_5" Destination="sync4_5.MOTOR2" dx1="650.0" />
+          <Connection Source="ws4_5.STYLO" Destination="sync4_5.STYLE2" dx1="27.777777" dx2="5.5555553" dy="416.66666" />
+          <Connection Source="ws4_1.END" Destination="sync1_2.END1" dx1="27.777777" dx2="527.7778" dy="1783.3333" />
+          <Connection Source="ws4_motors.RD_1" Destination="sync1_2.MOTOR1" dx1="3233.3333" />
+          <Connection Source="ws4_motors.RD_2" Destination="sync1_2.MOTOR2" dx1="3144.4443" />
+          <Connection Source="ws4_2.STYLO" Destination="sync1_2.STYLE2" dx1="27.777777" dx2="150.0" dy="3888.8887" />
+          <Connection Source="ws4_motors.RD_2" Destination="sync2_3.MOTOR1" dx1="1522.2222" />
+          <Connection Source="ws4_motors.RD_3" Destination="sync2_3.MOTOR2" dx1="1600.0" />
+          <Connection Source="ws4_3.STYLO" Destination="sync2_3.STYLE2" dx1="650.0" />
+          <Connection Source="ws4_2.END" Destination="sync2_3.END1" dx1="27.777777" dx2="11.111111" dy="4111.111" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+    <Resource Name="WS1_model" Type="PANEL_RESOURCE" x="655.55554" y="422.2222" >
+      <FBNetwork >
+        <FB Name="ws1_1" Type="CNV_MDL" x="6138.8887" y="2455.5554" >
+          <Parameter Name="WKPC" Value="[255,255,0]" />
+          <Parameter Name="STYLE" Value="VSTYLE#PALLET" />
+          <Parameter Name="VF" Value="10" />
+        </FB>
+        <FB Name="ws1_2" Type="CNV_MDL" x="6166.6665" y="150.0" >
+          <Parameter Name="WKPC" Value="[255,255,0]" />
+          <Parameter Name="STYLE" Value="VSTYLE#PALLET" />
+          <Parameter Name="VF" Value="10" />
+        </FB>
+        <FB Name="ws1_3" Type="CNV_MDL" x="3877.7776" y="166.66666" >
+          <Parameter Name="VF" Value="10" />
+          <Parameter Name="STYLE" Value="VSTYLE#PALLET" />
+          <Parameter Name="WKPC" Value="[255,255,0]" />
+        </FB>
+        <FB Name="ws1_4" Type="CNV_MDL" x="1761.1111" y="105.55555" >
+          <Parameter Name="VF" Value="10" />
+          <Parameter Name="STYLE" Value="VSTYLE#PALLET" />
+          <Parameter Name="WKPC" Value="[255,255,0]" />
+        </FB>
+        <FB Name="ws1_5" Type="CNV_MDL" x="1833.3333" y="3588.8887" >
+          <Parameter Name="WKPC" Value="[255,255,0]" />
+          <Parameter Name="STYLE" Value="VSTYLE#PALLET" />
+          <Parameter Name="VF" Value="10" />
+        </FB>
+        <FB Name="ws1_pos" Type="PUBL_5" x="7655.555" y="194.44444" />
+        <FB Name="ws1_sty" Type="PUBL_5" x="7633.333" y="2527.7776" />
+        <FB Name="ws1_motors" Type="SUBL_5" x="550.0" y="933.3333" />
+        <FB Name="ws1_op_load" Type="SUBL_0" x="488.88885" y="2172.2222" />
+        <FB Name="ws1_op_unload" Type="SUBL_0" x="488.88885" y="2994.4443" />
+        <FB Name="split5" Type="E_SPLIT" x="4022.2222" y="3577.7776" />
+        <FB Name="split4" Type="E_SPLIT" x="3599.9998" y="3222.2222" />
+        <FB Name="split3" Type="E_SPLIT" x="3222.2222" y="3100.0" />
+        <FB Name="split2" Type="E_SPLIT" x="2777.7776" y="2916.6665" />
+        <FB Name="split1" Type="E_SPLIT" x="2300.0" y="2561.111" />
+        <FB Name="upd" Type="SUBL_0" x="1405.5555" y="2522.2222" />
+        <FB Name="sync1_2" Type="ConvSync" x="5661.111" y="1661.1111" >
+          <Parameter Name="STYLE1" Value="VSTYLE#NONE" />
+        </FB>
+        <FB Name="sync2_3" Type="ConvSync" x="5161.111" y="650.0" >
+          <Parameter Name="STYLE1" Value="VSTYLE#NONE" />
+        </FB>
+        <FB Name="sync4_5" Type="ConvSync" x="1955.5554" y="1666.6666" >
+          <Parameter Name="STYLE1" Value="VSTYLE#NONE" />
+        </FB>
+        <FB Name="sync3_4" Type="ConvSync" x="3011.111" y="538.88885" >
+          <Parameter Name="STYLE1" Value="VSTYLE#NONE" />
+        </FB>
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="ws1_motors.INIT" dx1="155.55554" />
+          <Connection Source="ws1_motors.INITO" Destination="ws1_pos.INIT" dx1="1777.7777" />
+          <Connection Source="ws1_pos.INITO" Destination="ws1_sty.INIT" dx1="27.777777" dx2="0.0" dy="-249.99998" />
+          <Connection Source="ws1_sty.INITO" Destination="ws1_op_load.INIT" dx1="27.777777" dx2="5.5555553" dy="-2627.7776" />
+          <Connection Source="ws1_op_load.INITO" Destination="ws1_op_unload.INIT" dx1="27.777777" dx2="0.0" dy="-2266.6665" />
+          <Connection Source="ws1_op_load.IND" Destination="ws1_3.LOAD" dx1="1494.4443" />
+          <Connection Source="ws1_op_unload.IND" Destination="ws1_3.UNLD" dx1="1916.6666" />
+          <Connection Source="ws1_pos.CNF" Destination="ws1_sty.REQ" dx1="27.777777" dx2="0.0" dy="-366.66666" />
+          <Connection Source="split1.EO2" Destination="split2.EI" dx1="100.0" />
+          <Connection Source="split1.EO1" Destination="ws1_1.CLK" dx1="1938.8888" />
+          <Connection Source="split2.EO2" Destination="split3.EI" dx1="72.22222" />
+          <Connection Source="split2.EO1" Destination="ws1_2.CLK" dx1="1844.4443" />
+          <Connection Source="split3.EO2" Destination="split4.EI" dx1="44.444443" />
+          <Connection Source="split3.EO1" Destination="ws1_3.CLK" dx1="244.44443" dx2="5.5555553" dy="-3227.7776" />
+          <Connection Source="split4.EO2" Destination="split5.EI" dx1="55.555553" />
+          <Connection Source="split4.EO1" Destination="ws1_5.CLK" dx1="27.777777" dx2="161.1111" dy="-3333.3333" />
+          <Connection Source="ws1_op_unload.INITO" Destination="upd.INIT" dx1="361.11108" />
+          <Connection Source="upd.IND" Destination="split1.EI" dx1="316.66666" />
+          <Connection Source="split5.EO2" Destination="ws1_pos.REQ" dx1="2422.2222" />
+          <Connection Source="split5.EO1" Destination="ws1_4.CLK" dx1="27.777777" dx2="5.5555553" dy="-3699.9998" />
+          <Connection Source="sync3_4.CNF" Destination="ws1_3.UNLD" dx1="111.11111" />
+          <Connection Source="sync3_4.CNF" Destination="ws1_4.LOAD" dx1="27.777777" dx2="0.0" dy="-600.0" />
+          <Connection Source="split4.EO1" Destination="sync4_5.REQ" dx1="27.777777" dx2="5.5555553" dy="-3333.3333" />
+          <Connection Source="sync4_5.CNF" Destination="ws1_4.UNLD" dx1="27.777777" dx2="0.0" dy="-1749.9999" />
+          <Connection Source="sync4_5.CNF" Destination="ws1_5.LOAD" dx1="27.777777" dx2="83.33333" dy="-1749.9999" />
+          <Connection Source="split3.EO1" Destination="sync3_4.REQ" dx1="27.777777" dx2="5.5555553" dy="-3211.111" />
+          <Connection Source="split1.EO1" Destination="sync1_2.REQ" dx1="1677.7777" />
+          <Connection Source="sync1_2.CNF" Destination="ws1_2.LOAD" dx1="55.555553" />
+          <Connection Source="sync1_2.CNF" Destination="ws1_1.UNLD" dx1="83.33333" />
+          <Connection Source="split2.EO1" Destination="sync2_3.REQ" dx1="1183.3333" />
+          <Connection Source="sync2_3.CNF" Destination="ws1_3.LOAD" dx1="27.777777" dx2="0.0" dy="-716.6666" />
+          <Connection Source="sync2_3.CNF" Destination="ws1_2.UNLD" dx1="150.0" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="ws1_1.POS" Destination="ws1_pos.SD_1" dx1="622.22217" />
+          <Connection Source="ws1_2.POS" Destination="ws1_pos.SD_2" dx1="822.22217" />
+          <Connection Source="ws1_3.POS" Destination="ws1_pos.SD_3" dx1="2550.0" />
+          <Connection Source="ws1_4.POS" Destination="ws1_pos.SD_4" dx1="4200.0" />
+          <Connection Source="ws1_5.POS" Destination="ws1_pos.SD_5" dx1="4405.555" />
+          <Connection Source="ws1_1.STYLO" Destination="ws1_sty.SD_1" dx1="627.7778" />
+          <Connection Source="ws1_2.STYLO" Destination="ws1_sty.SD_2" dx1="788.88885" />
+          <Connection Source="ws1_3.STYLO" Destination="ws1_sty.SD_3" dx1="2472.2222" />
+          <Connection Source="ws1_4.STYLO" Destination="ws1_sty.SD_4" dx1="4083.3333" />
+          <Connection Source="ws1_5.STYLO" Destination="ws1_sty.SD_5" dx1="4488.8887" />
+          <Connection Source="ws1_motors.RD_2" Destination="ws1_2.MTR_ON" dx1="1877.7777" />
+          <Connection Source="ws1_motors.RD_3" Destination="ws1_3.MTR_ON" dx1="1122.2222" />
+          <Connection Source="ws1_motors.RD_4" Destination="ws1_4.MTR_ON" dx1="350.0" />
+          <Connection Source="ws1_motors.RD_5" Destination="ws1_5.MTR_ON" dx1="577.7778" />
+          <Connection Source="ws1_3.END" Destination="sync3_4.END1" dx1="27.777777" dx2="11.111111" dy="4094.4443" />
+          <Connection Source="ws1_motors.RD_3" Destination="sync3_4.MOTOR1" dx1="800.0" />
+          <Connection Source="ws1_motors.RD_4" Destination="sync3_4.MOTOR2" dx1="838.88885" />
+          <Connection Source="ws1_4.STYLO" Destination="sync3_4.STYLE2" dx1="633.3333" />
+          <Connection Source="ws1_motors.RD_1" Destination="ws1_1.MTR_ON" dx1="3555.5554" />
+          <Connection Source="ws1_4.END" Destination="sync4_5.END1" dx1="27.777777" dx2="11.111111" dy="4155.555" />
+          <Connection Source="ws1_motors.RD_4" Destination="sync4_5.MOTOR1" dx1="666.6666" />
+          <Connection Source="ws1_motors.RD_5" Destination="sync4_5.MOTOR2" dx1="650.0" />
+          <Connection Source="ws1_5.STYLO" Destination="sync4_5.STYLE2" dx1="27.777777" dx2="5.5555553" dy="416.66666" />
+          <Connection Source="ws1_1.END" Destination="sync1_2.END1" dx1="27.777777" dx2="527.7778" dy="1783.3333" />
+          <Connection Source="ws1_motors.RD_1" Destination="sync1_2.MOTOR1" dx1="3233.3333" />
+          <Connection Source="ws1_motors.RD_2" Destination="sync1_2.MOTOR2" dx1="3144.4443" />
+          <Connection Source="ws1_2.STYLO" Destination="sync1_2.STYLE2" dx1="27.777777" dx2="150.0" dy="3888.8887" />
+          <Connection Source="ws1_motors.RD_2" Destination="sync2_3.MOTOR1" dx1="1522.2222" />
+          <Connection Source="ws1_motors.RD_3" Destination="sync2_3.MOTOR2" dx1="1600.0" />
+          <Connection Source="ws1_3.STYLO" Destination="sync2_3.STYLE2" dx1="650.0" />
+          <Connection Source="ws1_2.END" Destination="sync2_3.END1" dx1="27.777777" dx2="11.111111" dy="4111.111" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+    <Resource Name="WS3_model" Type="PANEL_RESOURCE" x="655.55554" y="422.2222" >
+      <FBNetwork >
+        <FB Name="ws3_1" Type="CNV_MDL" x="6138.8887" y="2455.5554" >
+          <Parameter Name="WKPC" Value="[255,255,0]" />
+          <Parameter Name="STYLE" Value="VSTYLE#PALLET" />
+          <Parameter Name="VF" Value="10" />
+        </FB>
+        <FB Name="ws3_2" Type="CNV_MDL" x="6166.6665" y="150.0" >
+          <Parameter Name="WKPC" Value="[255,255,0]" />
+          <Parameter Name="STYLE" Value="VSTYLE#PALLET" />
+          <Parameter Name="VF" Value="10" />
+        </FB>
+        <FB Name="ws3_3" Type="CNV_MDL" x="3877.7776" y="166.66666" >
+          <Parameter Name="VF" Value="10" />
+          <Parameter Name="STYLE" Value="VSTYLE#PALLET" />
+          <Parameter Name="WKPC" Value="[255,255,0]" />
+        </FB>
+        <FB Name="ws3_4" Type="CNV_MDL" x="1761.1111" y="105.55555" >
+          <Parameter Name="VF" Value="10" />
+          <Parameter Name="STYLE" Value="VSTYLE#PALLET" />
+          <Parameter Name="WKPC" Value="[255,255,0]" />
+        </FB>
+        <FB Name="ws3_5" Type="CNV_MDL" x="1833.3333" y="3588.8887" >
+          <Parameter Name="WKPC" Value="[255,255,0]" />
+          <Parameter Name="STYLE" Value="VSTYLE#PALLET" />
+          <Parameter Name="VF" Value="10" />
+        </FB>
+        <FB Name="ws3_pos" Type="PUBL_5" x="7655.555" y="194.44444" />
+        <FB Name="ws3_sty" Type="PUBL_5" x="7633.333" y="2527.7776" />
+        <FB Name="ws3_motors" Type="SUBL_5" x="550.0" y="933.3333" />
+        <FB Name="ws3_op_load" Type="SUBL_0" x="488.88885" y="2172.2222" />
+        <FB Name="ws3_op_unload" Type="SUBL_0" x="488.88885" y="2994.4443" />
+        <FB Name="split5" Type="E_SPLIT" x="4022.2222" y="3577.7776" />
+        <FB Name="split4" Type="E_SPLIT" x="3599.9998" y="3222.2222" />
+        <FB Name="split3" Type="E_SPLIT" x="3222.2222" y="3100.0" />
+        <FB Name="split2" Type="E_SPLIT" x="2777.7776" y="2916.6665" />
+        <FB Name="split1" Type="E_SPLIT" x="2300.0" y="2561.111" />
+        <FB Name="upd" Type="SUBL_0" x="1405.5555" y="2522.2222" />
+        <FB Name="sync1_2" Type="ConvSync" x="5661.111" y="1661.1111" >
+          <Parameter Name="STYLE1" Value="VSTYLE#NONE" />
+        </FB>
+        <FB Name="sync2_3" Type="ConvSync" x="5161.111" y="650.0" >
+          <Parameter Name="STYLE1" Value="VSTYLE#NONE" />
+        </FB>
+        <FB Name="sync4_5" Type="ConvSync" x="1955.5554" y="1666.6666" >
+          <Parameter Name="STYLE1" Value="VSTYLE#NONE" />
+        </FB>
+        <FB Name="sync3_4" Type="ConvSync" x="3011.111" y="538.88885" >
+          <Parameter Name="STYLE1" Value="VSTYLE#NONE" />
+        </FB>
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="ws3_motors.INIT" dx1="155.55554" />
+          <Connection Source="ws3_motors.INITO" Destination="ws3_pos.INIT" dx1="1777.7777" />
+          <Connection Source="ws3_pos.INITO" Destination="ws3_sty.INIT" dx1="27.777777" dx2="0.0" dy="-249.99998" />
+          <Connection Source="ws3_sty.INITO" Destination="ws3_op_load.INIT" dx1="27.777777" dx2="5.5555553" dy="-2627.7776" />
+          <Connection Source="ws3_op_load.INITO" Destination="ws3_op_unload.INIT" dx1="27.777777" dx2="0.0" dy="-2266.6665" />
+          <Connection Source="ws3_op_load.IND" Destination="ws3_3.LOAD" dx1="1494.4443" />
+          <Connection Source="ws3_op_unload.IND" Destination="ws3_3.UNLD" dx1="1916.6666" />
+          <Connection Source="ws3_pos.CNF" Destination="ws3_sty.REQ" dx1="27.777777" dx2="0.0" dy="-366.66666" />
+          <Connection Source="split1.EO2" Destination="split2.EI" dx1="100.0" />
+          <Connection Source="split1.EO1" Destination="ws3_1.CLK" dx1="1938.8888" />
+          <Connection Source="split2.EO2" Destination="split3.EI" dx1="72.22222" />
+          <Connection Source="split2.EO1" Destination="ws3_2.CLK" dx1="1844.4443" />
+          <Connection Source="split3.EO2" Destination="split4.EI" dx1="44.444443" />
+          <Connection Source="split3.EO1" Destination="ws3_3.CLK" dx1="244.44443" dx2="5.5555553" dy="-3227.7776" />
+          <Connection Source="split4.EO2" Destination="split5.EI" dx1="55.555553" />
+          <Connection Source="split4.EO1" Destination="ws3_5.CLK" dx1="27.777777" dx2="161.1111" dy="-3333.3333" />
+          <Connection Source="ws3_op_unload.INITO" Destination="upd.INIT" dx1="361.11108" />
+          <Connection Source="upd.IND" Destination="split1.EI" dx1="316.66666" />
+          <Connection Source="split5.EO2" Destination="ws3_pos.REQ" dx1="2422.2222" />
+          <Connection Source="split5.EO1" Destination="ws3_4.CLK" dx1="27.777777" dx2="5.5555553" dy="-3699.9998" />
+          <Connection Source="sync3_4.CNF" Destination="ws3_3.UNLD" dx1="111.11111" />
+          <Connection Source="sync3_4.CNF" Destination="ws3_4.LOAD" dx1="27.777777" dx2="0.0" dy="-600.0" />
+          <Connection Source="split4.EO1" Destination="sync4_5.REQ" dx1="27.777777" dx2="5.5555553" dy="-3333.3333" />
+          <Connection Source="sync4_5.CNF" Destination="ws3_4.UNLD" dx1="27.777777" dx2="0.0" dy="-1749.9999" />
+          <Connection Source="sync4_5.CNF" Destination="ws3_5.LOAD" dx1="27.777777" dx2="83.33333" dy="-1749.9999" />
+          <Connection Source="split3.EO1" Destination="sync3_4.REQ" dx1="27.777777" dx2="5.5555553" dy="-3211.111" />
+          <Connection Source="split1.EO1" Destination="sync1_2.REQ" dx1="1677.7777" />
+          <Connection Source="sync1_2.CNF" Destination="ws3_2.LOAD" dx1="55.555553" />
+          <Connection Source="sync1_2.CNF" Destination="ws3_1.UNLD" dx1="83.33333" />
+          <Connection Source="split2.EO1" Destination="sync2_3.REQ" dx1="1183.3333" />
+          <Connection Source="sync2_3.CNF" Destination="ws3_2.UNLD" dx1="150.0" />
+          <Connection Source="sync2_3.CNF" Destination="ws3_3.LOAD" dx1="27.777777" dx2="0.0" dy="-716.6666" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="ws3_1.POS" Destination="ws3_pos.SD_1" dx1="622.22217" />
+          <Connection Source="ws3_2.POS" Destination="ws3_pos.SD_2" dx1="822.22217" />
+          <Connection Source="ws3_3.POS" Destination="ws3_pos.SD_3" dx1="2550.0" />
+          <Connection Source="ws3_4.POS" Destination="ws3_pos.SD_4" dx1="4200.0" />
+          <Connection Source="ws3_5.POS" Destination="ws3_pos.SD_5" dx1="4405.555" />
+          <Connection Source="ws3_1.STYLO" Destination="ws3_sty.SD_1" dx1="627.7778" />
+          <Connection Source="ws3_2.STYLO" Destination="ws3_sty.SD_2" dx1="788.88885" />
+          <Connection Source="ws3_3.STYLO" Destination="ws3_sty.SD_3" dx1="2472.2222" />
+          <Connection Source="ws3_4.STYLO" Destination="ws3_sty.SD_4" dx1="4083.3333" />
+          <Connection Source="ws3_5.STYLO" Destination="ws3_sty.SD_5" dx1="4488.8887" />
+          <Connection Source="ws3_motors.RD_2" Destination="ws3_2.MTR_ON" dx1="1877.7777" />
+          <Connection Source="ws3_motors.RD_3" Destination="ws3_3.MTR_ON" dx1="1122.2222" />
+          <Connection Source="ws3_motors.RD_4" Destination="ws3_4.MTR_ON" dx1="350.0" />
+          <Connection Source="ws3_motors.RD_5" Destination="ws3_5.MTR_ON" dx1="577.7778" />
+          <Connection Source="ws3_3.END" Destination="sync3_4.END1" dx1="27.777777" dx2="11.111111" dy="4094.4443" />
+          <Connection Source="ws3_motors.RD_3" Destination="sync3_4.MOTOR1" dx1="800.0" />
+          <Connection Source="ws3_motors.RD_4" Destination="sync3_4.MOTOR2" dx1="838.88885" />
+          <Connection Source="ws3_4.STYLO" Destination="sync3_4.STYLE2" dx1="633.3333" />
+          <Connection Source="ws3_motors.RD_1" Destination="ws3_1.MTR_ON" dx1="3555.5554" />
+          <Connection Source="ws3_4.END" Destination="sync4_5.END1" dx1="27.777777" dx2="11.111111" dy="4155.555" />
+          <Connection Source="ws3_motors.RD_4" Destination="sync4_5.MOTOR1" dx1="666.6666" />
+          <Connection Source="ws3_motors.RD_5" Destination="sync4_5.MOTOR2" dx1="650.0" />
+          <Connection Source="ws3_5.STYLO" Destination="sync4_5.STYLE2" dx1="27.777777" dx2="5.5555553" dy="416.66666" />
+          <Connection Source="ws3_1.END" Destination="sync1_2.END1" dx1="27.777777" dx2="527.7778" dy="1783.3333" />
+          <Connection Source="ws3_motors.RD_1" Destination="sync1_2.MOTOR1" dx1="3233.3333" />
+          <Connection Source="ws3_motors.RD_2" Destination="sync1_2.MOTOR2" dx1="3144.4443" />
+          <Connection Source="ws3_2.STYLO" Destination="sync1_2.STYLE2" dx1="27.777777" dx2="150.0" dy="3888.8887" />
+          <Connection Source="ws3_motors.RD_2" Destination="sync2_3.MOTOR1" dx1="1522.2222" />
+          <Connection Source="ws3_motors.RD_3" Destination="sync2_3.MOTOR2" dx1="1600.0" />
+          <Connection Source="ws3_3.STYLO" Destination="sync2_3.STYLE2" dx1="650.0" />
+          <Connection Source="ws3_2.END" Destination="sync2_3.END1" dx1="27.777777" dx2="11.111111" dy="4111.111" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+    <Resource Name="ML1_model" Type="PANEL_RESOURCE" x="655.55554" y="422.2222" >
+      <FBNetwork >
+        <FB Name="ws3_1" Type="CNV_MDL" x="6138.8887" y="2455.5554" >
+          <Parameter Name="WKPC" Value="[255,255,0]" />
+          <Parameter Name="STYLE" Value="VSTYLE#PALLET" />
+          <Parameter Name="VF" Value="10" />
+        </FB>
+        <FB Name="ws3_2" Type="CNV_MDL" x="6166.6665" y="150.0" >
+          <Parameter Name="WKPC" Value="[255,255,0]" />
+          <Parameter Name="STYLE" Value="VSTYLE#PALLET" />
+          <Parameter Name="VF" Value="10" />
+        </FB>
+        <FB Name="ws3_3" Type="CNV_MDL" x="3983.3333" y="150.0" >
+          <Parameter Name="VF" Value="10" />
+          <Parameter Name="STYLE" Value="VSTYLE#PALLET" />
+          <Parameter Name="WKPC" Value="[255,255,0]" />
+        </FB>
+        <FB Name="ws3_4" Type="CNV_MDL" x="1761.1111" y="105.55555" >
+          <Parameter Name="VF" Value="10" />
+          <Parameter Name="STYLE" Value="VSTYLE#PALLET" />
+          <Parameter Name="WKPC" Value="[255,255,0]" />
+        </FB>
+        <FB Name="ws3_5" Type="CNV_MDL" x="1833.3333" y="3588.8887" >
+          <Parameter Name="WKPC" Value="[255,255,0]" />
+          <Parameter Name="STYLE" Value="VSTYLE#PALLET" />
+          <Parameter Name="VF" Value="10" />
+        </FB>
+        <FB Name="ml1_pos" Type="PUBL_5" x="7655.555" y="194.44444" />
+        <FB Name="ml1_sty" Type="PUBL_5" x="7633.333" y="2527.7776" />
+        <FB Name="ml1_motors" Type="SUBL_5" x="550.0" y="933.3333" />
+        <FB Name="split5" Type="E_SPLIT" x="4022.2222" y="3577.7776" />
+        <FB Name="split4" Type="E_SPLIT" x="3599.9998" y="3222.2222" />
+        <FB Name="split3" Type="E_SPLIT" x="3222.2222" y="3100.0" />
+        <FB Name="split2" Type="E_SPLIT" x="2777.7776" y="2916.6665" />
+        <FB Name="split1" Type="E_SPLIT" x="2300.0" y="2561.111" />
+        <FB Name="upd" Type="SUBL_0" x="1155.5555" y="2661.111" />
+        <FB Name="sync_prev_1" Type="ConvSync" x="5416.6665" y="3611.111" >
+          <Parameter Name="STYLE1" Value="VSTYLE#NONE" />
+        </FB>
+        <FB Name="sync1_2" Type="ConvSync" x="5661.111" y="1661.1111" >
+          <Parameter Name="STYLE1" Value="VSTYLE#NONE" />
+        </FB>
+        <FB Name="sync2_3" Type="ConvSync" x="5161.111" y="650.0" >
+          <Parameter Name="STYLE1" Value="VSTYLE#NONE" />
+        </FB>
+        <FB Name="sync4_5" Type="ConvSync" x="1955.5554" y="1666.6666" >
+          <Parameter Name="STYLE1" Value="VSTYLE#NONE" />
+        </FB>
+        <FB Name="ml1_out1" Type="PUBL_2" x="7583.333" y="4055.5554" />
+        <FB Name="ws2_in" Type="SUBL_0" x="3122.2222" y="1550.0" />
+        <FB Name="ws2_out" Type="SUBL_2" x="4638.8887" y="3405.5554" />
+        <FB Name="ml1_in1" Type="PUBL_0" x="5911.111" y="4011.1108" />
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="ml1_motors.INIT" dx1="155.55554" />
+          <Connection Source="ml1_motors.INITO" Destination="ml1_pos.INIT" dx1="1777.7777" />
+          <Connection Source="ml1_pos.INITO" Destination="ml1_sty.INIT" dx1="27.777777" />
+          <Connection Source="ml1_pos.CNF" Destination="ml1_sty.REQ" dx1="27.777777" />
+          <Connection Source="split1.EO2" Destination="split2.EI" dx1="100.0" />
+          <Connection Source="split1.EO1" Destination="ws3_1.CLK" dx1="1938.8888" />
+          <Connection Source="split2.EO2" Destination="split3.EI" dx1="72.22222" />
+          <Connection Source="split2.EO1" Destination="ws3_2.CLK" dx1="1844.4443" />
+          <Connection Source="split3.EO2" Destination="split4.EI" dx1="44.444443" />
+          <Connection Source="split3.EO1" Destination="ws3_3.CLK" dx1="244.44443" dx2="5.5555553" dy="-3227.7776" />
+          <Connection Source="split4.EO2" Destination="split5.EI" dx1="55.555553" />
+          <Connection Source="split4.EO1" Destination="ws3_5.CLK" dx1="27.777777" dx2="161.1111" dy="-3333.3333" />
+          <Connection Source="upd.IND" Destination="split1.EI" dx1="316.66666" />
+          <Connection Source="split5.EO2" Destination="ml1_pos.REQ" dx1="2422.2222" />
+          <Connection Source="split5.EO1" Destination="ws3_4.CLK" dx1="27.777777" dx2="5.5555553" dy="-3699.9998" />
+          <Connection Source="split4.EO1" Destination="sync4_5.REQ" dx1="27.777777" dx2="5.5555553" dy="-3333.3333" />
+          <Connection Source="sync4_5.CNF" Destination="ws3_4.UNLD" dx1="27.777777" />
+          <Connection Source="sync4_5.CNF" Destination="ws3_5.LOAD" dx1="27.777777" dx2="83.33333" dy="-1749.9999" />
+          <Connection Source="split1.EO1" Destination="sync1_2.REQ" dx1="1677.7777" />
+          <Connection Source="sync1_2.CNF" Destination="ws3_2.LOAD" dx1="55.555553" />
+          <Connection Source="sync1_2.CNF" Destination="ws3_1.UNLD" dx1="83.33333" />
+          <Connection Source="split2.EO1" Destination="sync2_3.REQ" dx1="1183.3333" />
+          <Connection Source="ml1_sty.INITO" Destination="ml1_out1.INIT" dx1="27.777777" dx2="5.5555553" dy="-2627.7776" />
+          <Connection Source="ml1_sty.CNF" Destination="ml1_out1.REQ" dx1="27.777777" dx2="5.5555553" dy="-2738.8887" />
+          <Connection Source="ws2_in.IND" Destination="ws3_3.UNLD" dx1="183.33333" />
+          <Connection Source="sync2_3.CNF" Destination="ws3_2.UNLD" dx1="150.0" />
+          <Connection Source="sync2_3.CNF" Destination="ws3_3.LOAD" dx1="27.777777" dx2="50.0" dy="-716.6666" />
+          <Connection Source="ml1_out1.INITO" Destination="ws2_in.INIT" dx1="27.777777" dx2="5.5555553" dy="-4183.333" />
+          <Connection Source="ws2_out.IND" Destination="sync_prev_1.REQ" dx1="77.77777" />
+          <Connection Source="ml1_motors.INITO" Destination="upd.INIT" dx1="222.22221" />
+          <Connection Source="upd.INITO" Destination="ws2_out.INIT" dx1="2877.7776" />
+          <Connection Source="ws2_out.INITO" Destination="ml1_in1.INIT" dx1="244.44443" />
+          <Connection Source="sync_prev_1.CNF" Destination="ml1_in1.REQ" dx1="27.777777" dx2="5.5555553" dy="-3749.9998" />
+          <Connection Source="sync_prev_1.CNF" Destination="ws3_1.LOAD" dx1="27.777777" dx2="5.5555553" dy="-3749.9998" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="ws3_1.POS" Destination="ml1_pos.SD_1" dx1="622.22217" />
+          <Connection Source="ws3_2.POS" Destination="ml1_pos.SD_2" dx1="822.22217" />
+          <Connection Source="ws3_3.POS" Destination="ml1_pos.SD_3" dx1="2550.0" />
+          <Connection Source="ws3_4.POS" Destination="ml1_pos.SD_4" dx1="4200.0" />
+          <Connection Source="ws3_5.POS" Destination="ml1_pos.SD_5" dx1="4405.555" />
+          <Connection Source="ws3_1.STYLO" Destination="ml1_sty.SD_1" dx1="627.7778" />
+          <Connection Source="ws3_2.STYLO" Destination="ml1_sty.SD_2" dx1="788.88885" />
+          <Connection Source="ws3_3.STYLO" Destination="ml1_sty.SD_3" dx1="2472.2222" />
+          <Connection Source="ws3_4.STYLO" Destination="ml1_sty.SD_4" dx1="4083.3333" />
+          <Connection Source="ws3_5.STYLO" Destination="ml1_sty.SD_5" dx1="4488.8887" />
+          <Connection Source="ml1_motors.RD_2" Destination="ws3_2.MTR_ON" dx1="1877.7777" />
+          <Connection Source="ml1_motors.RD_3" Destination="ws3_3.MTR_ON" dx1="1122.2222" />
+          <Connection Source="ml1_motors.RD_4" Destination="ws3_4.MTR_ON" dx1="350.0" />
+          <Connection Source="ml1_motors.RD_5" Destination="ws3_5.MTR_ON" dx1="577.7778" />
+          <Connection Source="ml1_motors.RD_1" Destination="ws3_1.MTR_ON" dx1="3555.5554" />
+          <Connection Source="ws3_4.END" Destination="sync4_5.END1" dx1="27.777777" dx2="11.111111" dy="4155.555" />
+          <Connection Source="ml1_motors.RD_4" Destination="sync4_5.MOTOR1" dx1="666.6666" />
+          <Connection Source="ml1_motors.RD_5" Destination="sync4_5.MOTOR2" dx1="650.0" />
+          <Connection Source="ws3_5.STYLO" Destination="sync4_5.STYLE2" dx1="27.777777" dx2="5.5555553" dy="416.66666" />
+          <Connection Source="ws3_1.END" Destination="sync1_2.END1" dx1="27.777777" dx2="433.3333" dy="1783.3333" />
+          <Connection Source="ml1_motors.RD_1" Destination="sync1_2.MOTOR1" dx1="3233.3333" />
+          <Connection Source="ml1_motors.RD_2" Destination="sync1_2.MOTOR2" dx1="3144.4443" />
+          <Connection Source="ws3_2.STYLO" Destination="sync1_2.STYLE2" dx1="27.777777" dx2="150.0" dy="3888.8887" />
+          <Connection Source="ml1_motors.RD_2" Destination="sync2_3.MOTOR1" dx1="1522.2222" />
+          <Connection Source="ml1_motors.RD_3" Destination="sync2_3.MOTOR2" dx1="1600.0" />
+          <Connection Source="ws3_3.STYLO" Destination="sync2_3.STYLE2" dx1="650.0" />
+          <Connection Source="ws3_2.END" Destination="sync2_3.END1" dx1="27.777777" dx2="11.111111" dy="4111.111" />
+          <Connection Source="ml1_motors.RD_1" Destination="sync_prev_1.MOTOR1" dx1="2977.7776" />
+          <Connection Source="ws2_out.RD_1" Destination="sync_prev_1.END1" dx1="116.666664" />
+          <Connection Source="ws2_out.RD_2" Destination="sync_prev_1.MOTOR2" dx1="111.11111" />
+          <Connection Source="ws3_1.STYLO" Destination="sync_prev_1.STYLE2" dx1="27.777777" dx2="44.444443" dy="1583.3333" />
+          <Connection Source="ws3_3.END" Destination="ml1_out1.SD_1" dx1="2483.3333" />
+          <Connection Source="ml1_motors.RD_3" Destination="ml1_out1.SD_2" dx1="4227.778" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+  </Device>
+  <Device Name="View" Type="FRAME_DEVICE" x="1083.3333" y="1672.2222" >
+    <Parameter Name="BOUNDS" Value="[200,450,720,360]" />
+    <Resource Name="Canvas" Type="VIEW_PANEL" x="1694.4443" y="622.22217" >
+      <Parameter Name="DIA" Value="20" />
+      <Parameter Name="SIZE" Value="[36,16]" />
+      <FBNetwork >
+        <FB Name="xsp1" Type="XSPACE" x="1438.8888" y="11.111111" >
+          <Parameter Name="DIMS" Value="[4,5]" />
+          <Parameter Name="DIA" Value="20" />
+          <Parameter Name="LBLS" Value="[&#34;&#34;,&#34;&#34;,&#34;WS 2&#34;,&#34;Start Lift&#34;,&#34;&#34;]" />
+        </FB>
+        <FB Name="xsp3" Type="XSPACE" x="1472.2222" y="5022.222" >
+          <Parameter Name="DIMS" Value="[4,4]" />
+          <Parameter Name="DIA" Value="20" />
+          <Parameter Name="LBLS" Value="[&#34;&#34;,&#34;&#34;,&#34;&#34;,&#34;&#34;,&#34;&#34;]" />
+        </FB>
+        <FB Name="ws2_4" Type="MECH_VIEW" x="2488.8887" y="94.44444" >
+          <Parameter Name="DIA" Value="20" />
+          <Parameter Name="DIR" Value="2" />
+          <Parameter Name="LEN" Value="4" />
+          <Parameter Name="WKPC" Value="[255,255,0]" />
+        </FB>
+        <FB Name="ws2_3" Type="MECH_VIEW" x="3466.6665" y="11.111111" >
+          <Parameter Name="DIA" Value="20" />
+          <Parameter Name="DIR" Value="2" />
+          <Parameter Name="LEN" Value="4" />
+          <Parameter Name="WKPC" Value="[255,255,0]" />
+        </FB>
+        <FB Name="ws2_2" Type="MECH_VIEW" x="4422.222" y="22.222221" >
+          <Parameter Name="DIA" Value="20" />
+          <Parameter Name="DIR" Value="2" />
+          <Parameter Name="LEN" Value="4" />
+          <Parameter Name="WKPC" Value="[255,255,0]" />
+        </FB>
+        <FB Name="ws4_4" Type="MECH_VIEW" x="5488.8887" y="72.22222" >
+          <Parameter Name="DIA" Value="20" />
+          <Parameter Name="DIR" Value="2" />
+          <Parameter Name="LEN" Value="4" />
+          <Parameter Name="WKPC" Value="[255,255,0]" />
+        </FB>
+        <FB Name="ws4_3" Type="MECH_VIEW" x="6449.9995" y="11.111111" >
+          <Parameter Name="DIA" Value="20" />
+          <Parameter Name="DIR" Value="2" />
+          <Parameter Name="LEN" Value="4" />
+          <Parameter Name="WKPC" Value="[255,255,0]" />
+        </FB>
+        <FB Name="ws4_2" Type="MECH_VIEW" x="7616.6665" y="11.111111" >
+          <Parameter Name="DIA" Value="20" />
+          <Parameter Name="DIR" Value="2" />
+          <Parameter Name="LEN" Value="4" />
+          <Parameter Name="WKPC" Value="[255,255,0]" />
+        </FB>
+        <FB Name="ws2_5" Type="MECH_VIEW" x="2416.6665" y="1677.7777" >
+          <Parameter Name="DIA" Value="20" />
+          <Parameter Name="DIR" Value="1" />
+          <Parameter Name="LEN" Value="5" />
+          <Parameter Name="WKPC" Value="[255,255,0]" />
+        </FB>
+        <FB Name="s_lift_up" Type="MECH_VIEW" x="1727.7777" y="3288.8887" >
+          <Parameter Name="STYLE" Value="VSTYLE#PALLET" />
+          <Parameter Name="DIA" Value="20" />
+          <Parameter Name="DIR" Value="0" />
+          <Parameter Name="LEN" Value="4" />
+        </FB>
+        <FB Name="ml1_1" Type="MECH_VIEW" x="2661.111" y="3288.8887" >
+          <Parameter Name="DIA" Value="20" />
+          <Parameter Name="DIR" Value="0" />
+          <Parameter Name="LEN" Value="5" />
+          <Parameter Name="WKPC" Value="[255,255,0]" />
+        </FB>
+        <FB Name="ml1_2" Type="MECH_VIEW" x="3716.6665" y="3288.8887" >
+          <Parameter Name="DIA" Value="20" />
+          <Parameter Name="DIR" Value="0" />
+          <Parameter Name="LEN" Value="4" />
+          <Parameter Name="WKPC" Value="[255,255,0]" />
+        </FB>
+        <FB Name="ml1_3" Type="MECH_VIEW" x="4677.778" y="3272.2222" >
+          <Parameter Name="DIA" Value="20" />
+          <Parameter Name="DIR" Value="0" />
+          <Parameter Name="LEN" Value="5" />
+          <Parameter Name="WKPC" Value="[255,255,0]" />
+        </FB>
+        <FB Name="ml2_1" Type="MECH_VIEW" x="5650.0" y="3272.2222" >
+          <Parameter Name="STYLE" Value="VSTYLE#PALLET" />
+          <Parameter Name="DIA" Value="20" />
+          <Parameter Name="DIR" Value="0" />
+          <Parameter Name="LEN" Value="5" />
+        </FB>
+        <FB Name="ml2_2" Type="MECH_VIEW" x="6649.9995" y="3277.7776" >
+          <Parameter Name="STYLE" Value="VSTYLE#PALLET" />
+          <Parameter Name="DIA" Value="20" />
+          <Parameter Name="DIR" Value="0" />
+          <Parameter Name="LEN" Value="4" />
+        </FB>
+        <FB Name="ml2_3" Type="MECH_VIEW" x="7649.9995" y="3277.7776" >
+          <Parameter Name="STYLE" Value="VSTYLE#PALLET" />
+          <Parameter Name="DIA" Value="20" />
+          <Parameter Name="DIR" Value="0" />
+          <Parameter Name="LEN" Value="5" />
+        </FB>
+        <FB Name="e_lift_up" Type="MECH_VIEW" x="8633.333" y="3277.7776" >
+          <Parameter Name="STYLE" Value="VSTYLE#PALLET" />
+          <Parameter Name="DIA" Value="20" />
+          <Parameter Name="DIR" Value="0" />
+          <Parameter Name="LEN" Value="4" />
+        </FB>
+        <FB Name="ws2_1" Type="MECH_VIEW" x="4427.778" y="1694.4443" >
+          <Parameter Name="DIA" Value="20" />
+          <Parameter Name="DIR" Value="3" />
+          <Parameter Name="LEN" Value="5" />
+          <Parameter Name="WKPC" Value="[255,255,0]" />
+        </FB>
+        <FB Name="ws4_5" Type="MECH_VIEW" x="5472.222" y="1699.9999" >
+          <Parameter Name="DIA" Value="20" />
+          <Parameter Name="DIR" Value="1" />
+          <Parameter Name="LEN" Value="5" />
+          <Parameter Name="WKPC" Value="[255,255,0]" />
+        </FB>
+        <FB Name="ws4_1" Type="MECH_VIEW" x="7611.111" y="1677.7777" >
+          <Parameter Name="DIA" Value="20" />
+          <Parameter Name="DIR" Value="3" />
+          <Parameter Name="LEN" Value="5" />
+          <Parameter Name="WKPC" Value="[255,255,0]" />
+        </FB>
+        <FB Name="xsp2" Type="XSPACE" x="8511.11" y="33.333332" >
+          <Parameter Name="DIMS" Value="[4,5]" />
+          <Parameter Name="DIA" Value="20" />
+          <Parameter Name="LBLS" Value="[&#34;WS 4&#34;,&#34;&#34;,&#34;&#34;,&#34;End Lift&#34;,&#34;&#34;]" />
+        </FB>
+        <FB Name="ws1_1" Type="MECH_VIEW" x="2661.111" y="5033.333" >
+          <Parameter Name="DIA" Value="20" />
+          <Parameter Name="DIR" Value="1" />
+          <Parameter Name="LEN" Value="4" />
+          <Parameter Name="WKPC" Value="[255,255,0]" />
+        </FB>
+        <FB Name="ws1_2" Type="MECH_VIEW" x="2677.7776" y="6611.111" >
+          <Parameter Name="DIA" Value="20" />
+          <Parameter Name="DIR" Value="0" />
+          <Parameter Name="LEN" Value="5" />
+          <Parameter Name="WKPC" Value="[255,255,0]" />
+        </FB>
+        <FB Name="ws1_3" Type="MECH_VIEW" x="3599.9998" y="6611.111" >
+          <Parameter Name="DIA" Value="20" />
+          <Parameter Name="DIR" Value="0" />
+          <Parameter Name="LEN" Value="4" />
+          <Parameter Name="WKPC" Value="[255,255,0]" />
+        </FB>
+        <FB Name="ws1_4" Type="MECH_VIEW" x="4600.0" y="6611.111" >
+          <Parameter Name="DIA" Value="20" />
+          <Parameter Name="DIR" Value="0" />
+          <Parameter Name="LEN" Value="5" />
+          <Parameter Name="WKPC" Value="[255,255,0]" />
+        </FB>
+        <FB Name="ws1_5" Type="MECH_VIEW" x="4733.333" y="5027.7773" >
+          <Parameter Name="DIA" Value="20" />
+          <Parameter Name="DIR" Value="3" />
+          <Parameter Name="LEN" Value="4" />
+          <Parameter Name="WKPC" Value="[255,255,0]" />
+        </FB>
+        <FB Name="ws3_1" Type="MECH_VIEW" x="5716.6665" y="5033.333" >
+          <Parameter Name="DIA" Value="20" />
+          <Parameter Name="DIR" Value="1" />
+          <Parameter Name="LEN" Value="4" />
+          <Parameter Name="WKPC" Value="[255,255,0]" />
+        </FB>
+        <FB Name="ws3_2" Type="MECH_VIEW" x="5761.111" y="6605.555" >
+          <Parameter Name="DIA" Value="20" />
+          <Parameter Name="DIR" Value="0" />
+          <Parameter Name="LEN" Value="5" />
+          <Parameter Name="WKPC" Value="[255,255,0]" />
+        </FB>
+        <FB Name="ws3_3" Type="MECH_VIEW" x="6783.333" y="6611.111" >
+          <Parameter Name="DIA" Value="20" />
+          <Parameter Name="DIR" Value="0" />
+          <Parameter Name="LEN" Value="4" />
+          <Parameter Name="WKPC" Value="[255,255,0]" />
+        </FB>
+        <FB Name="ws3_4" Type="MECH_VIEW" x="7849.9995" y="6611.111" >
+          <Parameter Name="DIA" Value="20" />
+          <Parameter Name="DIR" Value="0" />
+          <Parameter Name="LEN" Value="5" />
+          <Parameter Name="WKPC" Value="[255,255,0]" />
+        </FB>
+        <FB Name="ws3_5" Type="MECH_VIEW" x="7938.8887" y="5027.7773" >
+          <Parameter Name="DIA" Value="20" />
+          <Parameter Name="DIR" Value="3" />
+          <Parameter Name="LEN" Value="4" />
+          <Parameter Name="WKPC" Value="[255,255,0]" />
+        </FB>
+        <FB Name="xsp4" Type="XSPACE" x="3838.8887" y="5033.333" >
+          <Parameter Name="DIMS" Value="[12,4]" />
+          <Parameter Name="DIA" Value="20" />
+          <Parameter Name="LBLS" Value="[&#34;&#34;,&#34;Main Line&#34;,&#34;&#34;,&#34;Workstation 1&#34;,&#34;&#34;]" />
+        </FB>
+        <FB Name="xsp5" Type="XSPACE" x="7005.555" y="5027.7773" >
+          <Parameter Name="DIMS" Value="[12,4]" />
+          <Parameter Name="DIA" Value="20" />
+          <Parameter Name="LBLS" Value="[&#34;&#34;,&#34;Main Line&#34;,&#34;&#34;,&#34;Workstation 3&#34;,&#34;&#34;]" />
+        </FB>
+        <FB Name="xsp6" Type="XSPACE" x="8761.11" y="5016.6665" >
+          <Parameter Name="DIMS" Value="[4,1]" />
+          <Parameter Name="DIA" Value="20" />
+          <Parameter Name="LBLS" Value="[&#34;&#34;,&#34;&#34;,&#34;&#34;,&#34;&#34;,&#34;&#34;]" />
+        </FB>
+        <FB Name="xsp7" Type="XSPACE" x="1633.3333" y="6605.555" >
+          <Parameter Name="DIMS" Value="[4,1]" />
+          <Parameter Name="DIA" Value="20" />
+          <Parameter Name="LBLS" Value="[&#34;&#34;,&#34;&#34;,&#34;&#34;,&#34;&#34;,&#34;&#34;]" />
+        </FB>
+        <FB Name="xsp8" Type="XSPACE" x="5177.7773" y="8244.444" >
+          <Parameter Name="DIMS" Value="[36,3]" />
+          <Parameter Name="DIA" Value="20" />
+          <Parameter Name="LBLS" Value="[&#34;&#34;,&#34;&#34;,&#34;&#34;,&#34;Lower line&#34;,&#34;&#34;]" />
+        </FB>
+        <FB Name="s_lift_dn" Type="MECH_VIEW" x="650.0" y="9205.556" >
+          <Parameter Name="STYLE" Value="VSTYLE#PALLET" />
+          <Parameter Name="DIA" Value="20" />
+          <Parameter Name="DIR" Value="2" />
+          <Parameter Name="LEN" Value="4" />
+        </FB>
+        <FB Name="ml1_1_dn" Type="MECH_VIEW" x="3144.4443" y="9205.556" >
+          <Parameter Name="DIA" Value="20" />
+          <Parameter Name="DIR" Value="2" />
+          <Parameter Name="LEN" Value="7" />
+          <Parameter Name="WKPC" Value="[255,255,0]" />
+        </FB>
+        <FB Name="ml1_2_dn" Type="MECH_VIEW" x="1838.8888" y="9205.556" >
+          <Parameter Name="DIA" Value="20" />
+          <Parameter Name="DIR" Value="2" />
+          <Parameter Name="LEN" Value="7" />
+          <Parameter Name="WKPC" Value="[255,255,0]" />
+        </FB>
+        <FB Name="ml2_1_dn" Type="MECH_VIEW" x="6383.333" y="9211.11" >
+          <Parameter Name="STYLE" Value="VSTYLE#PALLET" />
+          <Parameter Name="DIA" Value="20" />
+          <Parameter Name="DIR" Value="2" />
+          <Parameter Name="LEN" Value="7" />
+        </FB>
+        <FB Name="ml2_2_dn" Type="MECH_VIEW" x="4511.111" y="9205.556" >
+          <Parameter Name="STYLE" Value="VSTYLE#PALLET" />
+          <Parameter Name="DIA" Value="20" />
+          <Parameter Name="DIR" Value="2" />
+          <Parameter Name="LEN" Value="7" />
+        </FB>
+        <FB Name="e_lift_dn" Type="MECH_VIEW" x="7844.4443" y="9211.11" >
+          <Parameter Name="STYLE" Value="VSTYLE#PALLET" />
+          <Parameter Name="DIA" Value="20" />
+          <Parameter Name="DIR" Value="2" />
+          <Parameter Name="LEN" Value="4" />
+        </FB>
+        <FB Name="ws4_pos" Type="SUBL_5" x="6744.4443" y="1849.9999" />
+        <FB Name="ws3_pos" Type="SUBL_5" x="5161.111" y="6488.8887" />
+        <FB Name="ml1_pos" Type="SUBL_5" x="1177.7777" y="8005.555" />
+        <FB Name="ws1_pos" Type="SUBL_5" x="766.6666" y="6888.8887" />
+        <FB Name="ws2_pos" Type="SUBL_5" x="666.6666" y="1088.8888" />
+        <FB Name="ws4_sty" Type="SUBL_5" x="6144.4443" y="1861.1111" />
+        <FB Name="ws3_sty" Type="SUBL_5" x="5150.0" y="5372.222" />
+        <FB Name="ml1_sty" Type="SUBL_5" x="1766.6666" y="8011.111" />
+        <FB Name="ws1_sty" Type="SUBL_5" x="800.0" y="5633.333" />
+        <FB Name="ws2_sty" Type="SUBL_5" x="711.1111" y="2327.7776" />
+        <FB Name="upd" Type="SUBL_0" x="183.33333" y="2472.2222" />
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="xsp1.INIT" dx1="105.55555" />
+          <Connection Source="ws2_3.INITO" Destination="ws2_2.INIT" dx1="61.111107" />
+          <Connection Source="ws4_4.INITO" Destination="ws4_3.INIT" dx1="61.111107" />
+          <Connection Source="ws4_3.INITO" Destination="ws4_2.INIT" dx1="77.77777" />
+          <Connection Source="xsp1.INITO" Destination="ws2_5.INIT" dx1="600.0" />
+          <Connection Source="ws2_4.INITO" Destination="ws2_3.INIT" dx1="66.666664" />
+          <Connection Source="ws2_2.INITO" Destination="ws2_1.INIT" dx1="27.777777" dx2="255.55554" dy="-77.77777" />
+          <Connection Source="ws2_1.INITO" Destination="ws4_5.INIT" dx1="138.88889" />
+          <Connection Source="ws4_5.INITO" Destination="ws4_4.INIT" dx1="27.777777" dx2="300.0" dy="-1766.6666" />
+          <Connection Source="ws4_2.INITO" Destination="ws4_1.INIT" dx1="27.777777" />
+          <Connection Source="ws4_1.INITO" Destination="xsp2.INIT" dx1="116.666664" />
+          <Connection Source="xsp2.INITO" Destination="s_lift_up.INIT" dx1="27.777777" />
+          <Connection Source="s_lift_up.INITO" Destination="ml1_1.INIT" dx1="194.44444" />
+          <Connection Source="ml1_1.INITO" Destination="ml1_2.INIT" dx1="238.88889" />
+          <Connection Source="ml1_2.INITO" Destination="ml1_3.INIT" dx1="205.55554" />
+          <Connection Source="ml1_3.INITO" Destination="ml2_1.INIT" dx1="211.1111" />
+          <Connection Source="ml2_1.INITO" Destination="ml2_2.INIT" dx1="411.11108" />
+          <Connection Source="ml2_2.INITO" Destination="ml2_3.INIT" dx1="222.22221" />
+          <Connection Source="ml2_3.INITO" Destination="e_lift_up.INIT" dx1="216.66666" />
+          <Connection Source="e_lift_up.INITO" Destination="xsp3.INIT" dx1="27.777777" />
+          <Connection Source="xsp3.INITO" Destination="ws1_1.INIT" dx1="455.55554" />
+          <Connection Source="ws1_2.INITO" Destination="ws1_3.INIT" dx1="344.44443" />
+          <Connection Source="ws1_3.INITO" Destination="ws1_4.INIT" dx1="377.77777" />
+          <Connection Source="ws3_2.INITO" Destination="ws3_3.INIT" dx1="261.1111" />
+          <Connection Source="ws3_3.INITO" Destination="ws3_4.INIT" dx1="422.2222" />
+          <Connection Source="ws1_1.INITO" Destination="xsp4.INIT" dx1="388.8889" />
+          <Connection Source="xsp4.INITO" Destination="ws1_5.INIT" dx1="277.77777" />
+          <Connection Source="ws1_5.INITO" Destination="ws3_1.INIT" dx1="322.2222" />
+          <Connection Source="ws3_1.INITO" Destination="xsp5.INIT" dx1="444.44443" />
+          <Connection Source="xsp5.INITO" Destination="ws3_5.INIT" dx1="300.0" />
+          <Connection Source="ws1_4.INITO" Destination="ws3_2.INIT" dx1="477.77777" />
+          <Connection Source="xsp7.INITO" Destination="ws1_2.INIT" dx1="288.8889" />
+          <Connection Source="ws3_5.INITO" Destination="xsp6.INIT" dx1="216.66666" />
+          <Connection Source="xsp6.INITO" Destination="xsp7.INIT" dx1="27.777777" dx2="5.5555553" dy="-5116.6665" />
+          <Connection Source="ws3_4.INITO" Destination="xsp8.INIT" dx1="27.777777" dx2="5.5555553" dy="-6722.222" />
+          <Connection Source="ml2_1_dn.INITO" Destination="e_lift_dn.INIT" dx1="872.22217" />
+          <Connection Source="ml2_2_dn.INITO" Destination="ml2_1_dn.INIT" dx1="300.0" />
+          <Connection Source="ml1_1_dn.INITO" Destination="ml2_2_dn.INIT" dx1="800.0" />
+          <Connection Source="ml1_2_dn.INITO" Destination="ml1_1_dn.INIT" dx1="750.0" />
+          <Connection Source="s_lift_dn.INITO" Destination="ml1_2_dn.INIT" dx1="655.55554" />
+          <Connection Source="xsp8.INITO" Destination="s_lift_dn.INIT" dx1="27.777777" dx2="5.5555553" dy="-8366.666" />
+          <Connection Source="START.COLD" Destination="ws2_pos.INIT" dx1="261.1111" />
+          <Connection Source="ws2_pos.INITO" Destination="ws2_sty.INIT" dx1="27.777777" dx2="172.22221" dy="-1150.0" />
+          <Connection Source="ws2_4.CNF" Destination="ws2_3.REQ" dx1="72.22222" />
+          <Connection Source="ws2_3.CNF" Destination="ws2_2.REQ" dx1="66.666664" />
+          <Connection Source="ws2_2.CNF" Destination="ws2_1.REQ" dx1="27.777777" dx2="150.0" dy="-188.88889" />
+          <Connection Source="ws2_1.CNF" Destination="ws2_5.REQ" dx1="27.777777" dx2="305.55554" dy="-1877.7777" />
+          <Connection Source="upd.IND" Destination="ws2_4.REQ" dx1="700.0" />
+          <Connection Source="ws2_sty.INITO" Destination="upd.INIT" dx1="27.777777" />
+          <Connection Source="ws4_4.CNF" Destination="ws4_3.REQ" dx1="66.666664" />
+          <Connection Source="ws2_5.INITO" Destination="ws2_4.INIT" dx1="27.777777" />
+          <Connection Source="ws2_5.CNF" Destination="ws4_5.REQ" dx1="2050.0" />
+          <Connection Source="ws4_5.CNF" Destination="ws4_4.REQ" dx1="27.777777" dx2="266.66666" dy="-1877.7777" />
+          <Connection Source="ws4_3.CNF" Destination="ws4_2.REQ" dx1="88.888885" />
+          <Connection Source="ws4_2.CNF" Destination="ws4_1.REQ" dx1="27.777777" />
+          <Connection Source="ws4_sty.INITO" Destination="ws4_pos.INIT" dx1="33.333332" />
+          <Connection Source="ws4_5.INITO" Destination="ws4_sty.INIT" dx1="222.22221" />
+          <Connection Source="ws4_1.CNF" Destination="ml1_1.REQ" dx1="27.777777" />
+          <Connection Source="ml1_1.CNF" Destination="s_lift_up.REQ" dx1="27.777777" />
+          <Connection Source="s_lift_up.CNF" Destination="ml1_2.REQ" dx1="583.3333" />
+          <Connection Source="ml1_2.CNF" Destination="ml1_3.REQ" dx1="211.1111" />
+          <Connection Source="ml1_3.CNF" Destination="ml2_1.REQ" dx1="216.66666" />
+          <Connection Source="ml2_1.CNF" Destination="ml2_2.REQ" dx1="411.11108" />
+          <Connection Source="ml2_2.CNF" Destination="ml2_3.REQ" dx1="227.77777" />
+          <Connection Source="ml2_3.CNF" Destination="e_lift_up.REQ" dx1="216.66666" />
+          <Connection Source="e_lift_up.CNF" Destination="ws3_5.REQ" dx1="27.777777" />
+          <Connection Source="ws3_5.CNF" Destination="ws3_1.REQ" dx1="27.777777" dx2="5.5555553" dy="-5238.8887" />
+          <Connection Source="ws3_1.CNF" Destination="ws1_5.REQ" dx1="27.777777" dx2="5.5555553" dy="-5244.4443" />
+          <Connection Source="ws1_5.CNF" Destination="ws1_1.REQ" dx1="27.777777" dx2="5.5555553" dy="-5238.8887" />
+          <Connection Source="ws1_1.CNF" Destination="ws1_2.REQ" dx1="27.777777" dx2="261.1111" dy="-5238.8887" />
+          <Connection Source="ws1_2.CNF" Destination="ws1_3.REQ" dx1="350.0" />
+          <Connection Source="ws1_3.CNF" Destination="ws1_4.REQ" dx1="383.3333" />
+          <Connection Source="ws1_4.CNF" Destination="ws3_2.REQ" dx1="483.3333" />
+          <Connection Source="ws3_2.CNF" Destination="ws3_3.REQ" dx1="255.55554" />
+          <Connection Source="ws3_3.CNF" Destination="ws3_4.REQ" dx1="427.77777" />
+          <Connection Source="ws3_4.CNF" Destination="e_lift_dn.REQ" dx1="27.777777" dx2="5.5555553" dy="-6833.333" />
+          <Connection Source="e_lift_dn.CNF" Destination="ml2_1_dn.REQ" dx1="27.777777" dx2="5.5555553" dy="-9455.556" />
+          <Connection Source="ml2_1_dn.CNF" Destination="ml2_2_dn.REQ" dx1="27.777777" dx2="55.555553" dy="-9455.556" />
+          <Connection Source="ml2_2_dn.CNF" Destination="ml1_1_dn.REQ" dx1="27.777777" dx2="5.5555553" dy="-9450.0" />
+          <Connection Source="ml1_1_dn.CNF" Destination="ml1_2_dn.REQ" dx1="27.777777" dx2="5.5555553" dy="-9450.0" />
+          <Connection Source="ml1_2_dn.CNF" Destination="s_lift_dn.REQ" dx1="27.777777" dx2="5.5555553" dy="-9450.0" />
+          <Connection Source="xsp3.INITO" Destination="ws1_sty.INIT" dx1="27.777777" dx2="5.5555553" dy="-5122.222" />
+          <Connection Source="ws1_sty.INITO" Destination="ws1_pos.INIT" dx1="27.777777" dx2="5.5555553" dy="-5777.7773" />
+          <Connection Source="ws1_5.INITO" Destination="ws3_sty.INIT" dx1="27.777777" />
+          <Connection Source="ws3_sty.INITO" Destination="ws3_pos.INIT" dx1="27.777777" dx2="5.5555553" dy="-5472.222" />
+          <Connection Source="s_lift_dn.INITO" Destination="ml1_pos.INIT" dx1="27.777777" />
+          <Connection Source="ml1_pos.INITO" Destination="ml1_sty.INIT" dx1="405.55554" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="ws2_pos.RD_1" Destination="ws2_1.POS" dx1="2750.0" />
+          <Connection Source="ws2_pos.RD_2" Destination="ws2_2.POS" dx1="777.7778" />
+          <Connection Source="ws2_pos.RD_3" Destination="ws2_3.POS" dx1="583.3333" />
+          <Connection Source="ws2_pos.RD_4" Destination="ws2_4.POS" dx1="344.44443" />
+          <Connection Source="ws2_pos.RD_5" Destination="ws2_5.POS" dx1="1077.7777" />
+          <Connection Source="ws2_sty.RD_1" Destination="ws2_1.STYLE" dx1="1094.4445" />
+          <Connection Source="ws2_sty.RD_2" Destination="ws2_2.STYLE" dx1="1122.2222" />
+          <Connection Source="ws2_sty.RD_3" Destination="ws2_3.STYLE" dx1="805.55554" />
+          <Connection Source="ws2_sty.RD_4" Destination="ws2_4.STYLE" dx1="472.2222" />
+          <Connection Source="ws2_sty.RD_5" Destination="ws2_5.STYLE" dx1="488.88885" />
+          <Connection Source="ws4_sty.RD_1" Destination="ws4_1.STYLE" dx1="838.88885" />
+          <Connection Source="ws4_sty.RD_2" Destination="ws4_2.STYLE" dx1="327.77777" />
+          <Connection Source="ws4_sty.RD_3" Destination="ws4_3.STYLE" dx1="27.777777" />
+          <Connection Source="ws4_sty.RD_4" Destination="ws4_4.STYLE" dx1="27.777777" dx2="11.111111" dy="7911.111" />
+          <Connection Source="ws4_sty.RD_5" Destination="ws4_5.STYLE" dx1="27.777777" dx2="11.111111" dy="7799.9995" />
+          <Connection Source="ws4_pos.RD_1" Destination="ws4_1.POS" dx1="150.0" />
+          <Connection Source="ws4_pos.RD_2" Destination="ws4_2.POS" dx1="161.1111" />
+          <Connection Source="ws4_pos.RD_3" Destination="ws4_3.POS" dx1="27.777777" dx2="11.111111" dy="8044.4443" />
+          <Connection Source="ws4_pos.RD_4" Destination="ws4_4.POS" dx1="27.777777" dx2="11.111111" dy="7927.7773" />
+          <Connection Source="ws4_pos.RD_5" Destination="ws4_5.POS" dx1="27.777777" dx2="11.111111" dy="7816.6665" />
+          <Connection Source="ws1_pos.RD_1" Destination="ws1_1.POS" dx1="1038.8888" />
+          <Connection Source="ws1_pos.RD_2" Destination="ws1_2.POS" dx1="1050.0" />
+          <Connection Source="ws1_pos.RD_3" Destination="ws1_3.POS" dx1="1699.9999" />
+          <Connection Source="ws1_pos.RD_4" Destination="ws1_4.POS" dx1="2405.5554" />
+          <Connection Source="ws1_pos.RD_5" Destination="ws1_5.POS" dx1="2527.7776" />
+          <Connection Source="ws1_sty.RD_1" Destination="ws1_1.STYLE" dx1="883.3333" />
+          <Connection Source="ws1_sty.RD_2" Destination="ws1_2.STYLE" dx1="666.6666" />
+          <Connection Source="ws1_sty.RD_3" Destination="ws1_3.STYLE" dx1="1044.4445" />
+          <Connection Source="ws1_sty.RD_4" Destination="ws1_4.STYLE" dx1="1427.7777" />
+          <Connection Source="ws1_sty.RD_5" Destination="ws1_5.STYLE" dx1="2183.3333" />
+          <Connection Source="ws3_sty.RD_1" Destination="ws3_1.STYLE" dx1="138.88889" />
+          <Connection Source="ws3_sty.RD_2" Destination="ws3_2.STYLE" dx1="138.88889" />
+          <Connection Source="ws3_sty.RD_3" Destination="ws3_3.STYLE" dx1="583.3333" />
+          <Connection Source="ws3_sty.RD_4" Destination="ws3_4.STYLE" dx1="1033.3333" />
+          <Connection Source="ws3_sty.RD_5" Destination="ws3_5.STYLE" dx1="1427.7777" />
+          <Connection Source="ws3_pos.RD_1" Destination="ws3_1.POS" dx1="150.0" />
+          <Connection Source="ws3_pos.RD_2" Destination="ws3_2.POS" dx1="105.55555" />
+          <Connection Source="ws3_pos.RD_3" Destination="ws3_3.POS" dx1="466.66666" />
+          <Connection Source="ws3_pos.RD_4" Destination="ws3_4.POS" dx1="1555.5555" />
+          <Connection Source="ws3_pos.RD_5" Destination="ws3_5.POS" dx1="1633.3333" />
+          <Connection Source="ml1_sty.RD_4" Destination="ml1_1_dn.STYLE" dx1="249.99998" />
+          <Connection Source="ml1_sty.RD_5" Destination="ml1_2_dn.STYLE" dx1="27.777777" dx2="5.5555553" dy="1622.2222" />
+          <Connection Source="ml1_pos.RD_4" Destination="ml1_1_dn.POS" dx1="444.44443" />
+          <Connection Source="ml1_pos.RD_5" Destination="ml1_2_dn.POS" dx1="144.44444" />
+          <Connection Source="ml1_pos.RD_1" Destination="ml1_1.POS" dx1="866.6666" />
+          <Connection Source="ml1_pos.RD_2" Destination="ml1_2.POS" dx1="1672.2222" />
+          <Connection Source="ml1_pos.RD_3" Destination="ml1_3.POS" dx1="2422.2222" />
+          <Connection Source="ml1_sty.RD_1" Destination="ml1_1.STYLE" dx1="433.3333" />
+          <Connection Source="ml1_sty.RD_2" Destination="ml1_2.STYLE" dx1="1233.3333" />
+          <Connection Source="ml1_sty.RD_3" Destination="ml1_3.STYLE" dx1="1977.7777" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+  </Device>
+</System>

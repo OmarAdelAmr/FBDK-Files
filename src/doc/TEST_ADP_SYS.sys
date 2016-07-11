@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE System SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<System Name="TEST_ADP_SYS" Comment="System Configuration for testing TEST_ADP Plug&#38;Socket" >
+  <Identification Standard="61499-1" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.0" Author="JHC" Date="2006-04-21" Remarks="Adjusted size for Windows XP, added ROWS, COLS to RES2." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2002-01-10" />
+  <Device Name="ADP_TEST" Type="FRAME_DEVICE" x="783.3333" y="338.8889" >
+    <Parameter Name="BOUNDS" Value="[50,50,175,150]" />
+    <Parameter Name="GRID" Value="[1,1]" />
+    <Resource Name="RES2" Type="PANEL_RESOURCE" x="733.3333" y="288.8889" >
+      <Parameter Name="ROWS" Value="4" />
+      <Parameter Name="COLS" Value="2" />
+      <FBNetwork >
+        <FB Name="PLG" Type="TEST_ADP_PLG" x="1305.8823" y="11.7647" />
+        <FB Name="SKT" Type="TEST_ADP_SKT" x="652.9412" y="11.7647" />
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="SKT.INIT" dx1="23.5294" dx2="47.0588" dy="-1.0" />
+          <Connection Source="START.WARM" Destination="SKT.INIT" dx1="52.9412" dx2="70.5882" dy="-1.0" />
+          <Connection Source="SKT.INITO" Destination="PLG.INIT" dx1="52.9412" dx2="11.7647" dy="-70.5882" />
+        </EventConnections>
+        <AdapterConnections>
+          <Connection Source="PLG.PLG" Destination="SKT.SKT" dx1="41.1765" dx2="41.1765" dy="158.8235" />
+        </AdapterConnections>
+      </FBNetwork>
+    </Resource>
+  </Device>
+</System>

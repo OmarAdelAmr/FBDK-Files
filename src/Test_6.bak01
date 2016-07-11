@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE System SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<System Name="Test_6" Comment="System Configuration" >
+  <Identification Standard="61499-1" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.3" Author="JHC" Date="2003-12-05" Remarks="Renamed from NEWSYSTEM." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.2" Author="JHC" Date="2002-11-05" Remarks="Fixed missing (empty) FBD in Application." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2002-01-17" Remarks="Minor cleanup" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2000-05-27" />
+  <Application Name="APP1" >
+    <FBNetwork >
+    </FBNetwork>
+  </Application>
+  <Device Name="DEV1" Type="FRAME_DEVICE" x="1050.0" y="338.8889" >
+    <Parameter Name="BOUNDS" Value="[110,110,110,110]" />
+    <Parameter Name="GRID" Value="[1,1]" />
+    <Resource Name="RES1" Type="PANEL_RESOURCE" x="1411.1111" y="772.22217" >
+      <Parameter Name="ROWS" Value="1" />
+      <Parameter Name="COLS" Value="1" />
+      <FBNetwork >
+        <FB Name="Alfa" Type="WORKER4TESTFB" x="1144.4445" y="294.44443" >
+          <Parameter Name="NAME" Value="&#34;AlfaR&#34;" />
+          <Parameter Name="SKILL" Value="&#34;shaping&#34;" />
+        </FB>
+        <FB Name="Beta" Type="WORKER4TESTFB" x="1183.3333" y="1122.2222" >
+          <Parameter Name="SKILL" Value="&#34;milling&#34;" />
+          <Parameter Name="NAME" Value="&#34;BetaW&#34;" />
+        </FB>
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="Alfa.INIT" dx1="672.22217" />
+          <Connection Source="START.COLD" Destination="Beta.INIT" dx1="711.1111" />
+        </EventConnections>
+      </FBNetwork>
+    </Resource>
+  </Device>
+</System>

@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+<link rel="icon" href="http://www.holobloc.com/fbicon.png"
+	type="image/png">
+<TITLE>IEC 61499 Interoperability Test Procedure</TITLE>
+</HEAD>
+
+<BODY>
+
+<H2 ALIGN="CENTER">IEC 61499 Interoperability Test Procedure</H2>
+<P>The following general procedure may be used to test the
+compliance of independently developed implementations to the <A
+	HREF="../s3.htm" TARGET="_parent">interoperability provisions</A> of
+the IEC 61499 <A HREF="../index.htm" TARGET="_top">Compliance
+Profile</A> for IEC 61499 Feasibility Demonstrations.</P>
+
+<OL>
+	<LI>Load a test panel configuration into the <B>FBEditor</B>
+	application of the <B>Function Block Development Kit (FBDK)</B>. These
+	configurations are located in the <TT>src/ita/</TT> subdirectory of the
+	FBDK <A HREF="http://www.holobloc.com/doc/fbdk/index.htm"
+		TARGET="_blank">download</A>.
+	<LI>Edit the test panel configuration if necessary as follows:
+	<UL>
+		<LI><A HREF="CODEC_TEST.htm"><TT>CODEC_TEST</TT></A><TT>, </TT><A
+			HREF="CODEC_TEST2.htm"><TT>CODEC_TEST2</TT></A> - Since these panels
+		test instances of <TT>PUBLISH</TT> and <TT>SUBSCRIBE</TT> types, which
+		utilize multicast UDP, they may be used unchanged to test
+		corresponding <TT>SUBSCRIBE</TT> and <TT>PUBLISH</TT> instances in
+		independent implementations. They may also be edited to test other
+		combinations of UDP addresses, socket numbers, data types and service
+		interface types by editing the appropriate elements of the
+		configuration.
+		<LI><A HREF="CS21_TEST.htm"><TT>CS21_TEST</TT></A> - Delete from
+		the configuration the device containing the element that is to be
+		remotely tested. For instance, if a remote instance of <TT>SERVER_1_2</TT>
+		is to be tested, delete the <TT>SRVR</TT> device from the
+		configuration. This configuration may also be edited to test other
+		combinations of TCP/IP addresses, socket numbers, data types and
+		service interface types. <I>NOTE </I>- See also the NOTE to step 4
+		below.
+	</UL>
+	<LI>Launch the test panel configuration using the <B>Run/Launch</B>
+	menu item of the FBEditor.
+	<LI>Start the independent implementation to be tested. <I>NOTE
+	</I>- Steps 3 and 4 must be reversed if an instance of <TT>SERVER</TT> type
+	is to be tested in the independent implementation.<I> </I>
+	<LI>Test the implementation by triggering data transmission from
+	the test panel and observing the effect on the independent
+	implementation or vice versa as appropriate.
+</OL>
+<HR>
+<P ALIGN="center"><I>Last updated: 2007-11-27.</I><BR>
+&copy;2007 <A HREF="http://www.holobloc.com" TARGET="_blank">Holobloc
+Inc</A>.<BR>
+Licensed under the <A
+	HREF="http://www.opensource.org/licenses/afl-3.0.php" TARGET="_blank">Academic
+Free License version 3.0</A>.</P>
+</BODY>
+
+</HTML>

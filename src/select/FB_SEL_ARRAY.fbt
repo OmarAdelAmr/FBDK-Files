@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="FB_SEL_ARRAY" Comment="ARRAY Selection" >
+  <Identification Standard="IEC 61499" Function="Selection" Type="ARRAY" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.2" Author="JHC" Date="2007-10-26" Remarks="Updated documentation." />
+  <VersionInfo Organization="Holobloc Inc" Version="0.1" Author="JHC" Date="2006-09-13" Remarks="Moved to fb.rt.select." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2004-12-15" Remarks="Converted from SRC format." />
+  <CompilerInfo header="package fb.rt.select;" >
+    <Compiler Language="Java" Vendor="Sun" Product="JDK" Version="1.6.0" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="REQ" >
+        <With Var="G" />
+        <With Var="IN0" />
+        <With Var="IN1" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="CNF" >
+        <With Var="OUT" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="G" Type="BOOL" Comment="Selector" />
+      <VarDeclaration Name="IN0" Type="ARRAY" Comment="Selected when G=0" />
+      <VarDeclaration Name="IN1" Type="ARRAY" Comment="Selected when G=1" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="OUT" Type="ARRAY" Comment="Selected value" />
+    </OutputVars>
+  </InterfaceList>
+</FBType>

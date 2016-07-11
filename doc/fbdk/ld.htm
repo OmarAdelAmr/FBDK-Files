@@ -1,0 +1,96 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+<META NAME="GENERATOR" CONTENT="Eclipse HTML Editor">
+<TITLE>FBEditor Help - Editing LD Algorithms</TITLE>
+</HEAD>
+<BODY>
+<H2 ALIGN="center">Editing Ladder Diagram (LD) Algorithms</H2>
+<H3>Adding an LD Algorithm to a Basic Function Block Type</H3>
+<P>You can <A HREF="algorithm.htm" TARGET="_parent">add an LD algorithm</A>
+to a basic FB type with the <B>New</B> item of the popup menu of the
+basic FB type's <A HREF="eccfrm.htm" TARGET="_parent">ECC</A> (Execution
+Control Chart).</P>
+<H3><A NAME="Editing"></A>Editing the LD Algorithm</H3>
+<P>Clicking on the algorithm name in the Navigation tree will cause the
+LD algorithm to appear in the Workspace area as illustrated below. You
+can then edit the algorithm rung-by-rung as described in the <A
+	HREF="#Adding">next section</A>.</P>
+<P ALIGN="center"><IMG SRC="ld.gif" ALIGN="bottom" BORDER="0"
+	HEIGHT="314" WIDTH="314"></P>
+<H3><A NAME="Adding"></A>Adding a Rung to the LD</H3>
+<P>You can add a rung to the LD by clicking the <B>New Rung</B> item of
+the Workspace popup menu. The <A HREF="#dialog">rung dialog</A> will
+open so you can edit the new rung.</P>
+<H3>Moving a Rung in the LD</H3>
+<P>You can move a rung up or down in the LD (when possible) with the <B>Move
+Up</B> or <B>Move Down</B> items of the rung's popup menu, respectively.</P>
+<H3>Deleting a Rung from the LD</H3>
+<P>You can delete a rung from the LD with the <B>Delete</B> item of the
+rung's popup menu. A dialog box will pop up to make sure you really want
+to delete the rung.</P>
+<H3><A NAME="dialog"></A>The Rung Dialog</H3>
+<P>This dialog appears when you click the <B>New Rung</B> item of the
+Workspace popup menu or when you double-click on an existing rung or
+click on the <B>Edit</B> item of its popup menu.</P>
+<P>The <B>output</B> of the rung can be selected from a drop-down list
+of the Boolean outputs and internal variables of the function block
+type, and the <B>expression</B> whose value is to be assigned to the
+output can be entered using a simplified <A HREF="#Reverse"
+	TARGET="_self">reverse Polish notation</A>. This notation is translated
+into infix notation for display in the text area as illustrated <A
+	HREF="#Editing">above</A>.</P>
+<P ALIGN="center"><IMG SRC="ld2.gif" ALIGN="bottom" BORDER="0"
+	HEIGHT="149" WIDTH="338"></P>
+<H3><A NAME="Reverse"></A>Reverse Polish Notation (RPN)</H3>
+<P>Since the FBD and ST languages are available for the specification of
+complex algorithms, IEC 61499-2 recommends that the use of the LD
+language be limited to rungs performing the evaluation of assignment
+statements of the form:</P>
+<CENTER>
+<P>
+<TABLE BORDER="1" CELLPADDING="4">
+	<TBODY>
+		<TR>
+			<TD><TT>&lt;output&gt; := &lt;expression&gt;</TT></TD>
+		</TR>
+	</TBODY>
+</TABLE>
+</P>
+</CENTER>
+<P>For portability between software tools, IEC 61499-2 recommends that
+the XML Expression element have the following simple postfix-operator
+textual syntax with whitespace-separated terms:</P>
+<CENTER>
+<TABLE BORDER="1" CELLPADDING="4">
+	<TBODY>
+		<TR>
+			<TD><TT>expression ::= and_expression</TT></TD>
+		</TR>
+		<TR>
+			<TD><TT>and_expression ::=<BR>
+			&nbsp;&nbsp;&nbsp;&nbsp;(variable_name&nbsp;['!'])<BR>
+			&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;or_expression<BR>
+			&nbsp;&nbsp;&nbsp;&nbsp;|&nbsp;and_expression&nbsp;and_expression&nbsp;'&amp;'</TT></TD>
+		</TR>
+		<TR>
+			<TD><TT>or_expression ::=<BR>
+			&nbsp;&nbsp;&nbsp;&nbsp;and_expression<BR>
+			&nbsp;&nbsp;&nbsp;&nbsp;| or_expression or_expression '|'</TT></TD>
+		</TR>
+	</TBODY>
+</TABLE>
+</CENTER>
+For an example of the use of this syntax, see the
+<A HREF="#dialog">rung dialog</A>
+above; for its corresponding graphical and infix notations, see the
+<A HREF="#Editing">LD example</A>
+above.
+<P></P>
+<CENTER>
+<HR>
+<I>Last updated: 2006-03-17.</I><BR>
+&copy;2006 Holobloc Inc. All rights reserved.</CENTER>
+</BODY>
+</HTML>

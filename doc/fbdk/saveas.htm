@@ -1,0 +1,47 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+<TITLE>File Save Dialog</TITLE>
+</HEAD>
+<BODY>
+<H2 ALIGN="center">File Save</H2>
+<CENTER><IMG SRC="saveas.gif"></CENTER>
+<OL>
+	<LI>This dialog enables you to save the library element in the current
+	FBEditor tab in any of the following formats:</LI>
+	<UL>
+		<LI><A NAME="FileSaveAsXML"></A><B>XML</B>: Saves the current library
+		element in an IEC 61499 XML encoded file.</LI>
+		<LI><A NAME="FileSaveAsJava"></A><B>Java</B>: Saves the current
+		library element as a <TT>*.java</TT> file and compiles it to a <TT>*.class</TT>
+		file in the same directory. Following compilation, a dialog box will
+		open displaying the results of the compilation and the <TT>*.java</TT>
+		source file with correspondingly numbered lines.</LI>
+		<LI><A NAME="FileSaveAsHTML"></A><B>HTML</B>: Saves the current
+		library element as an HTML file containing skeleton documentation for
+		the element, including an applet for viewing an XML file containing
+		the library element. The size of the applet frame will be the same as
+		the current size of the FBEditor frame.</LI>
+	</UL>
+	<LI>The directory in which the files are saved is determined by the
+	package name. For instance, if the FBDK is located in the <TT>C:\fbdk</TT>
+	directory, the XML file of the element shown above would be stored as <TT>C:\fbdk\src\mach\LOAD_CTL.fbt</TT>;
+	the HTML file would be stored as <TT>C:\fbdk\src\mach\LOAD_CTL.htm</TT>;
+	and the Java and class files would be stored as <TT>C:\fbdk\lib\fb\rt\mach\LOAD_CTL.java</TT>
+	and <TT>C:\fbdk\lib\fb\rt\mach\LOAD_CTL.class</TT>, respectively.</LI>
+	<LI>If a file is already saved with the given library element name,
+	e.g., <TT>myFBType.java</TT>, it is copied into a backup file, e.g., <TT>myFBType.baknn</TT>,
+	where <TT>nn</TT> is the lowest available number in the sequence <TT>{00..99}</TT>.
+	<IMG SRC="../note.gif">If all the backup numbers in the sequence <TT>00..99</TT>
+	are occupied, no backup will be made, so it is a good idea to <B>purge
+	backed up files</B> from time to time.</LI>
+</OL>
+<CENTER>
+<HR>
+<P><I>Last updated: 2006-05-19.</I><BR>
+&copy;2006 Holobloc Inc.<BR>
+All rights reserved.</P>
+</CENTER>
+</BODY>
+</HTML>

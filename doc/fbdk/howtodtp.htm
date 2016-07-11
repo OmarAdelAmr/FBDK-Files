@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+<META NAME="GENERATOR" CONTENT="Eclipse HTML Editor">
+<TITLE>Data Types</TITLE>
+</HEAD>
+<BODY>
+<H2 ALIGN="center">Building and <A HREF="howtstdt.htm">Testing</A> Data
+Types</H2>
+<OL>
+	<LI>Start the <B>FBEditor</B> application by running the <A
+		HREF="custom.htm"><TT>fbeditor.bat</TT></A> file.</LI>
+	<LI>Create a new data type in the editor by:
+	<UL>
+		<LI>Clicking the <B>File =&gt; New =&gt; Data Type =&gt; XXXX</B> menu
+		item, where <B>XXXX</B> is the kind of IEC 61131-3 derived data type
+		that you wish to create; possible values are <B>Array, Direct,
+		Enumerated, Structured</B> and <B>Subrange</B>; or</LI>
+		<LI>Opening a file containing an existing data type of the desired
+		subtype; for instance, in the <TT>src\ita</TT> folder, the <TT>ANALOG_16_INPUT_DATAI,
+		FREQ, ANALOG_SIGNAL_TYPE, ANALOG_CHANNEL_CONFIGURATION</TT> and <TT>ANALOG_DATA
+		</TT>types corrrespond to the <B>Array, Direct, Enumerated, Structured</B>
+		and <B>Subrange</B> subtypes, respectively.</LI>
+	</UL>
+	</LI>
+	<LI>Edit the data type's elements:
+	<UL>
+		<LI><A HREF="propsfrm.htm">Edit the data type's properties.</A>&nbsp;
+		</LI>
+		<LI>Edit the data type elements in the <B>XML</B> area.</LI>
+		<UL>
+			<LI>You can edit elements of a <B>structured</B> data type
+			graphically in the same manner as <A HREF="intfcfrm.htm">input
+			variables</A> of a function block type.</LI>
+		</UL>
+		<LI>From time to time as you are editing, use the <B>File Parse</B>
+		menu item or its equivalent <B>Alt+S</B> keychord to check the syntax
+		and update the graphical display. Syntax errors are displayed in the
+		status line under the menu bar and the offending line of code is
+		(usually) highlighted in the <B>Text</B> window.</LI>
+	</UL>
+	</LI>
+	<LI>When your editing is complete, save your work with the <A
+		HREF="saveas.htm">File Save As...</A> menu item. <IMG
+		SRC="../note.gif">It is a good idea to <B>save your work</B> from time
+	to time while editing, too!</LI>
+	<LI>Generate and compile a Java source file with the <A
+		HREF="saveas.htm">File Save As...</A> menu item.</LI>
+	<LI>Since data types are not event-triggered elements like function
+	blocks, they cannot be tested directly using the <B>Run=&gt;Launch </B>menu
+	item. However, they can be tested by <A HREF="howtstdt.htm">launching
+	appropriate HMI Elements</A>.</LI>
+</OL>
+<CENTER>
+<HR>
+<I>Last updated: 2006-04-25.</I><BR>
+&copy;2006 <A HREF="http://www.holobloc.com" TARGET="_blank">Holobloc
+Inc</A>. All rights reserved.</CENTER>
+</BODY>
+</HTML>

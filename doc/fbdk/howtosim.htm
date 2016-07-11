@@ -1,0 +1,76 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+<META NAME="GENERATOR" CONTENT="Eclipse HTML Editor">
+<TITLE>FBDK: Simple FB Types</TITLE>
+<META CONTENT="JHC" NAME="author">
+</HEAD>
+<BODY>
+<CENTER>
+<H2>Build and Test a Simple Function Block Type</H2>
+</CENTER>
+<P>You can use the FBDK to build a subset of the <I>simple
+function block type</I> described in Annex D.2 of <A
+	HREF="http://webstore.iec.ch/webstore/webstore.nsf/Standards/IEC%2061499-1?openDocument"
+	TARGET="_blank">IEC 61499-1</A>:</P>
+<UL>
+	<LI>The event interface is restricted to a single <TT>REQ/CNF</TT>
+	pair.</LI>
+	<LI>The body of the block is restricted to a single <TT>REQ</TT>
+	algorithm.</LI>
+	<LI>Upon occurrence of an event at the <TT>REQ</TT> input, the <TT>REQ</TT>
+	algorithm is executed, following which an event is issued at the <TT>CNF</TT>
+	output.</LI>
+</UL>
+<P>These restrictions permit the generation of somewhat more
+efficent runtime code, as well as simplifying the programming of simple
+FB types.</P>
+<P>To build a new simple FB type, use the following steps:</P>
+<OL>
+	<LI>Start the <B>FBEditor</B> application by running the <A
+		HREF="custom.htm#FBEditor"><TT>fbeditor.bat</TT></A> file.</LI>
+	<LI>Create a new simple FB type in the editor by Clicking the <B>File
+	=&gt; New =&gt; FB Type =&gt; Simple </B>menu item. The window should look
+	something like this:<BR>
+	<CENTER><IMG SRC="simplefb.png"></CENTER>
+	</LI>
+	<LI>Edit the function block's elements:
+	<UL>
+		<LI><A HREF="propsfrm.htm">Edit the FB type's properties</A>. <IMG
+			SRC="../note.gif">Be sure to enter <TT>package
+		fb.rt.&lt;mypkg&gt;;</TT> in the Compiler Info <B>header</B> field, where <TT>&lt;mypkg&gt;</TT>
+		is the name of the <TT>src</TT> subdirectory you are working in, for
+		example, <TT>student</TT> or <TT>book</TT>. <IMG SRC="../note.gif">Don't
+		edit the <B>classdef</B> field; leave it saying <TT>SimpleFB</TT>.</LI>
+		<LI><A HREF="intfcfrm.htm">Edit the FB type's interface</A>. <IMG
+			SRC="../note.gif">You won't be able to add or edit events,
+		since only the <TT>REQ/CNF</TT> pair is allowed.</LI>
+		<LI>Double-click on the <B>REQ</B> algorithm in the <B>Navigation</B>
+		panel to bring up an <A HREF="algorithm.htm">editing dialog</A> for
+		the algorithm.</LI>
+	</UL>
+	</LI>
+	<LI>When your editing is complete, save your work with the <B>File=&gt;Save
+	As=&gt;XML...</B> menu item. <IMG SRC="../note.gif" ALIGN="bottom"
+		BORDER="0" HEIGHT="24" WIDTH="32">It is a good idea to <B>save
+	your work</B> from time to time while editing, too!</LI>
+	<LI>Generate a Java<SUP>TM</SUP> source file with the <B>File=&gt;Save
+	As=&gt;Java...</B> menu item in the subdirectory of the <TT>lib/fb/rt</TT>
+	path corresponding to the package name given in your <B>Compiler
+	Info header</B> field.</LI>
+	<LI>Generate and compile a Java<SUP>TM</SUP> class file with the <B>File=&gt;Compile...</B>
+	menu item. A dialog window will open showing the Java source text and
+	the compilation results. <BR>
+	<IMG SRC="../note.gif" ALIGN="bottom" BORDER="0" HEIGHT="24" WIDTH="32">If
+	you change the code of the block and recompile, you will have to exit
+	the FBEditor application and restart it in order to force a reload of
+	the class file.</LI>
+</OL>
+<CENTER>
+<HR>
+<I>Last updated: 2006-10-13.</I><BR>
+&copy;2006 <A HREF="http://www.holobloc.com" TARGET="_blank">Holobloc
+Inc</A>. All rights reserved.</CENTER>
+</BODY>
+</HTML>

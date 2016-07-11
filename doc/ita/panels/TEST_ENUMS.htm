@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+<META NAME="GENERATOR" CONTENT="Eclipse HTML Editor">
+<TITLE>APPLICATION TEST_ENUMS</TITLE>
+</HEAD>
+
+<BODY>
+
+<H2 ALIGN="CENTER">APPLICATION TEST_ENUMS</H2>
+<P><A HREF="#Viewer">This application</A> is part of the <A
+	HREF="CODEC_TEST2.htm"><TT>CODEC_TEST2</TT></A> system configuration.
+It utilizes instances of <A HREF="../../common/IN_ENUM.htm"><TT>IN_ENUM</TT></A>
+and <A HREF="../../common/OUT_ANY.htm"><TT>OUT_ANY</TT></A> for input
+and output of transmitted data, respectively. This data is of the <I>enumerated
+data types</I> <A HREF="#ANALOG_SIGNAL_TYPE"><TT>ANALOG_SIGNAL_TYPE</TT></A>
+and <A HREF="#ANALOG_SIGNAL_RANGE"><TT>ANALOG_SIGNAL_RANGE</TT></A>
+defined in Tables 12 and 14 of <A
+	HREF="http://www.holobloc.com/stds/iec/sc65bwg7tf3/html/news.htm">IEC
+61131-3</A>, respectively and documented <A HREF="#ANALOG_SIGNAL_TYPE">below</A>.</P>
+<P>In the example shown <A HREF="#Example">below</A>, three pairs of
+values of the types <TT>ANALOG_SIGNAL_TYPE</TT> and <TT>ANALOG_SIGNAL_RANGE</TT>
+have been transmitted with ASN.1 tags of <TT>CC</TT> and <TT>CB</TT>
+hexadecimal, respectively.</P>
+<CENTER>
+<P><A NAME="Example"></A>
+<TABLE BORDER="1">
+	<TR>
+		<TD>
+		<P ALIGN="CENTER"><B>Display</B>
+		</TD>
+		<TD COLSPAN="2">
+		<P ALIGN="CENTER"><B>Transmitted values</B>
+		</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="TOP" ROWSPAN="2"><IMG SRC="images/TEST_ENUMS.gif"
+			WIDTH="398" HEIGHT="264"></TD>
+		<TD HEIGHT="62" VALIGN="MIDDLE"><B><TT>ANALOG_SIGNAL_TYPE</TT></B></TD>
+		<TD HEIGHT="62" VALIGN="MIDDLE"><B><TT>ANALOG_SIGNAL_RANGE</TT></B></TD>
+	</TR>
+	<TR>
+		<TD HEIGHT="189" VALIGN="TOP"><TT>SINGLE_ENDED<BR>
+		DIFFERENTIAL<BR>
+		DIFFERENTIAL</TT></TD>
+		<TD HEIGHT="189" VALIGN="TOP"><TT>UNIPOLAR_1_5V<BR>
+		UNIPOLAR_1_5V<BR>
+		BIPOLAR_10V</TT></TD>
+	</TR>
+</TABLE>
+</P>
+<P>[<A NAME="Viewer"></A><A HREF="../../FBViewer.html" TARGET="help">Viewer
+Help</A>]<BR>
+<TABLE BORDER="1">
+	<TR>
+		<TD><APPLET CODE="FBViewer" WIDTH="700" HEIGHT="500"
+			ARCHIVE="../../viewer.jar">
+			<PARAM NAME="src" VALUE="CODEC_TEST2">
+			<PARAM NAME="fbd" VALUE="CODEC_TEST2.TEST_ENUMS">
+		</APPLET></TD>
+	</TR>
+</TABLE>
+</P>
+
+<P><A NAME="ANALOG_SIGNAL_TYPE"></A><A NAME="ANALOG_SIGNAL_RANGE"></A>
+<TABLE BORDER="1">
+	<TR>
+		<TD><APPLET CODE="FBViewer" WIDTH="350" HEIGHT="300"
+			ARCHIVE="../../viewer.jar">
+			<PARAM NAME="src" VALUE="ANALOG_SIGNAL_TYPE">
+		</APPLET></TD>
+		<TD><APPLET CODE="FBViewer" WIDTH="350" HEIGHT="300"
+			ARCHIVE="../../viewer.jar">
+			<PARAM NAME="src" VALUE="ANALOG_SIGNAL_RANGE">
+		</APPLET></TD>
+	</TR>
+</TABLE>
+</P>
+<P><I>Last updated: 2006-04-24.</I><BR>
+&copy;2006 <A HREF="http://www.holobloc.com" TARGET="_blank">Holobloc
+Inc</A><BR>
+Licensed under the <A
+	HREF="http://www.opensource.org/licenses/afl-3.0.php">Academic Free
+License version 3.0</A>.</P>
+</CENTER>
+</BODY>
+
+</HTML>

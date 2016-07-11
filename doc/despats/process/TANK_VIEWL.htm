@@ -1,0 +1,90 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="CONTENT-TYPE"
+	CONTENT="text/html; charset=windows-1252">
+<TITLE>SYSTEM TANK_VIEWL</TITLE>
+<META NAME="GENERATOR" CONTENT="Eclipse HTML Editor">
+</HEAD>
+<BODY>
+<H3>2. Develop and Test Views</H3>
+<P>The <TT>TANK_VIEWL</TT> system configuration shown <A
+	HREF="#Viewer">below</A> implements the layered <A
+	HREF="../mvc/syseng2.htm#2"><B>View</B> testing architecture</A> for
+the <A HREF="sketch.htm">process control&nbsp; example</A>.</P>
+<UL>
+	<LI>
+	<P>The <TT>HMI</TT> device encapsulates the functionality of the
+	human interface layer.</P>
+	</LI>
+	<LI>
+	<P>The <TT>VIEW</TT> device encapsulates the functionality of the <B>View</B>
+	layer in two instances of the specialized <TT><A
+		HREF="../../common/VIEW_PANEL.htm">VIEW_PANEL</A></TT> resource type to
+	provide the necessary layout of View elements for the level control
+	example.</P>
+	</LI>
+	<LI>
+	<P>The <TT>TANK</TT> view is implemented as an instance of the <A
+		HREF="../../common/MECH_VIEW.htm"><TT>MECH_VIEW</TT></A> type using
+	the <TT>CYLINDER</TT> style.</P>
+	</LI>
+	<LI>
+	<P>Inter-layer communication is implemented with the <A
+		HREF="../publsubl/index.htm">local multicast</A> pattern, e.g., by
+	using <TT>PUBL_1/SUBL_1</TT> for linking the tank level data over the <TT>TANK_LEVEL</TT>
+	channel.</P>
+	</LI>
+</UL>
+<CENTER>
+<P><IMG SRC="../../note.gif">Click on a graphic element to
+navigate to the documentation of its model.</P>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0">
+	<TR VALIGN="top">
+		<TD>
+		<P><IMG SRC="images/TANK_VIEWL.gif" NAME="Graphic2"
+			ALT="[HMI Image]" USEMAP="#MAP1" ALIGN="bottom" BORDER="0"
+			HEIGHT="120" WIDTH="150"></P>
+		</TD>
+		<TD>
+		<P><IMG SRC="images/TANK_VIEWL2.gif" NAME="Graphic3"
+			ALT="[View Image]" USEMAP="#MAP2" ALIGN="bottom" BORDER="0"
+			HEIGHT="250" WIDTH="175"></P>
+		</TD>
+	</TR>
+</TABLE>
+<MAP NAME="MAP1">
+	<AREA SHAPE="RECT" COORDS="104,42,146,116"
+		HREF="../../common/FB_LABEL.htm">
+	<AREA SHAPE="RECT" COORDS="4,42,104,116"
+		HREF="../../common/FB_SLIDER.htm">
+</MAP><MAP NAME="MAP2">
+	<AREA SHAPE="RECT" COORDS="3,191,62,240" HREF="../mvc/XSPACE.htm">
+	<AREA SHAPE="RECT" COORDS="128,42,171,191" HREF="../mvc/XSPACE.htm">
+	<AREA SHAPE="RECT" COORDS="116,191,171,242" HREF="PUMP_VIEW.htm">
+	<AREA SHAPE="RECT" COORDS="62,191,116,241" HREF="PIPE_VIEW.htm">
+	<AREA SHAPE="RECT" COORDS="54,40,128,191"
+		HREF="../../common/MECH_VIEW.htm">
+	<AREA SHAPE="RECT" COORDS="2,40,54,93" HREF="VALVE_VIEW.htm">
+</MAP>
+<P><A NAME="Viewer"></A>[<A HREF="../../FBViewer.html" TARGET="help">Viewer
+Help</A>]<BR>
+<TABLE BORDER="1" CELLPADDING="2" CELLSPACING="2">
+	<TR>
+		<TD>
+		<P><APPLET CODE="FBViewer" ARCHIVE="../../viewer.jar"
+			ALIGN="bottom" HEIGHT="525" WIDTH="600"> </APPLET></P>
+		<BR>
+		</TD>
+	</TR>
+</TABLE>
+</P>
+<P><I>Last updated: 2007-10-17.</I><BR>
+&copy;2006,2007 <A HREF="http://www.holobloc.com" TARGET="_blank">Holobloc
+Inc.</A><BR>
+Licensed under the <A
+	HREF="http://www.opensource.org/licenses/afl-3.0.php">Academic Free
+License version 3.0</A>.</P>
+</CENTER>
+</BODY>
+</HTML>

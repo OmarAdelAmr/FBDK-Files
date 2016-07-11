@@ -1,0 +1,50 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+
+<HEAD>
+	<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+	<META NAME="GENERATOR" Content="Visual Page 1.1 for Windows">
+	<TITLE>untitled</TITLE>
+</HEAD>
+
+<BODY>
+
+<H2 ALIGN="CENTER">APPLICATION TEST_BITS</H2>
+<P>The sequence of screen shots below illustrates the following sequence of operation of the <TT>TEST_BITS</TT>
+application of the <A HREF="CODEC_TEST.htm" target="_parent"><TT>CODEC_TEST</TT></A> system configuration. See
+subclause 3.4 of the <A HREF="http://www.holobloc.com/doc/ita/index.htm" target="_blank">Compliance Profile</A>
+for explanation of data value encodings.</P>
+
+<P><A HREF="bits.htm#0" target="bits"><B>0.</B></A> The startup condition, before a UDP channel has been selected
+for monitoring and before any data transmission activity.</P>
+
+<P><A HREF="bits.htm#1" target="bits"><B>1.</B></A> UDP channel <TT>225.0.0.0:1024</TT> (the lowest allowed value)
+has been selected for monitoring of <TT>EVENT</TT> (only) transmission.</P>
+
+<P><A HREF="bits.htm#2" target="bits"><B>2.</B></A> An event has been transmitted; the encoded data consists of
+a single <TT>NULL</TT> byte (<TT>05</TT> hexadecimal).</P>
+
+<P><A HREF="bits.htm#3" target="bits"><B>3.</B></A> UDP channel <TT>239.255.255.255:65535</TT> (the highest allowed
+value) has been selected for monitoring of the transmission of a single <TT>BOOL</TT> value, and the boolean value
+<TT>TRUE</TT> has been transmitted as a single byte with the value <TT>41</TT> hexadecimal.</P>
+
+<P><A HREF="bits.htm#4" target="bits"><B>4.</B></A> Now the boolean value <TT>FALSE</TT> has been transmitted as
+a single byte with the value <TT>40</TT> hexadecimal.</P>
+
+<P><A HREF="bits.htm#5" target="bits"><B>5.</B></A> UDP channel <TT>225.0.0.0:65535</TT> has been selected for
+monitoring of the transmission of a <TT>BYTE</TT> value and a <TT>WORD</TT> value, and the corresponding values
+have been transmitted together with tags of <TT>51</TT> and <TT>52</TT> hexadecimal, respectively, and values of
+<TT>1</TT> and <TT>2</TT>, respectively.</P>
+
+<P><A HREF="bits.htm#6" target="bits"><B>6.</B></A> UDP channel <TT>225.255.255.255:65535</TT> (the highest allowed
+value) has been selected for monitoring of the transmission of a <TT>DWORD</TT> value and an <TT>LWORD</TT> value,
+and the corresponding values have been transmitted together with tags of <TT>53</TT> and <TT>54</TT> hexadecimal,
+respectively, and values of <TT>3</TT> and <TT>4</TT>, respectively.</P>
+<CENTER>
+<P>
+<HR ALIGN="CENTER">
+<I>Last updated: 2005-03-11.</I>
+</CENTER>
+ </BODY>
+
+</HTML>

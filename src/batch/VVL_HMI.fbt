@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="VVL_HMI" Comment="HMI and Local Multicast elements for testing a Valve view." >
+  <Identification Standard="IEC 61499" Classification="HMI" ApplicationDomain="Process Control" Function="Test" Type="ON/OFF Valve" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.0" Author="JHC" Date="2006-07-28" />
+  <CompilerInfo header="package fb.rt.batch; import fb.rt.net.*; import fb.rt.gui.*; import fb.rt.hmi.*; import fb.rt.mva.FBMVCD;" classdef="public class VVL_HMI extends FBMVCD" >
+    <Compiler Language="Java" Vendor="Sun" Product="JDK" Version="1.5.0" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" >
+        <With Var="REND_ID" />
+        <With Var="UI_ID" />
+        <With Var="ID" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" >
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="ID" Type="WSTRING" Comment="Label for HMI elements, default = FB instance name" />
+      <VarDeclaration Name="REND_ID" Type="WSTRING" Comment="Local Channel ID for rendering data" />
+      <VarDeclaration Name="UI_ID" Type="WSTRING" Comment="Local Channel ID for valve state publication" />
+    </InputVars>
+  </InterfaceList>
+  <FBNetwork >
+    <FB Name="UI" Type="SUBL_1" x="1727.7777" y="11.111111" />
+    <FB Name="REND" Type="PUBL_2" x="1261.1111" y="605.55554" />
+    <FB Name="REND_IN" Type="IN_BOOL" x="200.0" y="11.111111" />
+    <FB Name="UI_OUT" Type="OUT_BOOL" x="2211.111" y="11.111111" />
+    <FB Name="ON_CLR" Type="IN_PAINT" Comment="Valve ON Paint pattern key" x="677.7778" y="38.888885" />
+    <EventConnections>
+      <Connection Source="INIT" Destination="REND_IN.INIT" dx1="94.44444" />
+      <Connection Source="REND.INITO" Destination="UI.INIT" dx1="50.0" />
+      <Connection Source="UI.INITO" Destination="UI_OUT.INIT" dx1="27.777777" />
+      <Connection Source="UI.IND" Destination="UI_OUT.REQ" dx1="27.777777" />
+      <Connection Source="UI_OUT.INITO" Destination="INITO" dx1="2677.7776" />
+      <Connection Source="REND_IN.INITO" Destination="ON_CLR.INIT" dx1="27.777777" />
+      <Connection Source="ON_CLR.INITO" Destination="REND.INIT" dx1="172.22221" />
+      <Connection Source="ON_CLR.IND" Destination="REND.REQ" dx1="116.666664" />
+      <Connection Source="REND_IN.IND" Destination="REND.REQ" dx1="77.77777" />
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="REND_ID" Destination="REND.ID" dx1="1088.8888" />
+      <Connection Source="UI_ID" Destination="UI.ID" dx1="1605.5555" />
+      <Connection Source="ID" Destination="REND_IN.LABEL" dx1="122.22221" />
+      <Connection Source="REND_IN.OUT" Destination="REND.SD_1" dx1="27.777777" />
+      <Connection Source="UI.RD_1" Destination="UI_OUT.IN" dx1="27.777777" />
+      <Connection Source="ID" Destination="UI_OUT.LABEL" dx1="2133.3333" />
+      <Connection Source="ON_CLR.OUT" Destination="REND.SD_2" dx1="55.555553" />
+    </DataConnections>
+  </FBNetwork>
+</FBType>

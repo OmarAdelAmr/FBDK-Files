@@ -1,0 +1,121 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+<META NAME="GENERATOR" CONTENT="Eclipse HTML Editor">
+<TITLE>Testing a System Configuration</TITLE>
+</HEAD>
+<BODY>
+<H2 ALIGN="center"><A NAME="Create" />Testing a System
+Configuration</H2>
+<P>Testing a system configuration consists of three steps:</P>
+<OL>
+	<LI><A HREF="#Remote">Launching remote devices</A> (if any)</LI>
+	<LI><A HREF="#System">Launching the system configuration</A></LI>
+	<LI><A HREF="#Testing">Testing and stopping the system</A></LI>
+</OL>
+<A NAME="Remote"></A>
+<H3>Launching Remote Devices</H3>
+<P>If any of the devices in the system configuration are <B>remote
+devices</B> (<TT><A HREF="../common/RMT_DEV.htm">RMT_DEV</A>, <A
+	HREF="../common/RMT_FRAME.htm">RMT_FRAME</A></TT>, etc), these must be
+launched before the system configuration so that the FBEditor tool can
+configure them as part of the system launch process. How this is done
+depends on the location of the device:</P>
+<UL>
+	<LI>A <B>locally hosted</B> remote device is one whose <TT>MGR_ID</TT>
+	parameter value begins with <TT>"localhost:", "127.0.0.1:"</TT>, or the
+	IP address of the local workstation, e.g., <TT>"192.168.1.3"</TT> (the
+	default initial value for the <TT>MGR_ID</TT> parameter is <TT>"localhost:61499"</TT>).
+	This type of device can be launched directly from the FBEditor, using
+	the <IMG SRC="Play16.gif"><B>Run</B> option from its pop-up menu
+	in the system configuration diagram (<IMG SRC="system.gif"> in
+	the navigation tree).</LI>
+	<LI>A <B>remotely hosted</B> device is one that does not meet the
+	above criteria. This kind of device can be launched in one of two ways:</LI>
+	<UL>
+		<LI>If the remote device is located on a workstation capable of
+		hosting the <A HREF="index.htm" TARGET="_blank">FBDK</A>, the device
+		can be launched from the same system configuration on the remote
+		workstation by adjusting its <TT>MGR_ID</TT> parameter appropriately.
+		For instance, suppose a system configuration is to be launched from
+		workstation <B>A</B> with IP address <TT>192.168.1.3</TT>, and the
+		configuration contains a remote device <TT>DEV_D</TT> with a <TT>MGR_ID</TT>
+		value of <TT>"192.168.1.5:61500"</TT>. Then if there is a workstation
+		<B>B</B> with IP address <TT>192.168.1.5</TT> hosting the FBDK, the
+		remote device could be launched as follows:</LI>
+		<OL>
+			<LI>Open the same application in the FBEditor on workstation <B>B</B>.</LI>
+			<LI>Set the <TT>DEV_D.MGR_ID</TT> parameter to <TT>"localhost:61500"</TT>
+			in the FBEditor on workstation <B>B</B>.</LI>
+			<LI>Launch <TT>DEV_D</TT> on workstation <B>B</B>, using the <IMG
+				SRC="Play16.gif"><B>Run</B> option from its pop-up menu.</LI>
+		</OL>
+		<LI>If the remote device is not located on a workstation capable
+		of hosting the FBDK (for example, an embedded controller), it must be
+		launched using some platform-specific procedure.</LI>
+	</UL>
+</UL>
+<FORM><INPUT TYPE="button" VALUE="Return to Top"
+	ONCLICK="scroll(0,0);"></FORM>
+<A NAME="System"></A>
+<H3>Launching the System Configuration</H3>
+<P>After starting the remote devices, if any, you launch the system
+configuration by pressing the <IMG SRC="Play16.gif"> button next
+to the <B>Run</B> item on the menu bar. As the configuration proceeds,
+you will see the configuration commands and responses flashing by on the
+status bar.</P>
+<P>If an error occurs, during launching, an error message will
+appear in a popup window. If you need to find out exactly where in the
+configuration process this error occurred, you can turn on the <B>Log</B>
+checkbox in the <B>Run</B> menu, which will cause the configuration
+commands and responses to be output to the command prompt window from
+which the FBEditor was launched.</P>
+<P>Possible error messages include:</P>
+<UL>
+	<LI>NO_SOCKET - A remote device has either not been launched or
+	has failed to initialize its management socket identified by the <TT>MGR_ID</TT>
+	parameter. This usually occurs after a delay caused by waiting for the
+	socket, which you will notice by a configuration command or response
+	being "frozen" in the status bar.</LI>
+	<LI>NOT_READY - A device is not responding quickly enough. You may
+	be able to overcome this problem by adjusting the command/response
+	timeout, using the <B>Timeout...</B> item of the <B>Run</B> menu.</LI>
+	<LI>INVALID_STATE - This is probably due to trying to re-configure
+	a device that is already running. You will have to kill the running
+	device instance and start a new one.</LI>
+</UL>
+<P>For explanations of other error messages, see <A
+	HREF="../ita/s4.htm#4.5" TARGET="_blank">subclause 6.5</A> of the <A
+	HREF="../ita/index.htm" TARGET="_blank">Compliance Profile</A>.</P>
+<FORM><INPUT TYPE="button" VALUE="Return to Top"
+	ONCLICK="scroll(0,0);"></FORM>
+<A NAME="Testing"></A>
+<H3>Testing and Stopping the System Configuration</H3>
+<P>After testing to validate the system's operation versus
+requirements, you can stop the configuration and kill all the locally
+running processes by exiting the FBEditor. This assumes, of course, that
+you are happy with the results of the testing and have already saved all
+your editing work on the system configuration.</P>
+<P>In the more usual case that you want to stop the running
+processes and make changes to correct errors, you can do the following:</P>
+<OL>
+	<LI>Stop the processes in non-workstation hosts with appropriate
+	platform-specific actions.</LI>
+	<LI>Stop the processes running in windows on both the local and
+	remote workstations by closing the windows.</LI>
+	<LI>Stop the non-window processes in both local and remote
+	workstations by clicking on their identifiers in the <IMG
+		SRC="terminate.gif"><B>Shut Down</B> item of the <B>Run</B>
+	menus.</LI>
+</OL>
+<FORM><INPUT TYPE="button" VALUE="Return to Top"
+	ONCLICK="scroll(0,0);"></FORM>
+<CENTER>
+<HR>
+<P><I>Last updated: 2007-10-07.</I><BR>
+&copy;2007 <A HREF="http://www.holobloc.com" TARGET="_blank">Holobloc
+Inc</A>. All rights reserved.</P>
+</CENTER>
+</BODY>
+</HTML>

@@ -1,0 +1,255 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html;CHARSET=iso-8859-1">
+  <meta name="GENERATOR" content="Visual Page 1.1 for Windows">
+  <title>Sensors/Actuators</title>
+</head>
+<body>
+<h2 align="center">Sensor and Actuator Interfaces</h2>
+<p>Sensor signals are made available at a 25-pin <a href="#table">D-shell
+socket</a>. They are compatible with
+24VDC current-sinking input circuits and are <a href="#table">packed</a>
+into a 16-bit <code>WORD</code> for transmission to the controller.</p>
+<p>Actuator signals are made available at a 15-pin <a href="#table">D-shell
+plug</a>. They are compatible with 24VDC current-sourcing output circuits and are
+<a href="#table">packed</a>
+into a 16-bit <code>WORD</code> for transmission from the controller.</p>
+<p>As shown below, switches are inserted in some of the signal lines to
+facilitate the testing of error detection,
+diagnosis and recovery algorithms.</p>
+<center>
+<p><i>This is an interactive map. Click on a signal
+label to see its semantics below.</i></p>
+<p><a name="map"></a><img src="P5050013.gif"
+ usemap="#P5050013" align="bottom" border="0" height="475" width="329"></p>
+</center>
+<p><a name="table"></a> The following table lists the sensor and
+actuator pinouts on the 25-pin D-shell socket
+and 15-pin D-shell plug of the testbed, respectively. Also listed for
+reference are the bit positions in the packed I/O <code>WORD</code> data used in the
+<a href="TESTBED_MVCR.htm" target="_parent"><tt>TESTBED_MVCR</tt></a> configuration.</p>
+<center>
+<p>
+<table border="1">
+  <tbody>
+    <tr>
+      <th>Pin</th>
+      <th>Sensor Signal<br>
+(25-pin D-shell socket)</th>
+      <th>Bit<br>Position</th>
+      <th>Actuator Signal<br>
+(15-pin D-shell plug)</th>
+      <th>Bit<br>Position</th>
+    </tr>
+    <tr align="center" valign="middle">
+      <td><tt>1</tt></td>
+      <td></td>
+      <td></td>
+      <td><a
+ href="sadefs.htm#EMERGENCY%20STOP%2024V" target="sadefs"><tt>EMERGENCY
+STOP 24V</tt></a></td>
+    </tr>
+    <tr align="center" valign="middle">
+      <td><tt>2</tt></td>
+      <td></td>
+      <td></td>
+      <td><a href="sadefs.htm#EMERGENCY%20STOP%2024V" target="sadefs"><tt>EMERGENCY
+STOP 24V</tt></a></td>
+      <td></td>
+    </tr>
+    <tr align="center" valign="middle">
+      <td><tt>3</tt></td>
+      <td></td>
+      <td></td>
+      <td><a href="sadefs.htm#CHAIN%20CONVEYOR" target="sadefs"><tt>CHAIN
+CONVEYOR</tt></a></td>
+      <td><tt>0</tt></td>
+    </tr>
+    <tr align="center" valign="middle">
+      <td><tt>4</tt></td>
+      <td><tt>GROUND</tt></td>
+      <td></td>
+      <td><a href="sadefs.htm#ROTARY%20SOLENOID" target="sadefs"><tt>ROTARY
+SOLENOID</tt></a></td>
+      <td><tt>2</tt></td>
+    </tr>
+    <tr align="center" valign="middle">
+      <td><tt>5</tt></td>
+      <td><a href="sadefs.htm#STOP" target="sadefs"><tt>STOP</tt></a></td>
+      <td></td>
+      <td><a href="sadefs.htm#BELT%20CONVEYOR" target="sadefs"><tt>BELT
+CONVEYOR</tt></a></td>
+      <td><tt>4</tt> 
+      </td>
+    </tr>
+    <tr align="center" valign="middle">
+      <td><tt>6</tt></td>
+      <td><a href="sadefs.htm#REJECT%20SOL%20RETURN" target="sadefs"><tt>REJECT
+SOL RETURN</tt></a></td>
+      <td><tt>11</tt></td>
+      <td><a href="sadefs.htm#GROUND" target="sadefs"><tt>GROUND</tt></a></td>
+      <td></td>
+    </tr>
+    <tr align="center" valign="middle">
+      <td><tt>7</tt></td>
+      <td><a href="sadefs.htm#RING%20ASSEMBLED" target="sadefs"><tt>RING
+ASSEMBLED</tt></a></td>
+      <td><tt>9</tt></td>
+    </tr>
+    <tr align="center" valign="middle">
+      <td><tt>8</tt></td>
+      <td><a href="sadefs.htm#PEG%20AT%20RING%20CHUTE" target="sadefs"><tt>PEG
+AT RING CHUTE</tt></a></td>
+      <td><tt>7</tt></td>
+      <td><a href="sadefs.htm#SORT%20SOLENOID" target="sadefs"><tt>SORT
+SOLENOID</tt></a></td>
+      <td><tt>1</tt></td>
+    </tr>
+    <tr align="center" valign="middle">
+      <td><tt>9</tt></td>
+      <td><a href="sadefs.htm#ASSEMBLY%20HOPPER%20FULL" target="sadefs"><tt>ASSEMBLY
+HOPPER FULL</tt></a></td>
+      <td><tt>6</tt></td>
+      <td><a href="sadefs.htm#REJECT%20SOLENOID" target="sadefs"><tt>REJECT
+SOLENOID</tt></a></td>
+      <td><tt>3</tt></td>
+    </tr>
+    <tr align="center" valign="middle">
+      <td><tt>10</tt></td>
+      <td><a href="sadefs.htm#INDEX%20CAM%20OPEN" target="sadefs"><tt>INDEX
+CAM OPEN</tt></a></td>
+      <td><tt>5</tt></td>
+    </tr>
+    <tr align="center" valign="middle">
+      <td><tt>11</tt></td>
+      <td><a href="sadefs.htm#SORT%20AREA%20DETECT" target="sadefs"><tt>SORT
+AREA DETECT</tt></a></td>
+      <td><tt>1</tt></td>
+    </tr>
+    <tr align="center" valign="middle">
+      <td>
+      <tt>12</tt> 
+      </td>
+      <td><a href="sadefs.htm#SORT%20SOL%20RETURN" target="sadefs"><tt>SORT
+SOL RETURN</tt></a></td>
+      <td><tt>0</tt></td>
+    </tr>
+    <tr align="center" valign="middle">
+      <td><tt>13</tt></td>
+      <td><tt>GROUND</tt></td>
+    </tr>
+    <tr align="center" valign="middle">
+      <td><tt>14</tt> 
+    </tr>
+    <tr align="center" valign="middle">
+      <td><tt>15</tt></td>
+    </tr>
+    <tr align="center" valign="middle">
+      <td><tt>16</tt></td>
+      <td><tt>GROUND</tt></td>
+    </tr>
+    <tr align="center" valign="middle">
+      <td><tt>17</tt></td>
+      <td><a href="sadefs.htm#EMERGENCY%20STOP%2024V" target="sadefs"><tt>EMERGENCY
+STOP 24V</tt></a></td>
+    </tr>
+    <tr align="center" valign="middle">
+      <td><tt>18</tt></td>
+      <td><a href="sadefs.htm#START" target="sadefs"><tt>START</tt></a></td>
+    </tr>
+    <tr align="center" valign="middle">
+      <td><tt>19</tt></td>
+      <td><a href="sadefs.htm#REJECT%20AREA%20DETECT" target="sadefs"><tt>REJECT
+AREA DETECT</tt></a></td>
+      <td><tt>10</tt> 
+    </tr>
+    <tr align="center" valign="middle">
+      <td><tt>20</tt></td>
+      <td><a href="sadefs.htm#ASSEMBLY%20DETECT" target="sadefs"><tt>ASSEMBLY
+DETECT</tt></a></td>
+      <td><tt>8</tt></td>
+    </tr>
+    <tr align="center" valign="middle">
+      <td><tt>21</tt></td>
+      <td><a href="sadefs.htm#PEG%20PRESENT" target="sadefs"><tt>PEG
+PRESENT</tt></a></td>
+      <td><tt>7</tt></td>
+    </tr>
+    <tr align="center" valign="middle">
+      <td><tt>22</tt></td>
+      <td><a href="sadefs.htm#INDEX%20CAM%20CLOSED" target="sadefs"><tt>INDEX
+CAM CLOSED</tt></a></td>
+      <td><tt>4</tt></td>
+    </tr>
+    <tr align="center" valign="middle">
+      <td><tt>23</tt></td>
+      <td><a href="sadefs.htm#RING%20PRESENT" target="sadefs"><tt>RING
+PRESENT</tt></a></td>
+      <td><tt>3</tt></td>
+    </tr>
+    <tr align="center" valign="middle">
+      <td><tt>24</tt></td>
+      <td><a href="sadefs.htm#METAL%20PEG%20DETECT" target="sadefs"><tt>METAL
+PEG DETECT</tt></a></td>
+      <td><tt>2</tt></td>
+    <tr align="center" valign="middle">
+      <td><tt>25</tt></td>
+      <td><tt>GROUND</tt></td>
+    </tr>
+  </tbody>
+</table>
+
+<hr size="2" width="100%">
+<p><i>Last updated: 2004-10-25.<br>
+&copy;2000, 2004 Rockwell Automation. All rights reserved.<br>
+</i></p>
+</center>
+<map name="P5050013">
+<area shape="Rect" coords="213,435,282,456" href="sadefs.htm#24V"
+ target="sadefs">
+<area shape="Rect" coords="214,421,283,442"
+ href="sadefs.htm#EMERGENCY%20STOP%2024V" target="sadefs">
+<area shape="Rect" coords="214,405,283,422"
+ href="sadefs.htm#BELT%20CONVEYOR" target="sadefs">
+<area shape="Rect" coords="217,385,286,403"
+ href="sadefs.htm#REJECT%20SOLENOID" target="sadefs">
+<area shape="Rect" coords="218,367,287,388"
+ href="sadefs.htm#ROTARY%20SOLENOID" target="sadefs">
+<area shape="Rect" coords="214,348,283,369"
+ href="sadefs.htm#SORT%20SOLENOID" target="sadefs">
+<area shape="Rect" coords="214,330,283,351"
+ href="sadefs.htm#CHAIN%20CONVEYOR" target="sadefs">
+<area shape="Rect" coords="213,302,282,323" href="sadefs.htm#STOP"
+ target="sadefs">
+<area shape="Rect" coords="213,284,282,305" href="sadefs.htm#START"
+ target="sadefs">
+<area shape="Rect" coords="214,266,283,287"
+ href="sadefs.htm#REJECT%20SOL%20RETURN" target="sadefs">
+<area shape="Rect" coords="213,247,282,268"
+ href="sadefs.htm#REJECT%20AREA%20DETECT" target="sadefs">
+<area shape="Rect" coords="214,226,283,247"
+ href="sadefs.htm#RING%20ASSEMBLED" target="sadefs">
+<area shape="Rect" coords="213,209,282,230"
+ href="sadefs.htm#ASSEMBLY%20DETECT" target="sadefs">
+<area shape="Rect" coords="215,189,284,210"
+ href="sadefs.htm#PEG%20AT%20RING%20CHUTE" target="sadefs">
+<area shape="Rect" coords="215,170,284,191"
+ href="sadefs.htm#PEG%20PRESENT" target="sadefs">
+<area shape="Rect" coords="215,151,284,172"
+ href="sadefs.htm#ASSEMBLY%20HOPPER%20FULL" target="sadefs">
+<area shape="Rect" coords="213,132,282,153"
+ href="sadefs.htm#INDEX%20CAM%20CLOSED" target="sadefs">
+<area shape="Rect" coords="212,112,281,133"
+ href="sadefs.htm#INDEX%20CAM%20OPEN" target="sadefs">
+<area shape="Rect" coords="211,93,280,114"
+ href="sadefs.htm#RING%20PRESENT" target="sadefs">
+<area shape="Rect" coords="213,74,282,95"
+ href="sadefs.htm#SORT%20AREA%20DETECT" target="sadefs">
+<area shape="Rect" coords="213,56,282,77"
+ href="sadefs.htm#METAL%20PEG%20DETECT" target="sadefs">
+<area shape="Rect" coords="214,39,282,58"
+ href="sadefs.htm#SORT%20SOL%20RETURN" target="sadefs">
+</map>
+</body>
+</html>

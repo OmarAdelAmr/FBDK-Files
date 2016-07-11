@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DataType SYSTEM "http://www.holobloc.com/xml/DataType.dtd" >
+<DataType Name="ANALOG_SIGNAL_TYPE" Comment="IEC 61131-3-2.3.3.1" >
+  <Identification Standard="61131-3" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.3" Author="JHC" Date="2007-03-19" Remarks="Updated EnumeratedType." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.2" Author="JHC" Date="2000-05-16" Remarks="File type changed to &#34;.dtp&#34;" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2000-05-10" Remarks="Corrected encoding of values." />
+  <CompilerInfo header="package fb.rt.ita;" >
+    <Compiler Language="Java" Vendor="Sun" Product="JDK" Version="1.5.0" />
+  </CompilerInfo>
+  <ASN1Tag Class="PRIVATE" Number="12" />
+  <EnumeratedType >
+    <EnumeratedValue Name="SINGLE_ENDED" />
+    <EnumeratedValue Name="DIFFERENTIAL" />
+  </EnumeratedType>
+</DataType>

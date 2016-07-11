@@ -1,0 +1,65 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+<META NAME="GENERATOR" CONTENT="Eclipse HTML Editor">
+<TITLE>SYSTEM CODEC_TEST</TITLE>
+</HEAD>
+
+<BODY>
+
+<H2 ALIGN="CENTER">APPLICATION TEST_COLOR</H2>
+<P><A HREF="#Viewer">This application</A> is part of the <A
+	HREF="CODEC_TEST.htm"><TT>CODEC_TEST</TT></A> system configuration. It
+utilizes instances of <A HREF="../../common/IN_COLOR.htm"><TT>IN_COLOR</TT></A>
+and <A HREF="../../common/OUT_COLOR.htm"><TT>OUT_COLOR</TT></A> for
+input and output of transmitted data, respectively.</P>
+<P>See <A HREF="TEST_BITS.htm"><TT>TEST_BITS</TT></A> and <A
+	HREF="MONITOR.htm"><TT>MONITOR</TT></A> for further documentation of
+the operation of these test panels.</P>
+<P>In this example, various COLOR values (ASN.1 tag of <TT>C2</TT>
+hexadecimal) are transmitted. The data is encoded as a Red/Green/Blue
+(RGB) value contained in a 32-bit integer, with a most significant byte
+(MSB) of FF hexadecimal and successive bytes representing the R, G and B
+values, respectively, as shown below.</P>
+<CENTER>
+<P>
+<TABLE BORDER="1">
+	<TR>
+		<TD><IMG SRC="images/TEST_COLOR.gif" WIDTH="400" HEIGHT="265"
+			ALIGN="BOTTOM" BORDER="0"></TD>
+		<TD><IMG SRC="images/TEST_COLOR2.gif" WIDTH="399" HEIGHT="265"
+			ALIGN="BOTTOM" BORDER="0"></TD>
+	</TR>
+	<TR>
+		<TD><IMG SRC="images/TEST_COLOR3.gif" WIDTH="400" HEIGHT="264"
+			ALIGN="BOTTOM" BORDER="0"></TD>
+		<TD><IMG SRC="images/TEST_COLOR4.gif" WIDTH="397" HEIGHT="265"
+			ALIGN="BOTTOM" BORDER="0"></TD>
+	</TR>
+</TABLE>
+</P>
+<P>[<A NAME="Viewer"></A><A HREF="../../FBViewer.html" TARGET="help">Viewer
+Help</A>]<BR>
+<TABLE BORDER="1">
+	<TR>
+		<TD>
+		<APPLET CODE="FBViewer" WIDTH="450" HEIGHT="408" ALIGN="BOTTOM"
+			ARCHIVE="../../viewer.jar">
+			<PARAM NAME="src" VALUE="CODEC_TEST">
+			<PARAM NAME="fbd" VALUE="CODEC_TEST.TEST_COLOR">
+		</APPLET>
+		</TD>
+	</TR>
+</TABLE>
+</P>
+<P><I>Last updated: 2006-04-17.</I><BR>
+&copy;2006 <A HREF="http://www.holobloc.com" TARGET="_blank">Holobloc
+Inc</A><BR>
+Licensed under the <A
+	HREF="http://www.opensource.org/licenses/afl-3.0.php">Academic Free
+License version 3.0</A>.</P>
+</CENTER>
+</BODY>
+</HTML>

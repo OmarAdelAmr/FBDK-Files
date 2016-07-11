@@ -1,0 +1,114 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+
+<HEAD>
+	<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+	<META NAME="GENERATOR" Content="Visual Page 1.1 for Windows">
+	<TITLE>Sensors/Actuators</TITLE>
+</HEAD>
+
+<BODY>
+
+<H2 ALIGN="CENTER">Sensor and Actuator Semantics</H2>
+<H3>Sensors</H3>
+
+<UL>
+	<LI><A NAME="SORT SOL RETURN"></A><TT>SORT SOL RETURN:</TT> +24V when the sort solenoid [<A HREF="step2.htm" target="samap">2</A>]
+	is in the retracted position. [<A HREF="samap.htm#map" target="samap">Map</A>]
+	<LI><A NAME="METAL PEG DETECT"></A><TT>METAL PEG DETECT:</TT> +24V when a metal peg is in the sortation area [<A
+	HREF="step2.htm" target="samap">2</A>].
+	<UL>
+		<LI><I>NOTE 1 - </I>When a peg is present, this signal is typically asserted before the first assertion of the
+		<A HREF="#SORT AREA DETECT"><TT>SORT AREA DETECT</TT></A> signal, but may be asserted after <TT>SORT AREA DETECT</TT>
+		if the latter sensor is not properly aligned.
+		<LI><I>NOTE 2 -</I> When a peg is present, this signal will always be asserted before the first negation of <TT>SORT
+		AREA DETECT</TT>. [<A HREF="samap.htm#map" target="samap">Map</A>]
+	</UL>
+	<LI><A NAME="SORT AREA DETECT"></A><TT>SORT AREA DETECT:</TT> +24V when either a metal peg or a ring is in the
+	sortation area[<A HREF="step2.htm" target="samap">2</A>].<I> </I>
+	<UL>
+		<LI><I>NOTE 1 -</I> This signal is asserted upon entry of a ring or peg to the sortation area. The signal is de-asserted
+		while the hole of a ring or central cylinder of a peg passes through the detection area, then asserted again as
+		the trailing edge of the ring or peg passes. <I></I>
+		<LI><I>NOTE 2 - </I>When this sensor is properly aligned, this signal will be asserted following the rising edge
+		of <A HREF="#METAL PEG DETECT"><TT>METAL PEG DETECT</TT></A> when an peg is present; however, misalignment may
+		cause it to be asserted later. 
+		<LI><I>NOTE 3</I> - When this sensor is properly aligned, a ring will be in an appropriate position to be ejected
+		by the <A HREF="#SORT SOLENOID"><TT>SORT SOLENOID</TT></A> when this signal is asserted. Misalignment of this sensor
+		may cause the ejector to jam in front of a ring if the <TT>SORT SOLENOID</TT> is activated by the logical condition
+		<TT>(SORT AREA DETECT) &amp; NOT (METAL PEG DETECT)</TT>, which may bend the ejector shaft due to the high force
+		exerted by the chain conveyor. [<A HREF="samap.htm#map" target="samap">Map</A>]
+	</UL>
+	<LI><A NAME="RING PRESENT"></A><TT>RING PRESENT:</TT> +24V when one or more rings are in the chute [<A HREF="step3.htm"
+	target="samap">3</A>]. [<A HREF="samap.htm#map" target="samap">Map</A>]
+	<LI><A NAME="INDEX CAM OPEN"></A><TT>INDEX CAM OPEN:</TT> +24V when the index cam is in position to drop a ring
+	into the hopper [<A HREF="step3.htm" target="samap">3</A>,<A HREF="step4.htm" target="samap">4</A>]. <I>NOTE -
+	</I>There is a significant region of overlap where both <TT>INDEX CAM OPEN</TT> and <A HREF="#INDEX CAM CLOSED"><TT>INDEX
+	CAM CLOSED</TT></A> are asserted during activation and de-activation of <A HREF="#ROTARY SOLENOID"><TT>ROTARY SOLENOID</TT></A>.
+	[<A HREF="samap.htm#map" target="samap">Map</A>]
+	<LI><A NAME="INDEX CAM CLOSED"></A><TT>INDEX CAM CLOSED:</TT> +24V when the index cam is in position to receive
+	and hold a ring [<A HREF="step3.htm" target="samap">3</A>]. See <I>NOTE</I> on <A HREF="#INDEX CAM OPEN"><TT>INDEX
+	CAM OPEN</TT></A>. [<A HREF="samap.htm#map" target="samap">Map</A>]
+	<LI><A NAME="ASSEMBLY HOPPER FULL"></A><TT>ASSEMBLY HOPPER FULL:</TT> +24V when the assembly hopper [<A HREF="step4.htm"
+	target="samap">4</A>] contains at least one ring. [<A HREF="samap.htm#map" target="samap">Map</A>]
+	<UL>
+		<LI><I>NOTE 1</I> - The assembly hopper can hold two rings; however, this may cause a jam in the assembly operation.<I></I>
+		<LI><I>NOTE 2</I> - This sensor may &quot;bounce&quot; during the assembly operation.
+	</UL>
+	<LI><A NAME="PEG PRESENT"></A><TT>PEG PRESENT:</TT> 0V when a peg is present at the entrance to the assembly area;
+	+24V otherwise [<A HREF="step4.htm" target="samap">4</A>]. [<A HREF="samap.htm#map" target="samap">Map</A>]
+	<LI><A NAME="PEG AT RING CHUTE"></A><TT>PEG AT RING CHUTE:</TT> 0V when a peg or ring is entering or leaving the
+	area under the ring chute; +24V otherwise [<A HREF="step4.htm" target="samap">4</A>]. [<A HREF="samap.htm#map"
+	target="samap">Map</A>]
+	<UL>
+		<LI>NOTE - This signal may be at +24V momentarily when the peg is directly opposite the retroreflective detector
+		if the latter is improperly calibrated.
+	</UL>
+	<LI><A NAME="ASSEMBLY DETECT"></A><TT>ASSEMBLY DETECT:</TT> +24V when a peg or ring, or both, are in the inspection
+	area [<A HREF="step6.htm" target="samap">6</A>] [<A HREF="samap.htm#map" target="samap">Map</A>]
+	<UL>
+		<LI><I>NOTE - </I>When a ring assembled to a peg is passing:
+		<OL>
+			<LI>This signal follows the <A HREF="#RING ASSEMBLED"><TT>RING ASSEMBLED</TT></A> signal in time.
+			<LI>There is some overlap between the periods of assertion of the two signals.
+			<LI>This signal remains asserted for some time following the de-assertion of the <TT>RING ASSEMBLED</TT> signal.
+		</OL>
+	</UL>
+	<LI><A NAME="RING ASSEMBLED"></A><TT>RING ASSEMBLED:</TT>+24V when a ring on a peg is entering the inspection area
+	[<A HREF="step6.htm" target="samap">6</A>]. See NOTE on <A HREF="#ASSEMBLY DETECT"><TT>ASSEMBLY DETECT</TT></A>.
+	[<A HREF="samap.htm#map" target="samap">Map</A>]
+	<LI><A NAME="REJECT AREA DETECT"></A><TT>REJECT AREA DETECT:</TT> +24V when an object is in the reject area [<A
+	HREF="step6.htm" target="samap">6</A>]. [<A HREF="samap.htm#map" target="samap">Map</A>]
+	<LI><A NAME="REJECT SOL RETURN"></A><TT>REJECT SOL RETURN:</TT> +24V when the reject solenoid [<A HREF="step6.htm"
+	target="samap">6</A>] is retracted. [<A HREF="samap.htm#map" target="samap">Map</A>]
+	<LI><A NAME="START"></A><TT>START:</TT> +24V when the <TT>START</TT> pushbutton is pressed.
+	<LI><A NAME="STOP"></A><TT>STOP:</TT> +24V when the <TT>STOP</TT> pushbutton is up (not pressed); 0V when it is
+	down (pressed).
+	<LI><A NAME="EMERGENCY STOP 24V"></A><TT>EMERGENCY STOP 24V:</TT> <TT>24VDC</TT> energizing power for output circuits
+	when the <TT>EMERGENCY STOP</TT> button is closed (up); otherwise an open circuit.
+	<LI><A NAME="24V"></A><TT>24V:</TT> <TT>24VDC</TT> energizing power for input circuits.
+</UL>
+
+<H3>Actuators</H3>
+
+<UL>
+	<LI><A NAME="CHAIN CONVEYOR"></A><TT>CHAIN CONVEYOR:</TT> Drive power to the chain (feed) conveyor, +24VDC fused
+	at 160mA.[<A HREF="samap.htm#map" target="samap">Map</A>]
+	<LI><A NAME="SORT SOLENOID"></A><TT>SORT SOLENOID:</TT> Activates the sort solenoid [<A HREF="step2.htm" target="samap">2</A>].
+	[<A HREF="samap.htm#map" target="samap">Map</A>]
+	<LI><A NAME="ROTARY SOLENOID"></A><TT>ROTARY SOLENOID:</TT> Activates the rotary solenoid [<A HREF="step3.htm"
+	target="samap">3</A>]. See <I>NOTE</I> on <A HREF="#INDEX CAM OPEN"><TT>INDEX CAM OPEN</TT></A>. [<A HREF="samap.htm#map"
+	target="samap">Map</A>]
+	<LI><A NAME="REJECT SOLENOID"></A><TT>REJECT SOLENOID:</TT> Activates the reject solenoid [<A HREF="step6.htm"
+	target="samap">6</A>]. [<A HREF="samap.htm#map" target="samap">Map</A>]
+	<LI><A NAME="BELT CONVEYOR"></A><TT>BELT CONVEYOR:</TT> Drive power to the belt (assembly) conveyor, +24VDC fused
+	at 160mA.[<A HREF="samap.htm#map" target="samap">Map</A>]
+	<LI><A NAME="GROUND"></A><TT>GROUND</TT>: This connection is interrupted (on the actuator signal connector only)
+	when the EMERGENCY STOP button is depressed.
+</UL>
+
+<P ALIGN="CENTER"><I>Last updated: 2001-09-10.</I>
+
+</BODY>
+
+</HTML>

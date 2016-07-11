@@ -1,0 +1,220 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+<META NAME="GENERATOR" CONTENT="Eclipse HTML Editor">
+<TITLE>untitled</TITLE>
+</HEAD>
+<BODY>
+<H2 ALIGN="CENTER"><A NAME="Top"></A>Testing Data Types<BR>
+<FONT SIZE="-1" FACE="Arial, Helvetica">
+[<A HREF="#Directly">Directly Derived</A>]
+[<A HREF="#Array">Array</A>]
+[<A HREF="#Subrange">Subrange</A>]
+[<A HREF="#Enumerated">Enumerated</A>]
+[<A HREF="#Structured">Structured</A>]</FONT></H2>
+<H3>General Procedure</H3>
+
+<OL>
+	<LI>After <A HREF="howtodtp.htm">compiling</A> the data type, make sure
+	that its package is on the search path of the <A
+		HREF="custom.htm#FBEditor">editor batch file</A>. If it's not there,
+	you'll have to close the editor, add the package to the search path,
+	then re-open the editor.
+	<LI>Open the source file of the appropriate HMI element (as described
+	below) from the <TT>src/hmi</TT> subdirectory using the <B>File=&gt;Open=&gt;XML...</B>
+	menu item.
+	<LI>Launch the HMI element using the <B>Run=&gt;Launch</B> menu item.
+	<LI>Enter the appropriate initialization values (as described below),
+	set the <TT>QI</TT> value to <TT>TRUE</TT> (checked), press the <TT>INIT</TT>
+	button and verify that the appropriate output value appears.
+	<LI>Enter appropriate values (as described below) and verify the
+	correct functioning of the data type by pressing the <TT>REQ</TT>
+	button.
+</OL>
+
+<H3><A NAME="Directly"></A>Directly Derived Types</H3>
+<P>Launch an instance of the <TT>IN_ANY</TT> function block type to test
+a directly derived type. The figures below illustrate the testing
+procedure for the <TT>FREQ</TT> type found in the <TT>src/ita</TT>
+subdirectory.</P>
+<CENTER>
+<P>
+<TABLE BORDER="1">
+	<TR>
+		<TD WIDTH="225" VALIGN="TOP">0. The initial situation after specifying
+		a nominal input field width of 10 characters (the actual width will be
+		half of the test window width), and the input data type <TT>FREQ</TT>.</TD>
+		<TD WIDTH="225" VALIGN="TOP">1. The situation after issuing the <TT>INIT</TT>
+		event. The input field appears in the lower left corner and the
+		default value of <TT>50.0</TT> for the data type is shown in the
+		output field (tests that initialization and conversion to strings work
+		properly).</TD>
+		<TD WIDTH="225" VALIGN="TOP">2. The situation after entering a value
+		in the input field and issuing the <TT>REQ</TT> event (tests that
+		conversion from strings works properly).</TD>
+		<TD WIDTH="225" VALIGN="TOP">3. The situation after issuing an INIT-
+		event, entering a new initial value, and issuing an INIT+ event (tests
+		that initialization can override default initial value).</TD>
+	</TR>
+	<TR>
+		<TD WIDTH="225" VALIGN="TOP" NOWRAP><IMG SRC="FREQ0.gif" WIDTH="225"
+			HEIGHT="206" ALIGN="BOTTOM" BORDER="0"></TD>
+		<TD WIDTH="225" VALIGN="TOP"><IMG SRC="FREQ1.gif" WIDTH="225"
+			HEIGHT="206" ALIGN="BOTTOM" BORDER="0"></TD>
+		<TD WIDTH="225" VALIGN="TOP"><IMG SRC="FREQ2.gif" WIDTH="225"
+			HEIGHT="206" ALIGN="BOTTOM" BORDER="0"></TD>
+		<TD WIDTH="225" VALIGN="TOP"><IMG SRC="FREQ3.gif" WIDTH="225"
+			HEIGHT="206" ALIGN="BOTTOM" BORDER="0"></TD>
+	</TR>
+</TABLE>
+[<A HREF="#Top">Top</A>]
+</CENTER>
+<H3><A NAME="Array"></A>Array Types</H3>
+<P>Launch an instance of the <TT>IN_ANY</TT> function block type to test
+an array type. The figures below illustrate the testing procedure for
+the <TT>ANALOG_16_INPUT_DATAI</TT> type found in the <TT>src/ita</TT>
+subdirectory.</P>
+<CENTER>
+<P>
+<TABLE BORDER="1">
+	<TR>
+		<TD WIDTH="382" VALIGN="TOP">1. The situation after specifying a
+		nominal input field width of 20 characters (the actual width will be
+		half of the test window width) and the input data type <TT>ANALOG_16_INPUT_DATAI</TT>,
+		then issuing the <TT>INIT+</TT> event. The default initial value <TT>[8(-4095),
+		8(4095)]</TT> appears in the output panel.</TD>
+		<TD WIDTH="382" VALIGN="TOP">2. The situation after entering new
+		values [1,2,3] for the first three elements and issuing the <TT>REQ+</TT>
+		event.</TD>
+	</TR>
+	<TR>
+		<TD WIDTH="382" VALIGN="TOP"><IMG SRC="A16IN1.gif" WIDTH="382"
+			HEIGHT="239" ALIGN="BOTTOM" BORDER="0"></TD>
+		<TD WIDTH="382" VALIGN="TOP"><IMG SRC="A16IN2.gif" WIDTH="382"
+			HEIGHT="239" ALIGN="BOTTOM" BORDER="0"></TD>
+	</TR>
+</TABLE>
+[<A HREF="#Top">Top</A>]
+</CENTER>
+<H3><A NAME="Subrange"></A>Subrange Types</H3>
+<P>Launch an instance of the <TT>IN_ANY</TT> function block type to test
+a subrange type. The figures below illustrate the testing procedure for
+the <TT>ANALOG_DATA</TT> type found in the <TT>src/ita</TT>
+subdirectory.</P>
+<CENTER>
+<P>
+<TABLE BORDER="1">
+	<TR>
+		<TD VALIGN="MIDDLE">1. The situation after specifying a nominal input
+		field width of 10 characters (the actual width will be half of the
+		test window width) and the input data type <TT>ANALOG_DATA</TT>, then
+		issuing the <TT>INIT+</TT> event. The default initial value <TT>-4095</TT>
+		appears in the output panel.</TD>
+		<TD VALIGN="MIDDLE">2. The situation after entering a new value and
+		issuing the <TT>REQ+</TT> event.</TD>
+		<TD>3. The situation after entering an out-of-range value and issuing
+		the <TT>REQ+</TT> event.</TD>
+		<TD>4. The situation after resetting with an <TT>INIT-</TT> event,
+		then entering a non-default initial value (<TT>6</TT>) and re-starting
+		with an <TT>INIT+</TT> event.</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="MIDDLE"><IMG SRC="ANALOG_DATA1.gif" WIDTH="237"
+			HEIGHT="222" ALIGN="BOTTOM" BORDER="0"></TD>
+		<TD VALIGN="MIDDLE"><IMG SRC="ANALOG_DATA2.gif" WIDTH="237"
+			HEIGHT="222" ALIGN="BOTTOM" BORDER="0"></TD>
+		<TD VALIGN="MIDDLE"><IMG SRC="ANALOG_DATA3.gif" WIDTH="237"
+			HEIGHT="222" ALIGN="BOTTOM" BORDER="0"></TD>
+		<TD VALIGN="MIDDLE"><IMG SRC="ANALOG_DATA4.gif" WIDTH="237"
+			HEIGHT="222" ALIGN="BOTTOM" BORDER="0"></TD>
+	</TR>
+</TABLE>
+[<A HREF="#Top">Top</A>]
+</P>
+</CENTER>
+<H3><A NAME="Enumerated"></A>Enumerated Types</H3>
+<P>Launch an instance of the <TT>IN_ENUM</TT> function block type to
+test an enumerated type. The figures below illustrate the testing
+procedure for the <TT>ANALOG_SIGNAL_RANGE </TT>type found in the <TT>src/ita</TT>
+subdirectory.</P>
+<CENTER>
+<P>
+<TABLE BORDER="1">
+	<TR>
+		<TD VALIGN="MIDDLE">1. The situation after specifying the input data
+		type <TT>ANALOG_SIGNAL_RANGE</TT>, then issuing the <TT>INIT+</TT>
+		event. The default initial value <TT>UNIPOLAR_1_5V</TT> appears in the
+		output panel.</TD>
+		<TD VALIGN="MIDDLE">2. The situation after clicking on the drop-down
+		list arrow; this allows checking that all enumerated values are
+		properly displayed.</TD>
+		<TD>3. The situation after clicking on a new enumerated value.</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="MIDDLE"><IMG SRC="IN_ENUM1.gif" WIDTH="344" HEIGHT="180"
+			ALIGN="BOTTOM" BORDER="0"></TD>
+		<TD VALIGN="MIDDLE"><IMG SRC="IN_ENUM2.gif" WIDTH="347" HEIGHT="291"
+			ALIGN="BOTTOM" BORDER="0"></TD>
+		<TD VALIGN="MIDDLE"><IMG SRC="IN_ENUM3.gif" WIDTH="344" HEIGHT="180"
+			ALIGN="BOTTOM" BORDER="0"></TD>
+	</TR>
+</TABLE>
+[<A HREF="#Top">Top</A>]
+</P>
+</CENTER>
+<H3><A NAME="Structured"></A>Structured Types</H3>
+<P>Launch an instance of the <TT>IN_ANY</TT> function block type to test
+a structured type. The figures below illustrate the testing procedure
+for the <TT>ANALOG_CHANNEL_CONFIGURATION</TT> type found in the <TT>src/ita</TT>
+subdirectory.</P>
+<CENTER>
+<P>
+<TABLE BORDER="1">
+	<TR>
+		<TD WIDTH="784" VALIGN="TOP">1. The situation after specifying a
+		nominal input field width of 40 characters (the actual width will be
+		half of the test window width) and the input data type <TT>ANALOG_CHANNEL_CONFIGURATION</TT>,
+		then issuing the <TT>INIT+</TT> event. The default initial values
+		appear in the output panel.</TD>
+	</TR>
+	<TR>
+		<TD WIDTH="784" VALIGN="TOP"><IMG SRC="ANALOG_CH_CONFIG1.gif"
+			WIDTH="784" HEIGHT="222" ALIGN="BOTTOM" BORDER="0"></TD>
+	</TR>
+	<TR>
+		<TD WIDTH="784">2. The situation after entering new values for two of
+		the structure elements and issuing the <TT>REQ+</TT> event or pressing
+		the ENTER key. Note that values can be entered in any order.</TD>
+	</TR>
+	<TR>
+		<TD WIDTH="784"><IMG SRC="ANALOG_CH_CONFIG2.gif" WIDTH="784"
+			HEIGHT="222" ALIGN="BOTTOM" BORDER="0"></TD>
+	</TR>
+	<TR>
+		<TD WIDTH="784">3. The situation after entering an invalid value for a
+		structure element and pressing the REQ button or the ENTER key.</TD>
+	</TR>
+	<TR>
+		<TD WIDTH="784"><IMG SRC="ANALOG_CH_CONFIG3.gif" WIDTH="784"
+			HEIGHT="222" ALIGN="BOTTOM" BORDER="0"></TD>
+	</TR>
+	<TR>
+		<TD WIDTH="784">4. The situation after resetting with an <TT>INIT-</TT>
+		event, then entering non-default structure element values and
+		re-starting with an <TT>INIT+</TT> event</TD>
+	</TR>
+	<TR>
+		<TD WIDTH="784"><IMG SRC="ANALOG_CH_CONFIG4.gif" WIDTH="784"
+			HEIGHT="222" ALIGN="BOTTOM" BORDER="0"></TD>
+	</TR>
+</TABLE>
+[<A HREF="#Top">Top</A>]
+<HR ALIGN="CENTER">
+<P><I>Last updated: 2006-04-25.</I><BR>
+&copy;2003,2004 Rockwell Automation. All rights reserved.<BR>
+&copy;2006 <A HREF="http://www.holobloc.com" TARGET="_blank">Holobloc
+Inc</A>. All rights reserved.</P>
+</CENTER>
+</BODY>
+</HTML>

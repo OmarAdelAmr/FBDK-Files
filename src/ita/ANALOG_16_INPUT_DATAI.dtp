@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DataType SYSTEM "http://www.holobloc.com/xml/DataType.dtd" >
+<DataType Name="ANALOG_16_INPUT_DATAI" Comment="IEC 61131-3-2.3.3.2" >
+  <Identification Standard="61131-3" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.1" Author="JHC" Date="2006-04-04" Remarks="Changed tag number to 18 to avoid conflict with ANALOG_CHANNEL_CONFIGURATION." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2000-05-16" Remarks="File type changed to &#34;.dtp&#34;" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2000-04-19" />
+  <CompilerInfo header="package fb.rt.ita;" >
+    <Compiler Language="Java" Vendor="Sun" Product="JDK" Version="1.5.0" />
+  </CompilerInfo>
+  <ASN1Tag Class="PRIVATE" Number="18" />
+  <ArrayType BaseType="ANALOG_DATA" InitialValues="[8(-4095),8(4095)]" >
+    <Subrange LowerLimit="0" UpperLimit="15" />
+  </ArrayType>
+</DataType>

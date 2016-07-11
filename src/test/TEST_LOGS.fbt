@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="TEST_LOGS" Comment="Test logarithmic functions" >
+  <Identification Standard="61499-1" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.0" Author="JHC" Date="2006-09-05" />
+  <CompilerInfo header="package fb.rt.test;" classdef="SimpleFB" >
+    <Compiler Language="Java" Vendor="Sun" Product="JDK" Version="1.5.0" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="REQ" Comment="Normal Execution Request" >
+        <With Var="IN" />
+        <With Var="IN10" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="CNF" Comment="Execution Confirmation" >
+        <With Var="OUT" />
+        <With Var="OUT10" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="IN" Type="REAL" Comment="Input value for log, exp" />
+      <VarDeclaration Name="IN10" Type="REAL" Comment="Input for base 10 log" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="OUT" Type="REAL" Comment="exp(ln(IN))" />
+      <VarDeclaration Name="OUT10" Type="REAL" Comment="10**(log10(IN10))" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+  <Algorithm Name="REQ" Comment="Normally executed algorithm" >
+    <FBD >
+      <FB Name="L" Type="LN_REAL" x="183.33333" y="11.111111" />
+      <FB Name="E" Type="EXP_REAL" x="633.3333" y="11.111111" />
+      <FB Name="L10" Type="LOG_REAL" x="227.77777" y="483.3333" />
+      <FB Name="E10" Type="EXPT_REAL" x="755.55554" y="372.2222" >
+        <Parameter Name="IN1" Value="10.0" />
+      </FB>
+      <DataConnections>
+        <Connection Source="IN" Destination="L.IN" dx1="105.55555" />
+        <Connection Source="L.OUT" Destination="E.IN" dx1="116.666664" />
+        <Connection Source="E.OUT" Destination="OUT" dx1="1066.6666" />
+        <Connection Source="IN10" Destination="L10.IN" dx1="116.666664" />
+        <Connection Source="L10.OUT" Destination="E10.IN2" dx1="161.1111" />
+        <Connection Source="E10.OUT" Destination="OUT10" dx1="1261.1111" />
+      </DataConnections>
+    </FBD>
+  </Algorithm>
+  </BasicFB>
+</FBType>

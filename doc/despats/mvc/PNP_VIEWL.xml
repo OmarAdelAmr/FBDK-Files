@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE System SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<System Name="PNP_VIEWL" Comment="Pick &#38; Place View Tester" >
+  <Identification Standard="IEC 61499" Classification="Simulation" ApplicationDomain="Assembly" Type="Pick &#38; Place" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.0" Author="JHC" Date="2006-06-21" Remarks="Adapted from ASM_VIEWL" />
+  <Device Name="HMI" Type="FRAME_DEVICE" x="566.6666" y="11.111111" >
+    <Parameter Name="BOUNDS" Value="[100,100,325,125]" />
+    <Parameter Name="GRID" Value="[3,1]" />
+    <Resource Name="CONVEYOR" Type="PANEL_RESOURCE" x="122.22221" y="11.111111" >
+      <FBNetwork >
+        <FB Name="CNV" Type="MECH_HMIL" x="750.0" y="11.111111" >
+          <Parameter Name="FGD" Value="[255,255,0]" />
+          <Parameter Name="BKGD" Value="COLOR#darkGray" />
+        </FB>
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="CNV.INIT" dx1="27.777777" />
+        </EventConnections>
+      </FBNetwork>
+    </Resource>
+    <Resource Name="PNP" Type="PANEL_RESOURCE" x="833.3333" y="11.111111" >
+      <FBNetwork >
+        <FB Name="PNP" Type="MECHC_HMIL" x="550.0" y="166.66666" >
+          <Parameter Name="FGD" Value="COLOR#yellow" />
+          <Parameter Name="BKGD" Value="COLOR#blue" />
+        </FB>
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="PNP.INIT" dx1="83.33333" />
+        </EventConnections>
+      </FBNetwork>
+    </Resource>
+    <Resource Name="FAULT" Type="PANEL_RESOURCE" x="1550.0" y="11.111111" >
+      <FBNetwork >
+        <FB Name="PNP_UI" Type="SUBL_1" x="466.66666" y="11.111111" />
+        <FB Name="FLT" Type="OUT_BOOL" x="1005.55554" y="11.111111" >
+          <Parameter Name="C1" Value="[255,0,0]" />
+          <Parameter Name="LABEL" Value="&#34;PNP FAULT&#34;" />
+        </FB>
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="PNP_UI.INIT" dx1="27.777777" />
+          <Connection Source="PNP_UI.INITO" Destination="FLT.INIT" dx1="27.777777" />
+          <Connection Source="PNP_UI.IND" Destination="FLT.REQ" dx1="44.444443" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="PNP_UI.RD_1" Destination="FLT.IN" dx1="33.333332" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+  </Device>
+  <Device Name="VIEW" Type="FRAME_DEVICE" x="1699.9999" y="11.111111" >
+    <Parameter Name="BOUNDS" Value="[425,100,160,180]" />
+    <Resource Name="PNP" Type="VIEW_PANEL" x="261.1111" y="11.111111" >
+      <Parameter Name="DIA" Value="25" />
+      <Parameter Name="SIZE" Value="[6,5]" />
+      <Parameter Name="VERTICAL" Value="0" />
+      <FBNetwork >
+        <FB Name="PNP" Type="XY_VIEWL" x="1377.7777" y="11.111111" >
+          <Parameter Name="BKGD" Value="[0,0,255]" />
+          <Parameter Name="LEN" Value="5" />
+        </FB>
+        <FB Name="CNV" Type="MECH_VIEWL" Comment="Conveyor" x="588.88885" y="11.111111" >
+          <Parameter Name="BKGD" Value="COLOR#darkGray" />
+          <Parameter Name="LEN" Value="5" />
+          <Parameter Name="DIR" Value="3" />
+        </FB>
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="CNV.INIT" dx1="27.777777" />
+          <Connection Source="CNV.INITO" Destination="PNP.INIT" dx1="61.111107" />
+        </EventConnections>
+      </FBNetwork>
+    </Resource>
+  </Device>
+</System>

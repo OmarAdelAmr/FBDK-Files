@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE System SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<System Name="Test_7" Comment="System Configuration" >
+  <Identification Standard="61499-1" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.3" Author="JHC" Date="2003-12-05" Remarks="Renamed from NEWSYSTEM." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.2" Author="JHC" Date="2002-11-05" Remarks="Fixed missing (empty) FBD in Application." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2002-01-17" Remarks="Minor cleanup" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2000-05-27" />
+  <Application Name="APP1" >
+    <FBNetwork >
+    </FBNetwork>
+  </Application>
+  <Device Name="DEV1" Type="FRAME_DEVICE" x="1050.0" y="338.8889" >
+    <Parameter Name="BOUNDS" Value="[300,300,300,300]" />
+    <Parameter Name="GRID" Value="[1,1]" />
+    <Resource Name="RES1" Type="PANEL_RESOURCE" x="1411.1111" y="772.22217" >
+      <Parameter Name="ROWS" Value="1" />
+      <Parameter Name="COLS" Value="1" />
+      <FBNetwork >
+        <FB Name="clk" Type="E_CYCLE" x="1411.1111" y="627.7778" >
+          <Parameter Name="DT" Value="t#10ms" />
+        </FB>
+        <FB Name="Worker1" Type="WORKER4TESTFB" x="3355.5554" y="827.7778" >
+          <Parameter Name="NAME" Value="&#34;Alfa&#34;" />
+        </FB>
+        <FB Name="W1Status" Type="OUT_BOOL" x="4633.333" y="1638.8888" >
+          <Parameter Name="LABEL" Value="&#34;AlfaStatus&#34;" />
+          <Parameter Name="IN" Value="1" />
+          <Parameter Name="C0" Value="[255,255,255]" />
+          <Parameter Name="C1" Value="[255,0,0]" />
+        </FB>
+        <FB Name="W1AddSkills" Type="IN_EVENT" x="1411.1111" y="1555.5555" />
+        <FB Name="W1SkillsPool" Type="IN_CHOICE" x="2494.4443" y="1733.3333" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="CHOICES" Value="&#34;Drilling,Shaping,Painting&#34;" />
+        </FB>
+        <FB Name="W1Job" Type="OUT_ANY" x="4577.778" y="422.2222" >
+          <Parameter Name="TYPE" Value="&#34;&#34;" />
+          <Parameter Name="W" Value="0" />
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="IN" Value="null" />
+        </FB>
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="clk.START" dx1="905.55554" />
+          <Connection Source="START.COLD" Destination="Worker1.INIT" dx1="2233.3333" />
+          <Connection Source="clk.EO" Destination="Worker1.NJOB" dx1="650.0" />
+          <Connection Source="clk.EO" Destination="Worker1.NSTATE" dx1="650.0" />
+          <Connection Source="START.COLD" Destination="W1AddSkills.INIT" dx1="916.6666" />
+          <Connection Source="W1AddSkills.INITO" Destination="W1SkillsPool.INIT" dx1="211.1111" />
+          <Connection Source="W1AddSkills.IND" Destination="W1SkillsPool.REQ" dx1="222.22221" />
+          <Connection Source="W1SkillsPool.IND" Destination="Worker1.NSKILL" dx1="172.22221" />
+          <Connection Source="Worker1.NJOB_CNF" Destination="W1Job.REQ" dx1="238.88889" />
+          <Connection Source="START.COLD" Destination="W1Job.INIT" dx1="3722.2222" />
+          <Connection Source="Worker1.NSTATE_CNF" Destination="W1Status.REQ" dx1="338.8889" />
+          <Connection Source="W1Job.INITO" Destination="W1Status.INIT" dx1="27.777777" dx2="227.77777" dy="-488.88885" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="W1SkillsPool.OUT" Destination="Worker1.SKILL" dx1="366.66666" />
+          <Connection Source="Worker1.JOB" Destination="W1Job.IVAL" dx1="316.66666" />
+          <Connection Source="Worker1.STATUS" Destination="W1Status.QI" dx1="249.99998" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+  </Device>
+</System>

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="TESTPAR_FBD" Comment="Test Java generation of parameters in FBD algorithm" >
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.1" Author="JHC" Date="2007-11-11" Remarks="Deleted import, made a SimpleFB.." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2004-12-15" />
+  <CompilerInfo header="package fb.rt.test;" classdef="SimpleFB" >
+    <Compiler Language="Java" Vendor="Sun" Product="JDK" Version="1.6.0" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="REQ" Comment="Normal Execution Request" >
+        <With Var="IN" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="CNF" Comment="Execution Confirmation" >
+        <With Var="OUT" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="IN" Type="REAL" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="OUT" Type="REAL" Comment="IN + 2.0" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+  <Algorithm Name="REQ" Comment="Normally executed algorithm" >
+    <FBD >
+      <FB Name="ADDER" Type="ADD_REAL" x="405.55554" y="161.1111" >
+        <Parameter Name="IN2" Value="2.0" Comment="The parameter" />
+      </FB>
+      <DataConnections>
+        <Connection Source="IN" Destination="ADDER.IN1" dx1="327.77777" />
+        <Connection Source="ADDER.OUT" Destination="OUT" dx1="838.88885" />
+      </DataConnections>
+    </FBD>
+  </Algorithm>
+  </BasicFB>
+</FBType>

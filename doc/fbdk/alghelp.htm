@@ -1,0 +1,127 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+<META NAME="GENERATOR" CONTENT="Eclipse HTML Editor">
+<TITLE>FBEditor Help - Editing Algorithms</TITLE>
+</HEAD>
+<BODY>
+<H3><A NAME="Adding">Adding an Algorithm to a Basic Function
+Block Type</A></H3>
+<P>You can add an algorithm to a basic FB type with the<B> New</B>
+item of the popup menu of the basic FB type's <A HREF="eccfrm.htm"
+	TARGET="_parent">ECC</A> (Execution Control Chart).</P>
+
+<H3><A NAME="Deleting">Deleting an Algorithm</A></H3>
+<P>You can delete an algorithm by:</P>
+<OL>
+	<LI>Deleting all references to the algorithm in <A
+		HREF="action.htm#dialog">EC actions</A>, then</LI>
+	<LI>Using the <B>Delete</B> item of the algorithm's dialog (see
+	below).</LI>
+</OL>
+
+<H3><A NAME="Editing">Editing with the Algorithm Dialog</A></H3>
+<P>You can use this dialog both for adding a new algorithm to a
+basic FB type or for editing an existing algorithm. You invoke it by
+double-clicking the name of an existing algorithm in the Navigation
+area, or by selecting the <B>New Algorithm</B> item of the <A
+	HREF="eccfrm.htm" TARGET="_parent">ECC</A> popup menu. The dialog
+contains:</P>
+<UL>
+	<LI>Text fields for entering a name and comment for the algorithm</LI>
+	<LI>A set of radio buttons for selecting the language in which the
+	algorithm is programmed</LI>
+	<LI>A <B>Delete</B> button for deleting the algorithm from the
+	basic FB type (this button is enabled only when the algorithm is not
+	referenced by any of the <A HREF="action.htm">EC actions</A>)</LI>
+	<LI>A text area for editing algorithms in the <B>ST</B> or <B>Java</B>
+	languages (algorithms in the <A HREF="ld.htm">LD</A> or <A
+		HREF="fbdalg.htm">FBD</A> languages are edited in the
+	Worksheet area)</LI>
+</UL>
+<P ALIGN="center"><A NAME="dialog"><IMG SRC="algorithm.png"></A></P>
+<P>If you use the radio buttons to change languages, you will see
+different results depending on the original and new language selections:</P>
+<UL>
+	<LI>If the original algorithm is empty (i.e., the text pane is
+	empty for <B>ST</B> and <B>Java</B>, or the <B>FBD</B> contains no
+	function blocks, or the <B>LD</B> contains no rungs), the new language
+	will be selected immediately.</LI>
+	<LI>If the original algorithm is non-empty:
+	<UL>
+		<LI>If the new language is <B>FBD</B>, <B>LD</B> or <B>ST</B>, or
+		the new language is <B>Java</B> and the old language is <B>FBD</B>, a
+		dialog box will appear asking if you want to replace the original
+		algorithm by an empty algorithm in the new language.</LI>
+		<LI>If the new language is <B>Java</B> and the old language is <B>LD</B>
+		or <B>ST</B>, a dialog box will appear asking if you want to generate
+		the Java equivalent of the old algorithm. <IMG SRC="../note.gif"
+			ALIGN="bottom" BORDER="0" HEIGHT="24" WIDTH="32">This
+		conversion is one-way: if you generate the Java you cannot go back to
+		the old algorithm except by starting over with an empty algorithm.</LI>
+	</UL>
+	</LI>
+	<LI>If the new language is <B>ST</B> or <B>Java</B>, the text area
+	will appear for editing the algorithm; for <B>FBD</B> and <B>LD</B> the
+	text area will disappear since these algorithms will be edited
+	graphically.</LI>
+</UL>
+<P>You can save the changes to the algorithm by pressing the "OK"
+button, and if no errors are detected, the requested changes (if any)
+will be made and the dialog will close. If you changed the name of an
+existing algorithm, references to the algorithm in EC actions will be
+automatically updated to the new name.</P>
+<P>If an error is detected when you press the "OK" button, the
+dialog does not close, the system "beeps" and an error message appears
+at the top line of the dialog in the same manner as for <A
+	HREF="state.htm#errors">EC states</A>.</P>
+<P>You can close the dialog without making any changes to the
+algorithm by pressing the "Cancel" button or the <IMG SRC="close.png"
+	ALIGN="middle"> in the upper right corner of the dialog.</P>
+
+<H3><A NAME="ST">Editing ST Algorithms</A></H3>
+<P>The figure <A HREF="#dialog">above</A> illustrates an algorithm
+written in the IEC 61131-3 Structured Text (ST) language. You do not
+need to enter the block delimiters <TT>ALGORITHM&nbsp;STOP&nbsp;IN
+ST...END_ALGORITHM</TT>.</P>
+
+<H3><A NAME="Java">Editing Java Algorithms</A></H3>
+<P>You can write algorithms in the Java programming language as
+shown below.</P>
+<TABLE BORDER>
+	<TBODY>
+		<TR>
+			<TD>
+			<UL>
+				<LI>The delimiters of the Java method declaration are
+				automatically generated and should not be included in the algorithm.
+				These include the opening delimeter &quot;<TT>public&nbsp;void&nbsp;alg_&lt;ANAME&gt;(){&quot;
+				</TT>where <TT>&lt;ANAME&gt;</TT> is the name of the algorithm, and the
+				closing curly bracket <TT>&quot;}&quot;</TT>.
+				<LI>Reference to the values of the variables contained in the
+				function block instance is of the form <TT>X.value</TT>, where <TT>X</TT>
+				is the name of the variable.
+			</UL>
+			</TD>
+			<TD><IMG SRC="algjava1.png"></TD>
+		</TR>
+		<TR>
+			<TD>An algorithm may be written in Java without an ECC; in this
+			case the name of the algorithm must be the same as the name of the
+			associated input event, and appropriate output events must be
+			generated as part of the algorithm as illustrated <A HREF="#algjava2">below</A>.
+			See the <TT>X2Y2_J</TT> and <TT>X2Y2_J2</TT> function block types in
+			the <TT>student</TT> subdirectory for further details of these
+			examples.</TD>
+			<TD><IMG SRC="algjava2.png"></TD>
+		</TR>
+	</TBODY>
+</TABLE>
+<CENTER>
+<HR>
+<I>Last updated: 2006-09-23.</I><BR>
+&copy;2006 <A HREF="http://www.holobloc.com" TARGET="_blank">Holobloc
+Inc</A>. All rights reserved.</CENTER>
+</BODY>
+</HTML>

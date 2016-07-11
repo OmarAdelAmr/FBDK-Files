@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="TEST_LIM" Comment="Test IEC 61131 LIMIT functions" >
+  <Identification Standard="61499-1" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.0" Author="JHC" Date="2006-09-06" />
+  <CompilerInfo header="package fb.rt.test;" classdef="public class Simple extends SimpleFB" >
+    <Compiler Language="Java" Vendor="Sun" Product="JDK" Version="1.5.0" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="REQ" Comment="Normal Execution Request" >
+        <With Var="INI" />
+        <With Var="INR" />
+        <With Var="IND" />
+        <With Var="INL" />
+        <With Var="TIN" />
+        <With Var="INU" />
+        <With Var="TMN" />
+        <With Var="TMX" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="CNF" Comment="Execution Confirmation" >
+        <With Var="LIMI" />
+        <With Var="LIMR" />
+        <With Var="LIMD" />
+        <With Var="LIML" />
+        <With Var="LIMT" />
+        <With Var="LIMU" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="INI" Type="INT" />
+      <VarDeclaration Name="IND" Type="DINT" />
+      <VarDeclaration Name="INL" Type="LINT" />
+      <VarDeclaration Name="INU" Type="UINT" />
+      <VarDeclaration Name="INR" Type="REAL" />
+      <VarDeclaration Name="TMN" Type="TIME" />
+      <VarDeclaration Name="TIN" Type="TIME" />
+      <VarDeclaration Name="TMX" Type="TIME" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="LIMI" Type="INT" Comment="Output event qualifier" />
+      <VarDeclaration Name="LIMD" Type="DINT" />
+      <VarDeclaration Name="LIML" Type="LINT" />
+      <VarDeclaration Name="LIMU" Type="UINT" />
+      <VarDeclaration Name="LIMR" Type="REAL" />
+      <VarDeclaration Name="LIMT" Type="TIME" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+  <Algorithm Name="REQ" Comment="Normally executed algorithm" >
+    <FBD >
+      <FB Name="LI" Type="LIMIT_INT" x="233.33333" y="11.111111" >
+        <Parameter Name="MN" Value="-5" />
+        <Parameter Name="MX" Value="5" />
+      </FB>
+      <FB Name="LR" Type="LIMIT_REAL" x="905.55554" y="683.3333" >
+        <Parameter Name="MN" Value="-5.0" />
+        <Parameter Name="MX" Value="5.0" />
+      </FB>
+      <FB Name="LL" Type="LIMIT_LINT" x="1644.4443" y="11.111111" >
+        <Parameter Name="MN" Value="-5" />
+        <Parameter Name="MX" Value="5" />
+      </FB>
+      <FB Name="LT" Type="LIMIT_TIME" x="1694.4443" y="677.7778" />
+      <FB Name="LU" Type="LIMIT_UINT" x="177.77777" y="683.3333" >
+        <Parameter Name="MN" Value="2" />
+        <Parameter Name="MX" Value="5" />
+      </FB>
+      <FB Name="LD" Type="LIMIT_DINT" x="899.99994" y="11.111111" >
+        <Parameter Name="MN" Value="-5" />
+        <Parameter Name="MX" Value="5" />
+      </FB>
+      <DataConnections>
+        <Connection Source="INI" Destination="LI.IN" dx1="150.0" />
+        <Connection Source="LI.OUT" Destination="LIMI" dx1="644.4444" />
+        <Connection Source="INR" Destination="LR.IN" dx1="811.1111" />
+        <Connection Source="LR.OUT" Destination="LIMR" dx1="1383.3333" />
+        <Connection Source="IND" Destination="LD.IN" dx1="805.55554" />
+        <Connection Source="LD.OUT" Destination="LIMD" dx1="1361.1111" />
+        <Connection Source="INL" Destination="LL.IN" dx1="1550.0" />
+        <Connection Source="LL.OUT" Destination="LIML" dx1="2100.0" />
+        <Connection Source="INU" Destination="LU.IN" dx1="83.33333" />
+        <Connection Source="LU.OUT" Destination="LIMU" dx1="638.88885" />
+        <Connection Source="LT.OUT" Destination="LIMT" dx1="2166.6665" />
+        <Connection Source="TMN" Destination="LT.MN" dx1="1583.3333" />
+        <Connection Source="TIN" Destination="LT.IN" dx1="1600.0" />
+        <Connection Source="TMX" Destination="LT.MX" dx1="1583.3333" />
+      </DataConnections>
+    </FBD>
+  </Algorithm>
+  </BasicFB>
+</FBType>

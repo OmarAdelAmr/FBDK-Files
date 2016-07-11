@@ -1,0 +1,91 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+<META NAME="GENERATOR" CONTENT="Eclipse HTML Editor">
+<TITLE>FUNCTION_BLOCK XBAR_MDLL</TITLE>
+</HEAD>
+<BODY>
+<H2 ALIGN="center">FUNCTION_BLOCK XBAR_MDLL</H2>
+<P>An instance of <A HREF="#Viewer">this function block type</A> serves
+as a model for a transfer bar by encapsulating an instance of the
+general-purpose bidirectional motion model type <A
+	HREF="../../common/MECH2_MDL.htm"><TT>MECH2_MDL</TT></A>. Loading and
+unloading of a workpiece is modeled by an instance of the <A
+	HREF="E_LDU.htm"><TT>E_LDU</TT></A> type.</P>
+<BLOCKQUOTE>
+<UL>
+	<LI>See the <A HREF="DRILL_MVL.htm"><TT>DRILL_MVL</TT></A>
+	configuration for examples of the use of instances of this type.</LI>
+	<LI>Inter-layer communications with the <B>View</B>, <B>Control</B> and
+	<B>HMI</B> layers of the <A HREF="index.htm" TARGET="_top">MVC
+	framework</A> are provided according to the <A
+		HREF="../publsubl/index.htm" TARGET="_top">local multicast</A>
+	pattern.</LI>
+	<LI>For convenience, the names of the associated local multicast
+	channels used by an instance of this type with an instance name denoted
+	by <TT>&lt;name&gt;</TT> will have the default values shown in the
+	following table. These values can be overridden by connection to a
+	non-default variable or configuration parameter.</LI>
+</UL>
+<CENTER>
+<P>
+<TABLE BORDER="1">
+	<TBODY>
+		<TR>
+			<TH ALIGN="center">Channel ID</TH>
+			<TH ALIGN="center">Default value</TH>
+			<TH ALIGN="center">Usage</TH>
+		</TR>
+		<TR>
+			<TD ALIGN="center" VALIGN="middle"><TT>CLK_ID</TT><BR>
+			</TD>
+			<TD ALIGN="center" VALIGN="middle"><TT>"&lt;name&gt;_CLK"</TT></TD>
+			<TD ALIGN="center" VALIGN="middle">Simulation clock event<BR>
+			</TD>
+		</TR>
+		<TR>
+			<TD ALIGN="center"><TT>REND_ID</TT></TD>
+			<TD ALIGN="center"><TT>"&lt;name&gt;_REND"</TT></TD>
+			<TD ALIGN="center">Rendering data to View</TD>
+		</TR>
+		<TR>
+			<TD ALIGN="center"><TT>UI_ID</TT></TD>
+			<TD ALIGN="center"><TT>"&lt;name&gt;_UI"</TT></TD>
+			<TD ALIGN="center">User input from View</TD>
+		</TR>
+		<TR>
+			<TD ALIGN="center"><TT>SENSE_ID</TT></TD>
+			<TD ALIGN="center"><TT>"&lt;name&gt;_SENSE"</TT></TD>
+			<TD ALIGN="center">Sensor data from Model</TD>
+		</TR>
+		<TR>
+			<TD ALIGN="center"><TT>ACT_ID</TT></TD>
+			<TD ALIGN="center"><TT>"&lt;name&gt;_ACT"</TT></TD>
+			<TD ALIGN="center">Actuator data to Model</TD>
+		</TR>
+		<TR>
+			<TD ALIGN="center" VALIGN="middle"><TT>LOAD_ID</TT></TD>
+			<TD ALIGN="center" VALIGN="middle"><TT>"&lt;name&gt;_LOAD"</TT></TD>
+			<TD ALIGN="center" VALIGN="middle">Data from Model for loading
+			workpiece</TD>
+		</TR>
+	</TBODY>
+</TABLE>
+<P><A NAME="Viewer"></A>[<A HREF="../../FBViewer.html" TARGET="help">Viewer
+Help</A>]<BR>
+<TABLE BORDER="1">
+	<TR>
+		<TD><APPLET CODE="FBViewer" ARCHIVE="../../viewer.jar" HEIGHT="640"
+			WIDTH="750"> </APPLET></TD>
+	</TR>
+</TABLE>
+<P><I>Last updated: 2006-04-25.</I><BR>
+&copy;2006 <A HREF="http://www.holobloc.com" TARGET="_blank">Holobloc
+Inc</A><BR>
+Licensed under the <A
+	HREF="http://www.opensource.org/licenses/afl-3.0.php">Academic Free
+License version 3.0</A>.</P>
+</CENTER>
+</BODY>
+</HTML>

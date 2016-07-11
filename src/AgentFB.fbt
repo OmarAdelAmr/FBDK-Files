@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="AgentFB" Comment="Basic Function Block Type" >
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.2" Author="JHC" Date="2003-12-04" Remarks="Renamed for better indexing." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2002-11-05" Remarks="Corrected missing ST element in Algorithm REQ." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2000-05-30" />
+  <CompilerInfo header="package fb.rt;" >
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" >
+        <With Var="NAME" />
+      </Event>
+      <Event Name="AddNeighbor" >
+        <With Var="NEIGHBOR" />
+      </Event>
+      <Event Name="GetPath" >
+        <With Var="TO" />
+        <With Var="FROM" />
+      </Event>
+      <Event Name="POS_UPD" >
+        <With Var="PALLET_POS" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" >
+      </Event>
+      <Event Name="LOAD_STARTED" >
+        <With Var="MOTOR" />
+      </Event>
+      <Event Name="LOADED" >
+        <With Var="MOTOR" />
+      </Event>
+      <Event Name="FREE" >
+        <With Var="MOTOR" />
+      </Event>
+      <Event Name="CNF" >
+        <With Var="MOTOR" />
+      </Event>
+      <Event Name="Path" >
+        <With Var="PATH" />
+      </Event>
+      <Event Name="RemovePallet" >
+        <With Var="MOTOR" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="NAME" Type="WSTRING" />
+      <VarDeclaration Name="NEIGHBOR" Type="WSTRING" />
+      <VarDeclaration Name="PALLET_POS" Type="INT" />
+      <VarDeclaration Name="FROM" Type="WSTRING" />
+      <VarDeclaration Name="TO" Type="WSTRING" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="PATH" Type="WSTRING" />
+      <VarDeclaration Name="MOTOR" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+</FBType>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DeviceType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<DeviceType Name="RMT_FLASHER" Comment="Remote FLASHER4 Server" >
+  <Identification Standard="61499-1" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.0" Author="JHC" Date="2006-10-27" Remarks="Derived from FLASHER_TESTR" />
+  <CompilerInfo header="package fb.rt.doc;" classdef="public class RMT_FLASHER extends RMT_DEV" >
+    <Compiler Language="Java" Vendor="Sun" Product="JDK" Version="1.5.0" />
+  </CompilerInfo>
+  <Resource Name="RES1" Type="EMB_RES" x="894.7368" y="468.42105" >
+    <FBNetwork >
+      <FB Name="SUB3" Type="SERVER_4_1" x="2005.5554" y="11.111111" >
+        <Parameter Name="QI" Value="1" />
+        <Parameter Name="ID" Value="&#34;localhost:4446&#34;" />
+      </FB>
+      <FB Name="PERIODIC" Type="E_CYCLE" x="1138.8888" y="1283.3333" />
+      <FB Name="FLASHIT" Type="FLASHER4" x="2555.5554" y="122.22221" />
+      <FB Name="STRT" Type="SERVER_0_1" x="494.44443" y="11.111111" >
+        <Parameter Name="QI" Value="1" />
+        <Parameter Name="ID" Value="&#34;localhost:4444&#34;" />
+      </FB>
+      <FB Name="STOP" Type="SERVER_0" x="1116.6666" y="261.1111" >
+        <Parameter Name="QI" Value="1" />
+        <Parameter Name="ID" Value="&#34;localhost:4445&#34;" />
+      </FB>
+      <EventConnections>
+        <Connection Source="SUB3.IND" Destination="FLASHIT.INIT" dx1="27.777777" />
+        <Connection Source="PERIODIC.EO" Destination="FLASHIT.REQ" dx1="1038.8888" />
+        <Connection Source="FLASHIT.CNF" Destination="SUB3.RSP" dx1="150.0" dx2="133.33333" dy="1111.1111" />
+        <Connection Source="START.COLD" Destination="STRT.INIT" dx1="27.777777" />
+        <Connection Source="STRT.INITO" Destination="STOP.INIT" dx1="138.88889" />
+        <Connection Source="STRT.IND" Destination="PERIODIC.START" dx1="100.0" />
+        <Connection Source="STOP.INITO" Destination="SUB3.INIT" dx1="155.55554" />
+        <Connection Source="STOP.IND" Destination="PERIODIC.STOP" dx1="27.777777" dx2="50.0" dy="561.1111" />
+      </EventConnections>
+      <DataConnections>
+        <Connection Source="FLASHIT.LED0" Destination="SUB3.SD_4" dx1="27.777777" dx2="38.888885" dy="216.66666" />
+        <Connection Source="FLASHIT.LED1" Destination="SUB3.SD_3" dx1="50.0" dx2="55.555553" dy="361.11108" />
+        <Connection Source="FLASHIT.LED2" Destination="SUB3.SD_2" dx1="77.77777" dx2="72.22222" dy="499.99997" />
+        <Connection Source="FLASHIT.LED3" Destination="SUB3.SD_1" dx1="105.55555" dx2="94.44444" dy="638.88885" />
+        <Connection Source="SUB3.RD_1" Destination="FLASHIT.MODE" dx1="27.777777" />
+        <Connection Source="STRT.RD_1" Destination="PERIODIC.DT" dx1="61.111107" />
+      </DataConnections>
+    </FBNetwork>
+  </Resource>
+</DeviceType>

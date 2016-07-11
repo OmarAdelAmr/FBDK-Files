@@ -1,0 +1,202 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+<META NAME="GENERATOR" CONTENT="Eclipse HTML Editor">
+<META NAME="Standard" CONTENT="61499 ITA">
+<META NAME="Function" CONTENT="Device Manager Functional Test">
+<TITLE>SYSTEM MGR_TEST</TITLE>
+<STYLE type="text/css">
+</STYLE>
+</HEAD>
+<BODY STYLE="font-family: sans-serif; background-color: white;">
+<H2 ALIGN="CENTER">SYSTEM MGR_TEST</H2>
+<P><A HREF="#Viewer">This system configuration</A> provides
+facilities to test the functionality of the <A HREF="../s4.htm#4.4">management
+commands and responses</A> required by the <A HREF="../index.htm"
+	TARGET="_blank">Compliance Profile</A>. The table below shows a typical
+testing session using this configuration.</P>
+<TABLE BORDER="1">
+	<TR VALIGN="top">
+		<TD>Open the DUT (Device Under Test) using the <IMG
+			SRC="../../fbdk/Play16.gif" ALIGN="top"><B>Run</B> option of
+		its pop-up menu.</TD>
+		<TD><IMG SRC="MGR_TESTa.png"></TD>
+	</TR>
+	<TR VALIGN="top">
+		<TD>Launch the test configuration using the <IMG
+			SRC="../../fbdk/runbutton.png" ALIGN="top"><B>Run</B> button on
+		the FBEditor's menu bar (you may need to use desktop controls to make
+		the DUT visible after starting).</TD>
+		<TD><IMG SRC="MGR_TESTb.png"></TD>
+	</TR>
+	<TR VALIGN="top">
+		<TD>Verify that the DUT correctly implements the formula
+		<P ALIGN="center"><I>x<SUP>2</SUP> - y<SUP>2</SUP> = (x +
+		y)*(x - y)</I></P>
+		by entering appropriate data into its input field (be sure to follow
+		up each data entry with the <B>Enter</B> key).</TD>
+		<TD><IMG SRC="MGR_TESTc.png"></TD>
+	</TR>
+	<TR VALIGN="top">
+		<TD>Test the <TT>QUERY</TT> command by entering data as shown and
+		pressing the <B>REQUEST</B> button. The generated command and response
+		are shown in the text area.</TD>
+		<TD><IMG SRC="MGR_TESTd.png"></TD>
+	</TR>
+	<TR VALIGN="top">
+		<TD>Test the <TT>Delete Connection</TT> command.</TD>
+		<TD><IMG SRC="MGR_TESTe.png"></TD>
+	</TR>
+	<TR VALIGN="top">
+		<TD>Use the <TT>QUERY</TT> command to verify that the connection
+		is deleted from the data base (to save space, only the textual command
+		and response are shown here).</TD>
+		<TD><PRE STYLE="font-size: x-small;">&lt;Request ID="3" Action="QUERY" &gt;
+  &lt;Connection Source="Y.IND" Destination="*" /&gt;
+&lt;/Request&gt;
+&lt;Response ID="3" &gt;
+  &lt;EndpointList &gt;
+    
+  &lt;/EndpointList&gt;
+&lt;/Response&gt;</PRE></TD>
+	</TR>
+	<TR VALIGN="top">
+		<TD>Verify that the event connection is deleted by entering new
+		data into the DUT (following up each data entry with the <B>Enter</B>
+		key), and observing that the output does not change.</TD>
+		<TD><IMG SRC="MGR_TESTf.png"></TD>
+	</TR>
+	<TR VALIGN="top">
+		<TD>Re-create the connection.</TD>
+		<TD><PRE STYLE="font-size: x-small;">&lt;Request ID="4" Action="CREATE" &gt;
+  &lt;Connection Source="Y.IND" Destination="SUM.REQ" /&gt;
+&lt;/Request&gt;
+&lt;Response ID="4" /&gt;</PRE></TD>
+	</TR>
+	<TR VALIGN="top">
+		<TD>Verify that the connection is back in the data base.</TD>
+		<TD><PRE STYLE="font-size: x-small;">&lt;Request ID="5" Action="QUERY" &gt;
+  &lt;Connection Source="Y.IND" Destination="*" /&gt;
+&lt;/Request&gt;
+&lt;Response ID="5" &gt;
+  &lt;EndpointList &gt;
+    SUM.REQ
+  &lt;/EndpointList&gt;
+&lt;/Response&gt;</PRE></TD>
+	</TR>
+	<TR VALIGN="top">
+		<TD>Verify that the connection is re-established in the DUT by
+		re-entering both input data values with the <B>Enter</B> key.</TD>
+		<TD><IMG SRC="MGR_TESTg.png"></TD>
+	</TR>
+	<TR VALIGN="top">
+		<TD>Query the type and state of the <TT>SUM</TT> FB.</TD>
+		<TD><PRE STYLE="font-size: x-small;">&lt;Request ID="6" Action="QUERY" &gt;
+  &lt;FB Name="SUM" Type="*" /&gt;
+&lt;/Request&gt;
+&lt;Response ID="6" &gt;
+  &lt;FB Name="SUM" Type="FB_ADD_REAL" /&gt;
+&lt;/Response&gt;
+&lt;Request ID="7" Action="QUERY" &gt;
+  &lt;FB Name="SUM" Type="FB_ADD_REAL" /&gt;
+&lt;/Request&gt;
+&lt;Response ID="7" &gt;
+  &lt;FBStatus Status="RUNNING" /&gt;
+&lt;/Response&gt;</PRE></TD>
+	</TR>
+	<TR VALIGN="top">
+		<TD>Delete the <TT>SUM</TT> FB and check that it is deleted.</TD>
+		<TD><PRE STYLE="font-size: x-small;">&lt;Request ID="8" Action="DELETE" &gt;
+  &lt;FB Name="SUM" Type="FB_ADD_REAL"/&gt;
+&lt;/Request&gt;
+&lt;Response ID="8" /&gt;
+&lt;Request ID="9" Action="QUERY" &gt;
+  &lt;FB Name="SUM" Type="*" /&gt;
+&lt;/Request&gt;
+&lt;Response ID="9" Reason="NO_SUCH_OBJECT"/&gt;</PRE></TD>
+	</TR>
+	<TR VALIGN="top">
+		<TD>Verify that the FB is deleted by entering new data into the
+		DUT (following up each data entry with the <B>Enter</B> key), and
+		observing that the output does not change.</TD>
+		<TD><IMG SRC="MGR_TESTh.png"></TD>
+	</TR>
+	<TR VALIGN="top">
+		<TD>Re-create the FB and verify that it is present and running.</TD>
+		<TD><PRE STYLE="font-size: x-small;">&lt;Request ID="10" Action="CREATE" &gt;
+  &lt;FB Name="SUM" Type="FB_ADD_REAL" /&gt;
+&lt;/Request&gt;
+&lt;Response ID="10" /&gt;
+&lt;Request ID="11" Action="QUERY" &gt;
+  &lt;FB Name="SUM" Type="FB_ADD_REAL" /&gt;
+&lt;/Request&gt;
+&lt;Response ID="11" &gt;
+  &lt;FBStatus Status="RUNNING" /&gt;
+&lt;/Response&gt;</PRE></TD>
+	</TR>
+	<TR VALIGN="top">
+		<TD>Re-create the FB's connections and verify some of them.</TD>
+		<TD><PRE STYLE="font-size: x-small;">&lt;Request ID="12" Action="CREATE" &gt;
+  &lt;Connection Source="Y.IND" Destination="SUM.REQ" /&gt;
+&lt;/Request&gt;
+&lt;Response ID="12" /&gt;
+&lt;Request ID="13" Action="CREATE" &gt;
+  &lt;Connection Source="SUM.CNF" Destination="DIFF.REQ" /&gt;
+&lt;/Request&gt;
+&lt;Response ID="13" /&gt;
+&lt;Request ID="14" Action="CREATE" &gt;
+  &lt;Connection Source="X.OUT" Destination="SUM.IN1" /&gt;
+&lt;/Request&gt;
+&lt;Response ID="14" /&gt;
+&lt;Request ID="15" Action="CREATE" &gt;
+  &lt;Connection Source="Y.OUT" Destination="SUM.IN2" /&gt;
+&lt;/Request&gt;
+&lt;Response ID="15" /&gt;
+&lt;Request ID="16" Action="CREATE" &gt;
+  &lt;Connection Source="SUM.OUT" Destination="PROD.IN1" /&gt;
+&lt;/Request&gt;
+&lt;Response ID="16" /&gt;
+&lt;Request ID="17" Action="QUERY" &gt;
+  &lt;Connection Source="SUM.OUT" Destination="*" /&gt;
+&lt;/Request&gt;
+&lt;Response ID="17" &gt;
+  &lt;EndpointList &gt;
+    PROD.IN1
+  &lt;/EndpointList&gt;
+&lt;/Response&gt;
+&lt;Request ID="18" Action="QUERY" &gt;
+  &lt;Connection Source="X.OUT" Destination="*" /&gt;
+&lt;/Request&gt;
+&lt;Response ID="18" &gt;
+  &lt;EndpointList &gt;
+    DIFF.IN1,SUM.IN1
+  &lt;/EndpointList&gt;
+&lt;/Response&gt;</PRE></TD>
+	</TR>
+	<TR VALIGN="top">
+		<TD>Verify that the FB and its connections are re-established in
+		the DUT by re-entering both input data values with the <B>Enter</B>
+		key.</TD>
+		<TD><IMG SRC="MGR_TESTi.png"></TD>
+	</TR>
+</TABLE>
+<CENTER>
+<P>[<A NAME="Viewer" HREF="../../FBViewer.html" TARGET="_blank">Viewer
+Help</A>]</P>
+<TABLE BORDER="1">
+	<TR>
+		<TD><APPLET CODE="FBViewer" ARCHIVE="../../viewer.jar"
+			WIDTH="800" HEIGHT="600">
+			<PARAM NAME="src" VALUE="MGR_TEST">
+		</APPLET></TD>
+	</TR>
+</TABLE>
+<P><I>Last updated: 2007-12-16.</I> <BR>
+&copy;2007 Holobloc Inc.<BR>
+Licensed under the <A
+	HREF="http://www.opensource.org/licenses/afl-3.0.php" TARGET="_blank">Academic
+Free License version 3.0</A></P>
+</CENTER>
+</BODY>
+</HTML>

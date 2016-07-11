@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="BusyAgentFB" Comment="JADE Destroyer" >
+  <Identification Standard="61499-1" />
+  <VersionInfo Organization="Fraunhofer IGD" Version="1.0" Author="Ahmed" Date="2014-04-22" />
+  <CompilerInfo header="package fb.rt;" >
+    <Compiler Language="Java" Vendor="Sun" Product="JDK" Version="1.5.0" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Normal Execution Request" >
+        <With Var="NAME" />
+      </Event>
+      <Event Name="BUSY" Comment="Normal Execution Request" >
+        <With Var="NAME" />
+      </Event>
+      <Event Name="FREE" Comment="Normal Execution Request" >
+        <With Var="NAME" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Execution Confirmation" >
+        <With Var="PRINT_N" />
+      </Event>
+      <Event Name="BUSY_CNF" Comment="Execution Confirmation" >
+        <With Var="STATUS" />
+      </Event>
+      <Event Name="FREE_CNF" Comment="Execution Confirmation" >
+        <With Var="STATUS" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="NAME" Type="WSTRING" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="PRINT_N" Type="WSTRING" />
+      <VarDeclaration Name="STATUS" Type="WSTRING" />
+    </OutputVars>
+  </InterfaceList>
+</FBType>

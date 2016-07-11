@@ -1,0 +1,122 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+<META NAME="GENERATOR" Content="Visual Page 1.1 for Windows">
+<TITLE>Comparison with the Classical MVC Model</TITLE>
+</HEAD>
+
+<BODY>
+
+<H2 ALIGN="CENTER">Comparison with the Classical MVC Model</H2>
+<P>The main difference between the present framework and the
+classical Model/View/Controller (MVC) framework is that In this
+framework, a <B>Controller</B> element encapsulates the actual control
+functions to be performed on one or more instances of associated <B>Models</B>.
+In the classical MVC framework, a <B>Controller</B> represents the
+functions that may be performed by a human interface element to modify
+the data in the <B>Model</B> or the appearance of the <B>Model</B>
+presented in the <B>View</B>. In the present framework, this function is
+performed by a <B>HMI</B> (Human/Machine Interface) element.</P>
+<P>The major differences in the interactions among framework
+elements that are introduced by this modification of the classical MVC
+model are shown in the tables below.</P>
+
+
+<BLOCKQUOTE>
+<P>NOTE - The object classes and interactions shown are abstractions
+and do not necessarily represent the actual names of methods or object
+classes.</P>
+
+</BLOCKQUOTE>
+
+<CENTER>
+<TABLE BORDER="1">
+	<CAPTION><B>Effects of Model Data Change</B></CAPTION>
+	<TR>
+		<TD WIDTH="366">In the classical MVC framework, the Model (e.g.,
+		a data base or dynamic process model) notifies both the Controller and
+		View elements when its data has changed, with the effect that the View
+		updates its graphic representation of the Model and the Controller
+		element notifies the user of the change.</TD>
+		<TD NOWRAP>
+		<P ALIGN="CENTER"><IMG SRC="images/mvc1old.gif" WIDTH="287"
+			HEIGHT="121" ALIGN="BOTTOM" BORDER="0">
+		</TD>
+	</TR>
+	<TR>
+		<TD WIDTH="366" VALIGN="MIDDLE">In the present framework, the
+		Model (a function block instance) also notifies the Controller and
+		View elements (also function block instances) when its data has
+		changed, e.g., via an event at its <TT>IND</TT> output along with
+		associated data. However, in this case the Controller may take
+		appropriate control actions and notify the Model to change some of its
+		data (e.g., via a <TT>REQ</TT> input and associated data to the
+		model), and may also notify the user of the change through an HMI
+		element (also a function block instance). <BR>
+		<BR>
+		<I>NOTE 1 -</I> In this framework the &quot;HMI element&quot; replaces
+		the &quot;Controller element&quot; of the classical framework.<BR>
+		<BR>
+		<I>NOTE 2 -</I> In this framework a change of Model data may cause 2
+		changes in View data: the first due to the initial data change in the
+		Model, and the second caused by the feedback from the Controller.</TD>
+		<TD VALIGN="MIDDLE" NOWRAP><IMG SRC="images/mvc1new.gif"></TD>
+	</TR>
+	<TR>
+		<TD WIDTH="366">This framework allows the Model element to be
+		replaced by an Interface element, i.e., a function block instance
+		which implements the same interface as the Model element.</TD>
+		<TD NOWRAP>
+		<P ALIGN="CENTER"><IMG SRC="images/mvc1anew.gif" WIDTH="292"
+			HEIGHT="107" ALIGN="BOTTOM" BORDER="0">
+		</TD>
+	</TR>
+</TABLE>
+<BR>
+<TABLE BORDER="1">
+	<CAPTION><B>Effects of User Input</B></CAPTION>
+	<TR>
+		<TD>In the classical MVC framework, user input is translated by
+		the Controller element into either a command to the Model element to
+		change its data, to the View element to change the way the data is
+		displayed, or both.</TD>
+		<TD NOWRAP>
+		<P ALIGN="CENTER"><IMG SRC="images/mvc2old.gif" WIDTH="292"
+			HEIGHT="97" ALIGN="BOTTOM" BORDER="0">
+		</TD>
+	</TR>
+	<TR>
+		<TD>In the present framework, user input from an HMI element (a
+		function block instance) notifies the Controller element (also a
+		function block instance) when its data has changed, e.g., via an event
+		at its <TT>IND</TT> output along with associated data. In this case
+		the Controller may take appropriate control actions and notify the
+		Model to change some of its data, which may then also notify the View
+		of the changed data. <BR>
+		<BR>
+		<I>NOTE 1 -</I> If the effects of the control actions are such as to
+		cause additional changes in the Model data, this may result in
+		additional notifications to the Controller and View elements.<BR>
+		<BR>
+		<I>NOTE 2 -</I>In this framework, a View element may also contain HMI
+		elements for user input to the Model, which may result in a
+		notification from the View element back to the Model element, which in
+		turn may notify the Controller of the associated data change. In the
+		control system implementation, this notification would then be built
+		into the Equipment interface. An example of this is the <A
+			HREF="syseng2.htm#6">fault injection</A> mechanism built into the
+		View elements.</TD>
+		<TD><IMG SRC="images/mvc2new.gif"></TD>
+	</TR>
+</TABLE>
+<P><I>Last updated: 2006-09-30.</I><BR>
+&copy;2002 Rockwell Automation, &copy;2006&nbsp;<A
+	HREF="http://www.holobloc.com" TARGET="_blank">Holobloc Inc</A><BR>
+Licensed under the <A
+	HREF="http://www.opensource.org/licenses/afl-3.0.php">Academic Free
+License version 3.0</A>.</P>
+</CENTER>
+</BODY>
+</HTML>

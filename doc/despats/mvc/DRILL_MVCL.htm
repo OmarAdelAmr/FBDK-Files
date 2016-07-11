@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+<META NAME="GENERATOR" CONTENT="Eclipse HTML Editor">
+<TITLE>SYSTEM DRILL_MVCL</TITLE>
+</HEAD>
+<BODY>
+<H3>5. Develop and Test Controllers</H3>
+<P><A HREF="#Viewer">This system configuration</A> implements the
+layered <A HREF="syseng2.htm#5"><B>Model+View+Control</B> testing
+architecture</A> for the <A HREF="drilsket.htm">drilling example</A>.</P>
+<UL>
+	<LI>The <TT>HMI,MODEL</TT> and <TT>VIEW</TT> devices encapsulate
+	the functionality of the corresponding layers of the architecture.</LI>
+	<LI>As in the <A HREF="DRILL_VIEWL.htm"><TT>DRILL_VIEWL</TT></A>
+	configuration, the <TT>VIEW</TT> device contains two instances of the
+	specialized <A HREF="../../common/VIEW_PANEL.htm"><TT>VIEW_PANEL</TT></A>
+	resource type to provide the necessary layout of View elements for the
+	drilling example.</LI>
+	<LI>As in the <A HREF="DRILL_MVL.htm"><TT>DRILL_MVL</TT></A>
+	configuration, the <TT>MODEL</TT> device contains the <B>Model</B>
+	elements and the logic for their interactions, including the transfer
+	of workpieces among the modeled physical elements.</LI>
+	<LI>The <TT>CONTROL</TT> device contains the <B>Controller</B>
+	elements, including the logic for sequencing and interlocking of
+	operations among the modeled physical elements. Control is achieved
+	through instances of the function block types <A HREF="XBAR_CTL.htm"><TT>XBAR_CTL</TT></A>,
+	<A HREF="LOAD_CTL.htm"><TT>LOAD_CTL</TT></A><TT>, </TT><A
+		HREF="XSLIDE_CTL.htm"><TT>XSLIDE_CTL</TT></A> and <A
+		HREF="MACH_CTL.htm"><TT>MACH_CTL</TT></A>.</LI>
+	<LI>Inter-layer communication is implemented with the <A
+		HREF="../publsubl/index.htm" TARGET="_top">local multicast</A>
+	pattern.</LI>
+</UL>
+<CENTER>
+<P><A NAME="Viewer"></A>[<A HREF="../../FBViewer.html" TARGET="help">Viewer
+Help</A>]<BR>
+<TABLE BORDER="1">
+	<TR>
+		<TD><APPLET CODE="FBViewer" ARCHIVE="../../viewer.jar"
+			ALIGN="bottom" HEIGHT="620" WIDTH="875"> </APPLET></TD>
+	</TR>
+</TABLE>
+</P>
+<P><I>Last updated: 2007-09-22.</I><BR>
+&copy;2006,2007 <A HREF="http://www.holobloc.com" TARGET="_blank">Holobloc
+Inc.</A><BR>
+Licensed under the <A
+	HREF="http://www.opensource.org/licenses/afl-3.0.php">Academic Free
+License version 3.0</A>.</P>
+</CENTER>
+</BODY>
+</HTML>

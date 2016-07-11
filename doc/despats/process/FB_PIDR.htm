@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+<META NAME="GENERATOR" CONTENT="Eclipse HTML Editor">
+<TITLE>FUNCTION_BLOCK FB_PIDR</TITLE>
+</HEAD>
+<BODY>
+<H2 ALIGN="center">FUNCTION_BLOCK FB_PIDR</H2>
+<P>An instance of this function block type implements the reverse-acting
+PID (Proportional+Integral+Derivative) control law</P>
+<CENTER>
+<TABLE BORDER="1">
+	<TBODY>
+		<TR>
+			<TD ALIGN="center"><IMG ALT="XOUT = -(Kp*e+ITERM/TR+TD*DTERM)"
+				SRC="images/formula.gif" ALIGN="middle" HEIGHT="29" WIDTH="266">,<BR>
+			where <IMG ALT="e = PV-SP" SRC="images/formula2.gif" ALIGN="middle"
+				HEIGHT="18" WIDTH="83">.</TD>
+		</TR>
+</TABLE>
+</CENTER>
+<P>The manipulated variable <TT>XOUT</TT>, the process variable <TT>PV </TT>and
+the proportionality constant <TT>KP</TT> are of type <TT>REAL</TT>, as
+are the internal terms <TT>ERROR</TT>, <TT>ITERM</TT> and <TT>ETERM</TT>.
+The reset time <TT>TR</TT> and derivative time <TT>TD</TT> are of type <TT>TIME</TT>.
+The set point <TT>SP</TT> and initial output value <TT>X0</TT> are of
+type <TT>UINT</TT> since they are considered to be manually set, e.g.,
+from an instance of the <A HREF="../../common/FACEPLATE.htm"><TT>FACEPLATE</TT></A>
+type.</P>
+<P>The inputs PV, SP and X0 are assumed to be limited to the range 0 to
+100 per cent of full scale, and the output XOUT is limited to the same
+range.</P>
+<P>Provision is made for anti-reset windup and bumpless transer from <TT>MANUAL</TT>
+to <TT>AUTO</TT> mode through appropriate initialization of the internal
+<TT>ITERM</TT> and <TT>ETERM</TT>&nbsp; variables.</P>
+<CENTER>
+<P>[<A NAME="Viewer" HREF="../../FBViewer.html" TARGET="help">Viewer
+Help</A>]<BR>
+<TABLE BORDER="1">
+	<TBODY>
+		<TR>
+			<TD><APPLET CODE="FBViewer" ARCHIVE="../../viewer.jar" ALIGN="bottom"
+				HEIGHT="410" WIDTH="473"> </APPLET></TD>
+		</TR>
+	</TBODY>
+</TABLE>
+</P>
+<P><I>Last updated: 2006-04-17.</I><BR>
+&copy;2006 Holobloc Inc.<BR>
+Licensed under the <A
+	HREF="http://www.opensource.org/licenses/afl-3.0.php">Academic Free
+License version 3.0</A>.</P>
+</CENTER>
+</BODY>
+</HTML>

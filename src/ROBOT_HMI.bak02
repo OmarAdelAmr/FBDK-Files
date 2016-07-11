@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE System SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<System Name="ROBOT_HMI" Comment="System Configuration" >
+  <Identification Standard="61499-1" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.3" Author="JHC" Date="2003-12-05" Remarks="Renamed from NEWSYSTEM." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.2" Author="JHC" Date="2002-11-05" Remarks="Fixed missing (empty) FBD in Application." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2002-01-17" Remarks="Minor cleanup" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2000-05-27" />
+  <Application Name="APP1" >
+    <FBNetwork >
+    </FBNetwork>
+  </Application>
+  <Device Name="ROBOT_HMI_DEVICE" Type="FRAME_DEVICE" x="1052.9412" y="429.41174" >
+    <Parameter Name="BOUNDS" Value="[1100,300,600,400]" />
+    <Parameter Name="GRID" Value="[1,1]" />
+    <Resource Name="ROBOT_HMI_PROCESSOR" Type="PANEL_RESOURCE" x="1358.8235" y="670.5882" >
+      <Parameter Name="ROWS" Value="8" />
+      <Parameter Name="COLS" Value="2" />
+      <FBNetwork >
+        <FB Name="ROBOT" Type="ROBOTA1FB" x="2027.7777" y="477.77777" >
+          <Parameter Name="NAME" Value="&#34;RobotAgent&#34;" />
+        </FB>
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="ROBOT.START" dx1="1416.6666" />
+        </EventConnections>
+      </FBNetwork>
+    </Resource>
+  </Device>
+</System>

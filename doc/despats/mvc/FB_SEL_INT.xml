@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd" >
+<FBType Name="FB_SEL_INT" Comment="INT Selection" >
+  <Identification Standard="61499-1" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2001-04-04" Remarks="Algorithm in ST" />
+  <CompilerInfo header="package fb.rt.omac;" >
+    <Compiler Language="Java" Vendor="IBM" Product="Jikes" Version="1.06" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="REQ" >
+        <With Var="G" />
+        <With Var="IN0" />
+        <With Var="IN1" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="CNF" >
+        <With Var="OUT" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="G" Type="BOOL" Comment="Selector" />
+      <VarDeclaration Name="IN0" Type="INT" Comment="Selected when G=0" />
+      <VarDeclaration Name="IN1" Type="INT" Comment="Selected when G=1" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="OUT" Type="INT" Comment="Selected value" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <ECC >
+      <ECState Name="START" x="770.5882" y="123.5294" >
+      </ECState>
+      <ECState Name="DOIT" x="764.7059" y="882.3529" >
+        <ECAction Algorithm="MAIN" Output="CNF" />
+      </ECState>
+      <ECTransition Source="START" Destination="DOIT" Condition="REQ" x="1052.9412" y="511.7647" />
+      <ECTransition Source="DOIT" Destination="START" Condition="1" x="488.2353" y="535.2941" />
+    </ECC>
+  <Algorithm Name="MAIN" >
+    <ST Text="IF G THEN OUT:=IN1;&#10;ELSE OUT:=IN0;&#10;END_IF&#10;" />
+  </Algorithm>
+  </BasicFB>
+</FBType>

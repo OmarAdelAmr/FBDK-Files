@@ -1,0 +1,53 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+<META NAME="GENERATOR" CONTENT="Eclipse HTML Editor">
+<TITLE>SYSTEM ASM_MVCL</TITLE>
+</HEAD>
+<BODY>
+<H3>5. Develop and Test Controllers</H3>
+<P><A HREF="#Viewer">This system configuration</A> implements the
+layered <A HREF="syseng2.htm#5"><B>Model+View+Control</B> testing
+architecture</A> for the <A HREF="liftsket.htm">pallet handling example</A>.
+</P>
+<P ALIGN="center"><IMG ALT="" SRC="images/LIFTER_MVCL.gif"
+	HEIGHT="251" WIDTH="485"></P>
+<P>The<TT> MODEL</TT> and <TT>CONTROL</TT> devices encapsulate
+combined architectural functions in a similar manner to the <TT><A
+	HREF="DRILL_MVCL.htm">DRILL_MVCL</A></TT> example:</P>
+<UL>
+	<LI>The <TT>MODEL</TT> device contains both <B>Model</B> and <B>View</B>
+	elements as in the <A HREF="LIFTER_MVL.htm"><TT>LIFTER_MVL</TT></A>
+	configuration, as well as user interface (UI) elements for the
+	simulation.</LI>
+	<LI>The <TT>CONTROL</TT> device contains the <B>Controller</B> and
+	<B>HMI</B> elements, including the logic for sequencing and
+	interlocking of operations among the modeled physical elements as well
+	as a <TT>RUN/STOP</TT> switch for starting and stopping the FEED and
+	TAKEOFF conveyors. Control is performed in the <TT>CTL</TT> resource.</LI>
+	<LI>Inter-layer communication is implemented with the <A
+		HREF="../publsubl/index.htm">local multicast</A> pattern.</LI>
+</UL>
+<CENTER>
+<P><A NAME="Viewer"></A>[<A HREF="../../FBViewer.html" TARGET="help">Viewer
+Help</A>]<BR>
+<TABLE BORDER="1">
+	<TBODY>
+		<TR>
+			<TD><APPLET CODE="FBViewer" ARCHIVE="../../viewer.jar"
+				ALIGN="bottom" HEIGHT="700" WIDTH="910"> </APPLET></TD>
+		</TR>
+	</TBODY>
+</TABLE>
+</P>
+<P><I>Last updated: 2007-09-22.</I><BR>
+&copy;2004 Rockwell Automation.<BR>
+&copy;2007 <A HREF="http://www.holobloc.com" TARGET="_blank">Holobloc
+Inc</A>.<BR>
+Licensed under the <A
+	HREF="http://www.opensource.org/licenses/afl-3.0.php">Academic Free
+License version 3.0</A>.</P>
+</CENTER>
+</BODY>
+</HTML>

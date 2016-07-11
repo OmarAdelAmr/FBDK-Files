@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+<META NAME="GENERATOR" CONTENT="Eclipse HTML Editor">
+<TITLE>APPLICATION TEST_MATRIX</TITLE>
+</HEAD>
+
+<BODY>
+
+<H2 ALIGN="CENTER">APPLICATION TEST_MATRIX</H2>
+<P><A HREF="#Viewer">This application</A> is part of the <A
+	HREF="CODEC_TEST2.htm"><TT>CODEC_TEST2</TT></A> system configuration.
+It utilizes instances of <A
+	HREF="../../javadoc/fb/rt/hmi/matrix/IN_MATRIX.html"><TT>IN_MATRIX</TT></A>
+and <A HREF="../../javadoc/fb/rt/hmi/matrix/IN_MATRIX.html"><TT>OUT_MATRIX</TT></A>
+for input and output of transmitted data, respectively. This data is of
+the derived data type <A HREF="../../javadoc/fb/datatype/MATRIX.html"><TT>MATRIX</TT></A>.</P>
+<CENTER>
+<TABLE BORDER="1">
+	<TR>
+		<TD>This is the initial situation before transmission of data.</TD>
+		<TD><IMG SRC="images/TEST_MATRIX.gif"></TD>
+	</TR>
+	<TR>
+		<TD>Here is the situation after data transmission has been
+		triggered by pressing the <B>Enter</B> key in one of the matrix input
+		fields (data in the monitor window has been reformatted for easier
+		reading). The <TT>MATRIX</TT> data has been transmitted with an ASN.1
+		tag of <TT>APPLICATION 23 CONSTRUCTED (77</TT> hexadecimal), with
+		dimensions of 2 rows by 3 columns. Now the <TT>OUT_MATRIX</TT> output
+		has arranged itself to conform with the dimensions of the received
+		data.</TD>
+		<TD><IMG SRC="images/TEST_MATRIX2.gif"></TD>
+	</TR>
+</TABLE>
+<P></P>
+<P>[<A NAME="Viewer"></A><A HREF="../../FBViewer.html" TARGET="help">Viewer
+Help</A>]<BR>
+</P>
+<TABLE BORDER="1">
+	<TR>
+		<TD><APPLET CODE="FBViewer" WIDTH="700" HEIGHT="460"
+			ARCHIVE="../../viewer.jar">
+			<PARAM NAME="src" VALUE="CODEC_TEST2">
+			<PARAM NAME="fbd" VALUE="CODEC_TEST2.TEST_MATRIX">
+		</APPLET></TD>
+	</TR>
+</TABLE>
+<P></P>
+<P><I>Last updated: 2007-10-25.</I><BR>
+&copy;2006,2007 <A HREF="http://www.holobloc.com" TARGET="_blank">Holobloc
+Inc</A><BR>
+Licensed under the <A
+	HREF="http://www.opensource.org/licenses/afl-3.0.php">Academic Free
+License version 3.0</A>.</P>
+<P><FONT SIZE="-2" FACE="sans-serif">Java is a trademark or
+registered trademark of Sun Microsystems, Inc. in the United States and
+other countries.</FONT></P>
+</CENTER>
+</BODY>
+</HTML>

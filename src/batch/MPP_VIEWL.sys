@@ -1,0 +1,181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE System SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<System Name="MPP_VIEWL" Comment="View test configuration for Mini Pulp Process" >
+  <Identification Standard="IEC 61499" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.5" Author="JHC" Date="2006-12-08" Remarks="Adjusted for new IN_PAINT element (textured painting)." />
+  <VersionInfo Organization="Holobloc Inc" Version="0.4" Author="JHC" Date="2006-11-17" Remarks="Added colors for valves, pumps + pipes." />
+  <VersionInfo Organization="Holobloc Inc" Version="0.3" Author="JHC" Date="2006-11-16" Remarks="Added T300 colors." />
+  <VersionInfo Organization="Holobloc Inc" Version="0.2" Author="JHC" Date="2006-11-07" Remarks="Added Tanks + HMI elements." />
+  <VersionInfo Organization="Holobloc Inc" Version="0.1" Author="JHC" Date="2006-08-19" Remarks="Added E100 (Heater)." />
+  <VersionInfo Organization="Holobloc Inc" Version="0.0" Author="JHC" Date="2006-08-19" Remarks="Adapted for inclusion of Nodes in GRAPH_RESOURCE.GRAPH file." />
+  <Device Name="HMI" Type="FRAME_DEVICE" x="577.7778" y="11.111111" >
+    <Parameter Name="BOUNDS" Value="[0,50,390,650]" />
+    <Resource Name="ACTUATORS" Type="PANEL_RESOURCE" Comment="Valves and Pumps" x="200.0" y="11.111111" >
+      <Parameter Name="COLS" Value="3" />
+      <FBNetwork >
+        <FB Name="V101" Type="VVL_HMI" x="472.2222" y="11.111111" />
+        <FB Name="V204" Type="VVL_HMI" x="1266.6666" y="838.88885" />
+        <FB Name="V103" Type="VVL_HMI" x="1277.7777" y="11.111111" />
+        <FB Name="V102" Type="VVL_HMI" x="861.1111" y="11.111111" />
+        <FB Name="V104" Type="VVL_HMI" x="1705.5555" y="11.111111" />
+        <FB Name="V105" Type="VVL_HMI" x="2161.111" y="11.111111" />
+        <FB Name="V201" Type="VVL_HMI" x="94.44444" y="844.4444" />
+        <FB Name="V202" Type="VVL_HMI" x="477.77777" y="844.4444" />
+        <FB Name="V203" Type="VVL_HMI" x="872.22217" y="838.88885" />
+        <FB Name="V301" Type="VVL_HMI" x="1699.9999" y="838.88885" />
+        <FB Name="V302" Type="VVL_HMI" x="2100.0" y="838.88885" />
+        <FB Name="V303" Type="VVL_HMI" x="94.44444" y="1655.5555" />
+        <FB Name="V304" Type="VVL_HMI" x="472.2222" y="1655.5555" />
+        <FB Name="V401" Type="VVL_HMI" x="877.7778" y="1655.5555" />
+        <FB Name="V402" Type="VVL_HMI" x="1255.5555" y="1655.5555" />
+        <FB Name="V403" Type="VVL_HMI" x="1655.5555" y="1655.5555" />
+        <FB Name="V404" Type="VVL_HMI" x="2083.3333" y="1655.5555" />
+        <FB Name="P100" Type="VVL_HMI" x="77.77777" y="2488.8887" />
+        <FB Name="P200" Type="VVL_HMI" x="483.3333" y="2488.8887" />
+        <FB Name="E100" Type="VVL_HMI" x="877.7778" y="2488.8887" />
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="V101.INIT" dx1="27.777777" />
+          <Connection Source="V101.INITO" Destination="V102.INIT" dx1="27.777777" />
+          <Connection Source="V102.INITO" Destination="V103.INIT" dx1="27.777777" />
+          <Connection Source="V103.INITO" Destination="V104.INIT" dx1="27.777777" />
+          <Connection Source="V104.INITO" Destination="V105.INIT" dx1="27.777777" />
+          <Connection Source="V105.INITO" Destination="V201.INIT" dx1="27.777777" dx2="33.333332" dy="672.22217" />
+          <Connection Source="V201.INITO" Destination="V202.INIT" dx1="38.888885" />
+          <Connection Source="V202.INITO" Destination="V203.INIT" dx1="44.444443" />
+          <Connection Source="V203.INITO" Destination="V204.INIT" dx1="44.444443" />
+          <Connection Source="V204.INITO" Destination="V301.INIT" dx1="66.666664" />
+          <Connection Source="V301.INITO" Destination="V302.INIT" dx1="55.555553" />
+          <Connection Source="V302.INITO" Destination="V303.INIT" dx1="27.777777" dx2="44.444443" dy="661.1111" />
+          <Connection Source="V303.INITO" Destination="V304.INIT" dx1="38.888885" />
+          <Connection Source="V304.INITO" Destination="V401.INIT" dx1="61.111107" />
+          <Connection Source="V401.INITO" Destination="V402.INIT" dx1="44.444443" />
+          <Connection Source="V402.INITO" Destination="V403.INIT" dx1="33.333332" />
+          <Connection Source="V403.INITO" Destination="V404.INIT" dx1="77.77777" />
+          <Connection Source="V404.INITO" Destination="P100.INIT" dx1="27.777777" dx2="38.888885" dy="666.6666" />
+          <Connection Source="P100.INITO" Destination="P200.INIT" dx1="66.666664" />
+          <Connection Source="P200.INITO" Destination="E100.INIT" dx1="61.111107" />
+        </EventConnections>
+      </FBNetwork>
+    </Resource>
+    <Resource Name="SENSORS" Type="PANEL_RESOURCE" x="922.22217" y="11.111111" >
+      <Parameter Name="COLS" Value="1" />
+      <FBNetwork >
+        <FB Name="LA100hi" Type="SNSVL_THMI" Comment="0 = Tank 100 Overflow" x="466.66666" y="11.111111" />
+        <FB Name="LS200" Type="SNSVL_THMI" x="961.1111" y="11.111111" />
+        <FB Name="LS300lo" Type="SNSVL_THMI" x="1899.9999" y="11.111111" />
+        <FB Name="LS300hi" Type="SNSVL_THMI" x="1427.7777" y="11.111111" />
+        <FB Name="T100" Type="FB_SLIDERL" x="2550.0" y="11.111111" >
+          <Parameter Name="REND_ID" Value="&#34;T100&#34;" />
+        </FB>
+        <FB Name="T200" Type="FB_SLIDERL" x="3172.2222" y="11.111111" >
+          <Parameter Name="REND_ID" Value="&#34;T200&#34;" />
+        </FB>
+        <FB Name="T300" Type="FB_SLIDERL" x="283.3333" y="838.88885" >
+          <Parameter Name="REND_ID" Value="&#34;T300&#34;" />
+        </FB>
+        <FB Name="T400" Type="FB_SLIDERL" x="2211.111" y="827.7778" >
+          <Parameter Name="REND_ID" Value="&#34;T400&#34;" />
+        </FB>
+        <FB Name="PI300" Type="FB_SLIDERLR" x="3116.6665" y="1672.2222" >
+          <Parameter Name="REND_ID" Value="&#34;PI300&#34;" />
+          <Parameter Name="BKGD" Value="[255,0,0]" />
+        </FB>
+        <FB Name="TI300" Type="FB_SLIDERLR" x="2383.3333" y="1672.2222" >
+          <Parameter Name="REND_ID" Value="&#34;TI300&#34;" />
+          <Parameter Name="BKGD" Value="[255,0,0]" />
+        </FB>
+        <FB Name="TI100" Type="FB_SLIDERLR" x="2911.111" y="827.7778" >
+          <Parameter Name="REND_ID" Value="&#34;TI100&#34;" />
+          <Parameter Name="BKGD" Value="[255,0,0]" />
+        </FB>
+        <FB Name="T300_TOPC" Type="IN_PAINT" Comment="T300 top (deselected) color" x="761.1111" y="838.88885" />
+        <FB Name="T300_BOTC" Type="IN_PAINT" Comment="T300 bottom (selected) color" x="1183.3333" y="838.88885" />
+        <FB Name="T300_COLORS" Type="PUBL_2" Comment="T300 top, bottom colors" x="1688.8888" y="1438.8888" />
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="LA100hi.INIT" dx1="27.777777" />
+          <Connection Source="LA100hi.INITO" Destination="LS200.INIT" dx1="27.777777" />
+          <Connection Source="T200.INITO" Destination="T300.INIT" dx1="27.777777" dx2="27.777777" dy="661.1111" />
+          <Connection Source="LS200.INITO" Destination="LS300hi.INIT" dx1="27.777777" />
+          <Connection Source="LS300hi.INITO" Destination="LS300lo.INIT" dx1="27.777777" />
+          <Connection Source="LS300lo.INITO" Destination="T100.INIT" dx1="38.888885" />
+          <Connection Source="T300_TOPC.INITO" Destination="T300_BOTC.INIT" dx1="77.77777" />
+          <Connection Source="T300_BOTC.INITO" Destination="T300_COLORS.INIT" dx1="100.0" />
+          <Connection Source="T300_BOTC.IND" Destination="T300_COLORS.REQ" dx1="61.111107" />
+          <Connection Source="T300_COLORS.INITO" Destination="T400.INIT" dx1="122.22221" />
+          <Connection Source="T300_TOPC.IND" Destination="T300_COLORS.REQ" dx1="72.22222" />
+          <Connection Source="T300.INITO" Destination="T300_TOPC.INIT" dx1="66.666664" />
+          <Connection Source="T100.INITO" Destination="T200.INIT" dx1="27.777777" />
+          <Connection Source="T400.INITO" Destination="TI100.INIT" dx1="122.22221" />
+          <Connection Source="TI100.INITO" Destination="TI300.INIT" dx1="27.777777" dx2="38.888885" dy="677.7778" />
+          <Connection Source="TI300.INITO" Destination="PI300.INIT" dx1="111.11111" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="T300_TOPC.OUT" Destination="T300_COLORS.SD_1" dx1="27.777777" />
+          <Connection Source="T300_BOTC.OUT" Destination="T300_COLORS.SD_2" dx1="27.777777" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+  </Device>
+  <Device Name="VIEW" Type="FRAME_DEVICE" x="1649.9999" y="11.111111" >
+    <Parameter Name="BOUNDS" Value="[325,50,705,650]" />
+    <Resource Name="MODE_CTL" Type="PANEL_RESOURCE" x="761.1111" y="394.44443" >
+      <FBNetwork >
+        <FB Name="FAULT_IND" Type="OUT_BOOL" x="2366.6665" y="1094.4445" >
+          <Parameter Name="C1" Value="[255,0,0]" />
+          <Parameter Name="LABEL" Value="&#34;FAULT&#34;" />
+        </FB>
+        <FB Name="FAULT" Type="SUBL_1" x="2322.2222" y="11.111111" />
+        <FB Name="MODE" Type="PUBL_2" x="1649.9999" y="1183.3333" />
+        <FB Name="MODE_CTL" Type="MODE_AMS" x="499.99997" y="1377.7777" />
+        <FB Name="TOGGLE" Type="IN_EVENT" x="527.7778" y="11.111111" >
+          <Parameter Name="LABEL" Value="&#34;AUTO/MAN&#34;" />
+        </FB>
+        <FB Name="AUTO" Type="OUT_BOOL" x="1122.2222" y="11.111111" >
+          <Parameter Name="C1" Value="[0,255,0]" />
+          <Parameter Name="LABEL" Value="&#34;AUTO&#34;" />
+        </FB>
+        <FB Name="MANUAL" Type="OUT_BOOL" x="1833.3333" y="11.111111" >
+          <Parameter Name="C1" Value="[0,255,0]" />
+          <Parameter Name="LABEL" Value="&#34;MANUAL&#34;" />
+        </FB>
+        <FB Name="STOP" Type="IMG_BOOL" x="2961.111" y="11.111111" >
+          <Parameter Name="LABEL" Value="&#34;STOP&#34;" />
+          <Parameter Name="IMG0" Value="&#34;images/Stop16a.gif&#34;" />
+          <Parameter Name="IMG1" Value="&#34;images/Stop16.gif&#34;" />
+        </FB>
+        <FB Name="STOP_GATE" Type="FB_OR" x="3477.7776" y="1205.5555" />
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="TOGGLE.INIT" dx1="27.777777" />
+          <Connection Source="TOGGLE.INITO" Destination="AUTO.INIT" dx1="33.333332" />
+          <Connection Source="AUTO.INITO" Destination="MANUAL.INIT" dx1="44.444443" />
+          <Connection Source="AUTO.CNF" Destination="MANUAL.REQ" dx1="61.111107" />
+          <Connection Source="MODE_CTL.IND" Destination="MODE.REQ" dx1="594.4444" />
+          <Connection Source="TOGGLE.IND" Destination="MODE_CTL.TOGGLE" dx1="27.777777" dx2="238.88889" dy="683.3333" />
+          <Connection Source="MODE.CNF" Destination="AUTO.REQ" dx1="83.33333" dx2="211.1111" dy="-277.77777" />
+          <Connection Source="STOP.IND" Destination="STOP_GATE.REQ" dx1="88.888885" />
+          <Connection Source="MANUAL.INITO" Destination="FAULT.INIT" dx1="27.777777" />
+          <Connection Source="FAULT.INITO" Destination="STOP.INIT" dx1="38.888885" />
+          <Connection Source="FAULT.IND" Destination="FAULT_IND.REQ" dx1="50.0" dx2="111.11111" dy="472.2222" />
+          <Connection Source="FAULT_IND.CNF" Destination="STOP_GATE.REQ" dx1="472.2222" />
+          <Connection Source="STOP_GATE.CNF" Destination="MODE_CTL.SENSE" dx1="61.111107" dx2="77.77777" dy="999.99994" />
+          <Connection Source="START.COLD" Destination="MODE.INIT" dx1="27.777777" />
+          <Connection Source="MODE.INITO" Destination="FAULT_IND.INIT" dx1="222.22221" />
+          <Connection Source="START.COLD" Destination="MODE_CTL.INIT" dx1="27.777777" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="FAULT.RD_1" Destination="FAULT_IND.IN" dx1="27.777777" dx2="133.33333" dy="111.11111" />
+          <Connection Source="MODE_CTL.AUTO" Destination="MODE.SD_1" dx1="111.11111" />
+          <Connection Source="MODE_CTL.MANUAL" Destination="MODE.SD_2" dx1="650.0" />
+          <Connection Source="MODE_CTL.AUTO" Destination="AUTO.IN" dx1="111.11111" />
+          <Connection Source="MODE_CTL.MANUAL" Destination="MANUAL.IN" dx1="650.0" />
+          <Connection Source="STOP.OUT" Destination="STOP_GATE.IN1" dx1="44.444443" />
+          <Connection Source="FAULT.RD_1" Destination="STOP_GATE.IN2" dx1="183.33333" />
+          <Connection Source="STOP_GATE.OUT" Destination="MODE_CTL.STOP" dx1="27.777777" dx2="38.888885" dy="627.7778" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+    <Resource Name="GRAPH" Type="GRAPH_RESOURCE" x="766.6666" y="11.111111" >
+      <Parameter Name="GRAPH" Value="&#34;batch/MPP_GRAPH.xml&#34;" />
+    </Resource>
+  </Device>
+</System>

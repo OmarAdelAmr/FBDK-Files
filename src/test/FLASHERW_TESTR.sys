@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE System SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<System Name="FLASHERW_TESTR" Comment="Test FLASHERW on Remote Device" >
+  <Identification Standard="61499-1" Classification="Test" Type="SNAP Test" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.1" Author="JHC" Date="2007-11-09" Remarks="Modified UDP addresses to work with WXP." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2003-07-12" Remarks="Modified from RMT_DEV_TEST." />
+  <Application Name="TEST1" Comment="FB_ADD_INT test" >
+    <FBNetwork >
+      <FB Name="RUNSTOP" Type="RADIO_BOOL" x="678.9474" y="10.526316" >
+        <Parameter Name="LABEL1" Value="&#34;RUN&#34;" />
+        <Parameter Name="LABEL0" Value="&#34;STOP&#34;" />
+      </FB>
+      <FB Name="MODE" Type="IN_CHOICE" x="1521.0526" y="515.7895" >
+        <Parameter Name="CHOICES" Value="&#34;FLASH_ALL,COUNT_UP,COUNT_DOWN,CHASE_UP,CHASE_DOWN&#34;" />
+      </FB>
+      <FB Name="DT" Type="IN_ANY" x="2336.842" y="10.526316" >
+        <Parameter Name="TYPE" Value="&#34;TIME&#34;" />
+        <Parameter Name="IVAL" Value="t#1s" />
+      </FB>
+      <FB Name="CLK_SW" Type="E_SWITCH" x="1584.2106" y="1584.2106" />
+      <FB Name="CLK" Type="E_CYCLE" x="2268.4211" y="1694.7368" />
+      <FB Name="FLASH" Type="FLASHERW" x="3094.7368" y="10.526316" >
+        <Parameter Name="N" Value="10" />
+      </FB>
+      <FB Name="OUT" Type="FB_LEDS" x="3747.3684" y="10.526316" >
+        <Parameter Name="W" Value="102" />
+        <Parameter Name="N" Value="10" />
+      </FB>
+      <EventConnections>
+        <Connection Source="RUNSTOP.INITO" Destination="MODE.INIT" dx1="268.42105" dx2="29.4118" dy="158.8235" />
+        <Connection Source="MODE.INITO" Destination="DT.INIT" dx1="42.105263" dx2="5.8824" dy="-1.0" />
+        <Connection Source="RUNSTOP.IND" Destination="CLK_SW.EI" dx1="121.05263" dx2="0.0" dy="852.9412" />
+        <Connection Source="CLK_SW.EO0" Destination="CLK.STOP" dx1="200.0" />
+        <Connection Source="CLK_SW.EO1" Destination="MODE.REQ" dx1="84.210526" dx2="189.47368" dy="-368.42105" />
+        <Connection Source="CLK_SW.EO1" Destination="CLK.START" dx1="100.0" />
+        <Connection Source="MODE.IND" Destination="DT.REQ" dx1="100.0" dx2="5.8824" dy="-1.0" />
+        <Connection Source="DT.IND" Destination="FLASH.INIT" dx1="94.73684" />
+        <Connection Source="CLK.EO" Destination="FLASH.REQ" dx1="405.26315" />
+        <Connection Source="FLASH.INITO" Destination="OUT.INIT" dx1="36.842106" />
+        <Connection Source="FLASH.CNF" Destination="OUT.REQ" dx1="47.36842" />
+      </EventConnections>
+      <DataConnections>
+        <Connection Source="MODE.I" Destination="FLASH.MODE" dx1="815.7895" />
+        <Connection Source="DT.OUT" Destination="CLK.DT" dx1="31.578947" dx2="84.210526" dy="378.94736" />
+        <Connection Source="RUNSTOP.OUT" Destination="CLK_SW.G" dx1="57.894737" dx2="11.7647" dy="2823.5293" />
+        <Connection Source="FLASH.OUT" Destination="OUT.IN" dx1="89.47369" />
+      </DataConnections>
+    </FBNetwork>
+  </Application>
+  <Device Name="DEV_TESTER" Type="FRAME_DEVICE" x="577.7778" y="88.888885" >
+    <Parameter Name="BOUNDS" Value="[50,50,190,150]" />
+    <Parameter Name="GRID" Value="[1,1]" />
+    <Resource Name="RES2" Type="PANEL_RESOURCE" x="236.8421" y="110.52631" >
+      <FBNetwork >
+        <FB Name="PUB" Type="PUBLISH_3" x="2416.6665" y="916.6666" >
+          <Parameter Name="ID" Value="&#34;225.0.0.1:1028&#34;" />
+          <Parameter Name="QI" Value="1" />
+        </FB>
+        <FB Name="SB" Type="SUBSCRIBE_1" x="3122.2222" y="11.111111" >
+          <Parameter Name="ID" Value="&#34;225.0.0.1:1029&#34;" />
+          <Parameter Name="QI" Value="1" />
+        </FB>
+        <FB Name="RUNSTOP" Type="RADIO_BOOL" x="550.0" y="11.111111" >
+          <Parameter Name="LABEL1" Value="&#34;RUN&#34;" />
+          <Parameter Name="LABEL0" Value="&#34;STOP&#34;" />
+        </FB>
+        <FB Name="MODE" Type="IN_CHOICE" x="1194.4445" y="605.55554" >
+          <Parameter Name="CHOICES" Value="&#34;FLASH_ALL,COUNT_UP,COUNT_DOWN,CHASE_UP,CHASE_DOWN&#34;" />
+        </FB>
+        <FB Name="DT" Type="IN_ANY" x="1949.9999" y="11.111111" >
+          <Parameter Name="TYPE" Value="&#34;TIME&#34;" />
+          <Parameter Name="IVAL" Value="t#1s" />
+        </FB>
+        <FB Name="OUT" Type="FB_LEDS" x="3649.9998" y="233.33333" >
+          <Parameter Name="W" Value="102" />
+          <Parameter Name="N" Value="12" />
+        </FB>
+        <EventConnections>
+          <Connection Source="PUB.INITO" Destination="SB.INIT" dx1="50.0" dx2="68.42105" dy="900.0" />
+          <Connection Source="RUNSTOP.INITO" Destination="MODE.INIT" dx1="211.1111" dx2="29.4118" dy="158.8235" />
+          <Connection Source="MODE.INITO" Destination="DT.INIT" dx1="44.444443" dx2="5.8824" dy="-1.0" />
+          <Connection Source="MODE.IND" Destination="DT.REQ" dx1="100.0" dx2="5.8824" dy="-1.0" />
+          <Connection Source="START.COLD" Destination="RUNSTOP.INIT" dx1="38.888885" />
+          <Connection Source="DT.INITO" Destination="PUB.INIT" dx1="77.77777" />
+          <Connection Source="SB.INITO" Destination="OUT.INIT" dx1="61.111107" />
+          <Connection Source="RUNSTOP.IND" Destination="MODE.REQ" dx1="161.1111" />
+          <Connection Source="RUNSTOP.IND" Destination="DT.REQ" dx1="394.44443" />
+          <Connection Source="RUNSTOP.IND" Destination="PUB.REQ" dx1="944.4444" />
+          <Connection Source="SB.IND" Destination="OUT.REQ" dx1="38.888885" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="RUNSTOP.OUT" Destination="PUB.SD_1" dx1="94.44444" />
+          <Connection Source="DT.OUT" Destination="PUB.SD_3" dx1="138.88889" />
+          <Connection Source="SB.RD_1" Destination="OUT.IN" dx1="27.777777" />
+          <Connection Source="MODE.I" Destination="PUB.SD_2" dx1="294.44443" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+  </Device>
+  <Device Name="DEV1" Type="RMT_DEV" x="1155.5555" y="333.3333" >
+    <Parameter Name="MGR_ID" Value="&#34;192.168.1.5:61499&#34;" />
+    <Resource Name="RES2" Type="EMB_RES" x="931.5789" y="10.526316" >
+      <FBNetwork >
+        <FB Name="SB" Type="SUBSCRIBE_3" x="1550.0" y="11.111111" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="ID" Value="&#34;225.0.0.1:1028&#34;" />
+        </FB>
+        <FB Name="RUNSTOP" Type="E_SWITCH" x="138.88889" y="1261.1111" />
+        <FB Name="CLK" Type="E_CYCLE" x="622.22217" y="1288.8888" />
+        <FB Name="PUB" Type="PUBLISH_1" x="2333.3333" y="1055.5555" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="ID" Value="&#34;225.0.0.1:1029&#34;" />
+        </FB>
+        <FB Name="FLASH" Type="FLASHERW" x="1311.1111" y="1277.7777" >
+          <Parameter Name="N" Value="12" />
+        </FB>
+        <EventConnections>
+          <Connection Source="SB.INITO" Destination="PUB.INIT" dx1="300.0" dx2="11.7647" dy="-1.0" />
+          <Connection Source="SB.IND" Destination="RUNSTOP.EI" dx1="222.22221" dx2="55.555553" dy="983.3333" />
+          <Connection Source="RUNSTOP.EO0" Destination="CLK.STOP" dx1="50.0" />
+          <Connection Source="RUNSTOP.EO1" Destination="CLK.START" dx1="94.44444" />
+          <Connection Source="CLK.EO" Destination="FLASH.REQ" dx1="183.33333" />
+          <Connection Source="SB.IND" Destination="FLASH.INIT" dx1="227.77777" dx2="77.77777" dy="983.3333" />
+          <Connection Source="FLASH.CNF" Destination="PUB.REQ" dx1="55.555553" />
+          <Connection Source="START.COLD" Destination="SB.INIT" dx1="133.33333" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="SB.RD_1" Destination="RUNSTOP.G" dx1="144.44444" dx2="100.0" dy="361.11108" />
+          <Connection Source="SB.RD_2" Destination="FLASH.MODE" dx1="105.55555" dx2="33.333332" dy="1194.4445" />
+          <Connection Source="SB.RD_3" Destination="CLK.DT" dx1="27.777777" dx2="33.333332" dy="1150.0" />
+          <Connection Source="FLASH.OUT" Destination="PUB.SD_1" dx1="105.55555" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+    <Resource Name="MGR" Type="RMT_RES" x="370.5882" y="94.1176" >
+    </Resource>
+  </Device>
+  <Mapping From="TEST1.IN1" To="DEV_TESTER.RES1.IN1" />
+  <Mapping From="TEST1.PLUS" To="DEV_TESTER.RES1.PLUS" />
+  <Mapping From="TEST1.IN2" To="DEV_TESTER.RES1.IN2" />
+  <Mapping From="TEST1.EQUALS" To="DEV_TESTER.RES1.EQUALS" />
+  <Mapping From="TEST1.AD" To="DEV1.RES1.AD" />
+  <Mapping From="TEST2.RUNSTOP" To="DEV_TESTER.RES2.RUNSTOP" />
+  <Mapping From="TEST2.RESET" To="DEV_TESTER.RES2.RESET" />
+  <Mapping From="TEST2.PV" To="DEV_TESTER.RES2.PV" />
+  <Mapping From="TEST2.DT" To="DEV_TESTER.RES2.DT" />
+  <Mapping From="TEST2.RSSW" To="DEV1.RES2.RUNSTOP" />
+  <Mapping From="TEST2.CLK" To="DEV1.RES2.CLK" />
+  <Mapping From="TEST2.CTR" To="DEV1.RES2.CTR" />
+  <Mapping From="TEST2.Q" To="DEV_TESTER.RES2.Q" />
+  <Mapping From="TEST2.CV" To="DEV_TESTER.RES2.CV" />
+  <Mapping From="TEST1.RUNSTOP" To="DEV_TESTER.RES2.RUNSTOP" />
+  <Mapping From="TEST1.MODE" To="DEV_TESTER.RES2.MODE" />
+  <Mapping From="TEST1.DT" To="DEV_TESTER.RES2.DT" />
+  <Mapping From="TEST1.OUT" To="DEV_TESTER.RES2.OUT" />
+</System>

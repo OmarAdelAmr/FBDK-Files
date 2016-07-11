@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="E_REND" Comment="Rendezvous of two events" >
+  <Identification Standard="61499-1-A" Classification="Event Processing" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.3" Author="JHC" Date="2006-03-03" Remarks="Regenerated Java with new ECC structure." />
+  <VersionInfo Organization="Holobloc Inc" Version="0.2" Author="JHC" Date="2005-06-07" Remarks="Updated per IEC 61499-1:2005" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2001-09-18" Remarks="XML version" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="1996-11-22" Remarks="SRC version" />
+  <CompilerInfo header="package fb.rt.events;" >
+    <Compiler Language="Java" Vendor="Sun" Product="JDK" Version="1.5.0" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="EI1" Comment="First Event Input" >
+      </Event>
+      <Event Name="EI2" Comment="Second Event Input" >
+      </Event>
+      <Event Name="R" Comment="Reset Event" >
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="EO" Comment="Rendezvous Output Event" >
+      </Event>
+    </EventOutputs>
+  </InterfaceList>
+  <BasicFB>
+    <ECC >
+      <ECState Name="START" Comment="Initial State" x="727.7778" y="122.22221" >
+      </ECState>
+      <ECState Name="EI1" Comment="EI1 has arrived,wait for EI2 or R" x="1305.5555" y="411.11108" >
+      </ECState>
+      <ECState Name="EO" Comment="Issue rendezvous event" x="733.3333" y="688.88885" >
+        <ECAction Output="EO" />
+      </ECState>
+      <ECState Name="EI2" Comment="EI2 has arrived,wait for EI1 or R" x="172.22221" y="416.66666" >
+      </ECState>
+      <ECTransition Source="START" Destination="EI1" Condition="EI1" x="1050.0" y="272.2222" />
+      <ECTransition Source="EI1" Destination="START" Condition="R" x="1305.5555" y="122.22221" />
+      <ECTransition Source="START" Destination="EI2" Condition="EI2" x="727.7778" y="416.66666" />
+      <ECTransition Source="EI2" Destination="START" Condition="R" x="172.22221" y="122.22221" />
+      <ECTransition Source="EI1" Destination="EO" Condition="EI2" x="1033.3333" y="522.2222" />
+      <ECTransition Source="EI2" Destination="EO" Condition="EI1" x="172.22221" y="688.88885" />
+      <ECTransition Source="EO" Destination="START" Condition="1" x="883.3333" y="422.2222" />
+    </ECC>
+  </BasicFB>
+</FBType>

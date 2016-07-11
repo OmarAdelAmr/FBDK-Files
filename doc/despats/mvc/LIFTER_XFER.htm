@@ -1,0 +1,30 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+<META NAME="GENERATOR" Content="Rockwell Automation IEC 61499 Editor">
+<TITLE>FUNCTION_BLOCK LIFTER_XFER</TITLE>
+</HEAD>
+<BODY>
+<H2 ALIGN="CENTER">FUNCTION_BLOCK LIFTER_XFER</H2>
+<P>An instance of <A HREF="#Viewer">this function block type</A> provides the logic for
+simulating the loading and unloading of a pallet lifter, for instance in the
+<A HREF="LIFTER_MVL.htm"><TT>LIFTER_MVL</TT></A> system configuration.</P>
+<P>Additionally, an instance of this type determines whether a fault has occurred
+in the pallet lifter. A non-fatal fault is indicated
+by an event at the <TT>WARN</TT> output, and a fatal fault by an event at the <TT>FLT</TT>
+output. An event at the <TT>CLR</TT> output indicates that no fault is present. Specific
+fault conditions are identified by the Boolean outputs of the block.</P>
+<P><IMG SRC="../../note.gif" ALT="NOTE - ">The top-to-bottom execution order of the LD (Ladder
+Diagram) <TT>REQ</TT> algorithm is used to compute the 
+<A HREF="liftseq.htm#Crush"><TT>CRUSHED</TT></A> and
+<A HREF="liftseq.htm#Fallen"><TT>FALLEN</TT></A>
+conditions by using the previously existing values of the <TT>HALF_IN</TT> and
+<TT>HALF_OUT</TT> conditions, respectively, before computing their new values.</P>
+<P ALIGN="CENTER">[<A NAME="Viewer" HREF="../../FBViewer.html" target="_blank">Viewer Help</A>]<BR>
+<TABLE BORDER=1><TR><TD>
+<APPLET CODE="FBViewer" WIDTH=600 HEIGHT=600 ARCHIVE="../../viewer.jar">
+</APPLET></TD></TR></TABLE></P>
+<HR><P ALIGN="CENTER"><I>Last updated: 2004-11-17.
+<br>&copy;2004 Rockwell Automation. All rights reserved.
+</I></P></BODY></HTML>

@@ -1,0 +1,66 @@
+[06/May/2015:15:43:59] Agent: Robot_1@eider:1099/JADE born
+da1@eider:1099/JADE - - [06/May/2015:15:45:58] "RX ACCEPT-PROPOSAL" (ACCEPT-PROPOSAL
+ :sender  ( agent-identifier :name da1@eider:1099/JADE  :addresses (sequence http://eider.ad.igd.fraunhofer.de:7778/acc http://eider.ad.igd.fraunhofer.de:64854/acc ))
+ :receiver  (set ( agent-identifier :name Robot_1@eider:1099/JADE ) )
+ :content  "ping" 
+)
+da1@eider:1099/JADE - - [06/May/2015:15:45:58] "TX NOT-UNDERSTOOD" (NOT-UNDERSTOOD
+ :receiver  (set ( agent-identifier :name da1@eider:1099/JADE  :addresses (sequence http://eider.ad.igd.fraunhofer.de:7778/acc http://eider.ad.igd.fraunhofer.de:64854/acc )) )
+ :content  "( (Unexpected-act ACCEPT-PROPOSAL) ( expected (query-ref :content ping)))" 
+ :reply-with  da1@eider:1099/JADE1430919958569 )
+da1@eider:1099/JADE - - [06/May/2015:15:46:09] "RX ACCEPT-PROPOSAL" (ACCEPT-PROPOSAL
+ :sender  ( agent-identifier :name da1@eider:1099/JADE  :addresses (sequence http://eider.ad.igd.fraunhofer.de:7778/acc http://eider.ad.igd.fraunhofer.de:64854/acc ))
+ :receiver  (set ( agent-identifier :name Robot_1@eider:1099/JADE ) )
+ :content  "Ping" 
+)
+da1@eider:1099/JADE - - [06/May/2015:15:46:09] "TX NOT-UNDERSTOOD" (NOT-UNDERSTOOD
+ :receiver  (set ( agent-identifier :name da1@eider:1099/JADE  :addresses (sequence http://eider.ad.igd.fraunhofer.de:7778/acc http://eider.ad.igd.fraunhofer.de:64854/acc )) )
+ :content  "( (Unexpected-act ACCEPT-PROPOSAL) ( expected (query-ref :content ping)))" 
+ :reply-with  da1@eider:1099/JADE1430919969062 )
+da1@eider:1099/JADE - - [06/May/2015:15:46:45] "RX QUERY-REF" (QUERY-REF
+ :sender  ( agent-identifier :name da1@eider:1099/JADE  :addresses (sequence http://eider.ad.igd.fraunhofer.de:7778/acc http://eider.ad.igd.fraunhofer.de:64854/acc ))
+ :receiver  (set ( agent-identifier :name Robot_1@eider:1099/JADE ) )
+ :content  "Ping" 
+)
+da1@eider:1099/JADE - - [06/May/2015:15:46:45] "TX NOT-UNDERSTOOD" (NOT-UNDERSTOOD
+ :receiver  (set ( agent-identifier :name da1@eider:1099/JADE  :addresses (sequence http://eider.ad.igd.fraunhofer.de:7778/acc http://eider.ad.igd.fraunhofer.de:64854/acc )) )
+ :content  "( UnexpectedContent (expected ping))" 
+ :reply-with  da1@eider:1099/JADE1430920005834 )
+RMA@eider:1099/JADE - - [06/May/2015:16:00:53] "RX QUERY-REF" (QUERY-REF
+ :sender  ( agent-identifier :name RMA@eider:1099/JADE  :addresses (sequence http://eider.ad.igd.fraunhofer.de:7778/acc http://eider.ad.igd.fraunhofer.de:64854/acc ))
+ :receiver  (set ( agent-identifier :name Robot_1@eider:1099/JADE ) )
+ :reply-to  (set 
+( agent-identifier :name Worker_1@eider:1099/JADE ) ( agent-identifier :name Worker_2@eider:1099/JADE ) )
+ :content  "Ping" 
+)
+Worker_1@eider:1099/JADE - - [06/May/2015:16:00:53] "TX NOT-UNDERSTOOD" (NOT-UNDERSTOOD
+ :receiver  (set ( agent-identifier :name Worker_1@eider:1099/JADE ) ( agent-identifier :name Worker_2@eider:1099/JADE ) )
+ :content  "( UnexpectedContent (expected ping))" 
+ :reply-with  RMA@eider:1099/JADE1430920853550 )
+RMA@eider:1099/JADE - - [06/May/2015:16:02:59] "RX QUERY-REF" (QUERY-REF
+ :sender  ( agent-identifier :name RMA@eider:1099/JADE  :addresses (sequence http://eider.ad.igd.fraunhofer.de:7778/acc http://eider.ad.igd.fraunhofer.de:64854/acc ))
+ :receiver  (set ( agent-identifier :name Robot_1@eider:1099/JADE ) )
+ :reply-to  (set 
+( agent-identifier :name Worker_1@eider:1099/JADE ) ( agent-identifier :name Worker_2@eider:1099/JADE ) )
+ :content  "Ping" 
+)
+Worker_1@eider:1099/JADE - - [06/May/2015:16:02:59] "TX NOT-UNDERSTOOD" (NOT-UNDERSTOOD
+ :receiver  (set ( agent-identifier :name Worker_1@eider:1099/JADE ) ( agent-identifier :name Worker_2@eider:1099/JADE ) )
+ :content  "( UnexpectedContent (expected ping))" 
+ :reply-with  RMA@eider:1099/JADE1430920979557 )
+RMA@eider:1099/JADE - - [06/May/2015:16:03:41] "RX QUERY-REF" (QUERY-REF
+ :sender  ( agent-identifier :name RMA@eider:1099/JADE  :addresses (sequence http://eider.ad.igd.fraunhofer.de:7778/acc http://eider.ad.igd.fraunhofer.de:64854/acc ))
+ :receiver  (set ( agent-identifier :name Robot_1@eider:1099/JADE ) )
+ :reply-to  (set 
+( agent-identifier :name Worker_1@eider:1099/JADE ) ( agent-identifier :name Worker_2@eider:1099/JADE ) )
+ :content  "Ping" 
+)
+Worker_1@eider:1099/JADE - - [06/May/2015:16:03:41] "TX NOT-UNDERSTOOD" (NOT-UNDERSTOOD
+ :receiver  (set ( agent-identifier :name Worker_1@eider:1099/JADE ) ( agent-identifier :name Worker_2@eider:1099/JADE ) )
+ :content  "( UnexpectedContent (expected ping))" 
+ :reply-with  RMA@eider:1099/JADE1430921021050 )
+[06/May/2015:16:07:04] Agent: Robot_1@eider:1099/JADE born
+da0@eider:1099/JADE - - [06/May/2015:16:09:48] "RX QUERY-REF"
+da0@eider:1099/JADE - - [06/May/2015:16:09:48] "TX INFORM"
+[06/May/2015:16:11:46] Agent: Robot_1@eider:1099/JADE born
+[06/May/2015:16:14:00] Agent: Robot_1@eider:1099/JADE born

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="TEST_EQB" Comment="Test EQ function on bit strings" >
+  <Identification Standard="61499-1" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.0" Author="JHC" Date="2006-09-14" />
+  <CompilerInfo header="package fb.rt.test;" classdef="SimpleFB" >
+    <Compiler Language="Java" Vendor="Sun" Product="JDK" Version="1.5.0" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="REQ" Comment="Normal Execution Request" >
+        <With Var="INBO" />
+        <With Var="INBY" />
+        <With Var="INW" />
+        <With Var="IND" />
+        <With Var="INL" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="CNF" Comment="Execution Confirmation" >
+        <With Var="QBO" />
+        <With Var="QBY" />
+        <With Var="QW" />
+        <With Var="QD" />
+        <With Var="QL" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="INBO" Type="BOOL" />
+      <VarDeclaration Name="INBY" Type="BYTE" />
+      <VarDeclaration Name="INW" Type="WORD" />
+      <VarDeclaration Name="IND" Type="DWORD" />
+      <VarDeclaration Name="INL" Type="LWORD" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="QBO" Type="BOOL" />
+      <VarDeclaration Name="QBY" Type="BOOL" />
+      <VarDeclaration Name="QW" Type="BOOL" />
+      <VarDeclaration Name="QD" Type="BOOL" />
+      <VarDeclaration Name="QL" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+  <Algorithm Name="REQ" >
+    <FBD >
+      <FB Name="EQBO" Type="EQ_BOOL" x="238.88889" y="11.111111" >
+        <Parameter Name="i2" Value="true" />
+      </FB>
+      <FB Name="EQBY" Type="EQ_BYTE" x="616.6666" y="116.666664" >
+        <Parameter Name="IN2" Value="0" />
+      </FB>
+      <FB Name="EQW" Type="EQ_WORD" x="1150.0" y="205.55554" >
+        <Parameter Name="IN2" Value="0" />
+      </FB>
+      <FB Name="EQD" Type="EQ_DWORD" x="1672.2222" y="11.111111" >
+        <Parameter Name="IN2" Value="0" />
+      </FB>
+      <FB Name="EQL" Type="EQ_LWORD" x="2222.2222" y="111.11111" >
+        <Parameter Name="IN2" Value="0" />
+      </FB>
+      <DataConnections>
+        <Connection Source="INBO" Destination="EQBO.i1" dx1="116.666664" />
+        <Connection Source="EQBO.Q" Destination="QBO" dx1="488.88885" />
+        <Connection Source="INBY" Destination="EQBY.IN1" dx1="499.99997" />
+        <Connection Source="EQBY.Q" Destination="QBY" dx1="1022.22217" />
+        <Connection Source="INW" Destination="EQW.IN1" dx1="1044.4445" />
+        <Connection Source="EQW.Q" Destination="QW" dx1="1555.5555" />
+        <Connection Source="IND" Destination="EQD.IN1" dx1="1572.2222" />
+        <Connection Source="EQD.Q" Destination="QD" dx1="2111.111" />
+        <Connection Source="INL" Destination="EQL.IN1" dx1="2127.7776" />
+        <Connection Source="EQL.Q" Destination="QL" dx1="2655.5554" />
+      </DataConnections>
+    </FBD>
+  </Algorithm>
+  </BasicFB>
+</FBType>

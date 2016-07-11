@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="E_D_FF" Comment="Event-driven Data(D)Latch" >
+  <Identification Standard="61499-1" Classification="Event processing" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2002-01-29" Remarks="XML version" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2000-03-12" Remarks="SRC version" />
+  <CompilerInfo header="package fb.rt.events;" >
+    <Compiler Language="Java" Vendor="IBM" Product="VisualAge" Version="3.0" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="CLK" Comment="Data Clock" >
+        <With Var="D" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="EO" Comment="Output Event when Q output changes" >
+        <With Var="Q" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="D" Type="BOOL" Comment="Data Input" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="Q" Type="BOOL" Comment="Latched Data" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <ECC >
+      <ECState Name="Q0" Comment="Q is FALSE" x="782.3529" y="500" >
+      </ECState>
+      <ECState Name="RESET" Comment="Reset Q and issue EO" x="1052.9412" y="70.5882" >
+        <ECAction Algorithm="LATCH" Output="EO" />
+      </ECState>
+      <ECState Name="Q1" Comment="Q is TRUE" x="1323.5294" y="500" >
+      </ECState>
+      <ECState Name="NUL1" Comment="No action when Q is TRUE" x="1847.0588" y="500" >
+      </ECState>
+      <ECState Name="SET" Comment="Latch and issue EO" x="1070.5883" y="882.3529" >
+        <ECAction Algorithm="LATCH" Output="EO" />
+      </ECState>
+      <ECState Name="NUL0" Comment="No action when Q is FALSE" x="194.1176" y="500" >
+      </ECState>
+      <ECTransition Source="Q0" Destination="NUL0" Condition="CLK&#38;NOT D" x="194.1176" y="241.1765" />
+      <ECTransition Source="NUL0" Destination="Q0" Condition="1" x="464.7059" y="500" />
+      <ECTransition Source="Q0" Destination="SET" Condition="CLK&#38;D" x="782.3529" y="882.3529" />
+      <ECTransition Source="SET" Destination="Q1" Condition="1" x="1323.5294" y="711.7647" />
+      <ECTransition Source="Q1" Destination="NUL1" Condition="CLK&#38;D" x="1847.0588" y="276.4706" />
+      <ECTransition Source="NUL1" Destination="Q1" Condition="1" x="1576.4706" y="500" />
+      <ECTransition Source="Q1" Destination="RESET" Condition="CLK&#38;NOT D" x="1052.9412" y="311.7647" />
+      <ECTransition Source="RESET" Destination="Q0" Condition="1" x="782.3529" y="164.7059" />
+    </ECC>
+  <Algorithm Name="LATCH" >
+    <ST Text="Q:=D;&#10;" />
+  </Algorithm>
+  </BasicFB>
+</FBType>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!ELEMENT Graph (Font, Component*)>
+<!-- Color values must be valid initializers of fb.datatype.COLOR, e.g., "COLOR#blue" or "[0,0,255]" -->
+<!-- Paint values must be valid Color values or name of an image file relative to fbdk/src, e.g., "blackLiquor.gif" -->
+<!-- Background image file location (if any) is relative to FBDK/src -->
+<!ATTLIST Graph
+	width CDATA "400"
+	height CDATA "400"
+	foreground CDATA "COLOR#black"
+	background CDATA "COLOR#white"
+	selectedPaint CDATA "COLOR#black"
+	deselectedPaint CDATA  "COLOR#lightGray"
+	penWidth CDATA  "1"
+	image CDATA "" 
+	>
+<!ELEMENT Font EMPTY>
+<!ATTLIST Font
+	face CDATA "SansSerif"
+	style CDATA "PLAIN"
+	size CDATA "11"  
+	>
+<!-- "class" is a subclass of GraphComponent in the fb.rt.gui package, e.g., "HValve".
+	Default value of "REND_ID" is "<ID>_REND", of "UI_ID" (if used) is "<ID>_UI".
+	(x,y) - desired nominal location, e.g., icon center point.
+	(height, width) - icon height and width.
+	dia - diameter of a circular icon, minor diameter of an elliptical shape, or other aux dimension.
+	Default foreground, background, selectedPaint and penWidth values are inherited from parent Graph. -->
+<!ELEMENT Component (moveTo | lineTo)*>
+<!ATTLIST Component
+	class CDATA #REQUIRED  
+	ID CDATA #REQUIRED
+	label CDATA #IMPLIED
+	REND_ID CDATA #IMPLIED 
+	UI_ID CDATA #IMPLIED
+	MODE_CH CDATA "MODE"
+	x CDATA #REQUIRED  
+	y CDATA #REQUIRED
+	height CDATA "100"
+	width CDATA "100"
+	dia CDATA "28"
+	foreground CDATA #IMPLIED
+	background CDATA #IMPLIED
+	selectedPaint CDATA #IMPLIED
+	deselectedPaint CDATA #IMPLIED
+	hatching (NONE|HORIZONTAL|VERTICAL|UP_RIGHT|DOWN_RIGHT|GRID|DIAGONAL) "NONE"
+	textPosition (LEFT|RIGHT|TOP|BOTTOM) "TOP"
+	penWidth CDATA #IMPLIED
+	>
+<!ELEMENT moveTo EMPTY>
+<!ATTLIST moveTo
+	x CDATA #REQUIRED
+	y CDATA #REQUIRED>
+<!ELEMENT lineTo EMPTY>
+<!ATTLIST lineTo
+	x CDATA #REQUIRED
+	y CDATA #REQUIRED>
+	

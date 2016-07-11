@@ -1,0 +1,66 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+<META NAME="GENERATOR" CONTENT="Holobloc Inc IEC 61499 FBDK">
+<TITLE>SYSTEM VAV_VIEWL</TITLE>
+</HEAD>
+<BODY>
+<H3>2. Develop and Test Views</H3>
+<P>The <TT>VAV_VIEWL</TT> system configuration shown <A HREF="#Viewer">below</A>
+implements the layered <A HREF="../../../despats/mvc/syseng2.htm"><B>View</B>
+testing architecture</A> for the <A HREF="sketch.htm">HVAC example</A>.</P>
+<UL>
+	<LI>The <TT>RECORDER</TT> and <TT>CTRL</TT> devices encapsulate the
+	functionality of the human interface (HMI) layer.</LI>
+	<LI>The <TT>VIEW</TT> device encapsulates the functionality of the <B>View</B>
+	layer in two instances of the specialized <TT><A
+		HREF="../../../common/VIEW_PANEL.htm">VIEW_PANEL</A></TT> resource
+	type to provide the necessary layout of View elements for the level
+	control example.</LI>
+	<LI>The Variable Air Volume (VAV) view is implemented as an instance of
+	the <A HREF="../../../common/MECH_VIEW.htm"><TT>MECH_VIEW</TT></A> type
+	using the <TT>DAMPER</TT> style.</LI>
+	<LI>An instance of the <A HREF="ZONE_VIEWL.htm"><TT>ZONE_VIEWL</TT></A>
+	type is used to display the parameters and variables of the
+	air-conditioned space.</LI>
+	<LI>Inter-layer communication is implemented with the <A
+		HREF="../../../despats/publsubl/index.htm">local multicast</A>
+	pattern, e.g., by using <TT>PUBL_1/SUBL_1</TT> for linking the room
+	temperature data over the <TT>TEMP</TT> channel.</LI>
+</UL>
+<CENTER>
+<P><IMG SRC="../../../note.gif"><I>Click on a graphic element to
+navigate to its documentation.</I><BR>
+<IMG SRC="images/VAV_VIEWL.png" BORDER="0" USEMAP="#MAP1"></P>
+<P>[<A NAME="Viewer" HREF="../../../FBViewer.html">Viewer Help</A>]<BR>
+<TABLE BORDER="1">
+	<TR>
+		<TD><APPLET CODE="FBViewer" ARCHIVE="../../../viewer.jar" WIDTH="900"
+			HEIGHT="600"></APPLET></TD>
+	</TR>
+</TABLE>
+</P>
+<MAP NAME="MAP1">
+	<AREA SHAPE="RECT" COORDS="6,51,138,268"
+		HREF="../../../common/FACEPLATE.htm">
+	<AREA SHAPE="RECT" COORDS="146,51,346,201"
+		HREF="../../../common/STRIP4.htm">
+	<AREA SHAPE="RECT" COORDS="146,202,345,249"
+		HREF="../../../common/FB_SLIDER.htm">
+	<AREA SHAPE="RECT" COORDS="357,52,430,76"
+		HREF="../../../common/MECH_VIEW.htm">
+	<AREA SHAPE="RECT" COORDS="356,77,430,245"
+		HREF="../../../common/XSPACE.htm">
+	<AREA SHAPE="RECT" COORDS="430,52,630,247"
+		HREF="ZONE_VIEWL.htm">
+</MAP>
+<P><I>Last updated: 2006-04-19.</I><BR>
+&copy;2006 <A HREF="http://www.holobloc.com" TARGET="_blank">Holobloc
+Inc</A><BR>
+Licensed under the <A
+	HREF="http://www.opensource.org/licenses/afl-3.0.php">Academic Free
+License version 3.0</A>.</P>
+</CENTER>
+</BODY>
+</HTML>

@@ -1,0 +1,988 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+<!-- google_ad_section_start -->
+<META NAME="Description" CONTENT="IEC 61499 Compliance Profile">
+<META NAME="KEYWORDS"
+	CONTENT="IEC 61499, IEC, 61499, standards,function blocks,control,automation,open,distributed,process control,intelligent automation">
+<!-- google_ad_section_end -->
+<META NAME="GENERATOR" CONTENT="Eclipse HTML Editor">
+<LINK REL="icon" HREF="http://www.holobloc.com/fbicon.png"
+	TYPE="image/png">
+<TITLE>IEC 61499 Compliance Profile</TITLE>
+</HEAD>
+<!--Stand-alone (not on-line) version-->
+<BODY
+	STYLE="font-family: sans-serif; background-color: white; align: center">
+<H2>6. CONFIGURABILITY PROVISIONS</H2>
+<P><I>Software tools</I> and <I>devices</I> conforming to this
+specification shall satisfy the following requirements for <I>configurability</I>.
+
+
+<H3><A NAME="4.1"></A>6.1 Software tools</H3>
+<P><I>Software tools</I> shall be capable of utilizing the
+management capabilities of <I>devices</I> that are <I>configured</I>
+according to the functional equivalent of <A
+	HREF="../common/RMT_DEV.htm">Figure 6.3-1</A>.
+<BLOCKQUOTE>
+<P><I>EXAMPLE</I> - The <TT>hostport</TT> value to access the
+management services in a remote device named <TT>m51568</TT> would
+typically be represented as <TT>&quot;m51568:61499&quot;</TT>. If a
+Domain Name System (DNS) server were not available, but the remote
+device's Internet Protocol (IP) address were known to be <TT>161.153.19.227</TT>,
+the corresponding <TT>hostport</TT> value would be <TT>&quot;161.153.19.227:61499&quot;</TT>.
+
+
+
+
+</BLOCKQUOTE>
+
+<H3><A NAME="4.2"></A>6.2 Device management services</H3>
+<P>The device management services to be implemented are provided by
+the functional equivalent of an instance of the <TT>DEV_MGR</TT> type
+shown in <A HREF="../common/DEV_MGR.htm">Figure 6.2-1</A>. The types and
+semantics of the inputs and outputs of this type are identical to the
+correspondingly named inputs and outputs of the <TT>MANAGER</TT> type
+defined in subclause 3.3.2 of IEC <A HREF="s1.htm#61499-1">61499-1</A>,
+with the following differences:
+<OL>
+	<LI>The <TT>DST</TT> input designates the destination of the <TT>RQST</TT>
+	input as follows:
+	<UL>
+		<LI>A value of<TT> &quot;&quot;</TT> (the empty string)
+		designates the device;
+		<LI>A value containing an IEC 61131-3 identifier designates a
+		resource within the device;
+		<LI>A value containing a sequence of IEC 61131-3 identifiers
+		separate by periods (the &quot;.&quot; character) indicates a resource
+		in a containment hierarchy of resources, with the leftmost identifier
+		corresponding to the outermost resource and the rightmost identifier
+		corresponding to the innermost resource.
+		<LI><I>EXAMPLE 1</I> - A <TT>DST</TT> value of <TT>&quot;RES1&quot;</TT>
+		indicates that the <TT>RQST</TT> input is destined for a resource
+		named <TT>RES1</TT> contained in the managed device.
+		<LI><I>EXAMPLE 2</I> - A <TT>DST</TT> value of <TT>&quot;MOTOR1.WINDING2&quot;</TT>
+		indicates that the <TT>RQST</TT> input is destined for a resource
+		named <TT>WINDING2</TT> contained in a resource named <TT>MOTOR1</TT>
+		which is contained in the managed device.
+	</UL>
+	<LI>The <TT>RQST</TT> input and <TT>RESP</TT> outputs are encoded
+	according to the <TT>Request</TT> and <TT>Response</TT> elements,
+	respectively of the XML DTD given in <A HREF="#4.4">subclause 6.4</A>.
+	The semantics of these elements shall be as defined in <A HREF="#4.5">subclause
+	6.5</A>.
+	<LI>As illustrated in <A HREF="../common/DEV_MGR.htm">Figure
+	6.2-1</A>, a <TT>REQ+</TT> primitive input always results in a <TT>CNF+</TT>
+	primitive output, since the actual result including failure conditions
+	is encoded in the <TT>RESP</TT> output. Similarly, a <TT>REQ-</TT>
+	input always results in a <TT>CNF-</TT> output, since no management
+	operation is attempted in this case. In particular, this means that, in
+	an instance of the <TT>DM_KRNL</TT> function block type shown in <A
+		HREF="../common/DM_KRNL.htm">Figure 6.3-2</A>, an <TT>IND-</TT>
+	primitive from the communication service interface will neither cause a
+	management operation to be performed, nor will a response message be
+	generated.
+</OL>
+
+<P>The sequences of service primitives for device management shall
+be as shown in <A HREF="../common/DEV_MGR.htm#f4.2-1">Figure 6.2-1</A>.
+The object denoted <TT>manager</TT> in these service sequences is an
+instance of class <TT>FBManager</TT> described in Annex C.2 of IEC <A
+	HREF="s1.htm#61499-1">61499-1</A>. This is the manager of the <I>device</I>
+or a contained <I>resource</I> depending on the value of the <TT>DST</TT>
+input.
+<H3><A NAME="4.3"></A>6.3 Devices</H3>
+<P>Management of <I>devices</I> shall be accomplished by the
+functional equivalent of the configuration shown in <A
+	HREF="../common/RMT_DEV.htm">Figure 6.3-1</A> in each device type. The
+<TT>DM_KRNL</TT> function block type used in this configuration is shown
+in <A HREF="../common/DM_KRNL.htm">Figure 6.3-2</A>.</P>
+<P>Suppliers of devices shall provide the equivalent of the value of
+the <TT>MGR_ID</TT> input of their instance of the <TT>RMT_DEV</TT> type
+shown in <A HREF="../common/RMT_DEV.htm">Figure 6.3-1</A>, that is, the
+value of the <TT>hostport</TT> element defined in <A HREF="s1.htm#IETF">IETF
+RFC 1630</A> to be used for access to the device management services. This
+value will typically be <TT>&quot;localhost:61499&quot;</TT>. This value
+may be defined as part of a library element file for the device type, or
+may be configured through some means beyond the scope of this
+specification, for instance via a local serial port or configuration
+file.
+<H3><A NAME="4.4"></A>6.4 <TT>FBMGT</TT> Document Type Definition
+(DTD)</H3>
+<P>The <TT>Request</TT> and <TT>Response</TT> elements defined in
+the <A HREF="http://www.holobloc.com/xml/FBMGT.dtd"><TT>FBMGT</TT></A>
+DTD represent the <A HREF="s1.htm#XML">XML</A> syntax for the <TT>RQST</TT>
+input and <TT>RESP</TT> output, respectively, of the <A
+	HREF="../common/DM_KRNL.htm"><TT>DM_KRNL</TT></A> function block type.
+Explanations of the elements of this DTD, and (where applicable)
+references to the formal syntax for their attributes, are given in Table
+6.4-2. Allowable combinations of elements, and constraints on their
+usage, are as given in Table 5.2 of IEC <A HREF="s1.htm#61499-1">61499-1</A>
+for the various device classes.</P>
+<P>An example of the use of these elements is given in <A
+	HREF="annexb.htm">Annex B</A>.</P>
+<BLOCKQUOTE>
+<P><I>NOTE - </I>To provide compact messaging, the <TT>prolog</TT>
+and <TT>Misc*</TT> components used in the XML <TT>document</TT>
+production are not used in <TT>FBMGT</TT> messages since these
+components are implicit in the management context; thus, only the <TT>Request</TT>
+or <TT>Response</TT> element is transmitted as the management message.</P>
+</BLOCKQUOTE>
+<CENTER>
+<P><A NAME="t442"></A><B>Table 6.4-2 - <TT>FBMGT</TT> DTD
+Elements</B><BR>
+<TABLE BORDER="1">
+	<TR>
+		<TD VALIGN="TOP" COLSPAN="3">
+		<P ALIGN="CENTER"><B>Element<BR>
+		&gt;&gt;Attributes</B>
+		</TD>
+		<TD VALIGN="TOP" COLSPAN="6">
+		<P ALIGN="CENTER"><B>Textual Syntax<BR>
+		(IEC 61499-1, Annex B)</B>
+		</TD>
+		<TD VALIGN="TOP" COLSPAN="7">
+		<P ALIGN="CENTER"><B>Explanation</B>
+		</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="TOP" COLSPAN="3"><TT>Request</TT></TD>
+		<TD VALIGN="TOP" COLSPAN="2">
+		<P ALIGN="CENTER">--
+		</TD>
+		<TD VALIGN="TOP" COLSPAN="11">
+		<P ALIGN="CENTER">An XML-encoded management request.
+		</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="TOP" COLSPAN="3"><TT>&gt;&gt;ID</TT></TD>
+		<TD VALIGN="TOP" COLSPAN="2">
+		<P ALIGN="CENTER">--
+		</TD>
+		<TD VALIGN="TOP" COLSPAN="11">
+		<P ALIGN="CENTER">A unique identifier for the <TT>Request</TT>/<TT>Response</TT>
+		transaction.
+		</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="TOP" COLSPAN="3"><TT>&gt;&gt;Action</TT></TD>
+		<TD VALIGN="TOP" COLSPAN="2">
+		<P ALIGN="CENTER">--
+		</TD>
+		<TD VALIGN="TOP" COLSPAN="11">
+		<P ALIGN="CENTER">The requested operation to be performed.<BR>
+		See IEC 61499-1, Table 3.3.2-1.
+		</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="TOP" COLSPAN="3"><TT>Response</TT></TD>
+		<TD VALIGN="TOP" COLSPAN="2">
+		<P ALIGN="CENTER">--
+		</TD>
+		<TD VALIGN="TOP" COLSPAN="11">
+		<P ALIGN="CENTER">An XML-encoded management response.
+		</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="TOP" COLSPAN="3"><TT>&gt;&gt;ID</TT></TD>
+		<TD VALIGN="TOP" COLSPAN="2">
+		<P ALIGN="CENTER">--
+		</TD>
+		<TD VALIGN="TOP" COLSPAN="11">
+		<P ALIGN="CENTER">A unique identifier for the <TT>Request</TT>/<TT>Response</TT>
+		transaction.
+		</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="TOP" COLSPAN="3"><TT>&gt;&gt;Reason</TT></TD>
+		<TD VALIGN="TOP" COLSPAN="2">
+		<P ALIGN="CENTER">--
+		</TD>
+		<TD VALIGN="TOP" COLSPAN="11">
+		<P ALIGN="CENTER">A reason for failure to perform a requested
+		action.<BR>
+		If absent, the action has been successfully performed.<BR>
+		See <A HREF="#t451">Table 6.5-1</A>.
+		</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="TOP" COLSPAN="2"><TT>NameList</TT></TD>
+		<TD VALIGN="TOP" COLSPAN="9">
+		<P ALIGN="CENTER"><TT>identifier {',' identifier}</TT>
+		</TD>
+		<TD VALIGN="TOP" COLSPAN="5">
+		<P ALIGN="CENTER">A list of FB type or data type names.
+		</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="TOP" COLSPAN="2"><TT>FBList</TT></TD>
+		<TD VALIGN="TOP" COLSPAN="14">
+		<P ALIGN="CENTER"><TT>fb_instance_reference {','
+		fb_instance_reference}</TT>
+		</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="TOP" COLSPAN="2"><TT>FBStatus</TT></TD>
+		<TD VALIGN="TOP" COLSPAN="14">
+		<P ALIGN="CENTER">See IEC 61499-1, Figure 3.3.3-1.
+		</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="TOP" COLSPAN="2"><TT>ByteData</TT></TD>
+		<TD VALIGN="TOP" COLSPAN="14">
+		<P ALIGN="CENTER">Implementation-dependent data, typically encoded
+		in hexadecimal format.
+		</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="TOP" COLSPAN="2"><TT>VersionInfo</TT></TD>
+		<TD VALIGN="TOP" COLSPAN="14">
+		<P ALIGN="CENTER">The currently loaded or to be loaded version of
+		a FB type or data type.
+		</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="TOP" COLSPAN="2"><TT>&gt;&gt;Organization</TT></TD>
+		<TD VALIGN="TOP" COLSPAN="14">
+		<P ALIGN="CENTER">The organization supplying this library element
+		
+		</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="TOP" COLSPAN="2"><TT>&gt;&gt;Date</TT></TD>
+		<TD VALIGN="TOP" COLSPAN="14">
+		<P ALIGN="CENTER">The release date of this version in <TT>YYYY-MM-DD</TT>
+		format
+		</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="TOP" COLSPAN="2"><TT>FB</TT></TD>
+		<TD VALIGN="TOP" COLSPAN="14">
+		<P ALIGN="CENTER">A function block or resource instance as defined
+		in IEC 61499-1.
+		</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="TOP" COLSPAN="2"><TT>&gt;&gt;Name</TT></TD>
+		<TD VALIGN="TOP" COLSPAN="6">
+		<P ALIGN="CENTER"><TT>fb_instance_reference</TT>
+		</TD>
+		<TD VALIGN="TOP" COLSPAN="8">The name of the FB or resource
+		instance</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="TOP" COLSPAN="2"><TT>&gt;&gt;Type</TT></TD>
+		<TD VALIGN="TOP" COLSPAN="6">
+		<P ALIGN="CENTER"><TT>fb_type_name</TT>
+		</TD>
+		<TD VALIGN="TOP" COLSPAN="8">The FB or resource type name</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="TOP" COLSPAN="2"><TT>Connection</TT></TD>
+		<TD VALIGN="TOP" COLSPAN="14">
+		<P ALIGN="CENTER">An <I>event connection, data connection</I> or <I>adapter
+		connection</I>.
+		</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="TOP" COLSPAN="2"><TT>&gt;&gt;Source</TT></TD>
+		<TD VALIGN="TOP" COLSPAN="14">
+		<P ALIGN="CENTER">See <A HREF="#1">NOTE 1</A>.
+		</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="TOP" COLSPAN="2"><TT>&gt;&gt;Destination</TT></TD>
+		<TD VALIGN="TOP" COLSPAN="14">
+		<P ALIGN="CENTER">See <A HREF="#1">NOTE 1</A>.
+		</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="TOP" COLSPAN="2"><TT>VarDeclaration</TT></TD>
+		<TD VALIGN="TOP" COLSPAN="14">A declaration of a <I>variable</I>.</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="TOP" COLSPAN="2"><TT>&gt;&gt;Name</TT></TD>
+		<TD VALIGN="TOP" COLSPAN="12">
+		<P ALIGN="CENTER"><TT>input_variable_name |
+		output_variable_name</TT>
+		</TD>
+		<TD VALIGN="TOP" COLSPAN="2">
+		<P ALIGN="CENTER">See <A HREF="#2">NOTE 2</A>.
+		</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="TOP" COLSPAN="2"><TT>&gt;&gt;Type</TT></TD>
+		<TD VALIGN="TOP" COLSPAN="12">
+		<P ALIGN="CENTER"><TT>data_type_name</TT>
+		</TD>
+		<TD VALIGN="TOP" COLSPAN="2">&nbsp;</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="TOP" COLSPAN="2"><TT>&gt;&gt;ArraySize</TT></TD>
+		<TD VALIGN="TOP" COLSPAN="14">
+		<P ALIGN="CENTER">See <A HREF="#3">NOTE 3</A>.
+		</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="TOP" COLSPAN="2"><TT>&gt;&gt;InitialValue</TT></TD>
+		<TD VALIGN="TOP" COLSPAN="14">
+		<P ALIGN="CENTER">See <A HREF="#4">NOTE 4</A>.
+		</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="TOP" COLSPAN="2"><TT>FBType</TT></TD>
+		<TD VALIGN="TOP" COLSPAN="14">
+		<P ALIGN="CENTER">An <TT>FBTypeDeclaration</TT> as described in
+		IEC 61499-1-C.1.1.
+		</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="TOP" COLSPAN="2"><TT>&gt;&gt;Name</TT></TD>
+		<TD VALIGN="TOP" COLSPAN="7">
+		<P ALIGN="CENTER"><TT>fb_type_name</TT>
+		</TD>
+		<TD VALIGN="TOP" COLSPAN="7">&nbsp;</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="TOP"><TT>Event</TT></TD>
+		<TD VALIGN="TOP" COLSPAN="15">
+		<P ALIGN="CENTER">A declaration of an <I>event interface</I>.
+		</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="TOP"><TT>&gt;&gt;Name</TT></TD>
+		<TD VALIGN="TOP" COLSPAN="14">
+		<P ALIGN="CENTER"><TT>event_input_name | event_output_name</TT>
+		</TD>
+		<TD WIDTH="16%" VALIGN="TOP">
+		<P ALIGN="CENTER">See <A HREF="#5">NOTE 5</A>.
+		</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="TOP"><TT>&gt;&gt;Type</TT></TD>
+		<TD VALIGN="TOP" COLSPAN="14">
+		<P ALIGN="CENTER"><TT>event_type</TT>
+		</TD>
+		<TD WIDTH="16%" VALIGN="TOP">&nbsp;</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="TOP"><TT>&gt;&gt;With</TT></TD>
+		<TD VALIGN="TOP" COLSPAN="14">
+		<P ALIGN="CENTER"><TT>(input_variable_name {','
+		input_variable_name})<BR>
+		| (output_variable_name {',' output_variable_name})</TT>
+		</TD>
+		<TD WIDTH="16%" VALIGN="TOP">
+		<P ALIGN="CENTER">See <A HREF="#6">NOTE 6</A>.
+		</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="TOP" COLSPAN="4"><TT>AdapterDeclaration</TT></TD>
+		<TD VALIGN="TOP" COLSPAN="12">A declaration of a <I>plug</I> or <I>socket
+		interface</I> of a <I>function block type</I>.</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="TOP" COLSPAN="4"><TT>&gt;&gt;Name</TT></TD>
+		<TD VALIGN="TOP" COLSPAN="8">
+		<P ALIGN="CENTER"><TT>plug_name | socket_name</TT>
+		</TD>
+		<TD VALIGN="TOP" COLSPAN="4">See <A HREF="#7">NOTE 7</A>.</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="TOP" COLSPAN="4"><TT>&gt;&gt;Type</TT></TD>
+		<TD VALIGN="TOP" COLSPAN="8">
+		<P ALIGN="CENTER"><TT>adapter_type_name</TT>
+		</TD>
+		<TD VALIGN="TOP" COLSPAN="4">&nbsp;</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="TOP" COLSPAN="3"><TT>AdapterType</TT></TD>
+		<TD VALIGN="TOP" COLSPAN="13">
+		<P ALIGN="CENTER">A declaration of an <I>adapter interface typ</I>e
+		per IEC 61499-1-2.5
+		</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="TOP" COLSPAN="3"><TT>Name</TT></TD>
+		<TD VALIGN="TOP" COLSPAN="6">
+		<P ALIGN="CENTER"><TT>adapter_type_name</TT>
+		</TD>
+		<TD VALIGN="TOP" COLSPAN="7">&nbsp;</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="TOP" COLSPAN="3"><TT>DataType</TT></TD>
+		<TD VALIGN="TOP" COLSPAN="6">
+		<P ALIGN="CENTER">&nbsp;
+		</TD>
+		<TD VALIGN="TOP" COLSPAN="7">
+		<P ALIGN="CENTER">See IEC <A HREF="s1.htm#61131-3">61131-3</A>-2.3.
+		
+		</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="TOP" COLSPAN="3"><TT>&gt;&gt;Name</TT></TD>
+		<TD VALIGN="TOP" COLSPAN="6">
+		<P ALIGN="CENTER"><TT>data_type_name</TT>
+		</TD>
+		<TD VALIGN="TOP" COLSPAN="7">&nbsp;</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="TOP" COLSPAN="3"><TT>ASN1Tag</TT></TD>
+		<TD VALIGN="TOP" COLSPAN="13">
+		<P ALIGN="CENTER">ASN.1 tag per ISO/IEC 8824-5.8.
+		</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="TOP" COLSPAN="3"><TT>&gt;&gt;Class</TT></TD>
+		<TD VALIGN="TOP" COLSPAN="13">
+		<P ALIGN="CENTER">ASN.1 tag class per ISO/IEC 8824-5.8.
+		</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="TOP" COLSPAN="3"><TT>&gt;&gt;Number</TT></TD>
+		<TD VALIGN="TOP" COLSPAN="13">
+		<P ALIGN="CENTER">ASN.1 tag number per ISO/IEC 8824-5.8.
+		</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="TOP" COLSPAN="3"><TT>DirectlyDerivedType</TT></TD>
+		<TD VALIGN="TOP" COLSPAN="13">
+		<P ALIGN="CENTER">See IEC 61131-3 Tables 12 and 14, #1
+		</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="TOP" COLSPAN="3"><TT>&gt;&gt;BaseType</TT></TD>
+		<TD VALIGN="TOP" COLSPAN="7">
+		<P ALIGN="CENTER"><TT>elementary_type_name</TT>
+		</TD>
+		<TD VALIGN="TOP" COLSPAN="6">&nbsp;</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="TOP" COLSPAN="3"><TT>&gt;&gt;InitialValue</TT></TD>
+		<TD VALIGN="TOP" COLSPAN="7">
+		<P ALIGN="CENTER"><TT>constant</TT>
+		</TD>
+		<TD VALIGN="TOP" COLSPAN="6">&nbsp;</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="TOP" COLSPAN="3"><TT>EnumeratedType</TT></TD>
+		<TD VALIGN="TOP" COLSPAN="4">
+		<P ALIGN="CENTER">Same as <TT>NameList</TT>
+		</TD>
+		<TD VALIGN="TOP" COLSPAN="9">
+		<P ALIGN="CENTER">A comma-separated list of enumerated values.
+		</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="TOP" COLSPAN="3"><TT>&gt;&gt;InitialValue</TT></TD>
+		<TD VALIGN="TOP" COLSPAN="4">
+		<P ALIGN="CENTER"><TT>identifier</TT>
+		</TD>
+		<TD VALIGN="TOP" COLSPAN="9">
+		<P ALIGN="CENTER">If present, shall be one of the list elements.
+		</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="TOP" COLSPAN="3"><TT>SubrangeType</TT></TD>
+		<TD VALIGN="TOP" COLSPAN="3">
+		<P ALIGN="CENTER">--
+		</TD>
+		<TD VALIGN="TOP" COLSPAN="10">
+		<P ALIGN="CENTER">See IEC 61131-3 Tables 12 and 14, #3
+		</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="TOP" COLSPAN="3"><TT>&gt;&gt;BaseType</TT></TD>
+		<TD VALIGN="TOP" COLSPAN="7">
+		<P ALIGN="CENTER"><TT>integer_type_name</TT>
+		</TD>
+		<TD VALIGN="TOP" COLSPAN="6">&nbsp;</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="TOP" COLSPAN="3"><TT>&gt;&gt;InitialValue</TT></TD>
+		<TD VALIGN="TOP" COLSPAN="7">
+		<P ALIGN="CENTER"><TT>signed_integer</TT>
+		</TD>
+		<TD VALIGN="TOP" COLSPAN="6">&nbsp;</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="TOP" COLSPAN="3"><TT>Subrange</TT></TD>
+		<TD VALIGN="TOP" COLSPAN="13">
+		<P ALIGN="CENTER">See IEC 61131-3 Tables 12 and 14, #3
+		</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="TOP" COLSPAN="3"><TT>&gt;&gt;LowerLimit</TT></TD>
+		<TD VALIGN="TOP" COLSPAN="7">
+		<P ALIGN="CENTER"><TT>signed_integer</TT>
+		</TD>
+		<TD VALIGN="TOP" COLSPAN="6">&nbsp;</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="TOP" COLSPAN="3"><TT>&gt;&gt;UpperLimit</TT></TD>
+		<TD VALIGN="TOP" COLSPAN="7">
+		<P ALIGN="CENTER"><TT>signed_integer</TT>
+		</TD>
+		<TD VALIGN="TOP" COLSPAN="6">&nbsp;</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="TOP" COLSPAN="3"><TT>ArrayType</TT></TD>
+		<TD VALIGN="TOP" COLSPAN="13">
+		<P ALIGN="CENTER">See IEC 61131-3 Tables 12 and 14, #4
+		</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="TOP" COLSPAN="3"><TT>&gt;&gt;BaseType</TT></TD>
+		<TD VALIGN="TOP" COLSPAN="7">
+		<P ALIGN="CENTER"><TT>non_generic_type_name</TT>
+		</TD>
+		<TD VALIGN="TOP" COLSPAN="6">&nbsp;</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="TOP" COLSPAN="3"><TT>&gt;&gt;InitialValues</TT></TD>
+		<TD VALIGN="TOP" COLSPAN="7">
+		<P ALIGN="CENTER"><TT>array_initialization</TT>
+		</TD>
+		<TD VALIGN="TOP" COLSPAN="6">&nbsp;</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="TOP" COLSPAN="5"><TT>StructuredType</TT></TD>
+		<TD VALIGN="TOP" COLSPAN="11">
+		<P ALIGN="CENTER">See IEC 61131-3 Tables 12, #5 and 14, #5 and #6
+		
+		</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="TOP" COLSPAN="5"><TT>ArrayVarDeclaration</TT></TD>
+		<TD VALIGN="TOP" COLSPAN="11">
+		<P ALIGN="CENTER">See IEC 61131-3-2.3.3.
+		</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="TOP" COLSPAN="5"><TT>&gt;&gt;Name</TT></TD>
+		<TD VALIGN="TOP" COLSPAN="8">
+		<P ALIGN="CENTER"><TT>structure_element_name</TT>
+		</TD>
+		<TD VALIGN="TOP" COLSPAN="3">&nbsp;</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="TOP" COLSPAN="5"><TT>&gt;&gt;Type</TT></TD>
+		<TD VALIGN="TOP" COLSPAN="8">
+		<P ALIGN="CENTER"><TT>array_type_name</TT>
+		</TD>
+		<TD VALIGN="TOP" COLSPAN="3">&nbsp;</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="TOP" COLSPAN="5"><TT>&gt;&gt;InitialValues</TT></TD>
+		<TD VALIGN="TOP" COLSPAN="8">
+		<P ALIGN="CENTER"><TT>array_initialization</TT>
+		</TD>
+		<TD VALIGN="TOP" COLSPAN="3">&nbsp;</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="TOP" COLSPAN="5"><TT>SubrangeVarDeclaration</TT></TD>
+		<TD VALIGN="TOP" COLSPAN="11">
+		<P ALIGN="CENTER">See IEC <A HREF="s1.htm#61131-3">61131-3</A>-2.3.3.
+
+
+		
+		</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="TOP" COLSPAN="5"><TT>&gt;&gt;Name</TT></TD>
+		<TD VALIGN="TOP" COLSPAN="8">
+		<P ALIGN="CENTER"><TT>structure_element_name</TT>
+		</TD>
+		<TD VALIGN="TOP" COLSPAN="3">&nbsp;</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="TOP" COLSPAN="5"><TT>&gt;&gt;Type</TT></TD>
+		<TD VALIGN="TOP" COLSPAN="8">
+		<P ALIGN="CENTER"><TT>integer_type_name</TT>
+		</TD>
+		<TD VALIGN="TOP" COLSPAN="3">&nbsp;</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="TOP" COLSPAN="5"><TT>&gt;&gt;InitialValue</TT></TD>
+		<TD VALIGN="TOP" COLSPAN="8">
+		<P ALIGN="CENTER"><TT>signed_integer</TT>
+		</TD>
+		<TD VALIGN="TOP" COLSPAN="3">&nbsp;</TD>
+	</TR>
+</TABLE>
+</CENTER>
+
+
+<BLOCKQUOTE>
+<P><A NAME="1"></A><I>NOTE 1 </I>- Depending on the context, the
+syntax of a <TT>Source</TT> or <TT>Destination</TT> element should
+correspond to the syntax of the respective element in one of the
+productions <TT>connection_end_point</TT> or <TT>accessed_data</TT>
+given in Annex B.5 of IEC 61499-1.</P>
+<P><A NAME="2"></A><I>NOTE 2</I> - The productions <TT>input_variable_name</TT>
+and <TT>output_variable_name</TT> apply when the associated <TT>VarDeclaration</TT>
+element is part of an <TT>InputVars</TT> or <TT>OutputVars</TT> element,
+respectively.</P>
+<P><A NAME="3"></A><I>NOTE 3</I>- The syntax of this element when
+present shall be equivalent to the syntactic expression</P>
+
+<BLOCKQUOTE>
+
+<BLOCKQUOTE>
+<P><TT>(subrange {',' subrange}) | integer {',' integer}</TT></P>
+
+</BLOCKQUOTE>
+
+</BLOCKQUOTE>
+<P>where the non-terminals <TT>subrange</TT> and <TT>integer</TT>
+are as defined in Annex B of <A HREF="s1.htm#61131-3">IEC 61131-3</A>.
+Each term of the second form is equivalent to the subrange<TT>
+0..n-1</TT>, where <TT>n</TT> is the value of the corresponding <TT>integer</TT>
+syntactic element. If this element is missing, the variable is not an
+array.</P>
+<P><A NAME="4"></A><I>NOTE 4</I> - The syntax of this element is the
+syntax for initialization of the corresponding variable type as defined
+in Annex B.1.4.3 of <A HREF="s1.htm#61131-3">IEC 61131-3</A>.</P>
+<P><A NAME="5"></A><I>NOTE 5</I> – The terms <TT>event_input_name</TT>
+and <TT>event_output_name</TT> apply when the <TT>Event</TT> element is
+part of an <TT>EventInputs</TT> or <TT>EventOutputs</TT> element,
+respectively.</P>
+<P><A NAME="6"></A><I>NOTE 6</I> – The expressions <TT>(input_variable_name
+{',' input_variable_name})</TT> and <TT>(output_variable_name {','
+output_variable_name})</TT> apply when the <TT>Event</TT> element is part of
+an <TT>EventInputs</TT> element or an <TT>EventOutputs</TT> element,
+respectively.</P>
+<P><A NAME="7"></A><I>NOTE 7</I> - The terms <TT>plug_name</TT> and
+<TT>socket_name</TT> apply when the associated <TT>AdapterDeclaration</TT>
+element is part of a <TT>Plugs</TT> or <TT>Sockets</TT> element,
+respectively.
+</BLOCKQUOTE>
+
+<H3><A NAME="4.5"></A>6.5 <TT>Request/Response</TT> semantics</H3>
+<P>The following rules shall apply to the use of the <TT>Request</TT>
+and <TT>Response</TT> elements defined in subclause <A HREF="#4.4">6.4</A>
+in the <TT>normal_request</TT> service sequence shown in <A
+	HREF="../common/DEV_MGR.htm#f4.2-1">Figure 6.2-1</A>.
+<OL>
+	<LI>The <TT>ID</TT> attribute of the <TT>Response</TT> element
+	shall be identical to the <TT>ID</TT> attribute of the <TT>Request</TT>
+	element to which the <TT>Response</TT> element refers.
+	<LI>The absence of a <TT>Reason</TT> attribute in a <TT>Response</TT>
+	element shall be used to indicate normal completion of the requested
+	operation.
+	<LI>The use of sub-elements in <TT>Request</TT> and <TT>Response</TT>
+	elements, and the meaning of possible <TT>Reason</TT> attributes of the
+	<TT>Response</TT> element when the requested operation fails, shall be
+	as defined in Tables <A HREF="#t451">6.5-1</A> and <A HREF="#t452">6.5-2</A>.
+
+
+	
+</OL>
+
+<P ALIGN="CENTER"><A NAME="t451"></A><B>Table 6.5-1 -<TT>Request</TT>
+elements and <TT>Response</TT> <TT>Reason</TT> codes</B></P>
+<CENTER>
+<P>
+<TABLE BORDER="1" CELLPADDING="2" CELLSPACING="1">
+	<TR>
+		<TD VALIGN="TOP" COLSPAN="2">
+		<P ALIGN="CENTER"><B><TT>Request</TT></B>
+		</TD>
+		<TD VALIGN="MIDDLE" ROWSPAN="2">
+		<P ALIGN="CENTER"><B><TT>Reason</TT> code</B>
+		</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="TOP">
+		<P ALIGN="CENTER"><B><TT>Action</TT></B>
+		</TD>
+		<TD VALIGN="TOP">
+		<P ALIGN="CENTER"><B>Sub-element</B>
+		</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="MIDDLE" ROWSPAN="7">
+		<P ALIGN="CENTER"><B>Any</B>
+		</TD>
+		<TD VALIGN="MIDDLE" ROWSPAN="7">
+		<P ALIGN="CENTER"><B>Any</B>
+		</TD>
+		<TD VALIGN="TOP"><B><TT>INVALID_DST</TT>:</B> The <TT>DST</TT>
+		input of the <TT>DEV_MGR</TT> function block does not name a valid
+		destination for the request.</TD>
+	</TR>
+	<TR>
+		<TD><B><TT>NOT_READY</TT>:</B> The manager is not in a state that
+		enables it to process the request.</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="TOP"><B><TT>UNSUPPORTED_CMD</TT>:</B> The requested
+		operation is not supported by the manager.</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="TOP"><B><TT>INVALID_OBJECT</TT>:</B> Invalid
+		sub-element or attribute syntax not covered by other, more specific <TT>Reason</TT>
+		codes</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="TOP"><B><TT>INVALID_OPERATION</TT>:</B> The specified
+		action is not a valid operation on the specified sub-element.</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="TOP"><B><TT>OVERFLOW</TT>:</B> A previous transaction
+		is still pending.</TD>
+	</TR>
+	<TR>
+		<TD>See <A HREF="#NOTE 3">NOTE 3</A>.</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="MIDDLE" ROWSPAN="6">
+		<P ALIGN="CENTER"><B><TT>CREATE</TT></B>
+		</TD>
+		<TD VALIGN="MIDDLE" ROWSPAN="3">
+		<P ALIGN="CENTER"><B><TT>FB</TT></B>
+		</TD>
+		<TD VALIGN="TOP"><B><TT>UNSUPPORTED_TYPE</TT>:</B> The requested
+		FB type is not known to the manager.</TD>
+	</TR>
+	<TR>
+		<TD><B><TT>INVALID_OPERATION: </TT></B>The requested FB or
+		resource cannot be created in its containing resource or device.</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="TOP"><B><TT>INVALID_STATE</TT>:</B> An FB instance
+		already exists with the specified name.</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="MIDDLE" ROWSPAN="2">
+		<P ALIGN="CENTER"><B><TT>Connection</TT></B>
+		</TD>
+		<TD VALIGN="TOP"><B><TT>NO_SUCH_OBJECT</TT>:</B> One or both of
+		the connection end points cannot be found.</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="TOP"><B><TT>INVALID_STATE</TT>:</B> The specified
+		connection already exists.</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="MIDDLE" ROWSPAN="2">
+		<P ALIGN="CENTER"><B><TT>FBType<BR>
+		AdapterType<BR>
+		DataType</TT></B>
+		</TD>
+		<TD VALIGN="TOP"><B><TT>UNSUPPORTED_TYPE</TT>:</B> A type does
+		not exist for a variable or adapter sub-element.</TD>
+	</TR>
+	<TR>
+		<TD>&nbsp;</TD>
+		<TD VALIGN="TOP"><B><TT>INVALID_STATE</TT>:</B> A library element
+		type already exists with the specified name.</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="MIDDLE" ROWSPAN="6">
+		<P ALIGN="CENTER"><B><TT>DELETE</TT></B>
+		</TD>
+		<TD VALIGN="MIDDLE" ROWSPAN="2">
+		<P ALIGN="CENTER"><B><TT>FB</TT></B>
+		</TD>
+		<TD HEIGHT="41" VALIGN="TOP"><B><TT>NO_SUCH_OBJECT</TT>:</B> No
+		FB instance of the specified type can be found with the specified
+		instance name.</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="TOP"><B><TT>INVALID_STATE</TT>:</B> The FB instance
+		is not in the <TT>STOPPED</TT> or <TT>KILLED</TT> state.</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="MIDDLE">
+		<P ALIGN="CENTER"><B><TT>Connection</TT></B>
+		</TD>
+		<TD VALIGN="TOP"><B><TT>NO_SUCH_OBJECT</TT>:</B> One or both of
+		the connection end points cannot be found.</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="MIDDLE" ROWSPAN="3">
+		<P ALIGN="CENTER"><B><TT>FBType<BR>
+		AdapterType<BR>
+		DataType</TT></B>
+		</TD>
+		<TD VALIGN="TOP"><B><TT>UNSUPPORTED_TYPE</TT>:</B> A library
+		element of the specified type does not exist with the given type name.</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="TOP"><B><TT>INVALID_STATE</TT>:</B> At least one
+		instance of the specified type still exists.</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="TOP"><B><TT>INVALID_OPERATION</TT>:</B> The specified
+		type is undeletable.</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="MIDDLE" ROWSPAN="2">
+		<P ALIGN="CENTER"><B><TT>START<BR>
+		STOP<BR>
+		KILL</TT></B>
+		</TD>
+		<TD VALIGN="MIDDLE" ROWSPAN="2">
+		<P ALIGN="CENTER"><B><TT>FB</TT></B>
+		</TD>
+		<TD VALIGN="TOP"><B><TT>NO_SUCH_OBJECT</TT>:</B> No FB instance
+		of the specified type can be found with the specified instance name.</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="TOP"><B><TT>INVALID_STATE</TT>:</B> The FB instance
+		is not in a state from which the specified operation can be performed.</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="MIDDLE" ROWSPAN="2">
+		<P ALIGN="CENTER"><B><TT>READ</TT></B>
+		</TD>
+		<TD VALIGN="MIDDLE" ROWSPAN="2">
+		<P ALIGN="CENTER"><B><TT>Connection</TT><BR>
+		</B>(<TT>Source</TT>=Location, <TT>Destination</TT>=null)
+		</TD>
+		<TD VALIGN="TOP"><B><TT>NO_SUCH_OBJECT</TT>:</B> The specified <TT>Source</TT>
+		location cannot be found.</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="TOP">See <A HREF="#n1">NOTE 1</A>.</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="MIDDLE" ROWSPAN="3">
+		<P ALIGN="CENTER"><B><TT>WRITE</TT></B>
+		</TD>
+		<TD VALIGN="MIDDLE" ROWSPAN="3">
+		<P ALIGN="CENTER"><B><TT>Connection</TT><BR>
+		</B>(<TT>Source</TT>=Data, <TT>Destination</TT>=Location)
+		</TD>
+		<TD VALIGN="TOP"><B><TT>NO_SUCH_OBJECT</TT>:</B> The specified <TT>Destination</TT>
+		location cannot be found.</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="TOP"><B><TT>INVALID_OBJECT</TT>:</B> The format of
+		the Source attribute is not correct for data to be written to the
+		Destination location.</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="TOP">See <A HREF="#n2">NOTE 2</A>.</TD>
+	</TR>
+</TABLE>
+</CENTER>
+
+<UL>
+	<LI><A NAME="n1"></A><I>NOTE 1 -</I> A <TT>WRITE</TT> <B><TT>Request</TT></B>
+	contains a <TT>Connection</TT> sub-element with its <TT>Source</TT>
+	attribute encoded according to the <TT>data_element</TT> production
+	defined in Annex B.5 of IEC <A HREF="s1.htm#61499-1">61499-1</A>, and
+	with its <TT>Destination</TT> attribute encoded according to the <TT>connection_end_point</TT>
+	production defined in Annex B.5 of IEC 61499-1.
+	<LI><A NAME="n2"></A><I>NOTE 2 -</I> A normal <B><TT>Response</TT></B>
+	to a <TT>READ</TT> <B><TT>Request</TT></B> will contain a <TT>Connection</TT>
+	sub-element with the <TT>Source</TT> attribute encoded according to the
+	<TT>data_element</TT> production defined in Annex B.5 of IEC 61499-1.
+	<LI><A NAME="NOTE 3"></A><I>NOTE 3</I> - Additional <B><TT>Reason</TT></B>
+	codes may be defined by providers of management function blocks.
+	Software tools may but are not required to recognize and process these
+	codes.
+</UL>
+
+<P>
+<CENTER>
+<P><A NAME="t452"></A><B>Table 6.5-2 - <TT>QUERY</TT> <TT>Request</TT>
+and <TT>Response</TT> elements</B></P>
+
+<P>
+<TABLE BORDER="1" CELLPADDING="2">
+	<TR>
+		<TD VALIGN="MIDDLE">
+		<P ALIGN="CENTER"><B><TT>Request</TT></B> sub-element
+		</TD>
+		<TD VALIGN="MIDDLE">
+		<P ALIGN="CENTER">Normal <B><TT>Response </TT></B>sub-element
+		</TD>
+		<TD VALIGN="MIDDLE">
+		<P ALIGN="CENTER">Abnormal <B><TT>Response</TT></B> <TT>Reason</TT>
+		codes
+		</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="MIDDLE">
+		<P ALIGN="CENTER"><B><TT>FB<BR>
+		</TT></B><TT>(Name &lt;&gt; &quot;*&quot;)</TT>
+		</TD>
+		<TD VALIGN="MIDDLE">
+		<P ALIGN="CENTER"><B><TT>FBStatus</TT></B>
+		</TD>
+		<TD VALIGN="MIDDLE"><B><TT>NO_SUCH_OBJECT</TT>:</B> No FB
+		instance of the specified type can be found with the specified
+		instance name.</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="MIDDLE">
+		<P ALIGN="CENTER"><B><TT>FB<BR>
+		</TT></B><TT>(Name = &quot;*&quot;)</TT>
+		</TD>
+		<TD VALIGN="MIDDLE"><B><TT>FBList</TT>:</B> A list of all
+		instances of the specified FB type.</TD>
+		<TD VALIGN="MIDDLE"><B><TT>NO_SUCH_OBJECT</TT>:</B> No instances
+		exist of the specified FB type.</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="MIDDLE">
+		<P ALIGN="CENTER"><B><TT>Connection<BR>
+		</TT></B><TT>(Destination=&quot;*&quot;)</TT>
+		</TD>
+		<TD VALIGN="MIDDLE"><B>EndpointList: </B>A list of the
+		destinations of all connections originating at the specified source.</TD>
+		<TD VALIGN="MIDDLE"><B><TT>INVALID_OBJECT:</TT></B> The source
+		specification is not a hierarchical name.</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="MIDDLE">
+		<P ALIGN="CENTER"><B><TT>Connection<BR>
+		</TT></B><TT>(Source = &quot;*&quot;)</TT>
+		</TD>
+		<TD VALIGN="MIDDLE"><B><TT>Connection+</TT>: </B>A list of the
+		sources of all connections terminating at the specified destination.</TD>
+		<TD VALIGN="MIDDLE"><B><TT>INVALID_OBJECT:</TT></B> The
+		destination specification is not a hierarchical name.</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="MIDDLE">
+		<P ALIGN="CENTER"><B><TT>FBType | DataType<BR>
+		| AdapterType</TT><BR>
+		</B>(No sub-elements,<BR>
+		<TT>Name &lt;&gt; &quot;*&quot;</TT>)
+		</TD>
+		<TD VALIGN="MIDDLE"><B><TT>FBType | DataType |
+		AdapterType</TT>:<BR>
+		</B>The declaration of the library type with the specified name.</TD>
+		<TD VALIGN="MIDDLE"><B><TT>UNSUPPORTED_TYPE</TT>:</B> The
+		requested library type is not known to the manager.</TD>
+	</TR>
+	<TR>
+		<TD VALIGN="MIDDLE">
+		<P ALIGN="CENTER"><B><TT>FBType | DataType<BR>
+		| AdapterType</TT><BR>
+		</B>(No sub-elements,<BR>
+		<TT>Name = &quot;*&quot;</TT>)
+		</TD>
+		<TD VALIGN="MIDDLE"><B><TT>NameList</TT>: </B>A list of names of
+		all library elements of the specified type.</TD>
+		<TD VALIGN="MIDDLE"><B><TT>UNSUPPORTED_TYPE</TT>:</B> There are
+		no library elements of the specified type.</TD>
+	</TR>
+</TABLE>
+</CENTER>
+<DIV STYLE="font-size: 10pt; text-align: center; padding-left: 1.0em"><I>Last
+updated: 2006-10-16.</I><BR>
+&copy;2006 <A HREF="http://www.holobloc.com" TARGET="_blank">Holobloc
+Inc</A>.<BR>
+Licensed under the <A
+	HREF="http://www.opensource.org/licenses/afl-3.0.php" TARGET="_blank">Academic
+Free License version 3.0</A><BR>
+Java is a trademark or registered trademark of Sun Microsystems, Inc. in
+the U.S. or other countries.</DIV>
+</BODY>
+</HTML>

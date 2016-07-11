@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+<META NAME="GENERATOR" CONTENT="Eclipse HTML Editor">
+<TITLE>SYSTEM ASM_MVL</TITLE>
+</HEAD>
+<BODY>
+<H3>4. Develop and Test Models</H3>
+<P><A HREF="#Viewer">This system configuration</A> implements the
+layered <A HREF="syseng2.htm#4"><B>Model+View</B> testing
+architecture</A> for the <A HREF="asmsket.htm">assembly example</A>.</P>
+<UL>
+	<LI>The <TT>HMI,MODEL</TT> and <TT>VIEW</TT> devices encapsulate
+	the functionality of the corresponding layers of the architecture.</LI>
+	<LI>As in the <A HREF="ASM_VIEWL.htm"><TT>ASM_VIEWL</TT></A>
+	configuration, the <TT>VIEW</TT> device contains an instance of the
+	specialized <A HREF="../../common/VIEW_PANEL.htm"><TT>VIEW_PANEL</TT></A>
+	resource type to provide the necessary layout of View elements for the
+	assembly example.</LI>
+	<LI>The <TT>MODEL</TT> device contains the <B>Model</B> elements
+	for the physical elements of the assembly example. An instance of the <A
+		HREF="XBAR_MDLL.htm"><TT>XBAR_MDLL</TT></A> type models the press, and
+	an instance of the <A HREF="DSCYL_MDLL.htm"><TT>DSCYL_MDLL</TT></A>
+	type models the <A HREF="asmsket.htm">dual-stroke cylinder</A> and the
+	logic for the assembly operation.</LI>
+	<LI>Inter-layer communication is implemented with the <A
+		HREF="../publsubl/index.htm">local multicast</A> pattern.</LI>
+</UL>
+<CENTER>
+<P><IMG SRC="../../note.gif">Click on a graphic element to
+navigate to its Model.<BR>
+<IMG SRC="images/ASM_MVL.gif" USEMAP="#MAP1" HEIGHT="150" WIDTH="545"></P>
+<P><A NAME="Viewer"></A>[<A HREF="../../FBViewer.html" TARGET="help">Viewer
+Help</A>]<BR>
+<TABLE BORDER="1">
+	<TBODY>
+		<TR>
+			<TD><APPLET CODE="FBViewer" ARCHIVE="../../viewer.jar"
+				ALIGN="bottom" HEIGHT="600" WIDTH="825"> </APPLET><BR>
+			</TD>
+		</TR>
+	</TBODY>
+</TABLE>
+</P>
+<P><I>Last updated: 2007-09-22.</I><BR>
+&copy;2006,2007 <A HREF="http://www.holobloc.com" TARGET="_blank">Holobloc
+Inc</A>.<BR>
+Licensed under the <A
+	HREF="http://www.opensource.org/licenses/afl-3.0.php">Academic Free
+License version 3.0</A>.</P>
+</CENTER>
+<MAP NAME="MAP1">
+	<AREA SHAPE="RECT" COORDS="463,42,539,116" HREF="XSPACE.htm">
+	<AREA SHAPE="RECT" COORDS="363,43,438,116" HREF="XSPACE.htm">
+	<AREA SHAPE="RECT" COORDS="363,116,539,142" HREF="DSCYL_MDLL.htm">
+	<AREA SHAPE="RECT" COORDS="438,42,463,117" HREF="XBAR_MDLL.htm">
+	<AREA SHAPE="RECT" COORDS="185,43,291,130"
+		HREF="../../common/IN_BOOL.htm">
+	<AREA SHAPE="RECT" COORDS="4,44,143,147"
+		HREF="../../common/OUT_BOOL.htm">
+</MAP>
+</BODY>
+</HTML>

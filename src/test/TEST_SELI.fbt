@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="TEST_SELI" Comment="Test SEL functions on integer types" >
+  <Identification Standard="IEC 61499-1" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.0" Author="JHC" Date="2006-09-14" />
+  <CompilerInfo header="package fb.rt.test;" classdef="SimpleFB" >
+    <Compiler Language="Java" Vendor="Sun" Product="JDK" Version="1.5.0" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="REQ" >
+        <With Var="IN1I" />
+        <With Var="IN0I" />
+        <With Var="IN0D" />
+        <With Var="IN1L" />
+        <With Var="IN0L" />
+        <With Var="IN1U" />
+        <With Var="IN0U" />
+        <With Var="G" />
+        <With Var="IN1D" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="CNF" >
+        <With Var="OUTI" />
+        <With Var="OUTD" />
+        <With Var="OUTL" />
+        <With Var="OUTU" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="G" Type="BOOL" Comment="Selection gate" />
+      <VarDeclaration Name="IN0I" Type="INT" />
+      <VarDeclaration Name="IN1I" Type="INT" />
+      <VarDeclaration Name="IN0D" Type="DINT" />
+      <VarDeclaration Name="IN1D" Type="DINT" />
+      <VarDeclaration Name="IN0L" Type="LINT" />
+      <VarDeclaration Name="IN1L" Type="LINT" />
+      <VarDeclaration Name="IN0U" Type="UINT" />
+      <VarDeclaration Name="IN1U" Type="UINT" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="OUTI" Type="INT" />
+      <VarDeclaration Name="OUTD" Type="DINT" />
+      <VarDeclaration Name="OUTL" Type="LINT" />
+      <VarDeclaration Name="OUTU" Type="UINT" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+  <Algorithm Name="REQ" >
+    <FBD >
+      <FB Name="SELI" Type="SEL_INT" x="238.88889" y="11.111111" />
+      <FB Name="SELD" Type="SEL_DINT" x="899.99994" y="11.111111" />
+      <FB Name="SELL" Type="SEL_LINT" x="233.33333" y="677.7778" />
+      <FB Name="SELU" Type="SEL_UINT" x="905.55554" y="672.22217" />
+      <DataConnections>
+        <Connection Source="IN1I" Destination="SELI.IN1" dx1="138.88889" />
+        <Connection Source="SELI.OUT" Destination="OUTI" dx1="616.6666" />
+        <Connection Source="IN1D" Destination="SELD.IN1" dx1="788.88885" />
+        <Connection Source="SELD.OUT" Destination="OUTD" dx1="1327.7777" />
+        <Connection Source="IN1L" Destination="SELL.IN1" dx1="122.22221" />
+        <Connection Source="SELL.OUT" Destination="OUTL" dx1="655.55554" />
+        <Connection Source="IN1U" Destination="SELU.IN1" dx1="794.4444" />
+        <Connection Source="SELU.OUT" Destination="OUTU" dx1="1333.3333" />
+        <Connection Source="G" Destination="SELI.G" dx1="166.66666" />
+        <Connection Source="IN0I" Destination="SELI.IN0" dx1="138.88889" />
+        <Connection Source="G" Destination="SELD.G" dx1="827.7778" />
+        <Connection Source="IN0D" Destination="SELD.IN0" dx1="788.88885" />
+        <Connection Source="G" Destination="SELL.G" dx1="161.1111" />
+        <Connection Source="IN0L" Destination="SELL.IN0" dx1="122.22221" />
+        <Connection Source="G" Destination="SELU.G" dx1="833.3333" />
+        <Connection Source="IN0U" Destination="SELU.IN0" dx1="794.4444" />
+      </DataConnections>
+    </FBD>
+  </Algorithm>
+  </BasicFB>
+</FBType>

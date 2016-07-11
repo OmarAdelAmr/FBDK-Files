@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE System SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<System Name="TEST_VSTYLE" Comment="Test Display of VSTYLE values" >
+  <Identification Standard="61499-1" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2000-05-27" />
+  <Device Name="HMI" Type="FRAME_DEVICE" x="594.4444" y="11.111111" >
+    <Parameter Name="BOUNDS" Value="[100,100,330,80]" />
+    <Resource Name="RES1" Type="PANEL_RESOURCE" x="11.764706" y="1082.3529" >
+      <FBNetwork >
+        <FB Name="VTEST" Type="MECH_HMIL" x="661.1111" y="11.111111" />
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="VTEST.INIT" dx1="27.777777" />
+        </EventConnections>
+      </FBNetwork>
+    </Resource>
+  </Device>
+  <Device Name="VIEW" Type="FRAME_DEVICE" x="1716.6666" y="11.111111" >
+    <Parameter Name="BOUNDS" Value="[430,100,40,175]" />
+    <Resource Name="RES1" Type="PANEL_RESOURCE" x="11.764706" y="1082.3529" >
+      <FBNetwork >
+        <FB Name="VTEST" Type="MECH_VIEWL" x="672.22217" y="11.111111" >
+          <Parameter Name="BKGD" Value="[0,0,255]" />
+          <Parameter Name="LEN" Value="5" />
+          <Parameter Name="DIA" Value="25" />
+          <Parameter Name="DIR" Value="1" />
+        </FB>
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="VTEST.INIT" dx1="38.888885" />
+        </EventConnections>
+      </FBNetwork>
+    </Resource>
+  </Device>
+</System>

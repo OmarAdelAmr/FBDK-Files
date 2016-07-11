@@ -1,0 +1,154 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+
+<HEAD>
+	<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+	<META NAME="GENERATOR" Content="Visual Page 1.1 for Windows">
+	<TITLE>SYSTEM DRILL_VIEWL</TITLE>
+</HEAD>
+
+<BODY>
+
+<H3>3. Animate operational sequences</H3>
+<P>The <A HREF="DRILL_VIEWL.htm"><TT>DRILL_VIEWL</TT></A> system configuration can be used as shown below to produce
+static animations of both <A HREF="#Normal">normal</A> and abnormal operational sequences for the <A HREF="drilsket.htm">drilling
+example</A>. Abnormal sequences include <A HREF="#Blocked">blocked</A> and <A HREF="#Starved">starved</A> operational
+states and their recovery.</P>
+<H4>3.1 <A NAME="Normal"></A>Normal operation</H4>
+<P>The sequence shown below is one of many possible normal operational sequences, depending on the relative speed
+of operation of the various physical components of the system.</P>
+<CENTER>
+<P>
+<TABLE BORDER="1">
+	<TR>
+		<TD><B>1.</B> A workpiece (disc) is fed into the supply transfer bar.</TD>
+		<TD><B>2.</B> The disc  is transported to the end of the supply bar.</TD>
+		<TD><B>3.</B> The disc is loaded from the supply bar to the slide.</TD>
+		<TD><B>4.</B> The disc is clamped onto the slide and the supply bar begins to return to its initial position.</TD>
+	</TR>
+	<TR>
+		<TD>
+			<P ALIGN="CENTER"><IMG SRC="images/drill01.gif" WIDTH="152" HEIGHT="251" ALIGN="BOTTOM" BORDER="0">
+		</TD>
+		<TD>
+			<P ALIGN="CENTER"><IMG SRC="images/drill02.gif" WIDTH="152" HEIGHT="251" ALIGN="BOTTOM" BORDER="0">
+		</TD>
+		<TD>
+			<P ALIGN="CENTER"><IMG SRC="images/drill03.gif" WIDTH="150" HEIGHT="250" ALIGN="BOTTOM" BORDER="0">
+		</TD>
+		<TD>
+			<P ALIGN="CENTER"><IMG SRC="images/drill04.gif" WIDTH="150" HEIGHT="250" ALIGN="BOTTOM" BORDER="0">
+		</TD>
+	</TR>
+	<TR>
+		<TD><B>5.</B> The clamped disc is transported toward the drill and the drill spindle starts turning.</TD>
+		<TD><B>6.</B> The clamped disc arrives under the drill, which begins moving down.</TD>
+		<TD><B>7.</B> The drill completes its downward motion, making the disc into a ring. Meanwhile a new disc has been loaded
+			to the supply bar.</TD>
+		<TD><B>8.</B> The drill begins retracting. Meanwhile, the supply bar begins to bring in the new disc.</TD>
+	</TR>
+	<TR>
+		<TD>
+			<P ALIGN="CENTER"><IMG SRC="images/drill05.gif" WIDTH="150" HEIGHT="250" ALIGN="BOTTOM" BORDER="0">
+		</TD>
+		<TD>
+			<P ALIGN="CENTER"><IMG SRC="images/drill06.gif" WIDTH="150" HEIGHT="250" ALIGN="BOTTOM" BORDER="0">
+		</TD>
+		<TD>
+			<P ALIGN="CENTER"><IMG SRC="images/drill07.gif" WIDTH="150" HEIGHT="250" ALIGN="BOTTOM" BORDER="0">
+		</TD>
+		<TD>
+			<P ALIGN="CENTER"><IMG SRC="images/drill08.gif" WIDTH="150" HEIGHT="250" ALIGN="BOTTOM" BORDER="0">
+		</TD>
+	</TR>
+	<TR>
+		<TD><B>9.</B> Once the drill is clear of the workpiece, the slide begins to remove it.</TD>
+		<TD><B>10.</B> The drill reaches the home position and its spindle turns off. The ring has reached the home position
+			of the slide and is being unclamped. Meanwhile, the supply bar is waiting for its disc to be removed.</TD>
+		<TD><B>11.</B> Once the ring is unclamped, it is unloaded to the takeoff bar.</TD>
+		<TD><B>12.</B> Now the disc can be loaded and the clamping and drilling repeats from <B>#3</B>. Meanwhile, the ring
+			is carried off by the takeoff bar, which will then return after unloading the ring.</TD>
+	</TR>
+	<TR>
+		<TD>
+			<P ALIGN="CENTER"><IMG SRC="images/drill09.gif" WIDTH="150" HEIGHT="250" ALIGN="BOTTOM" BORDER="0">
+		</TD>
+		<TD>
+			<P ALIGN="CENTER"><IMG SRC="images/drill10.gif" WIDTH="150" HEIGHT="250" ALIGN="BOTTOM" BORDER="0">
+		</TD>
+		<TD>
+			<P ALIGN="CENTER"><IMG SRC="images/drill11.gif" WIDTH="150" HEIGHT="250" ALIGN="BOTTOM" BORDER="0">
+		</TD>
+		<TD>
+			<P ALIGN="CENTER"><IMG SRC="images/drill12.gif" WIDTH="150" HEIGHT="250" ALIGN="BOTTOM" BORDER="0">
+		</TD>
+	</TR>
+</TABLE>
+[<A HREF="drillseq.htm">Normal</A>][<A HREF="#Blocked">Blocked</A>][<A HREF="#Starved">Starved</A>]</P>
+</CENTER>
+<H4>3.2 <A NAME="Blocked"></A>Blocked operation</H4>
+<P><B>Blocked</B> operation occurs when a &quot;downstream&quot; physical element fails, causing a backup of workpieces
+in the &quot;upstream&quot; elements. When the downstream element is restored to service, normal operation of the
+system should resume smoothly.</P>
+<CENTER>
+<P>
+<TABLE BORDER="1">
+	<TR>
+		<TD><B>1.</B> In this case, normal operation of the takeoff bar has stopped, possibly due to loss of power or a mechanical
+			jam, as indicated by the red dot in its upper left corner. The slide is blocked while waiting for the ring to be
+			taken off, and the supply bar is blocked while waiting for the ring to be removed from the slide.</TD>
+		<TD><B>2.</B> When normal operation of the takeoff bar is restored as indicated by the green dot, the ring is transported
+			to the end.</TD>
+		<TD><B>3.</B> Upon reaching the end of the takeoff bar, it is removed and the takeoff bar begins to return to its home
+			position.</TD>
+		<TD><B>4.</B> When the empty takeoff bar returns to its home position, operation can resume from <B>#11</B> of the
+			<A HREF="#Normal">normal</A> case and the blocked condition is ended.</TD>
+	</TR>
+	<TR>
+		<TD>
+			<P ALIGN="CENTER"><IMG SRC="images/drilla01.gif" WIDTH="150" HEIGHT="250" ALIGN="BOTTOM" BORDER="0">
+		</TD>
+		<TD>
+			<P ALIGN="CENTER"><IMG SRC="images/drilla02.gif" WIDTH="150" HEIGHT="250" ALIGN="BOTTOM" BORDER="0">
+		</TD>
+		<TD>
+			<P ALIGN="CENTER"><IMG SRC="images/drilla03.gif" WIDTH="150" HEIGHT="250" ALIGN="BOTTOM" BORDER="0">
+		</TD>
+		<TD>
+			<P ALIGN="CENTER"><IMG SRC="images/drilla04.gif" WIDTH="150" HEIGHT="250" ALIGN="BOTTOM" BORDER="0">
+		</TD>
+	</TR>
+</TABLE>
+[<A HREF="drillseq.htm">Normal</A>][<A HREF="#Blocked">Blocked</A>][<A HREF="#Starved">Starved</A>]</P>
+</CENTER>
+<H4>3.3 <A NAME="Starved"></A>Starved operation</H4>
+<P><B>Starved</B> operation occurs when an &quot;upstream&quot; physical element fails, causing a lack of workpieces
+in the &quot;downstream&quot; elements. When the upstream element is restored to service, normal operation of the
+system should resume smoothly.</P>
+<CENTER>
+<P>
+<TABLE BORDER="1">
+	<TR>
+		<TD><B>1.</B> In this case, normal operation of the supply bar has stopped, possibly due to loss of power or a mechanical
+			jam, as indicated by the red dot in its upper left corner. The slide is starved while waiting for a new disc, and
+			the takeoff bar is starved while waiting for a new ring.</TD>
+		<TD><B>2.</B> When normal operation of the supply bar is restored as indicated by the green dot, the disc is transported
+			to the end and operation can resume from <B>#2</B> of the <A HREF="#Normal">normal</A> case.</TD>
+	</TR>
+	<TR>
+		<TD>
+			<P ALIGN="CENTER"><IMG SRC="images/drillc01.gif" WIDTH="150" HEIGHT="250" ALIGN="BOTTOM" BORDER="0">
+		</TD>
+		<TD>
+			<P ALIGN="CENTER"><IMG SRC="images/drill02.gif" WIDTH="152" HEIGHT="251" ALIGN="BOTTOM" BORDER="0">
+		</TD>
+	</TR>
+</TABLE>
+[<A HREF="drillseq.htm">Normal</A>][<A HREF="#Blocked">Blocked</A>][<A HREF="#Starved">Starved</A>]</P>
+
+<P><I>Last updated: 2002-08-20.</I>
+</CENTER>
+
+</BODY>
+
+</HTML>

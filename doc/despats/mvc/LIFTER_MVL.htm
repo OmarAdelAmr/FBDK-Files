@@ -1,0 +1,106 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+<META NAME="GENERATOR" CONTENT="Eclipse HTML Editor">
+<TITLE>SYSTEM LIFTER_MVL</TITLE>
+</HEAD>
+<BODY>
+<H3>4. Develop and Test Models</H3>
+<P>The <A HREF="#Viewer"><TT>LIFTER_MVL</TT></A> system configuration
+implements the layered <A HREF="../../despats/mvc/syseng2.htm#4"><B>Model+View</B>
+testing architecture</A> for the <A HREF="liftsket.htm">pallet handling
+example</A>.</P>
+<P>The <TT>HMI</TT> device encapsulates the functionality of the <B>HMI
+</B>layer of the architecture - specifically the HMI elements needed to
+read sensor values and write actuator values - while the <TT>MODEL</TT>
+device encapsulates both the <B>Model </B>and the <B>View</B> layers.</P>
+
+<P>As in the <TT>VIEW</TT> device of the <A HREF="LIFTER_VIEWL.htm"><TT>LIFTER_VIEWL</TT></A>
+configuration, the <TT>MODEL</TT> device contains an instance of the
+specialized <A HREF="../../common/VIEW_PANEL.htm"><TT>VIEW_PANEL</TT></A>
+resource type to provide the necessary layout of <B>View</B> elements
+for the pallet handling example. In addition, an instance of the <A
+	HREF="../../common/PANEL_RESOURCE.htm"><TT>PANEL_RESOURCE</TT></A> type
+contains the User Interface (UI) elements necessary for operation of the
+model, specifically:</P>
+<UL>
+	<LI>Two pushbuttons to load a pallet onto the feed conveyor and unload
+	it from the takeoff conveyor, respectively</LI>
+	<LI>A FAULT output to indicate the existence of a fatal condition
+	(which stops the simulation clock), and a RESET button to recover from
+	the fault condition</LI>
+</UL>
+<CENTER>
+<P><IMG SRC="../../note.gif">Click on a graphic element to navigate to
+its documentation.<BR>
+<IMG SRC="./images/LIFTER_MVL.gif" USEMAP="#MAP1"></P>
+</CENTER>
+<P>The <TT>MODEL</TT> device also contains five instances of the <A
+	HREF="../../common/EMB_RES.htm"><TT>EMB_RES</TT></A> type, which in turn
+contain the <B>Model</B> elements for the corresponding <B>Views</B>, as
+well as logic to simulate the physics of the interactions among <B>Model</B>
+elements including their sensors and actuators; transfer of workpieces;
+and simulation of fatal and non-fatal fault conditions:</P>
+<OL>
+	<LI>The <TT>CLK</TT> resource contains the simulation clock, whose
+	events are distributed using the <A
+		HREF="../../despats/publsubl/index.htm">local multicast</A> pattern.</LI>
+	<LI>The <TT>FEED_MDL</TT> resource contains an instance of the <A
+		HREF="../../despats/mvc/CNVG_MDLL.htm"><TT>CNVG_MDLL</TT></A> type,
+	corresponding to the feed conveyor in the <TT>VIEW</TT> panel, along
+	with local multicast elements, logic and instances of the <A
+		HREF="LOADLE.htm"><TT>LOADLE</TT></A> type to handle pallet transfer
+	to the lifter element as well as display of <A HREF="liftseq.htm#Jam">fault
+	conditions</A>.</LI>
+	<LI>The <TT>LIFTER_MDL</TT> resource contains an instance of the <A
+		HREF="XBAR_MDLL.htm"><TT>XBAR_MDLL</TT></A> type, corresponding to the
+	lifter element in the <TT>VIEW</TT> panel, as well as elements to
+	handle pallet transfer and display of fault conditions in a manner
+	similar to the <TT>FEED_MDL</TT> resource.</LI>
+	<LI>The <TT>TAKEOFF_MDL</TT> resource contains an instance of the <A
+		HREF="../../despats/mvc/CNV_MDLL.htm"><TT>CNV_MDLL</TT></A> type,
+	corresponding to the takeoff conveyor in the <TT>VIEW</TT> panel, as
+	well as elements to handle pallet transfer and display of fault
+	conditions in a manner similar to the <TT>FEED_MDL</TT> and <TT>TAKEOFF_MDL</TT>
+	resources.</LI>
+	<LI>The <TT>XFER_MDL</TT> resource contains an instance of the <A
+		HREF="LIFTER_XFER.htm"><TT>LIFTER_XFER</TT></A> type to model the
+	normal loading and unloading of pallets from the lifter as well as
+	fatal and non-fatal fault conditions.</LI>
+</OL>
+<P>Inter- and intra-layer communication is implemented with the <A
+	HREF="../../despats/publsubl/index.htm" TARGET="_top">local multicast</A>
+pattern, in particular for the distribution of the simulation clock and
+the simulation of workpiece transfer with instances of the <A
+	HREF="../../despats/mvc/LOADLE.htm"><TT>LOADLE</TT></A> type.</P>
+<CENTER>
+<P>[<A NAME="Viewer" HREF="../../FBViewer.html" TARGET="help">Viewer
+Help</A>]<BR>
+<TABLE BORDER="1">
+	<TR>
+		<TD><APPLET CODE="FBViewer" WIDTH="944" HEIGHT="734"
+			ARCHIVE="../../viewer.jar"> </APPLET></TD>
+	</TR>
+</TABLE>
+</P>
+<P><I>Last updated: 2007-09-22.</I><BR>
+&copy;2006,2007 <A HREF="http://www.holobloc.com" TARGET="_blank">Holobloc
+Inc</A>.<BR>
+Licensed under the <A
+	HREF="http://www.opensource.org/licenses/afl-3.0.php">Academic Free
+License version 3.0</A>.</P>
+</CENTER>
+<MAP NAME="MAP1">
+	<AREA COORDS="2,41,161,188" HREF="../../common/OUT_BOOL.htm">
+	<AREA COORDS="162,42,320,190" HREF="../../common/IN_BOOL.htm">
+	<AREA COORDS="331,41,445,66" HREF="../../common/IN_EVENT.htm">
+	<AREA COORDS="330,67,387,93" HREF="../../common/OUT_BOOL.htm">
+	<AREA COORDS="388,68,445,93" HREF="../../common/IN_EVENT.htm">
+	<AREA COORDS="360,124,479,213" HREF="XSPACE.htm">
+	<AREA COORDS="358,94,479,123" HREF="CNV_MDLL.htm">
+	<AREA COORDS="330,94,358,244" HREF="XBAR_MDLL.htm">
+	<AREA COORDS="359,214,478,244" HREF="CNVG_MDLL.htm">
+</MAP>
+</BODY>
+</HTML>

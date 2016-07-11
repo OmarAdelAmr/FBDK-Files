@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="NE_DWORD" Comment="IEC 61131-3 DWORD inequality test" >
+  <Identification Standard="61131-3" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.0" Author="JHC" Date="2006-09-14" />
+  <CompilerInfo header="package fb.rt.plc.bits;" classdef="(IN1 != IN2)" >
+  </CompilerInfo>
+  <InterfaceList>
+    <InputVars>
+      <VarDeclaration Name="IN1" Type="DWORD" />
+      <VarDeclaration Name="IN2" Type="DWORD" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="Q" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+</FBType>

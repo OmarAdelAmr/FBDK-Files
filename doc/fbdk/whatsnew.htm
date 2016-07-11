@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<HTML>
+<HEAD>
+<META CONTENT="text/html; charset=ISO-8859-1" HTTP-EQUIV="content-type">
+<TITLE>FBDK - What's New</TITLE>
+<LINK REL="icon" HREF="../../fbicon.png" TYPE="image/png">
+<META CONTENT="JHC" NAME="author">
+<META CONTENT="What's New in the Function Block Development Kit (FBDK)"
+	NAME="description">
+</HEAD>
+<BODY STYLE="font-family: sans-serif; background-color: white;">
+<CENTER>
+<H2>What's&nbsp;New</H2>
+<P><I>This page documents changes since the <A
+	HREF="http://www.holobloc.com/fbdk20061017.zip">20061017 release</A> of
+the FBDK.</I></P>
+</CENTER>
+<H3><A NAME="FBDK"></A>FBDK [<A HREF="#FBRT">FBRT</A>] [<A
+	HREF="#MVCD">MVCD</A>]</H3>
+<H4>Features</H4>
+<UL>
+	<LI>Editor support for the <A HREF="../despats/tags/index.htm"
+		TARGET="_blank">Tagged Data</A> design pattern has been added.</LI>
+	<LI><SPAN STYLE="background-color: yellow">Yellow
+	highlighting</SPAN> of selected graphic elements has been added.</LI>
+	<LI><A HREF="http://java.sun.com/j2se/javadoc/index.jsp"
+		TARGET="_blank">Documentation comments</A> are now generated for many
+	of the fields and methods in Java&trade; files created with the <A
+		HREF="saveas.htm">Save As</A> dialog.</LI>
+	<LI><A HREF="systest.htm">Launching of system configurations</A>
+	has been streamlined.</LI>
+	<LI>Documentation of system configurations for configurability
+	testing has been linked to Clause 7 of the <A HREF="../ita/index.htm"
+		TARGET="_blank">Compliance Profile</A>.</LI>
+	<LI><A HREF="../javadoc/index.html">Java&trade; documentation</A>
+	has been provided for some core runtime classes with a new <B>Javadoc&trade;</B>
+	entry on the <B>Help</B> menu.</LI>
+	<LI>Documentation of the <TT><A
+		HREF="../javadoc/fb/datatype/MATRIX.html">MATRIX</A></TT> data type and
+	associated function blocks is provided as part of the Java
+	documentation.</LI>
+</UL>
+<H4>Bug fixes</H4>
+<UL>
+	<LI>Interfaces of the <TT>PACK_BYTE, UNPK_BYTE, FB_ROL_DWORD,
+	FB_ROL_LWORD, FB_ROL_WORD, FB_ROR_BYTE, FB_ROR_DWORD, FB_ROR_LWORD</TT> and
+	<TT>FB_ROR_WORD</TT> function block types have been corrected in the <TT>src/math</TT>
+	directory (thanks to Ingo Hegny at <A
+		HREF="http://www.acin.tuwien.ac.at/" TARGET="_blank">ACIN</A> for
+	spotting these).</LI>
+	<LI><TT>FLASHER4.fbt</TT> and associated files (<TT>FLASHER_TEST.sys</TT>,
+	etc) have been moved from <TT>src/ita</TT> to <TT>src/doc</TT>, since
+	these have more to do with tutorial documentation than with the <A
+		HREF="http://www.holobloc.com/doc/ita/index.htm">Compliance
+	Profile</A>.</LI>
+</UL>
+<H3><A NAME="FBRT"></A>FBRT [<A HREF="#FBDK">FBDK</A>] [<A
+	HREF="#MVCD">MVCD</A>]</H3>
+<H4>Features</H4>
+<UL>
+	<LI>New <TT>TAGIN</TT> and <TT>TAGOUT</TT> function block types
+	have been added to the <TT>fb.rt.net</TT> package to support the <A
+		HREF="../despats/tags/index.htm" TARGET="_blank">Tagged Data</A>
+	design pattern.</LI>
+	<LI>The <TT>hmi</TT> package has a new <TT>SPINNER</TT> type for <TT>INT</TT>
+	input and a new <TT>MOMENTARY</TT> pushbutton type.</LI>
+	<LI>The <TT>DELETE</TT> command for connections and FB instances
+	defined in Clause 6 of the <A HREF="../ita/index.htm" TARGET="_blank">Compliance
+	Profile</A> has been fully implemented.</LI>
+</UL>
+<H4>Bug fixes</H4>
+<UL>
+	<LI>Corrected implementation of <TT>FB_ROL_DWORD,
+	FB_ROR_DWORD.</TT></LI>
+	<LI>Previous verions of the FBRT accepted syntactically incorrect
+	parameter values for <TT>ARRAY</TT>s of <TT>STRING</TT> or <TT>WSTRING</TT>,
+	e.g., <TT>["a",b,c,"d"]</TT> was accepted as a valid parameter value
+	for a variable of type <TT>WSTRING[4]</TT>. Only correct syntax is now
+	accepted, e.g., the previous example must be corrected to <TT>["a","b","c","d"]</TT>
+	or an <TT>INVALID_OBJECT</TT> error will be flagged.</LI>
+</UL>
+<H4>Other Changes</H4>
+<UL>
+	<LI><TT>FLASHER4.class</TT> has been moved from <TT>fb.rt.ita</TT>
+	to <TT>fb.rt.doc</TT>.</LI>
+</UL>
+<H3><A NAME="MVCD"></A>MVCD [<A HREF="#FBDK">FBDK</A>] [<A
+	HREF="#FBRT">FBRT</A>]</H3>
+<H4>Features</H4>
+<UL>
+	<LI>A new <A HREF="../despats/tags/index.htm" TARGET="_blank">Tagged
+	Data</A> design pattern has been added.</LI>
+	<LI>The <A HREF="../despats/mvc/index.htm">MVCD</A> methodology
+	and examples have been updated to incorporate the <A
+		HREF="../despats/tags/index.htm" TARGET="_blank">Tagged Data</A>
+	design pattern.</LI>
+</UL>
+<H4>Bug fixes</H4>
+<UL>
+	<LI><A HREF="../common/MECH2_MDL.htm" TARGET="_blank"><TT>MECH2_MDL</TT></A>
+	has been updated to report correctly its sensor states on the first CLK
+	cycle.</LI>
+</UL>
+<CENTER>
+<HR>
+<P><I>Last updated:&nbsp;2007-12-29.</I><BR>
+&copy;2007 <A HREF="http://www.holobloc.com" TARGET="_top">Holobloc
+Inc.</A> All rights reserved.<BR>
+<FONT FACE="sans-serif" SIZE="-2">JDK is a trademark or
+registered trademark of Sun Microsystems, Inc. in the U.S. or other
+countries.<BR>
+Java and Javadoc are trademarks or registered trademarks of Sun
+Microsystems, Inc. in the U.S. or other countries. </FONT></P>
+</CENTER>
+</BODY>
+</HTML>

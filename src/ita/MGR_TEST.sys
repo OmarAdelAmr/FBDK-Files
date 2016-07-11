@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE System SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<System Name="MGR_TEST" Comment="Test Remote Device Manager Functions" >
+  <Identification Standard="61499 ITA" Function="Device Manager Functional Test" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.2" Author="JHC" Date="2007-12-06" Remarks="Adjusted frame bounds." />
+  <VersionInfo Organization="Holobloc Inc" Version="0.1" Author="JHC" Date="2007-11-08" Remarks="Changed GEN.RQST to GEN.OUT." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2001-11-27" Remarks="Copied/Modified from QUERY_TEST." />
+  <Device Name="TESTER" Type="FRAME_DEVICE" x="605.55554" y="61.111107" >
+    <Parameter Name="BOUNDS" Value="[50,50,375,275]" />
+    <Parameter Name="GRID" Value="[1,1]" />
+    <Resource Name="RES1" Type="PANEL_RESOURCE" x="200.0" y="11.111111" >
+      <FBNetwork >
+        <FB Name="RQTYPE" Type="IN_CHOICE" Comment="Request Type Selector" x="572.2222" y="61.111107" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="CHOICES" Value="&#34;CREATE,DELETE,READ,WRITE,QUERY&#34;" />
+        </FB>
+        <FB Name="OBJTYPE" Type="IN_CHOICE" Comment="Object Type Selector" x="1194.4445" y="272.2222" >
+          <Parameter Name="CHOICES" Value="&#34;FB,Connection&#34;" />
+          <Parameter Name="QI" Value="1" />
+        </FB>
+        <FB Name="REQUEST" Type="IN_EVENT" Comment="Generate Request" x="2077.7776" y="11.111111" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;REQUEST&#34;" />
+        </FB>
+        <FB Name="ARG1" Type="IN_ANY" x="2655.5554" y="11.111111" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="W" Value="20" />
+          <Parameter Name="TYPE" Value="&#34;WSTRING&#34;" />
+          <Parameter Name="IVAL" Value="&#34;*&#34;" />
+        </FB>
+        <FB Name="ARG2" Type="IN_ANY" x="3222.2222" y="227.77777" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="W" Value="20" />
+          <Parameter Name="TYPE" Value="&#34;WSTRING&#34;" />
+          <Parameter Name="IVAL" Value="&#34;*&#34;" />
+        </FB>
+        <FB Name="GEN" Type="RQST_GEN" x="527.7778" y="1411.1111" >
+          <Parameter Name="DSTI" Value="&#34;RUT&#34;" />
+        </FB>
+        <FB Name="SELTEXT" Type="E_SEL_STRING" x="2277.7776" y="2038.8888" />
+        <FB Name="CLIENT" Type="CLIENT_2_1" x="1644.4443" y="1583.3333" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="ID" Value="&#34;localhost:61494&#34;" />
+        </FB>
+        <FB Name="RTEXT" Type="OUT_TEXT_S" x="3000.0" y="1583.3333" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="SIZE" Value="[8,48]" />
+        </FB>
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="RQTYPE.INIT" dx1="44.444443" />
+          <Connection Source="START.WARM" Destination="RQTYPE.INIT" dx1="44.444443" />
+          <Connection Source="RQTYPE.INITO" Destination="OBJTYPE.INIT" dx1="83.33333" dx2="135.2941" dy="782.3529" />
+          <Connection Source="OBJTYPE.INITO" Destination="REQUEST.INIT" dx1="216.66666" />
+          <Connection Source="REQUEST.INITO" Destination="ARG1.INIT" dx1="116.666664" dx2="105.8824" dy="794.1176" />
+          <Connection Source="ARG1.INITO" Destination="ARG2.INIT" dx1="116.666664" dx2="105.8824" dy="794.1176" />
+          <Connection Source="ARG2.INITO" Destination="CLIENT.INIT" dx1="155.55554" dx2="116.666664" dy="1072.2222" />
+          <Connection Source="CLIENT.INITO" Destination="RTEXT.INIT" dx1="38.888885" dx2="141.1765" dy="-1.0" />
+          <Connection Source="REQUEST.IND" Destination="ARG1.REQ" dx1="94.44444" dx2="64.7059" dy="1023.5294" />
+          <Connection Source="ARG1.IND" Destination="ARG2.REQ" dx1="94.44444" dx2="64.7059" dy="1023.5294" />
+          <Connection Source="ARG2.IND" Destination="GEN.REQ" dx1="100.0" dx2="66.666664" dy="883.3333" />
+          <Connection Source="GEN.CNF" Destination="SELTEXT.EI0" dx1="1238.8888" dx2="29.4118" dy="717.647" />
+          <Connection Source="GEN.CNF" Destination="CLIENT.REQ" dx1="372.2222" dx2="29.4118" dy="717.647" />
+          <Connection Source="CLIENT.CNF" Destination="SELTEXT.EI1" dx1="83.33333" dx2="29.4118" dy="717.647" />
+          <Connection Source="SELTEXT.EO" Destination="RTEXT.REQ" dx1="77.77777" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="RQTYPE.OUT" Destination="GEN.RQTYPE" dx1="61.111107" dx2="294.44443" dy="366.66666" />
+          <Connection Source="OBJTYPE.OUT" Destination="GEN.OBJTYPE" dx1="61.111107" dx2="238.88889" dy="238.88889" />
+          <Connection Source="ARG1.OUT" Destination="GEN.ARG1" dx1="61.111107" dx2="194.44444" dy="538.88885" />
+          <Connection Source="ARG2.OUT" Destination="GEN.ARG2" dx1="61.111107" dx2="161.1111" dy="366.66666" />
+          <Connection Source="GEN.DSTO" Destination="CLIENT.SD_1" dx1="233.33333" />
+          <Connection Source="GEN.OUT" Destination="CLIENT.SD_2" dx1="83.33333" />
+          <Connection Source="GEN.OUT" Destination="SELTEXT.IN0" dx1="83.33333" />
+          <Connection Source="CLIENT.RD_1" Destination="SELTEXT.IN1" dx1="66.666664" />
+          <Connection Source="SELTEXT.OUT" Destination="RTEXT.IN" dx1="61.111107" dx2="311.7647" dy="694.1176" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+  </Device>
+  <Device Name="DUT" Type="RMT_FRAME" Comment="Device Under Test" x="1161.1111" y="333.3333" >
+    <Parameter Name="BOUNDS" Value="[425,50,100,125]" />
+    <Parameter Name="GRID" Value="[1,1]" />
+    <Parameter Name="MGR_ID" Value="&#34;localhost:61494&#34;" />
+    <Resource Name="MGR" Type="RMT_RES" x="358.8235" y="41.1765" >
+    </Resource>
+    <Resource Name="RUT" Type="PANEL_RESOURCE" Comment="Resource Under Test" x="288.2353" y="105.8824" >
+      <FBNetwork >
+        <FB Name="X" Type="IN_ANY" x="638.88885" y="11.111111" >
+          <Parameter Name="TYPE" Value="&#34;REAL&#34;" />
+          <Parameter Name="IVAL" Value="0.0" />
+          <Parameter Name="QI" Value="1" />
+        </FB>
+        <FB Name="Y" Type="IN_ANY" x="616.6666" y="1138.8888" >
+          <Parameter Name="TYPE" Value="&#34;REAL&#34;" />
+          <Parameter Name="IVAL" Value="&#34;0.0&#34;" />
+          <Parameter Name="QI" Value="1" />
+        </FB>
+        <FB Name="SUM" Type="FB_ADD_REAL" x="1466.6666" y="233.33333" />
+        <FB Name="DIFF" Type="FB_SUB_REAL" x="1422.2222" y="1311.1111" />
+        <FB Name="PROD" Type="FB_MUL_REAL" x="2255.5554" y="538.88885" />
+        <FB Name="OUT" Type="OUT_ANY" Comment="X**2-Y**2" x="2883.3333" y="316.66666" >
+          <Parameter Name="QI" Value="1" />
+        </FB>
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="X.INIT" dx1="27.777777" />
+          <Connection Source="START.WARM" Destination="X.INIT" dx1="33.333332" />
+          <Connection Source="X.INITO" Destination="Y.INIT" dx1="77.77777" dx2="66.666664" dy="944.4444" />
+          <Connection Source="Y.INITO" Destination="OUT.INIT" dx1="1072.2222" />
+          <Connection Source="X.IND" Destination="Y.REQ" dx1="27.777777" dx2="105.55555" dy="788.88885" />
+          <Connection Source="Y.IND" Destination="SUM.REQ" dx1="177.77777" />
+          <Connection Source="SUM.CNF" Destination="DIFF.REQ" dx1="44.444443" dx2="83.33333" dy="605.55554" />
+          <Connection Source="DIFF.CNF" Destination="PROD.REQ" dx1="244.44443" />
+          <Connection Source="PROD.CNF" Destination="OUT.REQ" dx1="44.444443" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="X.OUT" Destination="SUM.IN1" dx1="166.66666" />
+          <Connection Source="X.OUT" Destination="DIFF.IN1" dx1="227.77777" />
+          <Connection Source="Y.OUT" Destination="SUM.IN2" dx1="316.66666" />
+          <Connection Source="Y.OUT" Destination="DIFF.IN2" dx1="316.66666" />
+          <Connection Source="SUM.OUT" Destination="PROD.IN1" dx1="155.55554" />
+          <Connection Source="DIFF.OUT" Destination="PROD.IN2" dx1="311.11108" />
+          <Connection Source="PROD.OUT" Destination="OUT.IN" dx1="144.44444" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+  </Device>
+</System>

@@ -1,0 +1,49 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+<META NAME="GENERATOR" Content="Eclipse HTML Editor">
+<TITLE>Pick &amp; Place Sketch</TITLE>
+</HEAD>
+
+<BODY>
+
+<H3>1. Sketch the system</H3>
+<P>The two-dimensional pick and place mechanism shown below uses two
+reversible motors to move a workpiece along x- and y-axes between a
+conveyor and a worktable.</P>
+<UL>
+	<LI>The workpiece is loaded onto the end of the x-axis arm from the
+	conveyor by an electromagnet, which is turned off to unload the
+	workpiece at the worktable.</LI>
+	<LI>The presence of the workpiece at the end of the conveyor is
+	detected by the PRESENT sensor.</LI>
+	<LI>The presence of the workpiece on the activated electromagnet is
+	detected by the LOADED sensor.</LI>
+	<LI>The x-axis motor can drive the x-axis arm in the FWD direction from
+	the position at the HOMEx sensor (0% displacement) to the position at
+	the ENDx sensor (100% displacement), or in the REV direction toward the
+	HOMEx sensor.</LI>
+	<LI>Similarly, the y-axis motor can mechanism in the FWD direction from
+	the position at the HOMEy sensor (0% displacement) to the position at
+	the ENDy sensor (100% displacement), or in the REV direction toward the
+	HOMEy sensor.</LI>
+	<LI>The x- and y-axis motors contain overcurrent sensors. If either
+	sensor detects a fault condition, it immediately cuts off current to
+	both motors and raises a FAULT signal. When this happens, both manual
+	and automatic control actions should be suspended. Once the fault is
+	cleared, the controller should return to MANUAL operating mode so the
+	operator can remedy the fault condition and return the control system
+	to AUTO mode.</LI>
+</UL>
+<CENTER><IMG SRC="images/pnpsket.png" BORDER="0">
+<HR>
+<P><I>Last updated: 2006-07-11.</I><BR>
+&copy;2006 Holobloc Inc.<BR>
+Licensed under the <A
+	HREF="http://www.opensource.org/licenses/afl-3.0.php">Academic Free
+License version 3.0</A>.</P>
+</CENTER>
+</BODY>
+</HTML>

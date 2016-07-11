@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<HTML>
+<HEAD>
+<META CONTENT="text/html; charset=ISO-8859-1" HTTP-EQUIV="content-type">
+<TITLE>FBDK - What's New</TITLE>
+<LINK REL="icon" HREF="../../fbicon.png" TYPE="image/png">
+<META CONTENT="JHC" NAME="author">
+<META CONTENT="What's New in the Function Block Development Kit (FBDK)"
+	NAME="description">
+</HEAD>
+<BODY>
+<CENTER>
+<H2>What's&nbsp;New</H2>
+<P><I>This page documents changes since the <A
+	HREF="http://www.holobloc.com/fbdk20060720.zip">20060720 release</A> of
+the FBDK.</I></P>
+</CENTER>
+
+<H3><A NAME="FBDK"></A>FBDK [<A HREF="#FBRT">FBRT</A>] [<A
+	HREF="#MVCD">MVCD</A>]</H3>
+<H4>Features</H4>
+<UL>
+	<LI>A <B>Run</B> button has been added to the menu bar to
+	facilitate this commonly used operation.</LI>
+	<LI>A new template has been added for <A HREF="howtosim.htm">simple
+	function block types</A>, which have only a <TT>REQ/CNF</TT> event pair and
+	a single algorithm to be executed.</LI>
+	<LI>The <A HREF="fbdalg.htm">functional programming</A> paradigm
+	has been adopted for efficient runtime execution of algorithms in the
+	IEC 61131-3 FBD language:
+	<UL>
+		<LI>Algorithms in the FBD language are restricted to use only
+		"pure" IEC 61131-3 <I>functions</I>, which have a single output and no
+		internal state.</LI>
+		<LI>A new file type "<TT>*.fnt</TT>" and icon <IMG SRC="ft16.gif">
+		are added for <I>function templates</I>, which are used for generation
+		of code corresponding to IEC 61131-3 functions in FBD algorithms.</LI>
+		<LI>"Stateful" IEC 61131-3 function block types (<TT>CTU</TT>,
+		etc.) and functions with multiple outputs (<TT>DIV_INT</TT>, etc.)
+		have been removed from the FBDK library.</LI>
+		<LI><A HREF="funsub.htm">IEC 61499 equivalents</A> may be
+		substituted for the removed types, e.g., <TT>E_CTU</TT> for <TT>CTU</TT>
+		and <TT>FB_DIV_INT</TT> for <TT>DIV_INT</TT>.</LI>
+		<LI><IMG SOURCE="../note.gif">Basic function blocks with
+		FBD algorithms using the removed function block types may not load and
+		will not compile correctly, and may have to be edited in raw XML form
+		to remove the obsolete function block types.</LI>
+	</UL>
+	</LI>
+	<LI>Comparison, selection and string function blocks have been
+	given their own folders (<TT>compare, select</TT> and <TT>strings</TT>,
+	respectively).</LI>
+	<LI>Items have been added to the <B>Help</B> menu for the <A
+		HREF="http://groups.google.com/group/fbdk/" TARGET="_blank">FBDK
+	Discussion Group</A> and <A
+		HREF="http://www.holobloc.com/doc/fbdk/index.htm" TARGET="_top">this
+	download area</A>.</LI>
+</UL>
+<H4>Bug fixes</H4>
+<UL>
+	<LI>No significant bug fixes in this release.</LI>
+</UL>
+
+<H3><A NAME="FBRT"></A>FBRT [<A HREF="#FBDK">FBDK</A>] [<A
+	HREF="#MVCD">MVCD</A>]</H3>
+<UL>
+	<LI>Real-time performance of output event dispatching has been
+	improved.</LI>
+	<LI>Real-time performance of "Simple" function blocks (<TT>FB_AND</TT>,
+	etc) has been improved.</LI>
+	<LI>Real-time performance of algorithms written in the IEC 61131-3
+	FBD language has been significantly improved with the <A
+		HREF="fbdalg.htm">functional programming</A> paradigm.</LI>
+	<LI>Real-time performance of algorithms written in the IEC 61131-3
+	LD language has been improved through use of the Java&trade;
+	conditional Boolean operators <TT>&amp;&amp;</TT> and <TT>||</TT> in
+	generated code.</LI>
+	<LI>Real-time performance and memory requirements of many
+	event-handling blocks have been improved.</LI>
+</UL>
+
+<H3><A NAME="MVCD"></A>MVCD [<A HREF="#FBDK">FBDK</A>] [<A
+	HREF="#FBRT">FBRT</A>]</H3>
+<UL>
+	<LI>Functional allocation is refactored in the <A
+		HREF="../despats/mvc/pnp.htm">Pick and Place example</A> and the
+	control has been re-implemented as a <A HREF="howtosim.htm">simple
+	FB.</A></LI>
+</UL>
+<CENTER>
+<HR>
+<P><I>Last updated:&nbsp;2006-10-13.</I><BR>
+&copy;2006 <A HREF="http://www.holobloc.com" TARGET="_top">Holobloc
+Inc.</A> All rights reserved.<BR>
+<FONT FACE="sans-serif" SIZE="-2">JDK is a trademark or
+registered trademark of Sun Microsystems, Inc. in the U.S. or other
+countries.<BR>
+Java is a trademark or registered trademark of Sun Microsystems, Inc. in
+the U.S. or other countries. </FONT></P>
+</CENTER>
+</BODY>
+</HTML>

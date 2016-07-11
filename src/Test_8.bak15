@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE System SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<System Name="Test_8" Comment="System Configuration" >
+  <Identification Standard="61499-1" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.3" Author="JHC" Date="2003-12-05" Remarks="Renamed from NEWSYSTEM." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.2" Author="JHC" Date="2002-11-05" Remarks="Fixed missing (empty) FBD in Application." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2002-01-17" Remarks="Minor cleanup" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2000-05-27" />
+  <Application Name="APP1" >
+    <FBNetwork >
+    </FBNetwork>
+  </Application>
+  <Device Name="D1" Type="FRAME_DEVICE" x="494.44443" y="466.66666" >
+    <Parameter Name="BOUNDS" Value="[300,300,300,300]" />
+    <Parameter Name="GRID" Value="[1,1]" />
+    <Resource Name="R1" Type="PANEL_RESOURCE" x="594.4444" y="616.6666" >
+      <Parameter Name="ROWS" Value="2" />
+      <Parameter Name="COLS" Value="2" />
+      <FBNetwork >
+        <FB Name="W1" Type="WORKER4TESTFB" x="2622.2222" y="272.2222" >
+          <Parameter Name="NAME" Value="&#34;Alfa&#34;" />
+        </FB>
+        <FB Name="clk" Type="E_CYCLE" x="677.7778" y="550.0" >
+          <Parameter Name="DT" Value="t#10ms" />
+        </FB>
+        <FB Name="W1SkillsPool" Type="IN_CHOICE" x="1355.5555" y="2444.4443" >
+          <Parameter Name="CHOICES" Value="&#34;Drilling,Milling,Assembly&#34;" />
+          <Parameter Name="QI" Value="1" />
+        </FB>
+        <FB Name="W1AddSkills" Type="IN_EVENT" x="511.11108" y="1577.7777" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;AlfaAddSkills&#34;" />
+        </FB>
+        <FB Name="W1Status" Type="OUT_BOOL" x="4105.555" y="1572.2222" >
+          <Parameter Name="C0" Value="[255,255,255]" />
+          <Parameter Name="C1" Value="[255,0,0]" />
+          <Parameter Name="LABEL" Value="&#34;Alfa Status&#34;" />
+          <Parameter Name="QI" Value="1" />
+        </FB>
+        <FB Name="W1Job" Type="OUT_ANY" x="5711.111" y="655.55554" >
+          <Parameter Name="W" Value="40" />
+          <Parameter Name="QI" Value="1" />
+        </FB>
+        <FB Name="W1JobLabel" Type="FB_LABEL" x="4983.333" y="11.111111" >
+          <Parameter Name="LABEL" Value="&#34;AlfaJob&#34;" />
+          <Parameter Name="QI" Value="1" />
+        </FB>
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="W1.INIT" dx1="872.22217" />
+          <Connection Source="START.COLD" Destination="clk.START" dx1="272.2222" />
+          <Connection Source="clk.EO" Destination="W1.NJOB" dx1="727.7778" />
+          <Connection Source="clk.EO" Destination="W1.NSTATE" dx1="727.7778" />
+          <Connection Source="W1SkillsPool.IND" Destination="W1.NSKILL" dx1="272.2222" />
+          <Connection Source="W1AddSkills.IND" Destination="W1SkillsPool.REQ" dx1="427.77777" />
+          <Connection Source="W1.NSTATE_CNF" Destination="W1Status.REQ" dx1="511.11108" />
+          <Connection Source="START.COLD" Destination="W1Status.INIT" dx1="3205.5554" />
+          <Connection Source="W1.NJOB_CNF" Destination="W1Job.REQ" dx1="416.66666" />
+          <Connection Source="START.COLD" Destination="W1SkillsPool.INIT" dx1="872.22217" />
+          <Connection Source="W1SkillsPool.INITO" Destination="W1AddSkills.INIT" dx1="27.777777" dx2="172.22221" dy="-1444.4443" />
+          <Connection Source="START.COLD" Destination="W1JobLabel.INIT" dx1="516.6666" />
+          <Connection Source="W1JobLabel.INITO" Destination="W1Job.INIT" dx1="183.33333" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="W1SkillsPool.OUT" Destination="W1.SKILL" dx1="411.11108" />
+          <Connection Source="W1.JOB" Destination="W1Job.IN" dx1="661.1111" />
+          <Connection Source="W1.STATUS" Destination="W1Status.IN" dx1="188.88889" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+  </Device>
+</System>

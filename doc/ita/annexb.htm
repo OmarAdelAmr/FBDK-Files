@@ -1,0 +1,162 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+<!-- google_ad_section_start -->
+<META NAME="Description" CONTENT="IEC 61499 Compliance Profile">
+<META NAME="KEYWORDS"
+	CONTENT="IEC 61499, IEC, 61499, standards,function blocks,control,automation,open,distributed,process control,intelligent automation">
+<!-- google_ad_section_end -->
+<META NAME="GENERATOR" CONTENT="Eclipse HTML Editor">
+<LINK REL="icon" HREF="http://www.holobloc.com/fbicon.png"
+	TYPE="image/png">
+<TITLE>IEC 61499 Compliance Profile</TITLE>
+</HEAD>
+<!--Stand-alone (not on-line) version-->
+<BODY
+	STYLE="font-family: sans-serif; background-color: white; align: center">
+<H2 ALIGN="CENTER">Annex B (informative)<BR>
+An example of remote device configuration</H2>
+<P>The<TT> Request/Response</TT> transactions shown below illustrate
+the configuration of the resource named <TT>RES1</TT> in the remote
+device identified as <TT>DEV1</TT> in the <A HREF="RMT_DEV_TEST.htm"><TT>RMT_DEV_TEST</TT></A>
+example. The actual <TT>DST</TT> input to the corresponding <A
+	HREF="../common/DEV_MGR.htm"><TT>DEV_MGR</TT></A> block in <TT>DEV1</TT>
+is given by deleting the <TT>&quot;DEV1&quot;</TT> string (and full stop
+character <TT>'.'</TT> if any) from the indicated destination; for
+example, the <TT>DST</TT> string of request #85 is empty and the <TT>DST</TT>
+string of request #86 is <TT>&quot;RES1&quot;</TT>.</P>
+<CENTER>
+<P></P>
+<TABLE BORDER="1">
+	<TR>
+		<TD><PRE><TT>DEV1: &lt;Request ID=&quot;85&quot; Action=&quot;CREATE&quot; &gt;
+  &lt;FB Name=&quot;RES1&quot; Type=&quot;EMB_RES&quot; /&gt;
+&lt;/Request&gt;
+
+DEV1: &lt;Response ID=&quot;85&quot; /&gt;
+
+DEV1.RES1: &lt;Request ID=&quot;86&quot; Action=&quot;CREATE&quot; &gt;
+  &lt;FB Name=&quot;FF&quot; Type=&quot;E_SR&quot; /&gt;
+&lt;/Request&gt;
+
+DEV1.RES1: &lt;Response ID=&quot;86&quot; /&gt;
+
+DEV1.RES1: &lt;Request ID=&quot;87&quot; Action=&quot;CREATE&quot; &gt;
+  &lt;FB Name=&quot;SB&quot; Type=&quot;SUBSCRIBE_2&quot; /&gt;
+&lt;/Request&gt;
+
+DEV1.RES1: &lt;Response ID=&quot;87&quot; /&gt;
+
+DEV1.RES1: &lt;Request ID=&quot;88&quot; Action=&quot;CREATE&quot; &gt;
+  &lt;FB Name=&quot;AD&quot; Type=&quot;FB_ADD_REAL&quot; /&gt;
+&lt;/Request&gt;
+
+DEV1.RES1: &lt;Response ID=&quot;88&quot; /&gt;
+
+DEV1.RES1: &lt;Request ID=&quot;89&quot; Action=&quot;CREATE&quot; &gt;
+  &lt;FB Name=&quot;PUB&quot; Type=&quot;PUBLISH_1&quot; /&gt;
+&lt;/Request&gt;
+
+DEV1.RES1: &lt;Response ID=&quot;89&quot; /&gt;
+
+DEV1.RES1: &lt;Request ID=&quot;90&quot; Action=&quot;CREATE&quot; &gt;
+  &lt;Connection Source=&quot;START.COLD&quot; Destination=&quot;FF.S&quot; /&gt;
+&lt;/Request&gt;
+
+DEV1.RES1: &lt;Response ID=&quot;90&quot; /&gt;
+
+DEV1.RES1: &lt;Request ID=&quot;91&quot; Action=&quot;CREATE&quot; &gt;
+  &lt;Connection Source=&quot;START.WARM&quot; Destination=&quot;FF.S&quot; /&gt;
+&lt;/Request&gt;
+
+DEV1.RES1: &lt;Response ID=&quot;91&quot; /&gt;
+
+DEV1.RES1: &lt;Request ID=&quot;92&quot; Action=&quot;CREATE&quot; &gt;
+  &lt;Connection Source=&quot;START.STOP&quot; Destination=&quot;FF.R&quot; /&gt;
+&lt;/Request&gt;
+
+DEV1.RES1: &lt;Response ID=&quot;92&quot; /&gt;
+
+DEV1.RES1: &lt;Request ID=&quot;93&quot; Action=&quot;CREATE&quot; &gt;
+  &lt;Connection Source=&quot;FF.EO&quot; Destination=&quot;SB.INIT&quot; /&gt;
+&lt;/Request&gt;
+
+DEV1.RES1: &lt;Response ID=&quot;93&quot; /&gt;
+
+DEV1.RES1: &lt;Request ID=&quot;94&quot; Action=&quot;CREATE&quot; &gt;
+  &lt;Connection Source=&quot;SB.INITO&quot; Destination=&quot;PUB.INIT&quot; /&gt;
+&lt;/Request&gt;
+
+DEV1.RES1: &lt;Response ID=&quot;94&quot; /&gt;
+
+DEV1.RES1: &lt;Request ID=&quot;95&quot; Action=&quot;CREATE&quot; &gt;
+  &lt;Connection Source=&quot;SB.IND&quot; Destination=&quot;AD.REQ&quot; /&gt;
+&lt;/Request&gt;
+
+DEV1.RES1: &lt;Response ID=&quot;95&quot; /&gt;
+
+DEV1.RES1: &lt;Request ID=&quot;96&quot; Action=&quot;CREATE&quot; &gt;
+  &lt;Connection Source=&quot;AD.CNF&quot; Destination=&quot;PUB.REQ&quot; /&gt;
+&lt;/Request&gt;
+
+DEV1.RES1: &lt;Response ID=&quot;96&quot; /&gt;
+
+DEV1.RES1: &lt;Request ID=&quot;97&quot; Action=&quot;CREATE&quot; &gt;
+  &lt;Connection Source=&quot;SB.RD_1&quot; Destination=&quot;AD.IN1&quot; /&gt;
+&lt;/Request&gt;
+
+DEV1.RES1: &lt;Response ID=&quot;97&quot; /&gt;
+
+DEV1.RES1: &lt;Request ID=&quot;98&quot; Action=&quot;CREATE&quot; &gt;
+  &lt;Connection Source=&quot;SB.RD_2&quot; Destination=&quot;AD.IN2&quot; /&gt;
+&lt;/Request&gt;
+
+DEV1.RES1: &lt;Response ID=&quot;98&quot; /&gt;
+
+DEV1.RES1: &lt;Request ID=&quot;99&quot; Action=&quot;CREATE&quot; &gt;
+  &lt;Connection Source=&quot;AD.OUT&quot; Destination=&quot;PUB.SD_1&quot; /&gt;
+&lt;/Request&gt;
+
+DEV1.RES1: &lt;Response ID=&quot;99&quot; /&gt;
+
+DEV1.RES1: &lt;Request ID=&quot;100&quot; Action=&quot;CREATE&quot; &gt;
+  &lt;Connection Source=&quot;FF.Q&quot; Destination=&quot;SB.QI&quot; /&gt;
+&lt;/Request&gt;
+
+DEV1.RES1: &lt;Response ID=&quot;100&quot; /&gt;
+
+DEV1.RES1: &lt;Request ID=&quot;101&quot; Action=&quot;CREATE&quot; &gt;
+  &lt;Connection Source=&quot;SB.QO&quot; Destination=&quot;AD.QI&quot; /&gt;
+&lt;/Request&gt;
+
+DEV1.RES1: &lt;Response ID=&quot;101&quot; /&gt;
+
+DEV1.RES1: &lt;Request ID=&quot;102&quot; Action=&quot;CREATE&quot; &gt;
+  &lt;Connection Source=&quot;SB.QO&quot; Destination=&quot;PUB.QI&quot; /&gt;
+&lt;/Request&gt;
+
+DEV1.RES1: &lt;Response ID=&quot;102&quot; /&gt;
+
+DEV1.RES1: &lt;Request ID=&quot;103&quot; Action=&quot;WRITE&quot; &gt;
+  &lt;Connection Source=&quot;&amp;#34;225.0.0.2:1026&amp;#34;&quot; Destination=&quot;SB.ID&quot; /&gt;
+&lt;/Request&gt;
+
+DEV1.RES1: &lt;Response ID=&quot;103&quot; /&gt;
+
+DEV1.RES1: &lt;Request ID=&quot;104&quot; Action=&quot;WRITE&quot; &gt;
+  &lt;Connection Source=&quot;&amp;#34;225.0.0.1:1025&amp;#34;&quot; Destination=&quot;PUB.ID&quot; /&gt;
+&lt;/Request&gt;
+
+DEV1.RES1: &lt;Response ID=&quot;104&quot; /&gt;</TT></PRE></TD>
+	</TR>
+</TABLE>
+<DIV STYLE="font-size: 10pt; text-align: center; padding-left: 1.0em"><I>Last
+updated: 2006-10-16.</I><BR>
+&copy;2006 <A HREF="http://www.holobloc.com" TARGET="_blank">Holobloc
+Inc</A>.<BR>
+Licensed under the <A
+	HREF="http://www.opensource.org/licenses/afl-3.0.php" TARGET="_blank">Academic
+Free License version 3.0</A></DIV>
+</BODY>
+</HTML>

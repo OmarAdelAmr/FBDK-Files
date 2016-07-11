@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="RQST_GEN" Comment="FBMGT Request Generator" >
+  <Identification Standard="61499 ITA" ApplicationDomain="Device Management" Function="FBMGT Request Generator" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.1" Author="JHC" Date="2007-11-08" Remarks="Changed RQST to OUT; subclassed from FBFunction." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2001-11-27" Remarks="Copied/modified from QUERY_GEN." />
+  <CompilerInfo header="package fb.rt.ita; import fb.rt.math.FBFunction;" classdef="public class RQST_GEN extends FBFunction" >
+    <Compiler Language="Java" Vendor="Sun" Product="JDK" Version="1.6.0" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="REQ" >
+        <With Var="DSTI" />
+        <With Var="RQTYPE" />
+        <With Var="OBJTYPE" />
+        <With Var="ARG1" />
+        <With Var="ARG2" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="CNF" >
+        <With Var="DSTO" />
+        <With Var="OUT" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="DSTI" Type="WSTRING" Comment="Destination" />
+      <VarDeclaration Name="RQTYPE" Type="WSTRING" Comment="CREATE,DELETE,READ,WRITE,QUERY" />
+      <VarDeclaration Name="OBJTYPE" Type="WSTRING" Comment="FB,Connection" />
+      <VarDeclaration Name="ARG1" Type="WSTRING" Comment="FB Name or Connection Source" />
+      <VarDeclaration Name="ARG2" Type="WSTRING" Comment="FB Type or Connection Destination" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="DSTO" Type="STRING" Comment="DSTI converted to STRING" />
+      <VarDeclaration Name="OUT" Type="STRING" Comment="FBMGT request" />
+    </OutputVars>
+  </InterfaceList>
+</FBType>

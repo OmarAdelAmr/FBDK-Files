@@ -1,0 +1,84 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+<META NAME="GENERATOR" CONTENT="Visual Page 1.1 for Windows">
+<TITLE>FUNCTION_BLOCK FB_SLIDER</TITLE>
+</HEAD>
+<BODY>
+<H2 ALIGN="center">FUNCTION_BLOCK FB_SLIDER</H2>
+<P>An instance of the function block type shown <A HREF="#viewer">below</A>
+provides a bar whose color is determined by the <TT>BKGD</TT> input with
+an indicator whose color is determined by the <TT>FGD</TT> input. The
+height and width of the bar are determined by the <TT>H</TT> and <TT>W</TT>
+inputs, respectively. The function block provides an unsigned integer (<TT>UINT</TT>)
+output <TT>OUT</TT> in the range <TT>{0..100}</TT> whose value
+corresponds to the percentage displacement of the indicator in the bar,
+which in turn is determined by both its position and the orientation of
+the bar, given by the <TT>DIR</TT> input. The figures below show the
+position of the indicator when <TT>OUT=25</TT> for the four possible
+values of the <TT>DIR</TT> input with <TT>FGD=COLOR#red</TT> and <TT>BKGD=COLOR#blue</TT>.<BR>
+</P>
+<P>The initial position of the indicator is given by the <TT>IVAL</TT>
+input. A mouse click on the bar causes the indicator to move one unit
+toward the mouse position and generates an <TT>IND</TT> event output to
+indicate the correspondingly updated <TT>OUT</TT> value. Dragging the
+mouse with the button down in the bar generates a sequence of <TT>IND</TT>
+events and correspondingly updated <TT>OUT</TT> values.</P>
+<CENTER>
+<TABLE BORDER="1">
+	<TBODY>
+		<TR>
+			<TD ALIGN="CENTER"><B><TT>DIR=0<BR>
+			(L==&gt;R)<BR>
+			W=100<BR>
+			H=25<BR>
+			OUT=25</TT></B>
+			</P>
+			</TD>
+			<TD>
+			<P ALIGN="center"><B><TT>DIR=1<BR>
+			(T==&gt;B)<BR>
+			W=25<BR>
+			H=100<BR>
+			OUT=25</TT></B>
+			</TD>
+			<TD ALIGN="CENTER"><B><TT>DIR=2<BR>
+			(R==&gt;L)<BR>
+			W=100<BR>
+			H=25<BR>
+			OUT=25</TT></B></TD>
+			<TD ALIGN="CENTER"><B><TT>DIR=3<BR>
+			(B==&gt;T)<BR>
+			W=25<BR>
+			H=100<BR>
+			OUT=25</TT></B></TD>
+		</TR>
+		<TR>
+			<TD COLSPAN="4" ROWSPAN="1" NOWRAP="nowrap" VALIGN="middle"><IMG
+				ALT="[Sliders Image]" SRC="images/sliders.gif" HEIGHT="100"
+				WIDTH="350"><BR>
+			</TD>
+		</TR>
+	</TBODY>
+</TABLE>
+<P><A NAME="viewer"></A>[<A HREF="../../FBViewer.html" TARGET="help">Viewer
+Help</A>]<BR>
+<TABLE BORDER="1">
+	<TBODY>
+		<TR>
+			<TD><APPLET CODE="FBViewer" ARCHIVE="../viewer.jar" ALIGN="bottom"
+				HEIGHT="430" WIDTH="485"> </APPLET></TD>
+		</TR>
+	</TBODY>
+</TABLE>
+</P>
+<P><I>Last updated: 2006-04-15.</I><BR>
+&copy;2006 <A HREF="http://www.holobloc.com" TARGET="_blank">Holobloc
+Inc</A><BR>
+Licensed under the <A
+	HREF="http://www.opensource.org/licenses/afl-3.0.php">Academic Free
+License version 3.0</A>.</P>
+</CENTER>
+</BODY>
+</HTML>

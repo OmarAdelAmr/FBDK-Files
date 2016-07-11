@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE System SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<System Name="SLIDERS" Comment="FB_SLIDER Demo Configuration" >
+  <Identification Standard="61499-1" />
+  <VersionInfo Organization="Holobloc Inc." Version="0.1" Author="JHC" Date="2006-02-02" Remarks="Saved to correct XML format." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2004-09-04" />
+  <Application Name="APP1" >
+    <FBNetwork >
+    </FBNetwork>
+  </Application>
+  <Device Name="DEV1" Type="FRAME_DEVICE" x="538.88885" y="11.111111" >
+    <Parameter Name="BOUNDS" Value="[100,100,360,160]" />
+    <Resource Name="RES2" Type="PANEL_RESOURCE" x="166.66666" y="11.111111" >
+      <FBNetwork >
+        <FB Name="S0" Type="FB_SLIDER" x="527.7778" y="11.111111" >
+          <Parameter Name="DIR" Value="0" />
+          <Parameter Name="FGD" Value="[255,0,0]" />
+          <Parameter Name="BKGD" Value="[0,0,255]" />
+          <Parameter Name="W" Value="100" />
+          <Parameter Name="H" Value="25" />
+          <Parameter Name="IVAL" Value="25" />
+        </FB>
+        <FB Name="S1" Type="FB_SLIDER" x="1200.0" y="11.111111" >
+          <Parameter Name="DIR" Value="1" />
+          <Parameter Name="FGD" Value="[255,0,0]" />
+          <Parameter Name="BKGD" Value="[0,0,255]" />
+          <Parameter Name="W" Value="25" />
+          <Parameter Name="H" Value="100" />
+          <Parameter Name="IVAL" Value="25" />
+        </FB>
+        <FB Name="S2" Type="FB_SLIDER" x="1883.3333" y="11.111111" >
+          <Parameter Name="DIR" Value="2" />
+          <Parameter Name="FGD" Value="[255,0,0]" />
+          <Parameter Name="BKGD" Value="[0,0,255]" />
+          <Parameter Name="W" Value="100" />
+          <Parameter Name="H" Value="25" />
+          <Parameter Name="IVAL" Value="25" />
+        </FB>
+        <FB Name="S3" Type="FB_SLIDER" x="2566.6665" y="38.888885" >
+          <Parameter Name="DIR" Value="3" />
+          <Parameter Name="FGD" Value="[255,0,0]" />
+          <Parameter Name="BKGD" Value="[0,0,255]" />
+          <Parameter Name="W" Value="25" />
+          <Parameter Name="H" Value="100" />
+          <Parameter Name="IVAL" Value="25" />
+        </FB>
+        <FB Name="SP01" Type="XSPACE" x="527.7778" y="1277.7777" >
+          <Parameter Name="DIA" Value="25" />
+          <Parameter Name="DIMS" Value="[1,4]" />
+        </FB>
+        <FB Name="SP12" Type="XSPACE" x="1194.4445" y="1277.7777" >
+          <Parameter Name="DIMS" Value="[1,4]" />
+          <Parameter Name="DIA" Value="25" />
+        </FB>
+        <FB Name="SP13" Type="XSPACE" x="1888.8888" y="1283.3333" >
+          <Parameter Name="DIMS" Value="[1,4]" />
+          <Parameter Name="DIA" Value="25" />
+        </FB>
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="S0.INIT" dx1="27.777777" />
+          <Connection Source="S0.INITO" Destination="SP01.INIT" dx1="27.777777" dx2="38.888885" dy="1100.0" />
+          <Connection Source="SP01.INITO" Destination="S1.INIT" dx1="122.22221" />
+          <Connection Source="S1.INITO" Destination="SP12.INIT" dx1="27.777777" dx2="38.888885" dy="1094.4445" />
+          <Connection Source="SP12.INITO" Destination="S2.INIT" dx1="211.1111" />
+          <Connection Source="S2.INITO" Destination="SP13.INIT" dx1="27.777777" dx2="38.888885" dy="1111.1111" />
+          <Connection Source="SP13.INITO" Destination="S3.INIT" dx1="133.33333" />
+        </EventConnections>
+      </FBNetwork>
+    </Resource>
+  </Device>
+</System>

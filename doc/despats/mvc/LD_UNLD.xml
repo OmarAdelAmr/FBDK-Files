@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE AdapterType SYSTEM "../LibraryElement.dtd" >
+<AdapterType Name="LD_UNLD" Comment="LOAD/UNLOAD Adapter Interface" >
+  <Identification Standard="61499-2-A.4" Classification="Simulation" ApplicationDomain="Material Handling" Function="Part Transfer" Type="Colored Part" Description="Load &#34;downstream&#34; unit and unload &#34;upstream&#34; unit" />
+  <VersionInfo Organization="IEC TC65/WG6" Version="0.0" Author="JHC" Date="2000-02-01" />
+  <CompilerInfo header="package fb.rt.omac;" >
+    <Compiler Language="Java" Vendor="IBM" Product="VisualAge" Version="3.0" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="UNLD" Comment="UNLOAD Request" >
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="LD" Comment="LOAD Request" >
+        <With Var="WO" />
+        <With Var="WKPC" />
+      </Event>
+      <Event Name="CNF" Comment="UNLD Confirm" >
+        <With Var="WO" />
+        <With Var="WKPC" />
+      </Event>
+    </EventOutputs>
+    <OutputVars>
+      <VarDeclaration Name="WO" Type="BOOL" Comment="Workpiece present" />
+      <VarDeclaration Name="WKPC" Type="COLOR" Comment="Workpiece Color" />
+    </OutputVars>
+  </InterfaceList>
+  <Service RightInterface="SOCKET" LeftInterface="PLUG" >
+    <ServiceSequence Name="normal_operation" >
+      <ServiceTransaction >
+        <InputPrimitive Interface="PLUG" Event="LD" Parameters="WO,WKPC" />
+        <OutputPrimitive Interface="SOCKET" Event="LD" Parameters="WO,WKPC" />
+      </ServiceTransaction>
+      <ServiceTransaction >
+        <InputPrimitive Interface="SOCKET" Event="UNLD" />
+        <OutputPrimitive Interface="PLUG" Event="UNLD" />
+      </ServiceTransaction>
+      <ServiceTransaction >
+        <InputPrimitive Interface="PLUG" Event="CNF" />
+        <OutputPrimitive Interface="SOCKET" Event="CNF" />
+      </ServiceTransaction>
+    </ServiceSequence>
+  </Service>
+</AdapterType>

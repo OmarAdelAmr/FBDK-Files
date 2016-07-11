@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE System SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<System Name="TEST_SELA" Comment="Test FB_SEL_ARRAY" >
+  <Identification Standard="61499-1" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.0" Author="JHC" Date="2006-09-13" />
+  <Device Name="DEV1" Type="FRAME_DEVICE" x="622.22217" y="11.111111" >
+    <Parameter Name="BOUNDS" Value="[100,100,100,150]" />
+    <Parameter Name="GRID" Value="[1,1]" />
+    <Resource Name="RES1" Type="PANEL_RESOURCE" x="355.55554" y="11.111111" >
+      <Parameter Name="ROWS" Value="4" />
+      <Parameter Name="COLS" Value="1" />
+      <FBNetwork >
+        <FB Name="G" Type="IN_BOOL" x="483.3333" y="11.111111" >
+          <Parameter Name="LABEL" Value="&#34;G&#34;" />
+        </FB>
+        <FB Name="IN0" Type="IN_ARRAY" x="1105.5555" y="11.111111" >
+          <Parameter Name="N" Value="5" />
+          <Parameter Name="TYPE" Value="&#34;UINT&#34;" />
+          <Parameter Name="IVAL" Value="&#34;[1,2,3,4,5]&#34;" />
+        </FB>
+        <FB Name="IN1" Type="IN_ARRAY" x="1844.4443" y="11.111111" >
+          <Parameter Name="TYPE" Value="&#34;UINT&#34;" />
+          <Parameter Name="IVAL" Value="&#34;[6,7,8,9,10]&#34;" />
+          <Parameter Name="N" Value="5" />
+        </FB>
+        <FB Name="SEL" Type="FB_SEL_ARRAY" x="2294.4443" y="705.55554" />
+        <FB Name="OUT" Type="OUT_ARRAY" x="3077.7776" y="11.111111" >
+          <Parameter Name="N" Value="5" />
+          <Parameter Name="TYPE" Value="&#34;UINT&#34;" />
+        </FB>
+        <EventConnections>
+          <Connection Source="G.INITO" Destination="IN0.INIT" dx1="27.777777" />
+          <Connection Source="START.COLD" Destination="G.INIT" dx1="27.777777" />
+          <Connection Source="G.IND" Destination="IN0.REQ" dx1="27.777777" />
+          <Connection Source="IN0.INITO" Destination="IN1.INIT" dx1="27.777777" />
+          <Connection Source="IN0.IND" Destination="IN1.REQ" dx1="38.888885" />
+          <Connection Source="IN1.IND" Destination="SEL.REQ" dx1="77.77777" />
+          <Connection Source="SEL.CNF" Destination="OUT.REQ" dx1="33.333332" />
+          <Connection Source="IN1.INITO" Destination="OUT.INIT" dx1="127.77777" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="G.OUT" Destination="SEL.G" dx1="27.777777" />
+          <Connection Source="IN0.OUT" Destination="SEL.IN0" dx1="122.22221" />
+          <Connection Source="IN1.OUT" Destination="SEL.IN1" dx1="27.777777" />
+          <Connection Source="SEL.OUT" Destination="OUT.IN" dx1="61.111107" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+  </Device>
+</System>

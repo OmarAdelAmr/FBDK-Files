@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE System SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<System Name="WORKER_HMI_New" Comment="System Configuration" >
+  <Identification Standard="61499-1" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.3" Author="JHC" Date="2003-12-05" Remarks="Renamed from NEWSYSTEM." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.2" Author="JHC" Date="2002-11-05" Remarks="Fixed missing (empty) FBD in Application." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2002-01-17" Remarks="Minor cleanup" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2000-05-27" />
+  <Application Name="APP1" >
+    <FBNetwork >
+    </FBNetwork>
+  </Application>
+  <Device Name="WORKER_HMI_DEVICE" Type="FRAME_DEVICE" x="1055.5555" y="427.77777" >
+    <Parameter Name="BOUNDS" Value="[1100,300,600,400]" />
+    <Parameter Name="GRID" Value="[1,1]" />
+    <Resource Name="WORKER_HMI_PROCESSOR" Type="PANEL_RESOURCE" x="1358.8235" y="670.5882" >
+      <Parameter Name="ROWS" Value="6" />
+      <Parameter Name="COLS" Value="2" />
+      <FBNetwork >
+        <FB Name="newTaskGUIFB" Type="newTaskGUIFB" x="2541.1765" y="11.764706" />
+        <FB Name="mainGUIFB" Type="mainGUIFB" x="882.3529" y="11.764706" />
+        <FB Name="MultiAgentSystemConnector" Type="MultiAgentSystemConnector" x="4976.4707" y="547.05884" />
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="mainGUIFB.ie_init_main_gui" dx1="64.70588" />
+          <Connection Source="mainGUIFB.oe_init_new_task" Destination="newTaskGUIFB.ie_init_new_task" dx1="105.882355" />
+          <Connection Source="newTaskGUIFB.oe_close_newTask_window" Destination="mainGUIFB.ie_reshow_main_gui" dx1="29.411764" dx2="0.0" dy="-188.23529" />
+          <Connection Source="newTaskGUIFB.oe_start_stop_recording" Destination="MultiAgentSystemConnector.ie_init_MAS" dx1="847.05884" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="newTaskGUIFB.ov_new_task_name" Destination="MultiAgentSystemConnector.iv_new_task_name" dx1="452.94116" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+  </Device>
+</System>

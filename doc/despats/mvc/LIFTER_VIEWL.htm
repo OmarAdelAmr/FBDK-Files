@@ -1,0 +1,54 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+<META NAME="GENERATOR" CONTENT="Eclipse HTML Editor">
+<TITLE>SYSTEM LIFTER_VIEWL</TITLE>
+</HEAD>
+<BODY>
+<H3>2. Develop and Test Views</H3>
+<P>The <TT>LIFTER_VIEWL</TT> system configuration shown <A
+	HREF="#Viewer">below</A> implements the layered <A HREF="syseng2.htm#2"><B>View</B>
+testing architecture</A> for the <A HREF="liftsket.htm">pallet handling
+example</A>. The <TT>HMI</TT> device encapsulates the functionality of
+the human interface layer, and the <TT>VIEW</TT> device encapsulates the
+functionality of the <B>View </B>layer. The <TT>VIEW</TT> device
+contains an instance of the specialized <A
+	HREF="../../common/VIEW_PANEL.htm"><TT>VIEW_PANEL</TT></A> resource
+type to provide the necessary layout of View elements for the drilling
+example. Inter-layer communication is implemented with the <A
+	HREF="../publsubl/index.htm" TARGET="_self">local multicast</A>
+pattern, e.g., by using <TT>PUBL_3/SUBL_3</TT> for linking the <TT>MECH_HMIL/MECH_VIEWL</TT>
+pairs.</P>
+<CENTER>
+<P><IMG SRC="../../note.gif" HEIGHT="24" WIDTH="32">Click on a graphic
+element to navigate to its documentation.<BR>
+<IMG ALT="LIFTER_VIEWL Navigation Image" SRC="images/LIFTER_VIEWL.gif"
+	USEMAP="#MAP1" HEIGHT="193" WIDTH="507"><BR>
+</P>
+<P>[<A NAME="Viewer" HREF="../../FBViewer.html" TARGET="help">Viewer
+Help</A>]<BR>
+<TABLE BORDER="1">
+	<TR>
+		<TD><APPLET CODE="FBViewer" ARCHIVE="../../viewer.jar" HEIGHT="500"
+			WIDTH="725"> </APPLET><BR>
+		</TD>
+	</TR>
+</TABLE>
+</P>
+<P><I>Last updated: 2006-06-22.</I><BR>
+&copy;2006 Holobloc Inc.<BR>
+Licensed under the <A
+	HREF="http://www.opensource.org/licenses/afl-3.0.php">Academic Free
+License version 3.0</A>.</P>
+</CENTER>
+<MAP NAME="MAP1">
+	<AREA SHAPE="RECT" COORDS="2,41,310,66" HREF="MECHC_HMIL.htm">
+	<AREA SHAPE="RECT" COORDS="381,162,504,192" HREF="MECHC_VIEWL.htm">
+	<AREA SHAPE="RECT" COORDS="381,72,504,162" HREF="XSPACE.htm">
+	<AREA SHAPE="RECT" COORDS="381,42,503,72" HREF="MECH_VIEWL.htm">
+	<AREA SHAPE="RECT" COORDS="353,42,381,191" HREF="MECH_VIEWL.htm">
+	<AREA SHAPE="RECT" COORDS="2,66,339,117" HREF="MECH_HMIL.htm">
+</MAP>
+</BODY>
+</HTML>

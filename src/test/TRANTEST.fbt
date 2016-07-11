@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="TRANTEST" Comment="Test of Eventless Transitions" >
+  <Identification Standard="61499-1" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.0" Author="JHC" Date="2006-03-20" />
+  <CompilerInfo header="package fb.rt.test;" >
+    <Compiler Language="Java" Vendor="Sun" Product="JDK" Version="1.5.0" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="REQ" Comment="Normal Execution Request" >
+        <With Var="A" />
+        <With Var="B" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="GT" Comment="A > B" >
+      </Event>
+      <Event Name="EQ" Comment="A = B" >
+      </Event>
+      <Event Name="LT" Comment="A &#60; B" >
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="A" Type="INT" />
+      <VarDeclaration Name="B" Type="INT" />
+    </InputVars>
+  </InterfaceList>
+  <BasicFB>
+    <ECC >
+      <ECState Name="START" Comment="Initial State" x="661.1111" y="61.111107" >
+      </ECState>
+      <ECState Name="REQ" Comment="Normal execution" x="794.4444" y="822.22217" >
+      </ECState>
+      <ECState Name="GT" x="172.22221" y="794.4444" >
+        <ECAction Output="GT" />
+      </ECState>
+      <ECState Name="EQ" x="388.8889" y="394.44443" >
+        <ECAction Output="EQ" />
+      </ECState>
+      <ECState Name="LT" x="888.88885" y="416.66666" >
+        <ECAction Output="LT" />
+      </ECState>
+      <ECTransition Source="START" Destination="REQ" Condition="REQ" x="1433.3333" y="411.11108" />
+      <ECTransition Source="REQ" Destination="GT" Condition="A > B" x="172.22221" y="1022.22217" />
+      <ECTransition Source="REQ" Destination="EQ" Condition="A = B" x="388.8889" y="594.4444" />
+      <ECTransition Source="REQ" Destination="LT" Condition="A &#60; B" x="888.88885" y="622.22217" />
+      <ECTransition Source="GT" Destination="START" Condition="1" x="172.22221" y="61.111107" />
+      <ECTransition Source="EQ" Destination="START" Condition="1" x="388.8889" y="249.99998" />
+      <ECTransition Source="LT" Destination="START" Condition="1" x="888.88885" y="238.88889" />
+    </ECC>
+  </BasicFB>
+</FBType>

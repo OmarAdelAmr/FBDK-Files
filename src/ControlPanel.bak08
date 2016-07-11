@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE System SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<System Name="ControlPanel" Comment="System Configuration" >
+  <Identification Standard="61499-1" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.3" Author="JHC" Date="2003-12-05" Remarks="Renamed from NEWSYSTEM." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.2" Author="JHC" Date="2002-11-05" Remarks="Fixed missing (empty) FBD in Application." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2002-01-17" Remarks="Minor cleanup" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2000-05-27" />
+  <Application Name="APP1" >
+    <FBNetwork >
+    </FBNetwork>
+  </Application>
+  <Device Name="DEV1" Type="FRAME_DEVICE" x="711.1111" y="155.55554" >
+    <Parameter Name="BOUNDS" Value="[300,300,300,300]" />
+    <Parameter Name="GRID" Value="[2,2]" />
+    <Resource Name="WorkerHMI" Type="PANEL_RESOURCE" x="1144.4445" y="177.77777" >
+      <Parameter Name="ROWS" Value="2" />
+      <Parameter Name="COLS" Value="2" />
+      <FBNetwork >
+        <FB Name="Try" Type="IN_EVENT" x="838.88885" y="388.8889" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;Test1&#34;" />
+        </FB>
+        <FB Name="SkillPoll" Type="IN_CHOICE" x="2372.2222" y="100.0" >
+          <Parameter Name="CHOICES" Value="&#34;Drilling,Shaping,Machining&#34;" />
+        </FB>
+        <FB Name="StatusIND" Type="OUT_EVENT" x="2438.889" y="1011.1111" >
+          <Parameter Name="LABEL" Value="&#34;StatusIND&#34;" />
+          <Parameter Name="FLASH" Value="[255,0,0]" />
+          <Parameter Name="DT" Value="t#1ms" />
+        </FB>
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="Try.INIT" dx1="344.44443" />
+          <Connection Source="Try.IND" Destination="SkillPoll.REQ" dx1="633.3333" />
+          <Connection Source="Try.INITO" Destination="SkillPoll.INIT" dx1="527.7778" />
+          <Connection Source="Try.INITO" Destination="StatusIND.INIT" dx1="722.22217" />
+          <Connection Source="Try.IND" Destination="StatusIND.REQ" dx1="872.22217" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="Try.QO" Destination="SkillPoll.QI" dx1="944.4444" />
+          <Connection Source="Try.QO" Destination="StatusIND.QI" dx1="688.88885" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+  </Device>
+</System>

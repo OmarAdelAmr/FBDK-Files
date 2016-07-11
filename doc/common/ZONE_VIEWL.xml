@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="ZONE_VIEWL" Comment="HVAC Zone View with Local Data Publish/Subscribe" >
+  <Identification Standard="61499-1" ApplicationDomain="HVAC" Function="View" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.0" Author="JHC" Date="2006-04-07" />
+  <CompilerInfo header="package fb.rt.hvac; import fb.rt.net.*; import fb.rt.mva.*;" classdef="public class ZONE_VIEWL extends FBMVCD" >
+    <Compiler Language="Java" Vendor="Sun" Product="JDK" Version="1.5.0" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialize" >
+        <With Var="REND_ID" />
+        <With Var="PARAMS_ID" />
+        <With Var="BKGD" />
+        <With Var="FGD" />
+        <With Var="W" />
+        <With Var="SZ" />
+      </Event>
+      <Event Name="REQ" Comment="TEMP display request" >
+        <With Var="TEMP" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialized" >
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="TEMP" Type="REAL" Comment="Room Temperature, deg. F" />
+      <VarDeclaration Name="REND_ID" Type="WSTRING" Comment="TEMP, FLOW subscriber channel ID" />
+      <VarDeclaration Name="PARAMS_ID" Type="WSTRING" InitialValue="&#34;PARAMS&#34;" Comment="STEMP, XTEMP, LOAD subscriber channel ID" />
+      <VarDeclaration Name="FGD" Type="COLOR" InitialValue="COLOR#white" Comment="Foreground Color" />
+      <VarDeclaration Name="BKGD" Type="COLOR" InitialValue="COLOR#blue" Comment="Background Color" />
+      <VarDeclaration Name="W" Type="UINT" Comment="Square room side dimension in pixels" />
+      <VarDeclaration Name="SZ" Type="UINT" InitialValue="12" Comment="Font size in points" />
+    </InputVars>
+  </InterfaceList>
+  <FBNetwork >
+    <FB Name="REND" Type="SUBL_2" x="316.66666" y="11.111111" />
+    <FB Name="VIEW" Type="ZONE_VIEW" x="905.55554" y="11.111111" />
+    <FB Name="PARAMS" Type="SUBL_3" x="1688.8888" y="11.111111" />
+    <EventConnections>
+      <Connection Source="INIT" Destination="REND.INIT" dx1="211.1111" />
+      <Connection Source="REND.INITO" Destination="VIEW.INIT" dx1="61.111107" />
+      <Connection Source="VIEW.INITO" Destination="PARAMS.INIT" dx1="38.888885" />
+      <Connection Source="REQ" Destination="VIEW.REQ" dx1="794.4444" />
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="REND_ID" Destination="REND.ID" dx1="144.44444" />
+      <Connection Source="BKGD" Destination="VIEW.BKGD" dx1="772.22217" />
+      <Connection Source="REND.RD_2" Destination="VIEW.FLOW" dx1="144.44444" />
+      <Connection Source="PARAMS_ID" Destination="PARAMS.ID" dx1="1472.2222" />
+      <Connection Source="PARAMS.RD_3" Destination="VIEW.LOAD" dx1="33.333332" dx2="233.33333" dy="800.0" />
+      <Connection Source="PARAMS.RD_2" Destination="VIEW.XTEMP" dx1="72.22222" dx2="266.66666" dy="933.3333" />
+      <Connection Source="PARAMS.RD_1" Destination="VIEW.STEMP" dx1="100.0" dx2="316.66666" dy="1083.3333" />
+      <Connection Source="FGD" Destination="VIEW.FGD" dx1="794.4444" />
+      <Connection Source="W" Destination="VIEW.W" dx1="827.7778" />
+      <Connection Source="SZ" Destination="VIEW.SZ" dx1="816.6666" />
+      <Connection Source="TEMP" Destination="VIEW.TEMP" dx1="772.22217" />
+    </DataConnections>
+  </FBNetwork>
+</FBType>

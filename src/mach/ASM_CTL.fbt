@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="ASM_CTL" Comment="Controller for Simple Assembly Station with Dual-Cylinder Transport" >
+  <Identification Standard="61499-1" ApplicationDomain="Assembly" Function="Control" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.3" Author="JHC" Date="2006-03-05" Remarks="Added transition from RETRACT to FEED_PEG to account for RUN ON or OFF." />
+  <VersionInfo Organization="Holobloc Inc" Version="0.2" Author="JHC" Date="2006-03-04" Remarks="Added events to transitions." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2004-10-21" Remarks="Changed a transition from P_HOME to NOT P_END." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2004-09-25" Remarks="Adapted from ASM_CTL." />
+  <CompilerInfo header="package fb.rt.mach;" >
+    <Compiler Language="Java" Vendor="Sun" Product="JDK" Version="1.5.0" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="RUN_TRIG" Comment="RUN/STOP trigger" >
+        <With Var="RUN" />
+      </Event>
+      <Event Name="TS" Comment="Transport Sensors" >
+        <With Var="T_HOME" />
+        <With Var="T_MID" />
+        <With Var="T_END" />
+      </Event>
+      <Event Name="PS" Comment="Press Sensors" >
+        <With Var="P_HOME" />
+        <With Var="P_END" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="TA" Comment="Transport Actuators" >
+        <With Var="CYL1_FWD" />
+        <With Var="CYL2_FWD" />
+        <With Var="CYL12_REV" />
+      </Event>
+      <Event Name="PA" Comment="Press Actuators" >
+        <With Var="PRESS_REV" />
+        <With Var="PRESS_FWD" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="RUN" Type="BOOL" Comment="Enable cycling" />
+      <VarDeclaration Name="T_HOME" Type="BOOL" Comment="Transport at HOME position" />
+      <VarDeclaration Name="T_MID" Type="BOOL" Comment="Transport at MID position" />
+      <VarDeclaration Name="T_END" Type="BOOL" Comment="Transport at END position" />
+      <VarDeclaration Name="P_HOME" Type="BOOL" Comment="Press at HOME position" />
+      <VarDeclaration Name="P_END" Type="BOOL" Comment="Press at END position" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="CYL1_FWD" Type="BOOL" Comment="Move Cylinder#1 Forward" />
+      <VarDeclaration Name="CYL2_FWD" Type="BOOL" Comment="Move Cylinder#2 Forward" />
+      <VarDeclaration Name="CYL12_REV" Type="BOOL" Comment="Retract Both Cylinders" />
+      <VarDeclaration Name="PRESS_FWD" Type="BOOL" Comment="Move Press Forward" />
+      <VarDeclaration Name="PRESS_REV" Type="BOOL" Comment="Retract Press" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <ECC >
+      <ECState Name="START" Comment="Initial State" x="311.11108" y="61.111107" >
+      </ECState>
+      <ECState Name="FEED_PEG" x="1377.7777" y="61.111107" >
+        <ECAction Algorithm="FEED_PEG" Output="TA" />
+      </ECState>
+      <ECState Name="FEED_RING" x="1377.7777" y="561.1111" >
+        <ECAction Algorithm="FEED_RING" Output="PA" />
+      </ECState>
+      <ECState Name="RETRACT_PRESS" x="1377.7777" y="1127.7777" >
+        <ECAction Algorithm="RETRACT_PRESS" Output="PA" />
+      </ECState>
+      <ECState Name="DELIVER_ASSY" x="311.11108" y="955.55554" >
+        <ECAction Algorithm="DELIVER_ASSY" Output="TA" />
+      </ECState>
+      <ECState Name="RETRACT" x="311.11108" y="583.3333" >
+        <ECAction Algorithm="RETRACT_CYL" Output="TA" />
+      </ECState>
+      <ECTransition Source="START" Destination="FEED_PEG" Condition="RUN_TRIG&#38;RUN" x="755.55554" y="61.111107" />
+      <ECTransition Source="FEED_PEG" Destination="FEED_RING" Condition="TS&#38;T_MID" x="1377.7777" y="277.77777" />
+      <ECTransition Source="FEED_RING" Destination="RETRACT_PRESS" Condition="PS&#38;P_END" x="1377.7777" y="722.22217" />
+      <ECTransition Source="RETRACT_PRESS" Destination="DELIVER_ASSY" Condition="PS&#38;!P_END" x="311.11108" y="1127.7777" />
+      <ECTransition Source="DELIVER_ASSY" Destination="RETRACT" Condition="TS&#38;T_END" x="311.11108" y="788.88885" />
+      <ECTransition Source="RETRACT" Destination="START" Condition="TS&#38;T_HOME &#38; !RUN" x="311.11108" y="222.22221" />
+      <ECTransition Source="RETRACT" Destination="FEED_PEG" Condition="TS&#38;T_HOME &#38; RUN" x="733.3333" y="311.11108" />
+    </ECC>
+  <Algorithm Name="FEED_PEG" >
+    <ST Text="CYL1_FWD := TRUE;&#10;CYL2_FWD := FALSE;&#10;CYL12_REV := FALSE;&#10;" />
+  </Algorithm>
+  <Algorithm Name="FEED_RING" >
+    <ST Text="PRESS_FWD := TRUE;&#10;PRESS_REV := FALSE;&#10;" />
+  </Algorithm>
+  <Algorithm Name="RETRACT_PRESS" >
+    <ST Text="PRESS_FWD := FALSE;&#10;PRESS_REV := TRUE;&#10;" />
+  </Algorithm>
+  <Algorithm Name="DELIVER_ASSY" >
+    <ST Text="CYL1_FWD := TRUE;&#10;CYL2_FWD := TRUE;&#10;CYL12_REV := FALSE;&#10;" />
+  </Algorithm>
+  <Algorithm Name="RETRACT_CYL" >
+    <ST Text="CYL1_FWD := FALSE;&#10;CYL2_FWD := FALSE;&#10;CYL12_REV := TRUE;&#10;" />
+  </Algorithm>
+  </BasicFB>
+</FBType>

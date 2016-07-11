@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="TEST_SH2" Comment="Test DWORD, LWORD shift functions" >
+  <Identification Standard="61499-1" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.1" Author="JHC" Date="2007-11-11" Remarks="Deleted import." />
+  <VersionInfo Organization="Holobloc Inc" Version="0.0" Author="JHC" Date="2006-09-06" />
+  <CompilerInfo header="package fb.rt.test;" classdef="SimpleFB" >
+    <Compiler Language="Java" Vendor="Sun" Product="JDK" Version="1.6.0" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="REQ" Comment="Normal Execution Request" >
+        <With Var="IND" />
+        <With Var="INL" />
+        <With Var="N" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="CNF" Comment="Execution Confirmation" >
+        <With Var="OUTDL" />
+        <With Var="OUTDR" />
+        <With Var="OUTLL" />
+        <With Var="OUTLR" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="IND" Type="DWORD" />
+      <VarDeclaration Name="INL" Type="LWORD" />
+      <VarDeclaration Name="N" Type="UINT" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="OUTDL" Type="DWORD" />
+      <VarDeclaration Name="OUTDR" Type="DWORD" />
+      <VarDeclaration Name="OUTLL" Type="LWORD" />
+      <VarDeclaration Name="OUTLR" Type="LWORD" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+  <Algorithm Name="REQ" Comment="Normally executed algorithm" >
+    <FBD >
+      <FB Name="SHLD" Type="SHL_DWORD" x="277.77777" y="11.111111" />
+      <FB Name="SHRD" Type="SHR_DWORD" x="1122.2222" y="11.111111" />
+      <FB Name="SHLL" Type="SHL_LWORD" x="288.8889" y="483.3333" />
+      <FB Name="SHRL" Type="SHR_LWORD" x="1105.5555" y="472.2222" />
+      <DataConnections>
+        <Connection Source="N" Destination="SHLD.N" dx1="205.55554" />
+        <Connection Source="N" Destination="SHRD.N" dx1="1050.0" />
+        <Connection Source="N" Destination="SHLL.N" dx1="216.66666" />
+        <Connection Source="N" Destination="SHRL.N" dx1="1033.3333" />
+        <Connection Source="IND" Destination="SHLD.IN" dx1="183.33333" />
+        <Connection Source="SHLD.OUT" Destination="OUTDL" dx1="800.0" />
+        <Connection Source="IND" Destination="SHRD.IN" dx1="1027.7777" />
+        <Connection Source="SHRD.OUT" Destination="OUTDR" dx1="1655.5555" />
+        <Connection Source="INL" Destination="SHLL.IN" dx1="194.44444" />
+        <Connection Source="SHLL.OUT" Destination="OUTLL" dx1="805.55554" />
+        <Connection Source="INL" Destination="SHRL.IN" dx1="1011.1111" />
+        <Connection Source="SHRL.OUT" Destination="OUTLR" dx1="1627.7777" />
+      </DataConnections>
+    </FBD>
+  </Algorithm>
+  </BasicFB>
+</FBType>

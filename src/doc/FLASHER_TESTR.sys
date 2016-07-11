@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE System SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<System Name="FLASHER_TESTR" Comment="Remote Flasher Test System Configuration" >
+  <Identification Standard="61499-1" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.2" Author="JHC" Date="2007-11-07" Remarks="Re-implemented as per FLASHER_TESTD." />
+  <VersionInfo Organization="Holobloc Inc" Version="0.1" Author="JHC" Date="2006-10-27" Remarks="Added multiple CLIENT/SERVERs." />
+  <VersionInfo Organization="Holobloc Inc" Version="0.0" Author="JHC" Date="2006-10-25" Remarks="Copied from FLASHERT_TESTR to fb.rt.doc." />
+  <Device Name="CTL_PANEL" Type="FRAME_DEVICE" x="650.0" y="11.111111" >
+    <Parameter Name="BOUNDS" Value="[50,100,350,100]" />
+    <Parameter Name="GRID" Value="[1,1]" />
+    <Resource Name="RES1" Type="PANEL_RESOURCE" x="127.77777" y="11.111111" >
+      <FBNetwork >
+        <FB Name="RUNSTOP_RADIO" Type="RADIO_BOOL" x="472.2222" y="11.111111" >
+          <Parameter Name="LABEL1" Value="&#34;RUN&#34;" />
+          <Parameter Name="LABEL0" Value="&#34;STOP&#34;" />
+        </FB>
+        <FB Name="MODE_SEL" Type="IN_CHOICE" x="2133.3333" y="705.55554" >
+          <Parameter Name="CHOICES" Value="&#34;FLASH_ALL,COUNT_UP,COUNT_DOWN,CHASE_UP,CHASE_DOWN&#34;" />
+        </FB>
+        <FB Name="DT" Type="IN_ANY" x="1188.8888" y="11.111111" >
+          <Parameter Name="TYPE" Value="&#34;TIME&#34;" />
+          <Parameter Name="IVAL" Value="t#250ms" />
+        </FB>
+        <FB Name="RUNSTOP" Type="PUBLISH_2" x="1716.6666" y="355.55554" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="ID" Value="&#34;225.0.0.1:1025&#34;" />
+        </FB>
+        <FB Name="MODE" Type="PUBLISH_1" x="2700.0" y="944.4444" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="ID" Value="&#34;225.0.0.3:1027&#34;" />
+        </FB>
+        <FB Name="LEDS" Type="LED_HMI" x="3683.3333" y="233.33333" />
+        <FB Name="FL_OUTS" Type="SUBSCRIBE_4" x="3155.5554" y="11.111111" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="ID" Value="&#34;225.0.0.4:1028&#34;" />
+        </FB>
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="RUNSTOP_RADIO.INIT" dx1="27.777777" dx2="41.1765" dy="588.2353" />
+          <Connection Source="RUNSTOP_RADIO.INITO" Destination="DT.INIT" dx1="27.777777" />
+          <Connection Source="RUNSTOP_RADIO.IND" Destination="DT.REQ" dx1="27.777777" />
+          <Connection Source="DT.IND" Destination="RUNSTOP.REQ" dx1="27.777777" />
+          <Connection Source="DT.INITO" Destination="RUNSTOP.INIT" dx1="66.666664" />
+          <Connection Source="RUNSTOP.INITO" Destination="MODE_SEL.INIT" dx1="38.888885" dx2="50.0" dy="783.3333" />
+          <Connection Source="MODE_SEL.INITO" Destination="MODE.INIT" dx1="50.0" />
+          <Connection Source="MODE_SEL.IND" Destination="MODE.REQ" dx1="27.777777" />
+          <Connection Source="MODE.INITO" Destination="FL_OUTS.INIT" dx1="27.777777" />
+          <Connection Source="FL_OUTS.INITO" Destination="LEDS.INIT" dx1="61.111107" />
+          <Connection Source="FL_OUTS.IND" Destination="LEDS.REQ" dx1="27.777777" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="RUNSTOP_RADIO.OUT" Destination="RUNSTOP.SD_1" dx1="27.777777" />
+          <Connection Source="DT.OUT" Destination="RUNSTOP.SD_2" dx1="27.777777" />
+          <Connection Source="MODE_SEL.I" Destination="MODE.SD_1" dx1="27.777777" />
+          <Connection Source="FL_OUTS.RD_1" Destination="LEDS.LED3" dx1="66.666664" />
+          <Connection Source="FL_OUTS.RD_2" Destination="LEDS.LED2" dx1="77.77777" />
+          <Connection Source="FL_OUTS.RD_3" Destination="LEDS.LED1" dx1="83.33333" />
+          <Connection Source="FL_OUTS.RD_4" Destination="LEDS.LED0" dx1="94.44444" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+  </Device>
+  <Device Name="FLASHER" Type="RMT_DEV" x="1322.2222" y="11.111111" >
+    <Resource Name="MGR" Type="RMT_RES" x="366.66666" y="11.111111" >
+    </Resource>
+    <Resource Name="RES1" Type="EMB_RES" x="844.4444" y="11.111111" >
+      <FBNetwork >
+        <FB Name="CLK" Type="E_CYCLE" x="1427.7777" y="344.44443" />
+        <FB Name="FLASHIT" Type="FLASHER4" x="1927.7777" y="233.33333" />
+        <FB Name="RUNSTOP" Type="SUBSCRIBE_2" x="522.2222" y="11.111111" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="ID" Value="&#34;225.0.0.1:1025&#34;" />
+        </FB>
+        <FB Name="RS_GATE" Type="E_SWITCH" x="1022.22217" y="233.33333" />
+        <FB Name="MODE" Type="SUBSCRIBE_1" x="1361.1111" y="1027.7777" >
+          <Parameter Name="ID" Value="&#34;225.0.0.3:1027&#34;" />
+          <Parameter Name="QI" Value="1" />
+        </FB>
+        <FB Name="FL_OUT" Type="PUBLISH_4" x="2805.5554" y="11.111111" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="ID" Value="&#34;225.0.0.4:1028&#34;" />
+        </FB>
+        <EventConnections>
+          <Connection Source="CLK.EO" Destination="FLASHIT.REQ" dx1="27.777777" />
+          <Connection Source="START.COLD" Destination="RUNSTOP.INIT" dx1="27.777777" />
+          <Connection Source="RUNSTOP.IND" Destination="RS_GATE.EI" dx1="27.777777" />
+          <Connection Source="MODE.IND" Destination="FLASHIT.INIT" dx1="38.888885" />
+          <Connection Source="RS_GATE.EO0" Destination="CLK.STOP" dx1="27.777777" />
+          <Connection Source="RS_GATE.EO1" Destination="CLK.START" dx1="33.333332" />
+          <Connection Source="RUNSTOP.INITO" Destination="FL_OUT.INIT" dx1="183.33333" />
+          <Connection Source="FLASHIT.CNF" Destination="FL_OUT.REQ" dx1="33.333332" />
+          <Connection Source="FL_OUT.INITO" Destination="MODE.INIT" dx1="27.777777" dx2="166.66666" dy="1788.8888" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="RUNSTOP.RD_2" Destination="CLK.DT" dx1="338.8889" />
+          <Connection Source="RUNSTOP.RD_1" Destination="RS_GATE.G" dx1="44.444443" />
+          <Connection Source="MODE.RD_1" Destination="FLASHIT.MODE" dx1="88.888885" />
+          <Connection Source="FLASHIT.LED3" Destination="FL_OUT.SD_1" dx1="211.1111" />
+          <Connection Source="FLASHIT.LED2" Destination="FL_OUT.SD_2" dx1="238.88889" />
+          <Connection Source="FLASHIT.LED1" Destination="FL_OUT.SD_3" dx1="261.1111" />
+          <Connection Source="FLASHIT.LED0" Destination="FL_OUT.SD_4" dx1="288.8889" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+  </Device>
+</System>

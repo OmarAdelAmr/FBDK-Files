@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+<META NAME="GENERATOR" CONTENT="Eclipse HTML Editor">
+<TITLE>SYSTEM TESTBED_VIEWL</TITLE>
+</HEAD>
+<BODY>
+<H3>2. Develop and Test Views</H3>
+<P>The <TT>TESTBED_VIEWL</TT> system configuration shown <A
+	HREF="#Viewer">below</A> implements the layered <A
+	HREF="../../despats/mvc/syseng2.htm#2"><B>View</B> testing architecture</A>
+for the <A HREF="sketch.htm">Sortation/Inspection testbed</A>. The <TT>HMI</TT>
+device encapsulates the functionality of the human interface layer, and
+the <TT>MODEL</TT> device encapsulates the functionality of the <B>View</B>
+layer. The <TT>MODEL</TT> device contains two instances of the
+specialized <A HREF="../../common/VIEW_PANEL.htm"><TT>VIEW_PANEL</TT></A>
+resource type to provide the necessary layout of View elements for the
+drilling example. Inter-layer communication is implemented with the <A
+	HREF="../../despats/publsubl/index.htm">local multicast</A> pattern,
+e.g., by using <TT>PUBL_3/SUBL_3</TT> for linking the <TT><A
+	HREF="../../despats/mvc/MECH_HMIL.htm">MECH_HMIL</A>/<A
+	HREF="../../despats/mvc/MECH_VIEWL.htm">MECH_VIEWL</A></TT> pairs.</P>
+<CENTER>
+<P><IMG SRC="../../note.gif">Click on a graphic element to navigate to its documentation.<BR>
+<IMG SRC="TESTBED_VIEWL.gif" USEMAP="#MAP1"
+	HEIGHT="360" WIDTH="665"></P>
+<P>[<A NAME="Viewer" HREF="../../FBViewer.html" TARGET="help">Viewer
+Help</A>]<BR>
+<TABLE BORDER="1">
+	<TBODY>
+		<TR>
+			<TD><APPLET CODE="FBViewer" ARCHIVE="../../viewer.jar" HEIGHT="480"
+				WIDTH="780"></APPLET> <BR>
+			</TD>
+		</TR>
+	</TBODY>
+</TABLE>
+</P>
+<P><I>Last updated: 2006-04-17.</I><BR>
+&copy;2006 Holobloc Inc.<BR>
+Licensed under the <A
+	HREF="http://www.opensource.org/licenses/afl-3.0.php">Academic Free
+License version 3.0</A>.</P>
+</CENTER>
+<MAP NAME="MAP1">
+	<AREA COORDS="3,37,327,117" HREF="../../despats/mvc/MECH_HMIL.htm">
+	<AREA COORDS="376,41,456,81" HREF="../../despats/mvc/XSPACE.htm">
+	<AREA COORDS="457,41,501,79" HREF="../../despats/mvc/SOL_VIEWL.htm">
+	<AREA COORDS="501,42,661,82" HREF="../../despats/mvc/XSPACE.htm">
+	<AREA COORDS="376,81,661,121" HREF="../../despats/mvc/MECH_VIEWL.htm">
+	<AREA COORDS="3,117,345,142" HREF="../../despats/mvc/MECHC_HMIL.htm">
+	<AREA COORDS="376,121,416,282" HREF="../../despats/mvc/MECH_VIEWL.htm">
+	<AREA COORDS="416,122,456,282" HREF="../../despats/mvc/XSPACE.htm">
+	<AREA COORDS="456,122,497,282" HREF="../../despats/mvc/MECH_VIEWL.htm">
+	<AREA COORDS="497,122,665,280" HREF="../../despats/mvc/XSPACE.htm">
+	<AREA COORDS="3,142,364,215" HREF="../../despats/mvc/MECH_HMIL.htm">
+	<AREA COORDS="377,280,665,320" HREF="../../despats/mvc/MECH_VIEWL.htm">
+	<AREA COORDS="377,320,618,356" HREF="../../despats/mvc/XSPACE.htm">
+	<AREA COORDS="618,320,663,357" HREF="../../despats/mvc/SOL_VIEWL.htm">
+</MAP>
+</BODY>
+</HTML>

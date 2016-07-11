@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE DataType SYSTEM "http://www.holobloc.com/xml/DataType.dtd" >
+<DataType Name="VAV_SP" Comment="Setpoint Parameters for Variable Air Volume Controller" >
+  <Identification Standard="61499-1" ApplicationDomain="HVAC" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.2" Author="JHC" Date="2006-05-12" Remarks="Corrected UnoccHtgSP from BOOL to REAL." />
+  <VersionInfo Organization="Holobloc Inc" Version="0.1" Author="JHC" Date="2006-05-07" Remarks="Updated tag number to avoid conflict with COLOR." />
+  <VersionInfo Organization="Holobloc Inc" Version="0.0" Author="JHC" Date="2006-04-04" />
+  <CompilerInfo header="package fb.rt.hvac;" >
+    <Compiler Language="Java" Vendor="Sun" Product="JDK" Version="1.5.0" />
+  </CompilerInfo>
+  <ASN1Tag Class="PRIVATE" Number="3" />
+  <StructuredType >
+    <VarDeclaration Name="SP" Type="REAL" Comment="Cooling setpoint. May be modified by the Temperature Setpoint (AI) as an offset" />
+    <VarDeclaration Name="UnoccSP" Type="REAL" Comment="Unoccupied cooling setpoint.  The offset between SP and UnoccSP will remain the same" />
+    <VarDeclaration Name="StandbySP" Type="REAL" Comment="Standby cooling setpoint. The offset between SP and StandbySP will remain the same" />
+    <VarDeclaration Name="HeatingSP" Type="REAL" Comment="Occupied heating setpoint.  The offset between SP and HeatingSP will remain the same" />
+    <VarDeclaration Name="StandbyHtgSP" Type="REAL" Comment="Standby heating setpoint. The offset between SP and StandbySP will remain the same" />
+    <VarDeclaration Name="UnoccHtgSP" Type="REAL" Comment="Unoccupied heating setpoint. The offset between SP and UnoccHtgSP will remain the same" />
+  </StructuredType>
+</DataType>

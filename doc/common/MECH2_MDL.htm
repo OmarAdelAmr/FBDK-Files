@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+<META NAME="GENERATOR" CONTENT="Eclipse HTML Editor">
+<TITLE>FUNCTION_BLOCK MECH2_MDL</TITLE>
+</HEAD>
+<BODY>
+<H2 ALIGN="center">FUNCTION_BLOCK MECH2_MDL</H2>
+<P>An instance of <A HREF="#Viewer">this function block type</A>
+provides a model for bidirectional motion along a single axis with
+sensors at both ends of its motion. The <TT>POS</TT> output is expressed
+in units of 0% to 100% full scale, and the <TT>VF</TT> and <TT>VR</TT>
+inputs are expressed in % of full scale per "tick" of the <TT>CLK</TT>
+event input. The <TT>HOME</TT> and <TT>END</TT> outputs indicate the 0%
+and 100% full scale positions. The <TT>IND</TT> output indicates a
+change in the <TT>POS, HOME</TT> and/or <TT>END</TT> outputs.</P>
+
+<P>Motion stops when the <TT>FAULT</TT> input is <TT>TRUE</TT> and
+resumes when it is <TT>FALSE</TT>, thus permitting the simulation of
+simple faults.</P>
+
+<P>The direction and velocity of motion are determined by the internal
+variable <TT>SPEED</TT>, derived from the <TT>FWD</TT>, <TT>REV</TT> and
+<TT>FAULT</TT> inputs as shown in the table below.</P>
+<CENTER>
+<TABLE BORDER="1">
+	<TR>
+		<TH ALIGN="CENTER">FAULT</TD>
+		<TH ALIGN="center">FWD</TD>
+		<TH ALIGN="center">REV</TD>
+		<TH ALIGN="center">SPEED</TD>
+	</TR>
+	<TR>
+		<TD ALIGN="center"><TT>FALSE</TT></TD>
+		<TD ALIGN="center"><TT>FALSE</TT></TD>
+		<TD ALIGN="center"><TT>FALSE</TT></TD>
+		<TD ALIGN="center"><TT>0</TT></TD>
+	</TR>
+	<TR>
+		<TD ALIGN="center"><TT>FALSE</TT></TD>
+		<TD ALIGN="center"><TT>FALSE</TT></TD>
+		<TD ALIGN="center"><TT>TRUE</TT></TD>
+		<TD ALIGN="center"><TT>-VR</TT></TD>
+	</TR>
+	<TR>
+		<TD ALIGN="center"><TT>FALSE</TT></TD>
+		<TD ALIGN="center"><TT>TRUE</TT></TD>
+		<TD ALIGN="center"><TT>FALSE</TT></TD>
+		<TD ALIGN="center"><TT>VF</TT></TD>
+	</TR>
+	<TR>
+		<TD ALIGN="center"><TT>FALSE</TT></TD>
+		<TD ALIGN="CENTER"><TT>TRUE</TT></TD>
+		<TD ALIGN="center"><TT>TRUE</TT></TD>
+		<TD ALIGN="center"><TT>VF-VR</TT></TD>
+	</TR>
+	<TR>
+		<TD ALIGN="center" VALIGN="top"><TT>TRUE</TT></TD>
+		<TD ALIGN="center" VALIGN="top"><TT>x</TT></TD>
+		<TD ALIGN="center" VALIGN="top"><TT>x</TT></TD>
+		<TD ALIGN="center" VALIGN="top"><TT>0</TT></TD>
+	</TR>
+</TABLE>
+<P><A NAME="Viewer"></A>[<A HREF="../FBViewer.html" TARGET="help">Viewer
+Help</A>]</P>
+<TABLE BORDER="1">
+	<TR>
+		<TD><APPLET CODE="FBViewer" ARCHIVE="../viewer.jar" HEIGHT="375"
+			WIDTH="400"> </APPLET></TD>
+	</TR>
+</TABLE>
+<P><I>Last updated: 2006-04-19.</I><BR>
+&copy;2006 <A HREF="http://www.holobloc.com" TARGET="_blank">Holobloc
+Inc</A><BR>
+Licensed under the <A
+	HREF="http://www.opensource.org/licenses/afl-3.0.php">Academic Free
+License version 3.0</A>.</P>
+</CENTER>
+</BODY>
+</HTML>

@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="TEST_MOD" Comment="Test modulo functions" >
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.0" Author="JHC" Date="2006-09-05" />
+  <CompilerInfo header="package fb.rt.test;" classdef="public class TEST_ABS extends SimpleFB" >
+    <Compiler Language="Java" Vendor="Sun" Product="JDK" Version="1.5.0" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="REQ" Comment="Normal Execution Request" >
+        <With Var="IN1" />
+        <With Var="IN2" />
+        <With Var="IN3" />
+        <With Var="IN4" />
+        <With Var="IN5" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="CNF" Comment="Execution Confirmation" >
+        <With Var="OUT1" />
+        <With Var="OUT2" />
+        <With Var="OUT3" />
+        <With Var="OUT4" />
+        <With Var="OUT5" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="IN1" Type="DINT" />
+      <VarDeclaration Name="IN2" Type="INT" />
+      <VarDeclaration Name="IN3" Type="LINT" />
+      <VarDeclaration Name="IN4" Type="UINT" />
+      <VarDeclaration Name="IN5" Type="SINT" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="OUT1" Type="DINT" />
+      <VarDeclaration Name="OUT2" Type="INT" />
+      <VarDeclaration Name="OUT3" Type="LINT" />
+      <VarDeclaration Name="OUT4" Type="UINT" />
+      <VarDeclaration Name="OUT5" Type="SINT" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+  <Algorithm Name="REQ" Comment="Normally executed algorithm" >
+    <FBD >
+      <FB Name="TEST1" Type="MOD_DINT" x="249.99998" y="11.111111" >
+        <Parameter Name="IN2" Value="2" />
+      </FB>
+      <FB Name="TEST2" Type="MOD_INT" x="983.3333" y="11.111111" >
+        <Parameter Name="IN2" Value="2" />
+      </FB>
+      <FB Name="TEST3" Type="MOD_LINT" x="1694.4443" y="11.111111" >
+        <Parameter Name="IN2" Value="2" />
+      </FB>
+      <FB Name="TEST4" Type="MOD_UINT" x="594.4444" y="461.11108" >
+        <Parameter Name="IN2" Value="2" />
+      </FB>
+      <FB Name="TEST5" Type="MOD_SINT" x="1322.2222" y="438.8889" >
+        <Parameter Name="IN2" Value="0" />
+      </FB>
+      <DataConnections>
+        <Connection Source="TEST1.OUT" Destination="OUT1" dx1="700.0" />
+        <Connection Source="TEST2.OUT" Destination="OUT2" dx1="1394.4443" />
+        <Connection Source="TEST3.OUT" Destination="OUT3" dx1="2138.889" />
+        <Connection Source="TEST5.OUT" Destination="OUT5" dx1="1772.2222" />
+        <Connection Source="IN1" Destination="TEST1.IN1" dx1="155.55554" />
+        <Connection Source="IN2" Destination="TEST2.IN1" dx1="888.88885" />
+        <Connection Source="IN3" Destination="TEST3.IN1" dx1="1600.0" />
+        <Connection Source="IN4" Destination="TEST4.IN1" dx1="499.99997" />
+        <Connection Source="TEST4.OUT" Destination="OUT4" dx1="1044.4445" />
+        <Connection Source="IN5" Destination="TEST5.IN1" dx1="1227.7777" />
+      </DataConnections>
+    </FBD>
+  </Algorithm>
+  </BasicFB>
+</FBType>

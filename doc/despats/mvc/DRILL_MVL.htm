@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+<META NAME="GENERATOR" CONTENT="Eclipse HTML Editor">
+<TITLE>SYSTEM DRILL_MVL</TITLE>
+</HEAD>
+<BODY>
+<H3>4. Develop and Test Models</H3>
+<P><A HREF="#Viewer">This system configuration</A> implements the
+layered <A HREF="syseng2.htm#4"><B>Model+View</B> testing
+architecture</A> for the <A HREF="drilsket.htm">drilling example</A>.</P>
+<UL>
+	<LI>The <TT>HMI,MODEL</TT> and <TT>VIEW</TT> devices encapsulate
+	the functionality of the corresponding layers of the architecture.</LI>
+	<LI>As in the <A HREF="DRILL_VIEWL.htm"><TT>DRILL_VIEWL</TT></A>
+	configuration, the <TT>VIEW</TT> device contains two instances of the
+	specialized <A HREF="../../common/VIEW_PANEL.htm"><TT>VIEW_PANEL</TT></A>
+	resource type to provide the necessary layout of View elements for the
+	drilling example.</LI>
+	<LI>The <TT>MODEL</TT> device contains the <B>Model</B> elements
+	(instances of the <A HREF="XBAR_MDLL.htm"><TT>XBAR_MDLL</TT></A>, <A
+		HREF="SOL_MDLL.htm"><TT>SOL_MDLL</TT></A>, and <A
+		HREF="XSLIDE_MDLL.htm"><TT>XSLIDE_MDLL</TT></A><TT> </TT>types) and
+	the logic for their interactions.</LI>
+	<LI>Inter-layer communication is implemented with the <A
+		HREF="../publsubl/index.htm" TARGET="_top">local multicast</A>
+	pattern. In particular, transfer of workpieces among physical elements
+	is modeled by appropriate instances of the <A HREF="LOADL.htm"><TT>LOADL</TT></A>
+	type interacting with local subscribers encapsulated in the element
+	models.</LI>
+</UL>
+<CENTER>
+<P><IMG SRC="../../note.gif">Click on a graphic element to
+navigate to its Model.<BR>
+<IMG SRC="images/DRILL_MVL.gif" USEMAP="DRILL_MVL" HEIGHT="360"
+	WIDTH="565"></P>
+<P>[<A NAME="Viewer" HREF="../../FBViewer.html" TARGET="help">Viewer
+Help</A>]<BR>
+<TABLE BORDER="1">
+	<TR>
+		<TD><APPLET CODE="FBViewer" ARCHIVE="../../viewer.jar"
+			HEIGHT="600" WIDTH="900"> </APPLET> <BR>
+		</TD>
+	</TR>
+</TABLE>
+</P>
+<P><I>Last updated: 2007-09-22.</I><BR>
+&copy;2006,2007 <A HREF="http://www.holobloc.com" TARGET="_blank">Holobloc
+Inc.</A><BR>
+Licensed under the <A
+	HREF="http://www.opensource.org/licenses/afl-3.0.php">Academic Free
+License version 3.0</A>.</P>
+</CENTER>
+<MAP NAME="DRILL_MVL">
+	<AREA SHAPE="RECT" COORDS="409,222,439,252" HREF="SOL_MDLL.htm">
+	<AREA SHAPE="RECT" COORDS="408,162,438,192" HREF="SOL_MDLL.htm">
+	<AREA SHAPE="RECT" COORDS="379,222,409,342" HREF="XBAR_MDLL.htm">
+	<AREA SHAPE="RECT" COORDS="528,100,559,192" HREF="XBAR_MDLL.htm">
+	<AREA SHAPE="RECT" COORDS="379,192,559,222" HREF="XSLIDE_MDLL.htm">
+	<AREA SHAPE="RECT" COORDS="379,42,408,195" HREF="XBAR_MDLL.htm">
+</MAP>
+</BODY>
+</HTML>

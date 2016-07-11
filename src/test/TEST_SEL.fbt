@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="TEST_SEL" Comment="Test IEC 61131-3 bit string SEL functions" >
+  <Identification Standard="61499-1" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.0" Author="JHC" Date="2006-09-03" />
+  <CompilerInfo header="package fb.rt.test;" classdef="SimpleFB" >
+    <Compiler Language="Java" Vendor="Sun" Product="JDK" Version="1.5.0" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="REQ" Comment="Normal Execution Request" >
+        <With Var="G" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="CNF" Comment="Execution Confirmation" >
+        <With Var="OUTBO" />
+        <With Var="OUTBY" />
+        <With Var="OUTW" />
+        <With Var="OUTD" />
+        <With Var="OUTL" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="G" Type="BOOL" Comment="Selection gate" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="OUTBO" Type="BOOL" Comment="BOOL selection" />
+      <VarDeclaration Name="OUTBY" Type="BYTE" />
+      <VarDeclaration Name="OUTW" Type="WORD" />
+      <VarDeclaration Name="OUTD" Type="DWORD" />
+      <VarDeclaration Name="OUTL" Type="LWORD" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+  <Algorithm Name="REQ" Comment="Normally executed algorithm" >
+    <FBD >
+      <FB Name="SELBOO" Type="SEL_BOOL" x="200.0" y="11.111111" >
+        <Parameter Name="IN0" Value="true" />
+        <Parameter Name="IN1" Value="false" />
+      </FB>
+      <FB Name="SELBY" Type="SEL_BYTE" x="972.22217" y="11.111111" >
+        <Parameter Name="IN0" Value="1" />
+        <Parameter Name="IN1" Value="0" />
+      </FB>
+      <FB Name="SELW" Type="SEL_WORD" x="1694.4443" y="11.111111" >
+        <Parameter Name="IN0" Value="1" />
+        <Parameter Name="IN1" Value="0" />
+      </FB>
+      <FB Name="SELD" Type="SEL_DWORD" x="216.66666" y="661.1111" >
+        <Parameter Name="IN0" Value="1" />
+        <Parameter Name="IN1" Value="0" />
+      </FB>
+      <FB Name="SELL" Type="SEL_LWORD" x="999.99994" y="655.55554" >
+        <Parameter Name="IN0" Value="1" />
+        <Parameter Name="IN1" Value="0" />
+      </FB>
+      <DataConnections>
+        <Connection Source="G" Destination="SELBOO.G" dx1="127.77777" />
+        <Connection Source="SELBOO.OUT" Destination="OUTBO" dx1="677.7778" />
+        <Connection Source="G" Destination="SELBY.G" dx1="899.99994" />
+        <Connection Source="SELBY.OUT" Destination="OUTBY" dx1="1444.4443" />
+        <Connection Source="G" Destination="SELW.G" dx1="1622.2222" />
+        <Connection Source="SELW.OUT" Destination="OUTW" dx1="2166.6665" />
+        <Connection Source="G" Destination="SELD.G" dx1="144.44444" />
+        <Connection Source="SELD.OUT" Destination="OUTD" dx1="722.22217" />
+        <Connection Source="G" Destination="SELL.G" dx1="927.7778" />
+        <Connection Source="SELL.OUT" Destination="OUTL" dx1="1500.0" />
+      </DataConnections>
+    </FBD>
+  </Algorithm>
+  </BasicFB>
+</FBType>

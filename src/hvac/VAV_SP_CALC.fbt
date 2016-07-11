@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="VAV_SP_CALC" Comment="Calculate Variable Air Volume Controller Set Points" >
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.0" Author="JHC" Date="2006-05-12" />
+  <CompilerInfo header="package fb.rt.hvac;" >
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialize OUT from SP" >
+        <With Var="SP" />
+        <With Var="UnoccSP" />
+        <With Var="StandbySP" />
+        <With Var="HeatingSP" />
+        <With Var="StandbyHtgSP" />
+        <With Var="UnoccHtgSP" />
+      </Event>
+      <Event Name="REQ" Comment="Compute OUT from TemperatureSP" >
+        <With Var="TemperatureSP" />
+        <With Var="SP" />
+        <With Var="UnoccSP" />
+        <With Var="StandbySP" />
+        <With Var="HeatingSP" />
+        <With Var="StandbyHtgSP" />
+        <With Var="UnoccHtgSP" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Confirmation of INIT processing" >
+        <With Var="OUT" />
+      </Event>
+      <Event Name="CNF" Comment="Confirmation of REQ processing" >
+        <With Var="OUT" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="TemperatureSP" Type="REAL" Comment="Setpoint from zone controller AI, scaled to same units (eg, deg F) as other inputs" />
+      <VarDeclaration Name="SP" Type="REAL" Comment="Cooling setpoint. May be modified by the Temperature Setpoint (AI) as an offset" />
+      <VarDeclaration Name="UnoccSP" Type="REAL" Comment="Unoccupied cooling setpoint.  The offset between SP and UnoccSP will remain the same" />
+      <VarDeclaration Name="StandbySP" Type="REAL" Comment="Standby cooling setpoint. The offset between SP and StandbySP will remain the same" />
+      <VarDeclaration Name="HeatingSP" Type="REAL" Comment="Occupied heating setpoint.  The offset between SP and HeatingSP will remain the same" />
+      <VarDeclaration Name="StandbyHtgSP" Type="REAL" Comment="Standby heating setpoint. The offset between SP and StandbySP will remain the same" />
+      <VarDeclaration Name="UnoccHtgSP" Type="REAL" Comment="Unoccupied heating setpoint. The offset between SP and UnoccHtgSP will remain the same" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="OUT" Type="VAV_SP" Comment="Computed SP values" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+  <Algorithm Name="INIT" Comment="Initialize OUT value" >
+    <ST Text="OUT.SP := SP;&#10;OUT.UnoccSP := UnoccSP;&#10;OUT.StandbySP := StandbySP;&#10;OUT.HeatingSP := HeatingSP;&#10;OUT.UnoccHtgSP := UnoccHtgSP;&#10;OUT.StandbyHtgSP := StandbyHtgSP;&#10;INITO.serviceEvent(this);&#10;" />
+  </Algorithm>
+  <Algorithm Name="REQ" Comment="Set OUT values from TemperatureSP values" >
+    <ST Text="OUT.SP := TemperatureSP;&#10;OUT.UnoccSP := UnoccSP-SP+TemperatureSP;&#10;OUT.StandbySP := StandbySP-SP+TemperatureSP;&#10;OUT.HeatingSP := HeatingSP-SP+TemperatureSP;&#10;OUT.UnoccHtgSP := UnoccHtgSP-SP+TemperatureSP;&#10;OUT.StandbyHtgSP := StandbyHtgSP-SP+TemperatureSP;&#10;CNF.serviceEvent(this);&#10;" />
+  </Algorithm>
+  </BasicFB>
+</FBType>

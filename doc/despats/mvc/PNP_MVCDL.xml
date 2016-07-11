@@ -1,0 +1,497 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE System SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<System Name="PNP_MVCDL" Comment="Pick &#38; Place Model/View/Controller/Diagnostics" >
+  <Identification Standard="IEC 61499" Classification="Simulation" ApplicationDomain="Assembly" Function="Control/Diagnostics" Type="Pick &#38; Place" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.5" Author="JHC" Date="2007-11-08" Remarks="Moved DIAGNOSTICS to top of device list." />
+  <VersionInfo Organization="Holobloc Inc" Version="0.4" Author="JHC" Date="2007-09-25" Remarks="Simplified PNP.CLOCK." />
+  <VersionInfo Organization="Holobloc Inc" Version="0.3" Author="JHC" Date="2006-09-18" Remarks="Moved CNV_CTL to PNP device." />
+  <VersionInfo Organization="Holobloc Inc" Version="0.2" Author="JHC" Date="2006-09-16" Remarks="Cleaned up CONTROL.CONVEYOR; moved CNV_LOAD to PNP.CONVEYOR." />
+  <VersionInfo Organization="Holobloc Inc" Version="0.1" Author="JHC" Date="2006-09-16" Remarks="Updated for PNP_CTL_LD as SimpleFB." />
+  <VersionInfo Organization="Holobloc Inc" Version="0.0" Author="JHC" Date="2006-07-04" />
+  <Device Name="DIAGNOSTICS" Type="FRAME_DEVICE" x="1033.3333" y="538.88885" >
+    <Parameter Name="BOUNDS" Value="[100,330,485,180]" />
+    <Resource Name="LOG" Type="PANEL_RESOURCE" x="705.55554" y="11.111111" >
+      <Parameter Name="ROWS" Value="1" />
+      <Parameter Name="COLS" Value="1" />
+      <FBNetwork >
+        <FB Name="DIAG" Type="SUBL_2" x="527.7778" y="11.111111" />
+        <FB Name="LOG" Type="DIAG_LOG" x="1077.7777" y="11.111111" >
+          <Parameter Name="QI" Value="1" />
+        </FB>
+        <FB Name="CLK" Type="E_CYCLE" x="1972.2222" y="144.44444" >
+          <Parameter Name="DT" Value="t#300ms" />
+        </FB>
+        <FB Name="DIAG_CLK" Type="PUBL_0" x="1583.3333" y="11.111111" />
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="DIAG.INIT" dx1="77.77777" dx2="152.9412" dy="-1.0" />
+          <Connection Source="DIAG.INITO" Destination="LOG.INIT" dx1="38.888885" dx2="805.8823" dy="-1.0" />
+          <Connection Source="DIAG.IND" Destination="LOG.REQ" dx1="77.77777" dx2="876.4706" dy="-1.0" />
+          <Connection Source="LOG.INITO" Destination="DIAG_CLK.INIT" dx1="33.333332" />
+          <Connection Source="DIAG_CLK.INITO" Destination="CLK.START" dx1="27.777777" />
+          <Connection Source="CLK.EO" Destination="DIAG_CLK.REQ" dx1="27.777777" dx2="44.444443" dy="633.3333" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="DIAG.RD_1" Destination="LOG.SRC" dx1="61.111107" dx2="1147.0588" dy="1388.2352" />
+          <Connection Source="DIAG.RD_2" Destination="LOG.COND" dx1="27.777777" dx2="1070.5883" dy="1270.5883" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+    <Resource Name="MONITOR" Type="EMB_RES" x="261.1111" y="111.11111" >
+      <FBNetwork >
+        <FB Name="PNP_ACT" Type="SUBL_4" x="77.77777" y="738.88885" />
+        <FB Name="PNP_SENSE" Type="SUBL_5" x="94.44444" y="1822.2222" />
+        <FB Name="X_FWD" Type="MECH1_DIAGL" x="1155.5555" y="11.111111" >
+          <Parameter Name="N" Value="10" />
+          <Parameter Name="SRC" Value="&#34;X-AXIS&#34;" />
+          <Parameter Name="MSG" Value="&#34;TIMEOUT ADVANCING&#34;" />
+        </FB>
+        <FB Name="X_REV" Type="MECH1_DIAGL" x="1977.7777" y="177.77777" >
+          <Parameter Name="N" Value="10" />
+          <Parameter Name="SRC" Value="&#34;X_AXIS&#34;" />
+          <Parameter Name="MSG" Value="&#34;TIMEOUT RETRACTING&#34;" />
+        </FB>
+        <FB Name="Y_FWD" Type="MECH1_DIAGL" x="2550.0" y="694.4444" >
+          <Parameter Name="N" Value="10" />
+          <Parameter Name="SRC" Value="&#34;Y-AXIS&#34;" />
+          <Parameter Name="MSG" Value="&#34;TIMEOUT ADVANCING&#34;" />
+        </FB>
+        <FB Name="Y_REV" Type="MECH1_DIAGL" x="3083.3333" y="1255.5555" >
+          <Parameter Name="N" Value="10" />
+          <Parameter Name="SRC" Value="&#34;Y-AXIS&#34;" />
+          <Parameter Name="MSG" Value="&#34;TIMEOUT RETRACTING&#34;" />
+        </FB>
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="PNP_ACT.INIT" dx1="27.777777" dx2="38.888885" dy="555.55554" />
+          <Connection Source="PNP_ACT.INITO" Destination="PNP_SENSE.INIT" dx1="27.777777" dx2="50.0" dy="877.7778" />
+          <Connection Source="START.COLD" Destination="X_FWD.INIT" dx1="27.777777" />
+          <Connection Source="X_FWD.INITO" Destination="X_REV.INIT" dx1="27.777777" />
+          <Connection Source="X_REV.INITO" Destination="Y_FWD.INIT" dx1="33.333332" />
+          <Connection Source="Y_FWD.INITO" Destination="Y_REV.INIT" dx1="44.444443" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="PNP_ACT.RD_1" Destination="X_FWD.FWD" dx1="88.888885" />
+          <Connection Source="PNP_SENSE.RD_3" Destination="X_FWD.END" dx1="105.55555" />
+          <Connection Source="PNP_ACT.RD_2" Destination="X_REV.FWD" dx1="1227.7777" />
+          <Connection Source="PNP_SENSE.RD_2" Destination="X_REV.END" dx1="1238.8888" />
+          <Connection Source="PNP_ACT.RD_3" Destination="Y_FWD.FWD" dx1="2050.0" />
+          <Connection Source="PNP_SENSE.RD_5" Destination="Y_FWD.END" dx1="2050.0" />
+          <Connection Source="PNP_ACT.RD_4" Destination="Y_REV.FWD" dx1="249.99998" />
+          <Connection Source="PNP_SENSE.RD_4" Destination="Y_REV.END" dx1="1350.0" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+  </Device>
+  <Device Name="PNP" Type="FRAME_DEVICE" x="1649.9999" y="11.111111" >
+    <Parameter Name="BOUNDS" Value="[425,100,160,230]" />
+    <Resource Name="CLOCK" Type="EMB_RES" x="133.33333" y="11.111111" >
+      <FBNetwork >
+        <FB Name="CLK" Type="E_CYCLE" x="505.55554" y="722.22217" >
+          <Parameter Name="DT" Value="t#250ms" />
+        </FB>
+        <FB Name="SIM_CLK" Type="PUBL_0" x="516.6666" y="11.111111" />
+        <FB Name="DLY" Type="E_DELAY" Comment="Wait for View startup" x="1044.4445" y="11.111111" >
+          <Parameter Name="DT" Value="t#2s" />
+        </FB>
+        <EventConnections>
+          <Connection Source="START.STOP" Destination="CLK.STOP" dx1="27.777777" />
+          <Connection Source="START.COLD" Destination="SIM_CLK.INIT" dx1="27.777777" />
+          <Connection Source="SIM_CLK.INITO" Destination="DLY.START" dx1="27.777777" />
+          <Connection Source="DLY.EO" Destination="CLK.START" dx1="27.777777" dx2="200.0" dy="1266.6666" />
+          <Connection Source="CLK.EO" Destination="SIM_CLK.REQ" dx1="27.777777" dx2="61.111107" dy="-161.1111" />
+        </EventConnections>
+      </FBNetwork>
+    </Resource>
+    <Resource Name="CNV_CTL" Type="PANEL_RESOURCE" x="638.88885" y="11.111111" >
+      <Parameter Name="ROWS" Value="2" />
+      <Parameter Name="COLS" Value="2" />
+      <FBNetwork >
+        <FB Name="LD" Type="IN_EVENT" x="844.4444" y="133.33333" >
+          <Parameter Name="LABEL" Value="&#34;    LOAD    &#34;" />
+        </FB>
+        <FB Name="CNV_LD" Type="PUBL_0" x="1300.0" y="11.111111" />
+        <FB Name="CNV_MOTOR" Type="IN_BOOL" x="1699.9999" y="11.111111" >
+          <Parameter Name="LABEL" Value="&#34;MOTOR&#34;" />
+        </FB>
+        <FB Name="CNV_ACT" Type="PUBL_1" x="2150.0" y="11.111111" />
+        <FB Name="CNV_UNLD" Type="SUBL_0" Comment="Conveyor unloaded by Magnet" x="61.111107" y="944.4444" />
+        <FB Name="AUTO" Type="IN_BOOL" Comment="Conveyor auto-reload" x="2544.4443" y="11.111111" >
+          <Parameter Name="LABEL" Value="&#34;AUTO&#34;" />
+        </FB>
+        <FB Name="LBL" Type="FB_LABEL" x="494.44443" y="133.33333" >
+          <Parameter Name="LABEL" Value="&#34;CONVEYOR&#34;" />
+        </FB>
+        <FB Name="DLY" Type="E_DELAY" Comment="Breaks unload/reload loop" x="827.7778" y="1055.5555" >
+          <Parameter Name="DT" Value="t#1s" />
+        </FB>
+        <FB Name="LOAD_GATE" Type="E_PERMIT" x="449.99997" y="1055.5555" />
+        <EventConnections>
+          <Connection Source="LD.INITO" Destination="CNV_LD.INIT" dx1="27.777777" />
+          <Connection Source="LD.IND" Destination="CNV_LD.REQ" dx1="55.555553" />
+          <Connection Source="CNV_LD.INITO" Destination="CNV_MOTOR.INIT" dx1="55.555553" />
+          <Connection Source="CNV_MOTOR.INITO" Destination="CNV_ACT.INIT" dx1="38.888885" />
+          <Connection Source="CNV_MOTOR.IND" Destination="CNV_ACT.REQ" dx1="27.777777" />
+          <Connection Source="CNV_ACT.INITO" Destination="AUTO.INIT" dx1="27.777777" />
+          <Connection Source="START.COLD" Destination="LBL.INIT" dx1="33.333332" />
+          <Connection Source="LBL.INITO" Destination="LD.INIT" dx1="27.777777" />
+          <Connection Source="DLY.EO" Destination="CNV_LD.REQ" dx1="61.111107" dx2="88.888885" dy="-161.1111" />
+          <Connection Source="START.COLD" Destination="CNV_UNLD.INIT" dx1="27.777777" dx2="33.333332" dy="683.3333" />
+          <Connection Source="CNV_UNLD.IND" Destination="LOAD_GATE.EI" dx1="27.777777" />
+          <Connection Source="LOAD_GATE.EO" Destination="DLY.START" dx1="38.888885" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="CNV_MOTOR.OUT" Destination="CNV_ACT.SD_1" dx1="27.777777" />
+          <Connection Source="AUTO.OUT" Destination="LOAD_GATE.PERMIT" dx1="27.777777" dx2="38.888885" dy="927.7778" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+    <Resource Name="CONVEYOR" Type="EMB_RES" x="150.0" y="338.8889" >
+      <FBNetwork >
+        <FB Name="CNV" Type="CNV_MDLL" x="866.6666" y="11.111111" >
+          <Parameter Name="VF" Value="10" />
+        </FB>
+        <FB Name="PRESENT" Type="PUBL_1" Comment="Workpiece present at end of conveyor" x="1988.8888" y="11.111111" />
+        <FB Name="S0_SENSE" Type="V_SENSE" x="1500.0" y="816.6666" >
+          <Parameter Name="REFSTYLE" Value="VSTYLE#BALL" />
+        </FB>
+        <FB Name="CNV_UNLD" Type="SUBL_0" x="472.2222" y="11.111111" />
+        <FB Name="CNV_LD" Type="SUBL_0" x="2394.4443" y="11.111111" />
+        <FB Name="CNV_LOAD" Type="LOADL" x="2783.3333" y="133.33333" >
+          <Parameter Name="ID" Value="&#34;CNV_LOAD&#34;" />
+          <Parameter Name="STYLE" Value="VSTYLE#BALL" />
+          <Parameter Name="WKPC" Value="[255,255,0]" />
+        </FB>
+        <EventConnections>
+          <Connection Source="CNV.INDS" Destination="S0_SENSE.SENSE" dx1="88.888885" />
+          <Connection Source="S0_SENSE.IND" Destination="PRESENT.REQ" dx1="27.777777" />
+          <Connection Source="CNV.INITO" Destination="PRESENT.INIT" dx1="38.888885" />
+          <Connection Source="START.COLD" Destination="CNV_UNLD.INIT" dx1="27.777777" />
+          <Connection Source="CNV_UNLD.INITO" Destination="CNV.INIT" dx1="27.777777" />
+          <Connection Source="CNV_UNLD.IND" Destination="CNV.UNLD" dx1="27.777777" />
+          <Connection Source="PRESENT.INITO" Destination="CNV_LD.INIT" dx1="27.777777" />
+          <Connection Source="CNV_LD.INITO" Destination="CNV_LOAD.INIT" dx1="38.888885" />
+          <Connection Source="CNV_LD.IND" Destination="CNV_LOAD.REQ" dx1="27.777777" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="CNV.END" Destination="S0_SENSE.PRESENT" dx1="55.555553" />
+          <Connection Source="CNV.STYLO" Destination="S0_SENSE.STYLE" dx1="27.777777" />
+          <Connection Source="S0_SENSE.Q" Destination="PRESENT.SD_1" dx1="66.666664" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+    <Resource Name="XY" Type="EMB_RES" x="161.1111" y="650.0" >
+      <FBNetwork >
+        <FB Name="PNP" Type="XY_MDLL" x="455.55554" y="11.111111" >
+          <Parameter Name="UI_ID" Value="&#34;FAULT&#34;" />
+        </FB>
+        <FB Name="MAGNET" Type="SUBL_1" x="2177.7776" y="11.111111" />
+        <FB Name="LD_GATE1" Type="FB_AND" x="1422.2222" y="122.22221" />
+        <FB Name="CNV_UNLD" Type="PUBL_0" x="3166.6665" y="1116.6666" />
+        <FB Name="PNP_MT" Type="FB_NOT" Comment="No workpiece loaded to PNP unit" x="1083.3333" y="122.22221" />
+        <FB Name="LD_GATE2" Type="FB_AND" x="1783.3333" y="122.22221" />
+        <FB Name="UNLD" Type="E_F_TRIG" x="2877.7776" y="122.22221" />
+        <FB Name="PRESENT" Type="SUBL_1" x="1150.0" y="994.4444" />
+        <FB Name="LD_GATE3" Type="FB_AND" x="1605.5555" y="1105.5555" />
+        <FB Name="LD_GATE4" Type="FB_AND" x="2033.3333" y="1105.5555" />
+        <FB Name="LD_TRIG" Type="E_R_TRIG" x="2361.111" y="1105.5555" />
+        <FB Name="PNP_LOAD" Type="LOADL" x="2783.3333" y="1116.6666" >
+          <Parameter Name="STYLE" Value="VSTYLE#BALL" />
+          <Parameter Name="WKPC" Value="[255,255,0]" />
+          <Parameter Name="ID" Value="&#34;PNP_LOAD&#34;" />
+        </FB>
+        <EventConnections>
+          <Connection Source="MAGNET.IND" Destination="UNLD.EI" dx1="50.0" />
+          <Connection Source="UNLD.EO" Destination="PNP.UNLD" dx1="366.66666" dx2="55.555553" dy="1883.3333" />
+          <Connection Source="PNP.IND" Destination="PNP_MT.REQ" dx1="27.777777" />
+          <Connection Source="PNP_MT.CNF" Destination="LD_GATE1.REQ" dx1="27.777777" />
+          <Connection Source="LD_GATE1.CNF" Destination="LD_GATE2.REQ" dx1="27.777777" />
+          <Connection Source="PRESENT.IND" Destination="LD_GATE3.REQ" dx1="27.777777" />
+          <Connection Source="MAGNET.IND" Destination="LD_GATE4.REQ" dx1="61.111107" dx2="50.0" dy="794.4444" />
+          <Connection Source="LD_GATE3.CNF" Destination="LD_GATE4.REQ" dx1="72.22222" dx2="61.111107" dy="633.3333" />
+          <Connection Source="LD_GATE4.CNF" Destination="LD_TRIG.EI" dx1="27.777777" />
+          <Connection Source="START.COLD" Destination="PNP.INIT" dx1="27.777777" />
+          <Connection Source="MAGNET.INITO" Destination="PNP_LOAD.INIT" dx1="244.44443" dx2="72.22222" dy="794.4444" />
+          <Connection Source="LD_TRIG.EO" Destination="PNP_LOAD.REQ" dx1="50.0" />
+          <Connection Source="PNP_LOAD.INITO" Destination="CNV_UNLD.INIT" dx1="33.333332" />
+          <Connection Source="PNP_LOAD.CNF" Destination="CNV_UNLD.REQ" dx1="27.777777" />
+          <Connection Source="LD_GATE2.CNF" Destination="LD_GATE3.REQ" dx1="66.666664" dx2="66.666664" dy="738.88885" />
+          <Connection Source="PNP.INITO" Destination="MAGNET.INIT" dx1="133.33333" />
+          <Connection Source="PNP.INITO" Destination="PRESENT.INIT" dx1="27.777777" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="MAGNET.RD_1" Destination="UNLD.QI" dx1="38.888885" />
+          <Connection Source="PNP.HOMEX" Destination="LD_GATE1.IN2" dx1="161.1111" />
+          <Connection Source="PNP.HOMEY" Destination="LD_GATE2.IN2" dx1="727.7778" />
+          <Connection Source="LD_GATE1.OUT" Destination="LD_GATE2.IN1" dx1="38.888885" />
+          <Connection Source="PRESENT.RD_1" Destination="LD_GATE3.IN1" dx1="27.777777" />
+          <Connection Source="LD_GATE2.OUT" Destination="LD_GATE3.IN2" dx1="33.333332" dx2="111.11111" dy="366.66666" />
+          <Connection Source="LD_GATE4.OUT" Destination="LD_TRIG.QI" dx1="27.777777" />
+          <Connection Source="PNP.LOADED" Destination="PNP_MT.IN" dx1="27.777777" />
+          <Connection Source="PNP_MT.OUT" Destination="LD_GATE1.IN1" dx1="27.777777" />
+          <Connection Source="LD_GATE3.OUT" Destination="LD_GATE4.IN1" dx1="100.0" />
+          <Connection Source="MAGNET.RD_1" Destination="LD_GATE4.IN2" dx1="27.777777" dx2="77.77777" dy="427.77777" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+    <Resource Name="VIEW" Type="VIEW_PANEL" x="733.3333" y="516.6666" >
+      <Parameter Name="DIA" Value="25" />
+      <Parameter Name="SIZE" Value="[6,5]" />
+      <Parameter Name="VERTICAL" Value="0" />
+      <FBNetwork >
+        <FB Name="PNP" Type="XY_VIEWL" x="1288.8888" y="11.111111" >
+          <Parameter Name="BKGD" Value="[0,0,255]" />
+          <Parameter Name="LEN" Value="5" />
+          <Parameter Name="UI_ID" Value="&#34;FAULT&#34;" />
+        </FB>
+        <FB Name="CNV" Type="MECH_VIEWL" Comment="Conveyor" x="544.4444" y="11.111111" >
+          <Parameter Name="BKGD" Value="COLOR#darkGray" />
+          <Parameter Name="LEN" Value="5" />
+          <Parameter Name="DIR" Value="3" />
+        </FB>
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="CNV.INIT" dx1="27.777777" />
+          <Connection Source="CNV.INITO" Destination="PNP.INIT" dx1="61.111107" />
+        </EventConnections>
+      </FBNetwork>
+    </Resource>
+  </Device>
+  <Device Name="CONTROL" Type="FRAME_DEVICE" Comment="Control + HMI" x="583.3333" y="11.111111" >
+    <Parameter Name="BOUNDS" Value="[100,100,325,230]" />
+    <Parameter Name="GRID" Value="[1,5]" />
+    <Resource Name="MODE_CTL" Type="PANEL_RESOURCE" x="911.1111" y="11.111111" >
+      <FBNetwork >
+        <FB Name="FAULT_IND" Type="OUT_BOOL" x="2366.6665" y="1094.4445" >
+          <Parameter Name="C1" Value="[255,0,0]" />
+          <Parameter Name="LABEL" Value="&#34;FAULT&#34;" />
+        </FB>
+        <FB Name="FAULT" Type="SUBL_1" x="2322.2222" y="11.111111" />
+        <FB Name="AUTOMAN" Type="PUBL_2" x="1649.9999" y="1183.3333" />
+        <FB Name="MODE" Type="MODE_AMS" x="499.99997" y="1377.7777" />
+        <FB Name="TOGGLE" Type="IN_EVENT" x="527.7778" y="11.111111" >
+          <Parameter Name="LABEL" Value="&#34;AUTO/MAN&#34;" />
+        </FB>
+        <FB Name="AUTO" Type="OUT_BOOL" x="1122.2222" y="11.111111" >
+          <Parameter Name="C1" Value="[0,255,0]" />
+          <Parameter Name="LABEL" Value="&#34;AUTO&#34;" />
+        </FB>
+        <FB Name="MANUAL" Type="OUT_BOOL" x="1833.3333" y="11.111111" >
+          <Parameter Name="C1" Value="[0,255,0]" />
+          <Parameter Name="LABEL" Value="&#34;MANUAL&#34;" />
+        </FB>
+        <FB Name="STOP" Type="IMG_BOOL" x="2961.111" y="11.111111" >
+          <Parameter Name="LABEL" Value="&#34;STOP&#34;" />
+          <Parameter Name="IMG0" Value="&#34;images/Stop16a.gif&#34;" />
+          <Parameter Name="IMG1" Value="&#34;images/Stop16.gif&#34;" />
+        </FB>
+        <FB Name="STOP_GATE" Type="FB_OR" x="3477.7776" y="1205.5555" />
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="TOGGLE.INIT" dx1="27.777777" />
+          <Connection Source="TOGGLE.INITO" Destination="AUTO.INIT" dx1="33.333332" />
+          <Connection Source="AUTO.INITO" Destination="MANUAL.INIT" dx1="44.444443" />
+          <Connection Source="AUTO.CNF" Destination="MANUAL.REQ" dx1="61.111107" />
+          <Connection Source="MODE.IND" Destination="AUTOMAN.REQ" dx1="594.4444" />
+          <Connection Source="TOGGLE.IND" Destination="MODE.TOGGLE" dx1="27.777777" dx2="238.88889" dy="683.3333" />
+          <Connection Source="AUTOMAN.CNF" Destination="AUTO.REQ" dx1="83.33333" dx2="211.1111" dy="-277.77777" />
+          <Connection Source="STOP.IND" Destination="STOP_GATE.REQ" dx1="88.888885" />
+          <Connection Source="MANUAL.INITO" Destination="FAULT.INIT" dx1="27.777777" />
+          <Connection Source="FAULT.INITO" Destination="STOP.INIT" dx1="38.888885" />
+          <Connection Source="FAULT.IND" Destination="FAULT_IND.REQ" dx1="50.0" dx2="111.11111" dy="472.2222" />
+          <Connection Source="FAULT_IND.CNF" Destination="STOP_GATE.REQ" dx1="472.2222" />
+          <Connection Source="STOP_GATE.CNF" Destination="MODE.SENSE" dx1="61.111107" dx2="77.77777" dy="999.99994" />
+          <Connection Source="START.COLD" Destination="AUTOMAN.INIT" dx1="27.777777" />
+          <Connection Source="AUTOMAN.INITO" Destination="FAULT_IND.INIT" dx1="222.22221" />
+          <Connection Source="START.COLD" Destination="MODE.INIT" dx1="27.777777" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="FAULT.RD_1" Destination="FAULT_IND.IN" dx1="27.777777" dx2="133.33333" dy="111.11111" />
+          <Connection Source="MODE.AUTO" Destination="AUTOMAN.SD_1" dx1="111.11111" />
+          <Connection Source="MODE.MANUAL" Destination="AUTOMAN.SD_2" dx1="650.0" />
+          <Connection Source="MODE.AUTO" Destination="AUTO.IN" dx1="111.11111" />
+          <Connection Source="MODE.MANUAL" Destination="MANUAL.IN" dx1="650.0" />
+          <Connection Source="STOP.OUT" Destination="STOP_GATE.IN1" dx1="44.444443" />
+          <Connection Source="FAULT.RD_1" Destination="STOP_GATE.IN2" dx1="183.33333" />
+          <Connection Source="STOP_GATE.OUT" Destination="MODE.STOP" dx1="27.777777" dx2="38.888885" dy="627.7778" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+    <Resource Name="AUTO_CTL" Type="EMB_RES" x="1066.6666" y="555.55554" >
+      <FBNetwork >
+        <FB Name="CTL" Type="PNP_CTL_LD" x="1205.5555" y="816.6666" />
+        <FB Name="AUTOMAN" Type="SUBL_1" x="544.4444" y="11.111111" />
+        <FB Name="MAGNET" Type="PUBL_1" x="2300.0" y="11.111111" />
+        <FB Name="PNP_ACT" Type="PUBL_4" x="1899.9999" y="11.111111" />
+        <FB Name="PNP_SENSE" Type="SUBL_5" x="122.22221" y="816.6666" />
+        <FB Name="PRESENT" Type="SUBL_1" x="2661.111" y="11.111111" />
+        <FB Name="DLY" Type="E_DELAY" Comment="Breaks magnet/loader loop" x="700.0" y="705.55554" >
+          <Parameter Name="DT" Value="t#10ms" />
+        </FB>
+        <FB Name="AUTO_GATE" Type="E_PERMIT" x="1272.2222" y="122.22221" />
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="AUTOMAN.INIT" dx1="27.777777" />
+          <Connection Source="START.COLD" Destination="PNP_SENSE.INIT" dx1="27.777777" dx2="94.44444" dy="544.4444" />
+          <Connection Source="AUTOMAN.INITO" Destination="PNP_ACT.INIT" dx1="577.7778" />
+          <Connection Source="CTL.CNF" Destination="PNP_ACT.REQ" dx1="27.777777" />
+          <Connection Source="PNP_ACT.INITO" Destination="MAGNET.INIT" dx1="61.111107" />
+          <Connection Source="PNP_ACT.CNF" Destination="MAGNET.REQ" dx1="27.777777" />
+          <Connection Source="MAGNET.INITO" Destination="PRESENT.INIT" dx1="33.333332" />
+          <Connection Source="PNP_SENSE.IND" Destination="DLY.START" dx1="50.0" />
+          <Connection Source="AUTOMAN.IND" Destination="AUTO_GATE.EI" dx1="66.666664" />
+          <Connection Source="PRESENT.IND" Destination="AUTO_GATE.EI" dx1="77.77777" dx2="194.44444" dy="1744.4443" />
+          <Connection Source="DLY.EO" Destination="AUTO_GATE.EI" dx1="55.555553" />
+          <Connection Source="AUTO_GATE.EO" Destination="CTL.REQ" dx1="27.777777" dx2="44.444443" dy="427.77777" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="CTL.MAGNET" Destination="MAGNET.SD_1" dx1="555.55554" />
+          <Connection Source="CTL.FWDx" Destination="PNP_ACT.SD_1" dx1="66.666664" />
+          <Connection Source="CTL.REVy" Destination="PNP_ACT.SD_4" dx1="177.77777" />
+          <Connection Source="CTL.FWDy" Destination="PNP_ACT.SD_3" dx1="144.44444" />
+          <Connection Source="CTL.REVx" Destination="PNP_ACT.SD_2" dx1="100.0" />
+          <Connection Source="PRESENT.RD_1" Destination="CTL.PRESENT" dx1="27.777777" dx2="66.666664" dy="1383.3333" />
+          <Connection Source="PNP_SENSE.RD_1" Destination="CTL.LOADED" dx1="38.888885" />
+          <Connection Source="PNP_SENSE.RD_2" Destination="CTL.HOMEx" dx1="83.33333" />
+          <Connection Source="PNP_SENSE.RD_3" Destination="CTL.ENDx" dx1="111.11111" />
+          <Connection Source="PNP_SENSE.RD_4" Destination="CTL.HOMEy" dx1="144.44444" />
+          <Connection Source="PNP_SENSE.RD_5" Destination="CTL.ENDy" dx1="183.33333" />
+          <Connection Source="AUTOMAN.RD_1" Destination="AUTO_GATE.PERMIT" dx1="127.77777" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+    <Resource Name="ACTUATORS" Type="PANEL_RESOURCE" x="172.22221" y="11.111111" >
+      <FBNetwork >
+        <FB Name="PNP_ACT" Type="PUBL_4" x="3566.6665" y="816.6666" />
+        <FB Name="FWDX" Type="IN_BOOL" x="538.88885" y="11.111111" >
+          <Parameter Name="LABEL" Value="&#34;FWDx&#34;" />
+        </FB>
+        <FB Name="REVX" Type="IN_BOOL" x="1188.8888" y="11.111111" >
+          <Parameter Name="LABEL" Value="&#34;REVx&#34;" />
+        </FB>
+        <FB Name="FWDY" Type="IN_BOOL" x="1827.7777" y="11.111111" >
+          <Parameter Name="LABEL" Value="&#34;FWDy&#34;" />
+        </FB>
+        <FB Name="REVY" Type="IN_BOOL" x="2466.6665" y="11.111111" >
+          <Parameter Name="LABEL" Value="&#34;REVy&#34;" />
+        </FB>
+        <FB Name="MAG" Type="IN_BOOL" x="138.88889" y="911.1111" >
+          <Parameter Name="LABEL" Value="&#34;MAGNET&#34;" />
+        </FB>
+        <FB Name="MAGNET" Type="PUBL_1" x="566.6666" y="1022.22217" />
+        <FB Name="AUTOMAN" Type="SUBL_2" x="3077.7776" y="11.111111" />
+        <FB Name="MANUAL" Type="E_PERMIT" x="3111.111" y="927.7778" />
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="FWDX.INIT" dx1="27.777777" />
+          <Connection Source="FWDX.INITO" Destination="REVX.INIT" dx1="66.666664" />
+          <Connection Source="REVX.INITO" Destination="FWDY.INIT" dx1="88.888885" />
+          <Connection Source="FWDY.INITO" Destination="REVY.INIT" dx1="100.0" />
+          <Connection Source="MAG.INITO" Destination="MAGNET.INIT" dx1="44.444443" />
+          <Connection Source="MAG.CNF" Destination="MAGNET.REQ" dx1="50.0" />
+          <Connection Source="MAG.IND" Destination="MAGNET.REQ" dx1="55.555553" />
+          <Connection Source="PNP_ACT.INITO" Destination="MAG.INIT" dx1="27.777777" dx2="50.0" dy="1094.4445" />
+          <Connection Source="REVY.INITO" Destination="AUTOMAN.INIT" dx1="27.777777" />
+          <Connection Source="AUTOMAN.INITO" Destination="PNP_ACT.INIT" dx1="111.11111" />
+          <Connection Source="MANUAL.EO" Destination="PNP_ACT.REQ" dx1="72.22222" />
+          <Connection Source="REVY.IND" Destination="MANUAL.EI" dx1="116.666664" />
+          <Connection Source="FWDY.IND" Destination="MANUAL.EI" dx1="150.0" />
+          <Connection Source="REVX.IND" Destination="MANUAL.EI" dx1="155.55554" />
+          <Connection Source="FWDX.IND" Destination="MANUAL.EI" dx1="150.0" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="FWDX.OUT" Destination="PNP_ACT.SD_1" dx1="27.777777" />
+          <Connection Source="REVX.OUT" Destination="PNP_ACT.SD_2" dx1="27.777777" />
+          <Connection Source="FWDY.OUT" Destination="PNP_ACT.SD_3" dx1="27.777777" />
+          <Connection Source="REVY.OUT" Destination="PNP_ACT.SD_4" dx1="27.777777" />
+          <Connection Source="MAG.OUT" Destination="MAGNET.SD_1" dx1="38.888885" />
+          <Connection Source="AUTOMAN.RD_2" Destination="MANUAL.PERMIT" dx1="27.777777" dx2="77.77777" dy="194.44444" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+    <Resource Name="ACT_STATE" Type="PANEL_RESOURCE" x="1666.6666" y="11.111111" >
+      <FBNetwork >
+        <FB Name="FWDX" Type="OUT_BOOL" x="572.2222" y="11.111111" >
+          <Parameter Name="LABEL" Value="&#34;FWDx&#34;" />
+        </FB>
+        <FB Name="REVX" Type="OUT_BOOL" x="988.88885" y="466.66666" >
+          <Parameter Name="LABEL" Value="&#34;REVx&#34;" />
+        </FB>
+        <FB Name="FWDY" Type="OUT_BOOL" x="1644.4443" y="11.111111" >
+          <Parameter Name="LABEL" Value="&#34;FWDy&#34;" />
+        </FB>
+        <FB Name="REVY" Type="OUT_BOOL" x="2072.2222" y="505.55554" >
+          <Parameter Name="LABEL" Value="&#34;REVy&#34;" />
+        </FB>
+        <FB Name="MGT" Type="OUT_BOOL" x="2933.3333" y="11.111111" >
+          <Parameter Name="LABEL" Value="&#34;MAGNET&#34;" />
+        </FB>
+        <FB Name="PNP_ACT" Type="SUBL_4" x="88.888885" y="938.88885" />
+        <FB Name="MAGNET" Type="SUBL_1" x="2494.4443" y="11.111111" />
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="FWDX.INIT" dx1="27.777777" />
+          <Connection Source="FWDX.INITO" Destination="REVX.INIT" dx1="61.111107" />
+          <Connection Source="REVX.INITO" Destination="FWDY.INIT" dx1="27.777777" />
+          <Connection Source="FWDY.INITO" Destination="REVY.INIT" dx1="55.555553" />
+          <Connection Source="START.COLD" Destination="PNP_ACT.INIT" dx1="55.555553" dx2="44.444443" dy="627.7778" />
+          <Connection Source="PNP_ACT.IND" Destination="FWDX.REQ" dx1="61.111107" />
+          <Connection Source="FWDX.CNF" Destination="REVX.REQ" dx1="27.777777" />
+          <Connection Source="REVX.CNF" Destination="FWDY.REQ" dx1="55.555553" />
+          <Connection Source="FWDY.CNF" Destination="REVY.REQ" dx1="27.777777" />
+          <Connection Source="MAGNET.IND" Destination="MGT.REQ" dx1="205.55554" />
+          <Connection Source="REVY.INITO" Destination="MAGNET.INIT" dx1="38.888885" />
+          <Connection Source="MAGNET.INITO" Destination="MGT.INIT" dx1="27.777777" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="PNP_ACT.RD_1" Destination="FWDX.IN" dx1="94.44444" />
+          <Connection Source="PNP_ACT.RD_2" Destination="REVX.IN" dx1="444.44443" />
+          <Connection Source="PNP_ACT.RD_3" Destination="FWDY.IN" dx1="1166.6666" />
+          <Connection Source="PNP_ACT.RD_4" Destination="REVY.IN" dx1="1388.8888" />
+          <Connection Source="MAGNET.RD_1" Destination="MGT.IN" dx1="33.333332" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+    <Resource Name="SENSORS" Type="PANEL_RESOURCE" x="811.1111" y="499.99997" >
+      <FBNetwork >
+        <FB Name="PNP_SENSE" Type="SUBL_5" x="455.55554" y="11.111111" />
+        <FB Name="HOMEX" Type="OUT_BOOL" x="1577.7777" y="1144.4445" >
+          <Parameter Name="LABEL" Value="&#34;HOMEx&#34;" />
+        </FB>
+        <FB Name="ENDX" Type="OUT_BOOL" x="2205.5554" y="1144.4445" >
+          <Parameter Name="LABEL" Value="&#34;ENDx&#34;" />
+        </FB>
+        <FB Name="HOMEY" Type="OUT_BOOL" x="2866.6665" y="1144.4445" >
+          <Parameter Name="LABEL" Value="&#34;HOMEy&#34;" />
+        </FB>
+        <FB Name="ENDY" Type="OUT_BOOL" x="3494.4443" y="1144.4445" >
+          <Parameter Name="LABEL" Value="&#34;ENDy&#34;" />
+        </FB>
+        <FB Name="LOADED" Type="OUT_BOOL" x="905.55554" y="1144.4445" >
+          <Parameter Name="LABEL" Value="&#34;LOADED&#34;" />
+        </FB>
+        <FB Name="PRESENT" Type="SUBL_1" x="2055.5554" y="11.111111" />
+        <FB Name="PRES" Type="OUT_BOOL" x="3488.8887" y="11.111111" >
+          <Parameter Name="LABEL" Value="&#34;PRESENT&#34;" />
+        </FB>
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="PNP_SENSE.INIT" dx1="33.333332" />
+          <Connection Source="HOMEX.INITO" Destination="ENDX.INIT" dx1="66.666664" />
+          <Connection Source="HOMEX.CNF" Destination="ENDX.REQ" dx1="27.777777" />
+          <Connection Source="ENDX.INITO" Destination="HOMEY.INIT" dx1="88.888885" />
+          <Connection Source="HOMEY.CNF" Destination="ENDY.REQ" dx1="27.777777" />
+          <Connection Source="HOMEY.INITO" Destination="ENDY.INIT" dx1="66.666664" />
+          <Connection Source="ENDX.CNF" Destination="HOMEY.REQ" dx1="38.888885" />
+          <Connection Source="LOADED.INITO" Destination="HOMEX.INIT" dx1="38.888885" />
+          <Connection Source="PNP_SENSE.IND" Destination="LOADED.REQ" dx1="66.666664" />
+          <Connection Source="LOADED.CNF" Destination="HOMEX.REQ" dx1="55.555553" />
+          <Connection Source="PNP_SENSE.INITO" Destination="PRESENT.INIT" dx1="150.0" />
+          <Connection Source="PRESENT.INITO" Destination="PRES.INIT" dx1="127.77777" />
+          <Connection Source="PRESENT.IND" Destination="PRES.REQ" dx1="172.22221" />
+          <Connection Source="START.COLD" Destination="LOADED.INIT" dx1="27.777777" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="PNP_SENSE.RD_1" Destination="LOADED.IN" dx1="27.777777" />
+          <Connection Source="PNP_SENSE.RD_2" Destination="HOMEX.IN" dx1="577.7778" />
+          <Connection Source="PNP_SENSE.RD_3" Destination="ENDX.IN" dx1="1261.1111" />
+          <Connection Source="PNP_SENSE.RD_4" Destination="HOMEY.IN" dx1="1927.7777" />
+          <Connection Source="PNP_SENSE.RD_5" Destination="ENDY.IN" dx1="2511.111" />
+          <Connection Source="PRESENT.RD_1" Destination="PRES.IN" dx1="27.777777" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+  </Device>
+</System>

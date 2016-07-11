@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="ZONE_MDLL" Comment="HVAC Zone Model with Local Comms" >
+  <Identification Standard="61499-1" Classification="Simulation" ApplicationDomain="HVAC" Function="Zone Model" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.0" Author="JHC" Date="2006-04-13" />
+  <CompilerInfo header="package fb.rt.hvac; import fb.rt.net.*;" >
+    <Compiler Language="Java" Vendor="Sun" Product="JDK" Version="1.5.0" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" >
+        <With Var="T0" />
+        <With Var="V" />
+        <With Var="AR" />
+        <With Var="DT" />
+        <With Var="PARAMS_ID" />
+      </Event>
+      <Event Name="CLK" Comment="Simulation Clock" >
+        <With Var="FLOW" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="INIT completed" >
+        <With Var="T" />
+      </Event>
+      <Event Name="CNF" Comment="Simulation step completed" >
+        <With Var="T" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="PARAMS_ID" Type="WSTRING" InitialValue="&#34;PARAMS&#34;" Comment="STEMP, XTEMP, LOAD subscriber channel ID" />
+      <VarDeclaration Name="DT" Type="UINT" InitialValue="10" Comment="Clock period, sec" />
+      <VarDeclaration Name="T0" Type="UINT" InitialValue="70" Comment="Initial Temperature, deg F" />
+      <VarDeclaration Name="V" Type="UINT" InitialValue="5000" Comment="Zone volume, cu ft" />
+      <VarDeclaration Name="AR" Type="UINT" InitialValue="20" Comment="Wall A/R, BTU/hr/deg F" />
+      <VarDeclaration Name="FLOW" Type="REAL" Comment="Air Flow, CFM" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="T" Type="REAL" Comment="Zone Temperature, deg F" />
+    </OutputVars>
+  </InterfaceList>
+  <FBNetwork >
+    <FB Name="MODEL" Type="ZONE_MDL" x="977.7777" y="11.111111" />
+    <FB Name="PARAMS" Type="SUBL_3" x="411.11108" y="566.6666" />
+    <EventConnections>
+      <Connection Source="MODEL.CNF" Destination="CNF" dx1="1416.6666" />
+      <Connection Source="CLK" Destination="MODEL.CLK" dx1="872.22217" />
+      <Connection Source="INIT" Destination="PARAMS.INIT" dx1="305.55554" />
+      <Connection Source="PARAMS.INITO" Destination="MODEL.INIT" dx1="38.888885" />
+      <Connection Source="MODEL.INITO" Destination="INITO" dx1="1438.8888" />
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="DT" Destination="MODEL.DT" dx1="888.88885" />
+      <Connection Source="T0" Destination="MODEL.T0" dx1="888.88885" />
+      <Connection Source="V" Destination="MODEL.V" dx1="905.55554" />
+      <Connection Source="AR" Destination="MODEL.AR" dx1="888.88885" />
+      <Connection Source="MODEL.T" Destination="T" dx1="1377.7777" />
+      <Connection Source="PARAMS_ID" Destination="PARAMS.ID" dx1="194.44444" />
+      <Connection Source="PARAMS.RD_3" Destination="MODEL.H" dx1="105.55555" />
+      <Connection Source="PARAMS.RD_2" Destination="MODEL.TA" dx1="66.666664" />
+      <Connection Source="PARAMS.RD_1" Destination="MODEL.TI" dx1="27.777777" />
+      <Connection Source="FLOW" Destination="MODEL.FLOW" dx1="844.4444" />
+    </DataConnections>
+  </FBNetwork>
+</FBType>

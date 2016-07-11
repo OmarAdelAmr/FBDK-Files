@@ -1,0 +1,341 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE System SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<System Name="VAV_MVCL" Comment="Variable Air Valve System Model+View+Control+HMI" >
+  <Identification Standard="IEC 61499-1" Classification="Simulation" ApplicationDomain="HVAC" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.0" Author="JHC" Date="2006-04-27" Remarks="Derived from VAV_MVL." />
+  <Device Name="HMI" Type="FRAME_DEVICE" x="555.55554" y="11.111111" >
+    <Parameter Name="BOUNDS" Value="[100,100,140,270]" />
+    <Resource Name="FP" Type="PANEL_RESOURCE" Comment="Controller Faceplate" x="100.0" y="11.111111" >
+      <FBNetwork >
+        <FB Name="TEMP" Type="SUBL_1" x="966.6666" y="11.111111" />
+        <FB Name="FACE" Type="FACEPLATE" x="1477.7777" y="122.22221" >
+          <Parameter Name="SPI" Value="50" />
+          <Parameter Name="H" Value="150" />
+          <Parameter Name="LABEL" Value="&#34;ROOM TEMP&#34;" />
+        </FB>
+        <FB Name="OUT" Type="SUBL_1" x="533.3333" y="11.111111" />
+        <FB Name="AUTO" Type="PUBL_1" x="1994.4443" y="11.111111" />
+        <FB Name="DAMPER_SP" Type="PUBL_1" x="2405.5554" y="11.111111" />
+        <EventConnections>
+          <Connection Source="FACE.INITO" Destination="AUTO.INIT" dx1="27.777777" />
+          <Connection Source="FACE.IND" Destination="AUTO.REQ" dx1="50.0" />
+          <Connection Source="START.COLD" Destination="OUT.INIT" dx1="27.777777" />
+          <Connection Source="START.WARM" Destination="OUT.INIT" dx1="27.777777" />
+          <Connection Source="OUT.INITO" Destination="TEMP.INIT" dx1="27.777777" />
+          <Connection Source="TEMP.INITO" Destination="FACE.INIT" dx1="55.555553" />
+          <Connection Source="TEMP.IND" Destination="FACE.REQ" dx1="27.777777" />
+          <Connection Source="AUTO.CNF" Destination="DAMPER_SP.REQ" dx1="27.777777" />
+          <Connection Source="AUTO.INITO" Destination="DAMPER_SP.INIT" dx1="61.111107" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="TEMP.RD_1" Destination="FACE.PV" dx1="27.777777" />
+          <Connection Source="OUT.RD_1" Destination="FACE.XOUT" dx1="27.777777" />
+          <Connection Source="FACE.AUTO" Destination="AUTO.SD_1" dx1="27.777777" />
+          <Connection Source="FACE.SP" Destination="DAMPER_SP.SD_1" dx1="488.88885" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+  </Device>
+  <Device Name="RECORDER" Type="FRAME_DEVICE" x="1605.5555" y="11.111111" >
+    <Parameter Name="BOUNDS" Value="[240,100,210,250]" />
+    <Resource Name="RECORDER" Type="PANEL_RESOURCE" x="83.33333" y="11.111111" >
+      <FBNetwork >
+        <FB Name="RECORDER" Type="STRIP4" x="2516.6665" y="11.111111" >
+          <Parameter Name="COLORS" Value="[green,yellow,blue,cyan]" />
+          <Parameter Name="BKGD" Value="COLOR#lightGray" />
+          <Parameter Name="SIZE" Value="[200,150]" />
+          <Parameter Name="DX" Value="1" />
+        </FB>
+        <FB Name="TEMP" Type="SUBL_1" x="899.99994" y="11.111111" />
+        <FB Name="PARAMS" Type="SUBL_3" x="466.66666" y="11.111111" />
+        <FB Name="DAMPER_FLOW" Type="SUBL_1" x="377.77777" y="916.6666" />
+        <FB Name="TEMP_CVRT" Type="FB_REAL_UINT" x="1288.8888" y="233.33333" />
+        <FB Name="D_UNSC" Type="FB_MUL_REAL" x="899.99994" y="1027.7777" >
+          <Parameter Name="IN2" Value="100.0" />
+        </FB>
+        <FB Name="D_UINT" Type="FB_REAL_UINT" x="1416.6666" y="1027.7777" />
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="PARAMS.INIT" dx1="27.777777" />
+          <Connection Source="TEMP.INITO" Destination="RECORDER.INIT" dx1="627.7778" />
+          <Connection Source="TEMP.IND" Destination="TEMP_CVRT.REQ" dx1="27.777777" />
+          <Connection Source="TEMP_CVRT.CNF" Destination="RECORDER.REQ" dx1="27.777777" />
+          <Connection Source="PARAMS.INITO" Destination="TEMP.INIT" dx1="66.666664" />
+          <Connection Source="RECORDER.INITO" Destination="DAMPER_FLOW.INIT" dx1="100.0" dx2="55.555553" dy="1616.6666" />
+          <Connection Source="D_UNSC.CNF" Destination="D_UINT.REQ" dx1="50.0" />
+          <Connection Source="DAMPER_FLOW.IND" Destination="D_UNSC.REQ" dx1="27.777777" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="PARAMS.RD_1" Destination="RECORDER.PEN3" dx1="77.77777" />
+          <Connection Source="PARAMS.RD_2" Destination="RECORDER.PEN4" dx1="27.777777" />
+          <Connection Source="TEMP.RD_1" Destination="TEMP_CVRT.IN" dx1="27.777777" />
+          <Connection Source="TEMP_CVRT.OUT" Destination="RECORDER.PEN2" dx1="27.777777" />
+          <Connection Source="D_UNSC.OUT" Destination="D_UINT.IN" dx1="66.666664" />
+          <Connection Source="D_UINT.OUT" Destination="RECORDER.PEN1" dx1="88.888885" />
+          <Connection Source="DAMPER_FLOW.RD_1" Destination="D_UNSC.IN1" dx1="27.777777" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+    <Resource Name="PARAMS" Type="PANEL_RESOURCE" x="961.1111" y="11.111111" >
+      <Parameter Name="ROWS" Value="2" />
+      <Parameter Name="COLS" Value="2" />
+      <FBNetwork >
+        <FB Name="PARAMS" Type="PUBL_3" x="3222.2222" y="844.4444" />
+        <FB Name="STEMP" Type="FB_SLIDER" x="472.2222" y="11.111111" >
+          <Parameter Name="FGD" Value="[0,0,255]" />
+          <Parameter Name="BKGD" Value="[0,0,255]" />
+          <Parameter Name="W" Value="100" />
+          <Parameter Name="H" Value="25" />
+        </FB>
+        <FB Name="XTEMP" Type="FB_SLIDER" x="1250.0" y="11.111111" >
+          <Parameter Name="W" Value="100" />
+          <Parameter Name="H" Value="25" />
+          <Parameter Name="FGD" Value="[0,255,255]" />
+          <Parameter Name="BKGD" Value="[0,255,255]" />
+        </FB>
+        <FB Name="LOAD" Type="FB_SLIDER" x="2150.0" y="11.111111" >
+          <Parameter Name="FGD" Value="COLOR#orange" />
+          <Parameter Name="BKGD" Value="COLOR#orange" />
+          <Parameter Name="W" Value="100" />
+          <Parameter Name="H" Value="25" />
+        </FB>
+        <FB Name="LOAD_SCALE" Type="WTAV_PCT" x="2738.8887" y="44.444443" >
+          <Parameter Name="IN2" Value="1000" />
+        </FB>
+        <EventConnections>
+          <Connection Source="STEMP.IND" Destination="PARAMS.REQ" dx1="66.666664" />
+          <Connection Source="STEMP.INITO" Destination="XTEMP.INIT" dx1="27.777777" />
+          <Connection Source="XTEMP.IND" Destination="PARAMS.REQ" dx1="77.77777" />
+          <Connection Source="XTEMP.INITO" Destination="LOAD.INIT" dx1="38.888885" />
+          <Connection Source="LOAD.INITO" Destination="PARAMS.INIT" dx1="105.55555" />
+          <Connection Source="START.COLD" Destination="STEMP.INIT" dx1="50.0" />
+          <Connection Source="LOAD.IND" Destination="LOAD_SCALE.REQ" dx1="233.33333" />
+          <Connection Source="LOAD_SCALE.CNF" Destination="PARAMS.REQ" dx1="72.22222" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="STEMP.OUT" Destination="PARAMS.SD_1" dx1="27.777777" />
+          <Connection Source="XTEMP.OUT" Destination="PARAMS.SD_2" dx1="27.777777" />
+          <Connection Source="LOAD.OUT" Destination="LOAD_SCALE.ETA" dx1="27.777777" />
+          <Connection Source="LOAD_SCALE.OUT" Destination="PARAMS.SD_3" dx1="27.777777" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+  </Device>
+  <Device Name="MV" Type="FRAME_DEVICE" Comment="Room/Duct Model + View" x="2716.6665" y="11.111111" >
+    <Parameter Name="BOUNDS" Value="[450,100,290,250]" />
+    <Resource Name="MODEL" Type="EMB_RES" x="1616.6666" y="133.33333" >
+      <FBNetwork >
+        <FB Name="DAMPER" Type="VAV_MDLL" x="966.6666" y="11.111111" >
+          <Parameter Name="DT" Value="1" />
+          <Parameter Name="TACT" Value="95" />
+          <Parameter Name="FSF" Value="1000.0" />
+          <Parameter Name="FD" Value="50" />
+          <Parameter Name="SFS" Value="1000.0" />
+          <Parameter Name="ADMAX" Value="4096" />
+        </FB>
+        <FB Name="ROOM" Type="ZONE_MDLL" x="1983.3333" y="11.111111" >
+          <Parameter Name="DT" Value="10" />
+          <Parameter Name="T0" Value="80" />
+          <Parameter Name="V" Value="5000" />
+          <Parameter Name="AR" Value="200" />
+        </FB>
+        <FB Name="CLK_DIV" Type="E_F_DIV" Comment="Zone simulation runs 10x slower than valve sim" x="1533.3333" y="244.44443" >
+          <Parameter Name="N" Value="10" />
+        </FB>
+        <FB Name="VAV_CLK" Type="E_CYCLE" x="522.2222" y="216.66666" >
+          <Parameter Name="DT" Value="t#100ms" />
+        </FB>
+        <FB Name="TEMP" Type="PUBL_1" Comment="Main Display clock and Temperature publisher" x="2516.6665" y="11.111111" />
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="DAMPER.INIT" dx1="27.777777" />
+          <Connection Source="DAMPER.INITO" Destination="ROOM.INIT" dx1="50.0" />
+          <Connection Source="DAMPER.IND" Destination="CLK_DIV.EI" dx1="44.444443" />
+          <Connection Source="CLK_DIV.EO" Destination="ROOM.CLK" dx1="50.0" />
+          <Connection Source="START.STOP" Destination="VAV_CLK.STOP" dx1="27.777777" />
+          <Connection Source="VAV_CLK.EO" Destination="DAMPER.CLK" dx1="27.777777" />
+          <Connection Source="ROOM.INITO" Destination="TEMP.INIT" dx1="27.777777" />
+          <Connection Source="TEMP.INITO" Destination="VAV_CLK.START" dx1="44.444443" dx2="66.666664" dy="1600.0" />
+          <Connection Source="ROOM.CNF" Destination="TEMP.REQ" dx1="38.888885" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="DAMPER.FLOW" Destination="ROOM.FLOW" dx1="66.666664" />
+          <Connection Source="ROOM.T" Destination="TEMP.SD_1" dx1="27.777777" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+    <Resource Name="DUCTS" Type="VIEW_PANEL" x="238.88889" y="11.111111" >
+      <Parameter Name="DIA" Value="25" />
+      <Parameter Name="SIZE" Value="[3,8]" />
+      <Parameter Name="VERTICAL" Value="1" />
+      <FBNetwork >
+        <FB Name="DAMPER" Type="MECH_VIEW" x="816.6666" y="11.111111" >
+          <Parameter Name="BKGD" Value="[0,0,255]" />
+          <Parameter Name="DIR" Value="0" />
+          <Parameter Name="STYLE" Value="VSTYLE#DAMPER" />
+          <Parameter Name="WKPC" Value="[0,255,0]" />
+          <Parameter Name="LEN" Value="3" />
+        </FB>
+        <FB Name="LBLS" Type="XSPACE" x="1722.2222" y="366.66666" >
+          <Parameter Name="LBLS" Value="[&#34;&#34;,&#34;===>&#34;,&#34;&#34;,&#34;&#34;,&#34;&#34;]" />
+          <Parameter Name="DIMS" Value="[3,6]" />
+          <Parameter Name="COLORS" Value="[green,white]" />
+        </FB>
+        <FB Name="OUTLET" Type="XSPACE" x="2111.111" y="800.0" >
+          <Parameter Name="COLORS" Value="[yellow,blue]" />
+          <Parameter Name="DIMS" Value="[3,1]" />
+          <Parameter Name="LBLS" Value="[&#34;&#34;,&#34;&#34;,&#34;&#34;,&#34;&#34;,&#34;&#60;===&#34;]" />
+        </FB>
+        <FB Name="DAMPER_UI" Type="PUBL_1" x="1266.6666" y="11.111111" />
+        <FB Name="DAMPER_REND" Type="SUBL_1" x="438.8889" y="11.111111" />
+        <EventConnections>
+          <Connection Source="LBLS.INITO" Destination="OUTLET.INIT" dx1="27.777777" />
+          <Connection Source="DAMPER.INITO" Destination="DAMPER_UI.INIT" dx1="27.777777" />
+          <Connection Source="DAMPER.IND" Destination="DAMPER_UI.REQ" dx1="33.333332" />
+          <Connection Source="DAMPER_UI.INITO" Destination="LBLS.INIT" dx1="27.777777" />
+          <Connection Source="START.COLD" Destination="DAMPER_REND.INIT" dx1="27.777777" />
+          <Connection Source="DAMPER_REND.INITO" Destination="DAMPER.INIT" dx1="27.777777" />
+          <Connection Source="DAMPER_REND.IND" Destination="DAMPER.REQ" dx1="27.777777" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="DAMPER.FAULT" Destination="DAMPER_UI.SD_1" dx1="61.111107" />
+          <Connection Source="DAMPER_REND.RD_1" Destination="DAMPER.POS" dx1="27.777777" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+    <Resource Name="ROOM" Type="VIEW_PANEL" x="905.55554" y="11.111111" >
+      <Parameter Name="SIZE" Value="[8,8]" />
+      <Parameter Name="DIA" Value="25" />
+      <FBNetwork >
+        <FB Name="ROOM" Type="ZONE_VIEWL" x="944.4444" y="11.111111" >
+          <Parameter Name="FGD" Value="[255,255,0]" />
+          <Parameter Name="BKGD" Value="[0,0,255]" />
+          <Parameter Name="W" Value="200" />
+          <Parameter Name="SZ" Value="14" />
+          <Parameter Name="REND_ID" Value="&#34;DAMPER_REND&#34;" />
+        </FB>
+        <FB Name="TEMP" Type="SUBL_1" x="483.3333" y="11.111111" />
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="TEMP.INIT" dx1="27.777777" />
+          <Connection Source="START.WARM" Destination="TEMP.INIT" dx1="27.777777" />
+          <Connection Source="TEMP.INITO" Destination="ROOM.INIT" dx1="27.777777" />
+          <Connection Source="TEMP.IND" Destination="ROOM.REQ" dx1="44.444443" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="TEMP.RD_1" Destination="ROOM.TEMP" dx1="211.1111" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+  </Device>
+  <Device Name="DAMPER" Type="FRAME_DEVICE" x="1600.0" y="488.88885" >
+    <Parameter Name="BOUNDS" Value="[240,350,160,170]" />
+    <Parameter Name="GRID" Value="[1,1]" />
+    <Resource Name="HMI" Type="PANEL_RESOURCE" x="116.666664" y="22.222221" >
+      <FBNetwork >
+        <FB Name="DAMPER_ACT" Type="SUBL_2" x="88.888885" y="772.22217" />
+        <FB Name="DAMPER_SP" Type="SUBL_1" x="1522.2222" y="11.111111" />
+        <FB Name="SP_OUT" Type="OUT_ANY" x="1911.1111" y="11.111111" >
+          <Parameter Name="TYPE" Value="&#34;UINT&#34;" />
+          <Parameter Name="IVAL" Value="&#34;50&#34;" />
+          <Parameter Name="W" Value="4" />
+        </FB>
+        <FB Name="SP_LBL" Type="FB_LABEL" x="1899.9999" y="1161.1111" >
+          <Parameter Name="LABEL" Value="&#34;SP&#34;" />
+        </FB>
+        <FB Name="DAMPER_STATS" Type="SUBL_3" x="2361.111" y="233.33333" />
+        <FB Name="OPEN" Type="OUT_BOOL" x="700.0" y="11.111111" >
+          <Parameter Name="LABEL" Value="&#34;OPEN&#34;" />
+        </FB>
+        <FB Name="CLOSE" Type="OUT_BOOL" x="1122.2222" y="466.66666" >
+          <Parameter Name="LABEL" Value="&#34;CLOSE&#34;" />
+        </FB>
+        <FB Name="STATS_OUT" Type="REGRESS_OUT" x="2811.111" y="11.111111" >
+          <Parameter Name="W" Value="8" />
+          <Parameter Name="QI" Value="1" />
+        </FB>
+        <EventConnections>
+          <Connection Source="DAMPER_SP.INITO" Destination="SP_OUT.INIT" dx1="27.777777" />
+          <Connection Source="DAMPER_SP.IND" Destination="SP_OUT.REQ" dx1="27.777777" />
+          <Connection Source="SP_OUT.INITO" Destination="SP_LBL.INIT" dx1="27.777777" dx2="61.111107" dy="988.88885" />
+          <Connection Source="SP_LBL.INITO" Destination="DAMPER_STATS.INIT" dx1="72.22222" />
+          <Connection Source="START.COLD" Destination="DAMPER_ACT.INIT" dx1="27.777777" dx2="55.555553" dy="572.2222" />
+          <Connection Source="DAMPER_ACT.INITO" Destination="OPEN.INIT" dx1="44.444443" />
+          <Connection Source="DAMPER_ACT.IND" Destination="OPEN.REQ" dx1="94.44444" />
+          <Connection Source="OPEN.INITO" Destination="CLOSE.INIT" dx1="55.555553" />
+          <Connection Source="OPEN.CNF" Destination="CLOSE.REQ" dx1="27.777777" />
+          <Connection Source="CLOSE.INITO" Destination="DAMPER_SP.INIT" dx1="27.777777" />
+          <Connection Source="DAMPER_STATS.INITO" Destination="STATS_OUT.INIT" dx1="27.777777" />
+          <Connection Source="DAMPER_STATS.IND" Destination="STATS_OUT.REQ" dx1="100.0" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="DAMPER_SP.RD_1" Destination="SP_OUT.IN" dx1="27.777777" />
+          <Connection Source="DAMPER_ACT.RD_1" Destination="OPEN.IN" dx1="172.22221" />
+          <Connection Source="DAMPER_ACT.RD_2" Destination="CLOSE.IN" dx1="538.88885" />
+          <Connection Source="DAMPER_STATS.RD_2" Destination="STATS_OUT.SLOPE" dx1="66.666664" />
+          <Connection Source="DAMPER_STATS.RD_3" Destination="STATS_OUT.DEV" dx1="72.22222" />
+          <Connection Source="DAMPER_STATS.RD_1" Destination="STATS_OUT.PV" dx1="55.555553" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+    <Resource Name="CTRL" Type="EMB_RES" x="883.3333" y="11.111111" >
+      <FBNetwork >
+        <FB Name="DAMPER_SENSE" Type="SUBL_1" Comment="A/D Reading" x="511.11108" y="11.111111" />
+        <FB Name="DIV" Type="E_F_DIV" Comment="Display every 10 A/D cycles" x="1477.7777" y="1038.8888" >
+          <Parameter Name="N" Value="10" />
+        </FB>
+        <FB Name="SCALER" Type="SCALE_UR" x="877.7778" y="122.22221" >
+          <Parameter Name="MAX" Value="4096" />
+        </FB>
+        <FB Name="STATS" Type="REGRESS" x="1450.0" y="11.111111" >
+          <Parameter Name="N" Value="10" />
+        </FB>
+        <FB Name="DAMPER_FLOW" Type="PUBL_1" x="738.88885" y="927.7778" />
+        <FB Name="FLOW_CVRT" Type="FB_SQRT" Comment="Convert delta-P to flow units" x="105.55555" y="1283.3333" />
+        <FB Name="DAMPER_STATS" Type="PUBL_3" x="2272.2222" y="11.111111" />
+        <FB Name="DCTL" Type="DAMPER_CTL" x="2227.7776" y="1100.0" />
+        <FB Name="DAMPER_ACT" Type="PUBL_2" x="2788.8887" y="1100.0" />
+        <FB Name="DAMPER_SP" Type="SUBL_1" x="2766.6665" y="11.111111" />
+        <FB Name="SP_CVRT" Type="FB_UINT_REAL" x="3172.2222" y="122.22221" />
+        <FB Name="SP_SCALE" Type="FB_MUL_REAL" x="3694.4443" y="122.22221" >
+          <Parameter Name="IN2" Value="0.01" />
+        </FB>
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="DAMPER_SENSE.INIT" dx1="38.888885" />
+          <Connection Source="START.WARM" Destination="DAMPER_SENSE.INIT" dx1="83.33333" />
+          <Connection Source="DAMPER_SENSE.IND" Destination="SCALER.REQ" dx1="27.777777" />
+          <Connection Source="DAMPER_SENSE.INITO" Destination="STATS.INIT" dx1="72.22222" />
+          <Connection Source="STATS.CNF" Destination="DIV.EI" dx1="38.888885" dx2="38.888885" dy="772.22217" />
+          <Connection Source="DAMPER_FLOW.INITO" Destination="DIV.R" dx1="344.44443" />
+          <Connection Source="SCALER.CNF" Destination="FLOW_CVRT.REQ" dx1="66.666664" dx2="50.0" dy="638.88885" />
+          <Connection Source="FLOW_CVRT.CNF" Destination="DAMPER_FLOW.REQ" dx1="216.66666" />
+          <Connection Source="DAMPER_FLOW.CNF" Destination="STATS.REQ" dx1="249.99998" />
+          <Connection Source="STATS.INITO" Destination="DAMPER_STATS.INIT" dx1="27.777777" />
+          <Connection Source="DIV.EO" Destination="DAMPER_STATS.REQ" dx1="133.33333" />
+          <Connection Source="DAMPER_STATS.CNF" Destination="DCTL.REQ" dx1="50.0" dx2="88.888885" dy="777.7778" />
+          <Connection Source="DAMPER_STATS.INITO" Destination="DCTL.INIT" dx1="83.33333" dx2="44.444443" dy="922.22217" />
+          <Connection Source="DCTL.INITO" Destination="DAMPER_ACT.INIT" dx1="33.333332" />
+          <Connection Source="DCTL.CNF" Destination="DAMPER_ACT.REQ" dx1="55.555553" />
+          <Connection Source="DAMPER_ACT.INITO" Destination="DAMPER_SP.INIT" dx1="83.33333" dx2="33.333332" dy="-216.66666" />
+          <Connection Source="DAMPER_SP.IND" Destination="SP_CVRT.REQ" dx1="44.444443" />
+          <Connection Source="SP_CVRT.CNF" Destination="SP_SCALE.REQ" dx1="27.777777" />
+          <Connection Source="DAMPER_SP.INITO" Destination="DAMPER_FLOW.INIT" dx1="1116.6666" dx2="61.111107" dy="2016.6666" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="DAMPER_SENSE.RD_1" Destination="SCALER.IN" dx1="27.777777" />
+          <Connection Source="FLOW_CVRT.OUT" Destination="DAMPER_FLOW.SD_1" dx1="38.888885" />
+          <Connection Source="SCALER.OUT" Destination="FLOW_CVRT.IN" dx1="27.777777" dx2="77.77777" dy="227.77777" />
+          <Connection Source="FLOW_CVRT.OUT" Destination="STATS.IN" dx1="938.88885" />
+          <Connection Source="STATS.OUT" Destination="DAMPER_STATS.SD_1" dx1="77.77777" />
+          <Connection Source="STATS.SLOPE" Destination="DAMPER_STATS.SD_2" dx1="83.33333" />
+          <Connection Source="STATS.DEV" Destination="DAMPER_STATS.SD_3" dx1="94.44444" />
+          <Connection Source="STATS.OUT" Destination="DCTL.PV" dx1="300.0" />
+          <Connection Source="STATS.SLOPE" Destination="DCTL.SLOPE" dx1="277.77777" />
+          <Connection Source="STATS.DEV" Destination="DCTL.DEV" dx1="255.55554" />
+          <Connection Source="DCTL.OPEN" Destination="DAMPER_ACT.SD_1" dx1="44.444443" />
+          <Connection Source="DCTL.CLOSE" Destination="DAMPER_ACT.SD_2" dx1="33.333332" />
+          <Connection Source="DAMPER_SP.RD_1" Destination="SP_CVRT.IN" dx1="27.777777" />
+          <Connection Source="SP_CVRT.OUT" Destination="SP_SCALE.IN1" dx1="27.777777" />
+          <Connection Source="SP_SCALE.OUT" Destination="DCTL.SP" dx1="27.777777" dx2="55.555553" dy="1538.8888" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+  </Device>
+</System>

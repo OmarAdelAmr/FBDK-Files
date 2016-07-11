@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "../LibraryElement.dtd" >
+<FBType Name="LOAD_HMI" Comment="XFER_HMI with Adapter" >
+  <Identification Standard="61499-1" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2001-04-14" Remarks="Saved layout." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2000-06-26" />
+  <CompilerInfo header="package fb.rt.omac; " >
+    <Compiler Language="Java" Vendor="IBM" Product="VisualAge" Version="3.0" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" >
+        <With Var="LABEL" />
+        <With Var="BKGD" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" >
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="LABEL" Type="WSTRING" InitialValue="&#34;LOAD&#34;" />
+      <VarDeclaration Name="BKGD" Type="COLOR" InitialValue="COLOR#blue" Comment="Background color when WO=0" />
+    </InputVars>
+    <Plugs>
+      <AdapterDeclaration Name="OUT" Type="LD_UNLD" x="1017.6470" y="11.7647" />
+    </Plugs>
+  </InterfaceList>
+  <FBNetwork >
+    <FB Name="HMI" Type="XFER_HMI" x="282.3529" y="11.7647" />
+    <EventConnections>
+      <Connection Source="INIT" Destination="HMI.INIT" dx1="176.4706" />
+      <Connection Source="HMI.INITO" Destination="INITO" dx1="805.8823" />
+      <Connection Source="HMI.IND" Destination="OUT.CNF" dx1="47.0588" />
+      <Connection Source="HMI.LOAD" Destination="OUT.LD" dx1="252.9412" />
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="LABEL" Destination="HMI.LABEL" dx1="135.2941" />
+      <Connection Source="BKGD" Destination="HMI.BKGD" dx1="147.0588" />
+      <Connection Source="HMI.WO" Destination="OUT.WO" dx1="117.6471" />
+      <Connection Source="HMI.WKPC" Destination="OUT.WKPC" dx1="229.4118" />
+    </DataConnections>
+  </FBNetwork>
+</FBType>

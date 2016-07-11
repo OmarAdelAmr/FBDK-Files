@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+<META NAME="GENERATOR" CONTENT="Eclipse HTML Editor">
+<TITLE>APPLICATION TEST_SUBR</TITLE>
+</HEAD>
+
+<BODY>
+
+<H2 ALIGN="CENTER">APPLICATION TEST_SUBR</H2>
+<CENTER>
+<P>
+<TABLE BORDER="1">
+	<TR>
+		<TD><A HREF="#Viewer">This application </A>is part of the <A
+			HREF="CODEC_TEST2.htm"><TT>CODEC_TEST2</TT> </A>system configuration.
+		It utilizes instances of <A HREF="../../common/IN_ANY.htm"><TT>IN_ANY</TT></A> and
+		<A HREF="../../common/OUT_ANY.htm"><TT>OUT_ANY</TT></A> for input and
+		output of transmitted data, respectively. This data is of the derived
+		<I>subrange</I> data type <TT>ANALOG_DATA</TT> defined in Table 12 of
+		<A HREF="http://www.holobloc.com/stds/iec/sc65bwg7tf3/html/news.htm">IEC
+		61131-3</A> and also documented at right.</TD>
+		<TD NOWRAP><APPLET CODE="FBViewer" WIDTH="332" HEIGHT="241"
+			ALIGN="BOTTOM" ARCHIVE="../../viewer.jar">
+			<PARAM NAME="src" VALUE="ANALOG_DATA">
+		</APPLET></TD>
+	</TR>
+</TABLE>
+
+<TABLE BORDER="1">
+	<TR>
+		<TD WIDTH="400">In this example, three values of ANALOG_DATA type have
+		been transmitted with an ASN.1 tag of <TT>CD</TT> hexadecimal. The
+		transmitted values in decimal (hexadecimal) were <TT>500(01F4)</TT>, <TT>1024(0400)</TT>,
+		and<TT> 4095(0FFF)</TT>. An attempt to enter a value of <TT>4096</TT>
+		was detected as being out of range and not transmitted.</TD>
+		<TD WIDTH="400" VALIGN="TOP">In continuation of the previous example,
+		a value of <TT>-4095(F001)</TT> was entered and transmitted, followed
+		by an out-of-range detection for the entered value of <TT>-4096</TT>.</TD>
+	</TR>
+	<TR>
+		<TD WIDTH="400" NOWRAP><IMG SRC="images/TEST_SUBR.gif" WIDTH="399"
+			HEIGHT="262"></TD>
+		<TD ALIGN="CENTER" WIDTH="400" NOWRAP><IMG SRC="images/TEST_SUBR2.gif"
+			WIDTH="396" HEIGHT="266"></TD>
+	</TR>
+</TABLE>
+</P>
+<P>[<A NAME="Viewer"></A><A HREF="../../FBViewer.html" TARGET="help">Viewer
+Help</A>]<BR>
+<TABLE BORDER="1">
+	<TR>
+		<TD><APPLET CODE="FBViewer" WIDTH="560" HEIGHT="480"
+			ARCHIVE="../../viewer.jar">
+			<PARAM NAME="src" VALUE="CODEC_TEST2">
+			<PARAM NAME="fbd" VALUE="CODEC_TEST2.TEST_SUBR">
+		</APPLET></TD>
+	</TR>
+</TABLE>
+</P>
+<P><I>Last updated: 2006-04-18.</I><BR>
+&copy;2006 <A HREF="http://www.holobloc.com" TARGET="_blank">Holobloc
+Inc</A><BR>
+Licensed under the <A
+	HREF="http://www.opensource.org/licenses/afl-3.0.php">Academic Free
+License version 3.0</A>.</P>
+</CENTER>
+</BODY>
+</HTML>

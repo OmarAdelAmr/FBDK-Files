@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="newTaskGUIFB" Comment="JADE WORKER" >
+  <Identification Standard="61499-1" />
+  <VersionInfo Organization="Fraunhofer IGD" Version="1.0" Author="Ahmed" Date="2014-04-22" />
+  <CompilerInfo header="package fb.rt;" >
+    <Compiler Language="Java" Vendor="Sun" Product="JDK" Version="1.5.0" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="ie_init_new_task" >
+      </Event>
+      <Event Name="ie_start_stop_recording" >
+      </Event>
+      <Event Name="ie_close_newTask_window" >
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="oe_start_stop_recording" >
+      </Event>
+      <Event Name="oe_close_newTask_window" >
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="iv_new_task_name" Type="WSTRING" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="ov_new_task_name" Type="WSTRING" />
+    </OutputVars>
+  </InterfaceList>
+</FBType>

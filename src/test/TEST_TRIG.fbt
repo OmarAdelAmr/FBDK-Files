@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="TEST_TRIG" Comment="Test trigonometric functions" >
+  <Identification Standard="61499-1" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.0" Author="JHC" Date="2006-09-05" />
+  <CompilerInfo header="package fb.rt.test;" classdef="SimpleFB" >
+    <Compiler Language="Java" Vendor="Sun" Product="JDK" Version="1.5.0" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="REQ" Comment="Normal Execution Request" >
+        <With Var="SI" />
+        <With Var="CI" />
+        <With Var="TI" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="CNF" Comment="Execution Confirmation" >
+        <With Var="SO" />
+        <With Var="CO" />
+        <With Var="TO" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="SI" Type="REAL" Comment="Input sin value" />
+      <VarDeclaration Name="CI" Type="REAL" Comment="Input cos value" />
+      <VarDeclaration Name="TI" Type="REAL" Comment="Input tan value" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="SO" Type="REAL" Comment="sin(asin(SI))" />
+      <VarDeclaration Name="CO" Type="REAL" Comment="cos(acos(CI))" />
+      <VarDeclaration Name="TO" Type="REAL" Comment="tan(atan(TI))" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+  <Algorithm Name="REQ" Comment="Normally executed algorithm" >
+    <FBD >
+      <FB Name="AS" Type="ASIN_REAL" x="183.33333" y="11.111111" />
+      <FB Name="S" Type="SIN_REAL" x="700.0" y="11.111111" />
+      <FB Name="AC" Type="ACOS_REAL" x="183.33333" y="466.66666" />
+      <FB Name="C" Type="COS_REAL" x="688.88885" y="466.66666" />
+      <FB Name="AT" Type="ATAN_REAL" x="1238.8888" y="255.55554" />
+      <FB Name="T" Type="TAN_REAL" x="1755.5555" y="255.55554" />
+      <DataConnections>
+        <Connection Source="SI" Destination="AS.IN" dx1="105.55555" />
+        <Connection Source="AS.OUT" Destination="S.IN" dx1="116.666664" />
+        <Connection Source="S.OUT" Destination="SO" dx1="1088.8888" />
+        <Connection Source="CI" Destination="AC.IN" dx1="105.55555" />
+        <Connection Source="AC.OUT" Destination="C.IN" dx1="111.11111" />
+        <Connection Source="C.OUT" Destination="CO" dx1="1105.5555" />
+        <Connection Source="TI" Destination="AT.IN" dx1="1161.1111" />
+        <Connection Source="AT.OUT" Destination="T.IN" dx1="88.888885" />
+        <Connection Source="T.OUT" Destination="TO" dx1="2166.6665" />
+      </DataConnections>
+    </FBD>
+  </Algorithm>
+  </BasicFB>
+</FBType>

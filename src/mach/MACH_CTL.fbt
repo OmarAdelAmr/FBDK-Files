@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="MACH_CTL" Comment="Cycle Control for a Machine with Fixed Tool" >
+  <Identification Standard="61499-1" Classification="Simulation" ApplicationDomain="Machining" Function="Drilling" />
+  <VersionInfo Organization="Holobloc Inc " Version="0.3" Author="JHC" Date="2006-03-05" Remarks="Split SENSE int W_SENSE and M_SENSE; replaced ECC with directly invoked algorithms." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.2" Author="JHC" Date="2004-10-20" Remarks="Changed algorithm to LD to recover from retracting fault." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2004-04-05" Remarks="Corrected transition SPIN -> ADV" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2002-10-03" Remarks="Modified from DRILL_CTL." />
+  <CompilerInfo header="package fb.rt.mach;" >
+    <Compiler Language="Java" Vendor="Sun" Product="JDK" Version="1.5.0" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="W_SENSE" Comment="Workpiece Transport Sensors" >
+        <With Var="WEND" />
+        <With Var="CLAMPED" />
+      </Event>
+      <Event Name="M_SENSE" Comment="Machine Sensors" >
+        <With Var="END" />
+        <With Var="SPIN" />
+        <With Var="HOME" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="ACT" Comment="Actuator output change" >
+        <With Var="FWD" />
+        <With Var="REV" />
+        <With Var="SP_ON" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="WEND" Type="BOOL" Comment="Workpiece present for machining" />
+      <VarDeclaration Name="CLAMPED" Type="BOOL" Comment="Workpiece clamped" />
+      <VarDeclaration Name="HOME" Type="BOOL" Comment="Machine home" />
+      <VarDeclaration Name="END" Type="BOOL" Comment="Machine at END position" />
+      <VarDeclaration Name="SPIN" Type="BOOL" Comment="Spindle at operating speed" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="FWD" Type="BOOL" Comment="Advance machine" />
+      <VarDeclaration Name="REV" Type="BOOL" Comment="Retract machine" />
+      <VarDeclaration Name="SP_ON" Type="BOOL" Comment="Spindle motor" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <InternalVars>
+      <VarDeclaration Name="MACHINED" Type="BOOL" Comment="Machining operation completed on current piece" />
+    </InternalVars>
+  <Algorithm Name="W_SENSE" Comment="Workpiece sensor processing" >
+    <ST Text="SP_ON := CLAMPED;&#10;MACHINED := MACHINED &#38; WEND;&#10;FWD := WEND &#38; CLAMPED &#38; SPIN &#38; NOT END &#38; NOT MACHINED;&#10;REV := NOT FWD &#38; NOT HOME;&#10;ACT.serviceEvent(this);&#10;" />
+  </Algorithm>
+  <Algorithm Name="M_SENSE" Comment="Machine sensor processing" >
+    <ST Text="IF END &#38; NOT MACHINED THEN&#10;  MACHINED := TRUE;&#10;  FWD := FALSE;&#10;  REV := TRUE;&#10;  ACT.serviceEvent(this);&#10;ELSIF HOME &#38; REV THEN&#10;  REV := FALSE;&#10;  ACT.serviceEvent(this);&#10;ELSIF SPIN &#38; WEND &#38; CLAMPED &#38; NOT END &#38; NOT MACHINED &#38; NOT FWD THEN&#10;  FWD := TRUE;&#10;  ACT.serviceEvent(this);&#10;END_IF&#10;" />
+  </Algorithm>
+  </BasicFB>
+</FBType>

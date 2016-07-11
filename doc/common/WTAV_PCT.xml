@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="WTAV_PCT" Comment="Percent Weighted Average" >
+  <Identification Standard="61499-1" Classification="Math" Function="Weighted average" Type="Percent" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.0" Author="JHC" Date="2006-04-07" Remarks="Derived from WTAV_UINT." />
+  <CompilerInfo header="package fb.rt.math;" >
+    <Compiler Language="Java" Vendor="Sun" Product="JDK" Version="1.5.0" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="REQ" Comment="Normal Calculation" >
+        <With Var="IN1" />
+        <With Var="IN2" />
+        <With Var="ETA" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="CNF" Comment="Execution Confirmation" >
+        <With Var="OUT" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="IN1" Type="UINT" Comment="Value when ETA=0" />
+      <VarDeclaration Name="IN2" Type="UINT" Comment="Value when ETA=100" />
+      <VarDeclaration Name="ETA" Type="UINT" Comment="Weighting factor, percent" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="OUT" Type="UINT" Comment="ETA*X1+(1-ETA)*X2" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+  <Algorithm Name="REQ" Comment="Normally executed algorithm" >
+    <ST Text="OUT := ((100-ETA)*IN1 + ETA*IN2)/100;&#10;CNF.serviceEvent(this);&#10;" />
+  </Algorithm>
+  </BasicFB>
+</FBType>

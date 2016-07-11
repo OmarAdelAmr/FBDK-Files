@@ -1,0 +1,112 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+<TITLE>Remote Device Launch Dialog</TITLE>
+</HEAD>
+<BODY>
+<CENTER>
+<H2>Remote Device Launch Dialog<BR>
+<SMALL><SMALL><SMALL><FONT
+	FACE="Helvetica, Arial, sans-serif">[<A HREF="FBEditor.html">Return
+to FBEditor Help</A>]</FONT></SMALL></SMALL></SMALL></H2>
+<P><IMG SRC="launchdlg.png"></P>
+</CENTER>
+<P>This dialog box is opened from the <B>Run</B> menu to launch an
+instance of the <A HREF="../common/RMT_DEV.htm" TARGET="_blank"><TT>RMT_DEV</TT></A>
+or <A HREF="../common/RMT_FRAME.htm" TARGET="_blank"><TT>RMT_FRAME</TT></A>
+device type in a separate runtime process when a <B>system
+configuration</B> is being edited. Setting the parameters in this dialog and
+pressing the <B>OK</B> button is equivalent to executing the following
+command line in the context of the FBDK main directory:</P>
+<CENTER>
+<P><TT>java -noverify -classpath ./lib;./fbrt.jar; &lt;Type&gt;
+-n &lt;Name&gt; -s &lt;Socket&gt; -p &lt;Path&gt;</TT></P>
+</CENTER>
+<P>The semantics of parameter ID/value pairs are as shown in the
+following table. When a parameter is blank in the dialog, the parameter
+ID/value pair will be missing from the command line and the default
+value will apply.</P>
+<CENTER>
+<TABLE BORDER="1">
+	<TBODY>
+		<TR ALIGN="center" VALIGN="middle">
+			<TD><B>Parameter ID</B></TD>
+			<TD><B>Value</B></TD>
+			<TD><B>Default value</B></TD>
+		</TR>
+		<TR ALIGN="center" VALIGN="middle">
+			<TD><TT>-n</TT></TD>
+			<TD>Sets the device name.</TD>
+			<TD>(NOTE 1)</TD>
+		</TR>
+		<TR ALIGN="center" VALIGN="middle">
+			<TD><TT>-p</TT></TD>
+			<TD>Adds a list of packages to search for FB classes and data
+			types.</TD>
+			<TD>(NOTE 2)</TD>
+		</TR>
+		<TR ALIGN="center" VALIGN="middle">
+			<TD><TT>-s</TT></TD>
+			<TD>Sets the management socket to <TT>&lt;hostAddress&gt;:&lt;Socket&gt;</TT>
+			(NOTES 3,4)</TD>
+			<TD><TT>61499</TT></TD>
+		</TR>
+		<TR>
+			<TD COLSPAN="3">
+			<P>NOTES</P>
+			<OL>
+				<LI>The default name is <TT>"RDEVICE"</TT> for intances of
+				RMT_DEV, and <TT>"RMT_FRAME"</TT> for instances of RMT_FRAME.</LI>
+				<LI>The default packages to be searched for FB classes are <TT>fb.rt</TT>
+				and its following sub-packages: <TT>events; ita; ita.testbed;
+				mach; math; mva; net; plc; plc.bits; plc.comp; plc.math; plc.select;
+				plc.strings; process</TT> for RMT_DEV, and additionally <TT>hmi</TT> for
+				RMT_FRAME. Each package in the comma- or semicolon-separated list of
+				packages will be prepended to this list with the <TT>fb.rt.</TT>
+				prefix. See the example below.</LI>
+				<LI><TT>&lt;hostAddress&gt;</TT> is the IP address of the local
+				host, e.g., <TT>169.153.65.1</TT>. On the local machine, this may be
+				referred to as <TT>localhost</TT> or with the default local host IP
+				address <TT>127.0.0.1</TT>; when referring to the device from a
+				remote machine, the actual IP address must be used.</LI>
+				<LI>When the RMT_DEV or RMT_FRAME instance is successfully
+				launched, an entry for the device appears under the <B>RUN==&gt;Shut
+				Down</B> menu item in the format <TT>&lt;deviceName&gt;[&lt;hostAddress&gt;:&lt;Socket&gt;]</TT>.
+				This entry can be used to shut down the local device when it is no
+				longer in use, and can also be used to determine the host IP address
+				and socket number for remote access.</LI>
+			</OL>
+			</TD>
+		</TR>
+	</TBODY>
+</TABLE>
+<P></P>
+</CENTER>
+<H4>Example</H4>
+<P>For the dialog entries shown above, the equivalent command line
+would be:</P>
+<CENTER>
+<P><TT>java -noverify -classpath ./lib;./fbrt.jar; RMT_FRAME -n
+VIEW -s 61500 -p hvac;</TT></P>
+</CENTER>
+<UL>
+	<LI>An instance of the device type <TT>fb.rt.hmi.RMT_FRAME</TT>
+	will be launched.</LI>
+	<LI>The device name will be <TT>VIEW.</TT></LI>
+	<LI>FB classes and data types will be found in the <TT>fb.rt.hvac</TT>
+	package as well as the default packages listed above for the RMT_FRAME
+	type.</LI>
+	<LI>The device management socket will be at port <TT>61500</TT> of
+	the local host.</LI>
+	<LI>The entry under the <B>RUN==&gt;Shut Down</B> menu item will
+	look like <TT>VIEW[192.168.1.4:61500]</TT>.</LI>
+</UL>
+<CENTER>
+<HR>
+<I>Last updated: 2006-07-17.</I><BR>
+&copy;2004 Rockwell Automation. All rights reserved.<BR>
+&copy;2005,2006 Holobloc Inc. All rights reserved.<BR>
+</CENTER>
+</BODY>
+</HTML>

@@ -1,0 +1,44 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+
+<HEAD>
+	<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+	<META NAME="GENERATOR" Content="Visual Page 1.1 for Windows">
+	<TITLE>untitled</TITLE>
+</HEAD>
+
+<BODY>
+
+
+<DL>
+	<DT><A NAME="Controller"></A><B>Controller</B></DT>
+	<DD>A function block that encapsulates the control functions to be performed on one or more instances of associated
+	<A HREF="#Model">Model</A> types, and presents appropriate event and data interfaces for integration of its functions
+	with those of other Controller blocks.
+	<DT><A NAME="FBInstance"></A><B>FBInstance</B></DT>
+	<DD>The abstract superclass of all <B>function block types</B> as defined in IEC 61499-1.
+	<DT><A NAME="Diagnostic"></A><B>Diagnostic element</B></DT>
+	<DD>A function block that is responsible for the detection and diagnosis of equipment or device faults.
+	<DT><A NAME="HMI"></A><B>HMI element</B></DT>
+	<DD>An element for input and/or output of data from/to a user,  typically implemented as an IEC 61499 <A HREF="#Service interface">service
+	interface</A> function block. Combinations of one or more HMI elements play the role of Model and Controller elements
+	in the classical <A HREF="classicl.htm" target="swing">MVC</A> design pattern.
+	<DT><A NAME="Interface"></A><B>Interface</B></DT>
+	<DD>The interface to physical sensors and actuators, typically implemented as one or more IEC 61499 <A HREF="#Service interface">service
+	interface</A> function blocks.
+	<DT><A NAME="Model"></A><B>Model</B></DT>
+	<DD>A function block that represents the time-dependent logical behavior of the system or device being controlled.
+	The model is typically replaced by <A HREF="#Interface">Interface</A> elements to the actual physical system once
+	the corresponding <A HREF="#Controller">Controller</A> class has been validated.
+	<DT><A NAME="Service interface"></A><B>Service interface</B></DT>
+	<DD>See IEC 61499-1.
+	<DT><A NAME="View"></A><B>View</B></DT>
+	<DD>An element that represents the graphical display and possibly user input associated with one or more <A HREF="#Model">Model</A>
+	types, typically implemented as one or more <A HREF="#Service interface">service interface</A> function blocks.
+</DL>
+
+<P ALIGN="CENTER"><I>Last updated: 2002-07-02.</I>
+
+</BODY>
+
+</HTML>

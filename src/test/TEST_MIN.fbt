@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="TEST_MIN" Comment="Test IEC 61131 MIN functions" >
+  <Identification Standard="61499-1" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.0" Author="JHC" Date="2006-09-12" />
+  <CompilerInfo header="package fb.rt.test;" classdef="public class Simple extends SimpleFB" >
+    <Compiler Language="Java" Vendor="Sun" Product="JDK" Version="1.5.0" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="REQ" Comment="Normal Execution Request" >
+        <With Var="INI" />
+        <With Var="INR" />
+        <With Var="IND" />
+        <With Var="INL" />
+        <With Var="TIN1" />
+        <With Var="INU" />
+        <With Var="TIN2" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="CNF" Comment="Execution Confirmation" >
+        <With Var="LIMI" />
+        <With Var="LIMR" />
+        <With Var="LIMD" />
+        <With Var="LIML" />
+        <With Var="LIMT" />
+        <With Var="LIMU" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="INI" Type="INT" />
+      <VarDeclaration Name="IND" Type="DINT" />
+      <VarDeclaration Name="INL" Type="LINT" />
+      <VarDeclaration Name="INU" Type="UINT" />
+      <VarDeclaration Name="INR" Type="REAL" />
+      <VarDeclaration Name="TIN1" Type="TIME" />
+      <VarDeclaration Name="TIN2" Type="TIME" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="LIMI" Type="INT" Comment="Output event qualifier" />
+      <VarDeclaration Name="LIMD" Type="DINT" />
+      <VarDeclaration Name="LIML" Type="LINT" />
+      <VarDeclaration Name="LIMU" Type="UINT" />
+      <VarDeclaration Name="LIMR" Type="REAL" />
+      <VarDeclaration Name="LIMT" Type="TIME" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+  <Algorithm Name="REQ" Comment="Normally executed algorithm" >
+    <FBD >
+      <FB Name="MI" Type="MIN_INT" x="200.0" y="11.111111" >
+        <Parameter Name="IN2" Value="5" />
+      </FB>
+      <FB Name="MR" Type="MIN_REAL" x="872.22217" y="650.0" >
+        <Parameter Name="IN2" Value="5.0" />
+      </FB>
+      <FB Name="ML" Type="MIN_LINT" x="1644.4443" y="11.111111" >
+        <Parameter Name="IN2" Value="5" />
+      </FB>
+      <FB Name="MT" Type="MIN_TIME" x="1677.7777" y="633.3333" />
+      <FB Name="MU" Type="MIN_UINT" x="177.77777" y="655.55554" >
+        <Parameter Name="IN2" Value="5" />
+      </FB>
+      <FB Name="MD" Type="MIN_DINT" x="899.99994" y="11.111111" >
+        <Parameter Name="IN2" Value="5" />
+      </FB>
+      <DataConnections>
+        <Connection Source="MR.OUT" Destination="LIMR" dx1="1322.2222" />
+        <Connection Source="MU.OUT" Destination="LIMU" dx1="611.1111" />
+        <Connection Source="MT.OUT" Destination="LIMT" dx1="2122.2222" />
+        <Connection Source="INI" Destination="MI.IN1" dx1="116.666664" />
+        <Connection Source="MI.OUT" Destination="LIMI" dx1="583.3333" />
+        <Connection Source="IND" Destination="MD.IN1" dx1="805.55554" />
+        <Connection Source="MD.OUT" Destination="LIMD" dx1="1333.3333" />
+        <Connection Source="INL" Destination="ML.IN1" dx1="1550.0" />
+        <Connection Source="ML.OUT" Destination="LIML" dx1="2072.2222" />
+        <Connection Source="INU" Destination="MU.IN1" dx1="83.33333" />
+        <Connection Source="INR" Destination="MR.IN1" dx1="777.7778" />
+        <Connection Source="TIN1" Destination="MT.IN1" dx1="1566.6666" />
+        <Connection Source="TIN2" Destination="MT.IN2" dx1="1566.6666" />
+      </DataConnections>
+    </FBD>
+  </Algorithm>
+  </BasicFB>
+</FBType>

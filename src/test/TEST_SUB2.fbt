@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="TEST_SUB2" Comment="Test SUB functions" >
+  <Identification Standard="IEC 61499-1" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.0" Author="JHC" Date="2006-09-11" />
+  <CompilerInfo header="package fb.rt.test;" classdef="SimpleFB" >
+    <Compiler Language="Java" Vendor="Sun" Product="JDK" Version="1.5.0" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="REQ" >
+        <With Var="IN1R" />
+        <With Var="IN2R" />
+        <With Var="IN2T" />
+        <With Var="IN1T" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="CNF" >
+        <With Var="OUTR" />
+        <With Var="OUTT" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="IN1R" Type="REAL" />
+      <VarDeclaration Name="IN2R" Type="REAL" />
+      <VarDeclaration Name="IN1T" Type="TIME" />
+      <VarDeclaration Name="IN2T" Type="TIME" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="OUTR" Type="REAL" />
+      <VarDeclaration Name="OUTT" Type="TIME" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+  <Algorithm Name="REQ" >
+    <FBD >
+      <FB Name="SUBR" Type="SUB_REAL" x="233.33333" y="11.111111" />
+      <FB Name="SUBT" Type="SUB_TIME" x="1083.3333" y="11.111111" />
+      <DataConnections>
+        <Connection Source="IN1R" Destination="SUBR.IN1" dx1="122.22221" />
+        <Connection Source="IN2R" Destination="SUBR.IN2" dx1="122.22221" />
+        <Connection Source="SUBR.OUT" Destination="OUTR" dx1="683.3333" />
+        <Connection Source="IN1T" Destination="SUBT.IN1" dx1="972.22217" />
+        <Connection Source="IN2T" Destination="SUBT.IN2" dx1="972.22217" />
+        <Connection Source="SUBT.OUT" Destination="OUTT" dx1="1527.7777" />
+      </DataConnections>
+    </FBD>
+  </Algorithm>
+  </BasicFB>
+</FBType>

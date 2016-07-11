@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="FB_ADD_DT_TIME" Comment="IEC 61131-3 DATE_AND_TIME+TIME" >
+  <Identification Standard="IEC 61499-1" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.0" Author="JHC" Date="2006-09-11" />
+  <CompilerInfo header="package fb.rt.math;" >
+    <Compiler Language="Java" Vendor="Sun" Product="JDK" Version="1.5.0" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="REQ" >
+        <With Var="IN1" />
+        <With Var="IN2" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="CNF" >
+        <With Var="OUT" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="IN1" Type="DATE_AND_TIME" Comment="Augend" />
+      <VarDeclaration Name="IN2" Type="TIME" Comment="Addend" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="OUT" Type="DATE_AND_TIME" Comment="Sum" />
+    </OutputVars>
+  </InterfaceList>
+</FBType>

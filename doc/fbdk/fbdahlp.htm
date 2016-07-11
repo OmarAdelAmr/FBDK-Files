@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+<META NAME="GENERATOR" CONTENT="Eclipse HTML Editor">
+<TITLE>FBD Algorithms</TITLE>
+</HEAD>
+<BODY>
+<H2 ALIGN="CENTER">Function Block Diagram (FBD) Algorithms</H2>
+<P><A NAME="funcprog"></A> In versions of the FBDK after 2006-09-01,
+the <A HREF="http://en.wikipedia.org/wiki/Functional_programming"
+	TARGET="_blank">functional programming</A> paradigm has been adopted
+for efficient runtime execution and easier formal validation of
+algorithms in the IEC 61131-3 FBD language:</P>
+<UL>
+	<LI>Algorithms in the FBD language are restricted to use only
+	"pure" IEC 61131-3 <I>functions</I>, which have a single output and no
+	internal state.</LI>
+	<LI>A new file type "<TT>*.fnt</TT>" and icon <IMG SRC="ft16.gif">
+	are added for <I>function templates</I>, which are used for generation
+	of code corresponding to IEC 61131-3 functions in FBD algorithms.</LI>
+	<LI>"Stateful" IEC 61131-3 function block types (<TT>CTU</TT>,
+	etc.) and functions with multiple outputs (<TT>DIV_INT</TT>, etc.) have
+	been removed from the FBDK library.</LI>
+	<LI><A HREF="funsub.htm">IEC 61499 equivalents</A> may be
+	substituted for the removed types, e.g., <TT>E_CTU</TT> for <TT>CTU</TT>
+	and <TT>FB_DIV_INT</TT> for <TT>DIV_INT</TT>.</LI>
+</UL>
+<H3><A NAME="Functions"></A>Functions</H3>
+<UL>
+	<LI>You can add named "instances" of IEC 61131-3 <I>functions</I>
+	to the FBD algorithm by using the <B>New</B> option of the worksheet
+	popup menu (they aren't really instantiated at runtime - see <A
+		HREF="#Execution">Execution</A>). This opens a dialog similar to the <A
+		HREF="fb.htm">New</A> dialog for function blocks (FBs), with the
+	following differences:
+	<UL>
+		<LI>Only <B>function templates</B> identified by the file type "<TT>*.fnt</TT>"
+		and icon <IMG SRC="ft16.gif"> can be used.</LI>
+		<LI>The initial directory is the FBDK's <TT>src/plc</TT>
+		directory, whose subdirectories contain these templates.</LI>
+	</UL>
+	</LI>
+	<LI>You can <B>select</B> a function and see its declaration in
+	the text pane by clicking on its <I>instance name</I> (the name that
+	appears over the top of the block).</LI>
+	<LI>You can change the position in the diagram of one of these
+	elements by <B>dragging</B> on its instance name .</LI>
+	<LI>You can <A HREF="fb.htm">edit</A> the name, type and comment
+	of the function by double-clicking on the instance name.</LI>
+	<LI>You can perform other operations by using the <B>pop-up
+	menu</B> that appears when you right-click on the instance name.</LI>
+	<LI>You can <B>delete</B> a function using its pop-up menu or by
+	using the <B>Alt+Del</B> keychord when the instance is selected.</LI>
+	<LI>You can view the function template by double-clicking in its
+	body.</LI>
+</UL>
+<H3><A NAME="Connections"></A>Connections</H3>
+<UL>
+	<LI>You can <B>add connections</B> to an FBD using the <A
+		HREF="dndconn.htm">Alt+Drag</A> gesture.</LI>
+	<LI>You can <B>select</B> a connection and see its declaration in
+	the text pane by clicking on a vertical line segment or the middle
+	segment of a 5-segment line.</LI>
+	<LI>You can delete a connection with the <B>Alt+Del</B> keychord
+	when the connection is selected.</LI>
+	<LI>You can toggle between 3- and 5-segment representations of a
+	connection using its <B>pop-up menu</B>.</LI>
+</UL>
+<H3><A NAME="Parameters"></A>Parameters</H3>
+<P><A HREF="params.htm">Parameters</A> (constant inputs) of
+functions in FBD algorithms can be edited in the same manner as for
+function blocks, resources, etc. However, since these are active inputs
+to functions, the display of parameters cannot be turned off by the
+popup menu's <B>Parameters</B> item for FBD algorithms.</P>
+</UL>
+<H3><A NAME="Execution"></A>Execution</H3>
+<UL>
+	<LI>When the <A HREF="saveas.htm">File Save As Java</A> option is
+	selected for a function block type containing an FBD algorithm, code is
+	generated for evaluating the networks comprising the algorithm
+	following the rules for evaluation of networks given in subclause 4.1.3
+	of IEC 61131-3. The networks are evaluated in the following order:</LI>
+	<OL>
+		<LI>Networks producing values of <I>internal variables</I>, in
+		the order in which the variables are declared in the FB interface;</LI>
+		<LI>Networks producing values of <I>output variables</I>, in the
+		order in which the variables are declared in the FB interface.</LI>
+	</OL>
+	<LI>For an example of this code generation, see the <TT>PNP_CTL_FBD.fbt</TT>
+	example in the FBDK's <TT>src/mach</TT> directory; for an example of
+	the use of internal variables, see the <TT>TEST_IV.fbt</TT> example in
+	the <TT>src/test</TT> directory.</LI>
+	<LI><B>Feedback Loop Detection</B> is incorporated in the code
+	generation algorithm. If a <I>feedback path</I> is detected as
+	described in subclause 4.1.3 of IEC 61131-3, an error message is
+	embedded in the generated code. This will cause the Java compilation to
+	fail at the line where the error message occurs. For an example of this
+	condition, try to generate the code for the <TT>TEST_LOOP.fbt</TT>
+	example in the FBDK's <TT>src/test</TT> directory.</LI>
+</UL>
+<CENTER>
+<HR>
+<I>Last updated: 2006-09-26.</I><BR>
+&copy;2006 <A HREF="http://www.holobloc.com" TARGET="_blank">Holobloc
+Inc</A>. All rights reserved.</CENTER>
+</BODY>
+</HTML>

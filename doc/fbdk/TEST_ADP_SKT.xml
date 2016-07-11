@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="TEST_ADP_SKT" Comment="GUI for testing TEST_ADP as Socket" >
+  <Identification Standard="61499-1" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.2" Author="JHC" Date="2005-02-18" Remarks="Moved from &#34;student&#34; to &#34;doc&#34;; changed import from fb.rt.hmi to swing.." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2003-08-17" Remarks="Moved from &#34;book&#34; to &#34;student&#34;." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2002-01-09" />
+  <CompilerInfo header="package fb.rt.doc; import fb.rt.swing.*;" >
+    <Compiler Language="Java" Vendor="Sun" Product="JDK" Version="1.4.2" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Type="EVENT" Comment="Initialize GUI" >
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Type="EVENT" Comment="GUI Initialized" >
+      </Event>
+    </EventOutputs>
+    <Sockets>
+      <AdapterDeclaration Name="SKT" Type="TEST_ADP" x="1311.7646" y="300.0" />
+    </Sockets>
+  </InterfaceList>
+  <FBNetwork >
+    <FB Name="REQ" Type="IN_EVENT" x="347.0588" y="11.7647" >
+      <Parameter Name="QI" Value="1" />
+      <Parameter Name="LABEL" Value="&#34;REQ&#34;" />
+    </FB>
+    <FB Name="REQD" Type="IN_ANY" x="817.647" y="11.7647" >
+      <Parameter Name="QI" Value="1" />
+      <Parameter Name="TYPE" Value="&#34;WSTRING&#34;" />
+    </FB>
+    <FB Name="CNF" Type="OUT_EVENT" x="2529.4116" y="188.2353" >
+      <Parameter Name="QI" Value="1" />
+      <Parameter Name="LABEL" Value="&#34;CNF&#34;" />
+    </FB>
+    <FB Name="CNFD" Type="OUT_ANY" x="1905.8823" y="188.2353" >
+      <Parameter Name="QI" Value="1" />
+      <Parameter Name="TYPE" Value="&#34;WSTRING&#34;" />
+    </FB>
+    <EventConnections>
+      <Connection Source="INIT" Destination="REQ.INIT" dx1="241.1765" />
+      <Connection Source="REQ.INITO" Destination="REQD.INIT" dx1="76.4706" dx2="64.7059" dy="735.2941" />
+      <Connection Source="REQD.INITO" Destination="CNF.INIT" dx1="1329.4117" />
+      <Connection Source="CNF.INITO" Destination="CNFD.INIT" dx1="58.8235" dx2="76.4706" dy="-258.8235" />
+      <Connection Source="CNFD.INITO" Destination="INITO" dx1="2364.7058" />
+      <Connection Source="REQ.IND" Destination="REQD.REQ" dx1="35.2941" dx2="117.6471" dy="570.5882" />
+      <Connection Source="REQD.IND" Destination="SKT.REQ" dx1="76.4706" />
+      <Connection Source="SKT.CNF" Destination="CNFD.REQ" dx1="152.9412" />
+      <Connection Source="CNFD.CNF" Destination="CNF.REQ" dx1="82.3529" dx2="123.5294" dy="-1417.647" />
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="REQD.OUT" Destination="SKT.REQD" dx1="64.7059" />
+      <Connection Source="SKT.CNFD" Destination="CNFD.IN" dx1="52.9412" />
+    </DataConnections>
+  </FBNetwork>
+</FBType>

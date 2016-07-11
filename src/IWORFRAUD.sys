@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE System SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<System Name="IWORFRAUD" Comment="System Configuration" >
+  <Identification Standard="61499-1" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.3" Author="JHC" Date="2003-12-05" Remarks="Renamed from NEWSYSTEM." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.2" Author="JHC" Date="2002-11-05" Remarks="Fixed missing (empty) FBD in Application." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2002-01-17" Remarks="Minor cleanup" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2000-05-27" />
+  <Application Name="APP1" >
+    <FBNetwork >
+    </FBNetwork>
+  </Application>
+  <Device Name="Controller" Type="FRAME_DEVICE" x="100.0" y="11.111111" >
+    <Resource Name="RES1" Type="PANEL_RESOURCE" x="1344.4443" y="527.7778" >
+      <FBNetwork >
+        <FB Name="Worker_1" Type="FirstAgentFB" x="1305.5555" y="183.33333" >
+          <Parameter Name="NAME" Value="&#34;Worker_1&#34;" />
+        </FB>
+        <FB Name="Worker_2" Type="FirstAgentFB" x="1366.6666" y="794.4444" >
+          <Parameter Name="NAME" Value="&#34;Worker_2&#34;" />
+        </FB>
+        <FB Name="Robot_1" Type="FirstAgentFB" x="1355.5555" y="1522.2222" >
+          <Parameter Name="NAME" Value="&#34;Robot_1&#34;" />
+        </FB>
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="Worker_1.INIT" dx1="777.7778" />
+          <Connection Source="START.COLD" Destination="Worker_2.INIT" dx1="861.1111" />
+          <Connection Source="START.COLD" Destination="Robot_1.INIT" dx1="861.1111" />
+        </EventConnections>
+      </FBNetwork>
+    </Resource>
+  </Device>
+</System>

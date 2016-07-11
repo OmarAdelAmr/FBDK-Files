@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+<META NAME="GENERATOR" Content="Eclipse HTML Editor">
+<META NAME="Standard" CONTENT="61499-1">
+<TITLE>SYSTEM TEST_MATRIX</TITLE>
+</HEAD>
+<BODY>
+<H2 ALIGN="CENTER">SYSTEM TEST_MATRIX</H2>
+<P><A HREF="#Viewer">This system configuration</A> provides
+facilities for testing operations on instances of the <A
+	HREF="../../../../datatype/MATRIX.html"><TT>MATRIX</TT></A> data type.</P>
+<CENTER>
+<TABLE BORDER="1">
+	<TR>
+		<TD ALIGN="center">The initial situation after launching the test
+		configuration.<BR>
+		<IMG SRC="TEST_MATRIXa.png"></TD>
+	</TR>
+	<TR>
+		<TD ALIGN="center">The situation after entering data in the <TT>[0,0]</TT>
+		position of the <TT>IN1</TT> input.<BR>
+		Note the error codes of <TT>4 <A
+			HREF="../../../math/FBStatus.html">(INVALID_ARRAY_SIZE)</A></TT> and <TT>13
+		<A HREF="../../../math/FBStatus.html">(DIVISION_BY_ZERO)</A></TT>.<BR>
+		<IMG SRC="TEST_MATRIXb.png"></TD>
+	</TR>
+	<TR>
+		<TD>The situation after entering data in the <TT>[0,1]</TT>
+		position of the <TT>IN2</TT> input. Note the error codes of <TT>4
+		<A HREF="../../../math/FBStatus.html">(INVALID_ARRAY_SIZE)</A></TT> have
+		disappeared since consistently-sized arrays are now available for the
+		<TT>ADD, SUB</TT> and <TT>MUL</TT> functions. However, the <TT>13
+		<A HREF="../../../math/FBStatus.html">(DIVISION_BY_ZERO)</A></TT> error
+		code is still present because <TT>IN1</TT> is singular.<BR>
+		<CENTER><IMG SRC="TEST_MATRIXc.png"></CENTER>
+		</TD>
+	</TR>
+	<TR>
+		<TD>The situation after entering data in the <TT>[2,2]</TT>
+		position of the <TT>IN1</TT> input. Now the <TT>13 <A
+			HREF="../../../math/FBStatus.html">(DIVISION_BY_ZERO)</A></TT> error code
+		is gone because <TT>IN1</TT> is non-singular.<BR>
+		<CENTER><IMG SRC="TEST_MATRIXd.png"></CENTER>
+		</TD>
+	</TR>
+	<TR>
+		<TD>The situation just before entering invalid data in the <TT>[0,0]</TT>
+		position of the <TT>IN1</TT> input. Upon attampting to enter the
+		invalid data, the value reverts to its previous value of 1.0, i.e.,
+		invalid data is not accepted. <BR>
+		<CENTER><IMG SRC="TEST_MATRIXe.png"></CENTER>
+		</TD>
+	</TR>
+</TABLE>
+<P>[<A NAME="Viewer" HREF="../../../../../../FBViewer.html"
+	target="_blank">Viewer Help</A>]<BR>
+<TABLE BORDER=1>
+	<TR>
+		<TD><APPLET CODE="FBViewer"
+			ARCHIVE="../../../../../../viewer.jar" WIDTH=721 HEIGHT=453></APPLET></TD>
+	</TR>
+</TABLE>
+</P>
+<P><I>Last updated: 2007-12-28.</I> <BR>
+&copy;2007&nbsp;<A HREF="http://www.holobloc.com" TARGET="_blank">Holobloc&nbsp;Inc</A>.
+All&nbsp;rights&nbsp;reserved.</P>
+</CENTER>
+</BODY>
+</HTML>

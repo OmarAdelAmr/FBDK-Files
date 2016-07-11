@@ -1,0 +1,63 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+<TITLE>SYSTEM ASM_VIEWL</TITLE>
+</HEAD>
+<BODY>
+<H3>2. Develop and Test Views</H3>
+<P>The <TT>ASM_VIEWL</TT> system configuration shown <A HREF="#Viewer">below</A>
+implements the layered <A HREF="syseng2.htm#2"><B>View</B> testing
+architecture</A> for the <A HREF="asmsket.htm">assembly example</A>. The
+<TT>HMI</TT> device encapsulates the functionality of the human
+interface layer, and the <TT>VIEW</TT> device encapsulates the
+functionality of the view layer. The <TT>VIEW</TT> device contains one
+instance of the specialized <A HREF="../../common/VIEW_PANEL.htm"><TT>VIEW_PANEL</TT></A>
+resource type to provide the necessary layout of View elements for the
+drilling example. Inter-layer communication is implemented with the <A
+	HREF="../publsubl/index.htm">local multicast</A> pattern, i.e., by
+using <TT>PUBL_3/SUBL_3</TT> for linking the <TT>MECH_HMIL/MECH_VIEWL</TT>
+pairs.</P>
+<CENTER>
+<P><IMG SRC="../../note.gif" HEIGHT="24" WIDTH="32">Click on a graphic
+element to navigate to its documentation.<BR>
+<TABLE BORDER="0" CELLPADDING="0" CELLSPACING="0">
+	<TBODY>
+		<TR>
+			<TD VALIGN="top"><IMG SRC="images/DSCYL_VIEWL.gif"
+				USEMAP="#DSCYL_VIEWL" BORDER="0" HEIGHT="100"
+				WIDTH="380"></TD>
+			<TD><IMG SRC="images/DSCYL_VIEWL2.gif" USEMAP="#DSCYL_VIEWL2"
+				BORDER="0" HEIGHT="150" WIDTH="185"></TD>
+		</TR>
+	</TBODY>
+</TABLE>
+</P>
+<P><A NAME="Viewer"></A>[<A HREF="../../FBViewer.html" TARGET="help">Viewer
+Help</A>]<BR>
+<TABLE BORDER="1">
+	<TBODY>
+		<TR>
+			<TD><APPLET CODE="FBViewer" ARCHIVE="../../viewer.jar" HEIGHT="500"
+				WIDTH="700"> </APPLET></TD>
+		</TR>
+	</TBODY>
+</TABLE>
+</P>
+<P><I>Last updated: 2006-04-21.</I><BR>
+&copy;2006 Holobloc Inc.<BR>
+Licensed under the <A
+	HREF="http://www.opensource.org/licenses/afl-3.0.php">Academic Free
+License version 3.0</A>.</P>
+</CENTER>
+<MAP NAME="DSCYL_VIEWL">
+	<AREA SHAPE="Rect" COORDS="3,42,380,100" HREF="MECH_HMIL.htm">
+</MAP>
+<MAP NAME="DSCYL_VIEWL2">
+	<AREA SHAPE="Rect" COORDS="106,41,184,117" HREF="XSPACE.htm">
+	<AREA SHAPE="Rect" COORDS="4,41,78,117" HREF="XSPACE.htm">
+	<AREA SHAPE="Rect" COORDS="6,118,180,143" HREF="MECH_VIEWL.htm">
+	<AREA SHAPE="Rect" COORDS="77,40,107,118" HREF="MECH_VIEWL.htm">
+</MAP>
+</BODY>
+</HTML>

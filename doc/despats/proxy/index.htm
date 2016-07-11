@@ -1,0 +1,52 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+<META NAME="GENERATOR" CONTENT="Eclipse HTML Editor">
+<TITLE>Design Pattern: Proxy</TITLE>
+</HEAD>
+<BODY>
+<H2 ALIGN="CENTER">Design Pattern: Proxy</H2>
+<H3><A NAME="Problem"></A>Problem Statement</H3>
+<P>The proxy pattern is described as one which &quot;decouples clients
+from their servers by creating a local proxy, or stand-in, for the less
+accessible server. When the client needs to request a service from the
+server, such as retrieving a value, it asks its local proxy. The proxy
+can then marshal a request to the original server….&quot;[B.P.Douglass,
+<A
+	HREF="http://www.aw-bc.com/catalog/academic/product/0,1144,0321160762,00.html">Real-Time
+UML</A>]. One use for this pattern in the IEC 61499 context is to
+utilize <A HREF="../../fbdk/howtosi.htm">service interface function
+blocks</A> (SIFBs) as proxies for functions of devices that may not
+themselves be compliant to the standard.</P>
+<P>Consider the example shown below, where the operation of two machines
+must be coordinated, but the machine interfaces are located on
+incompatible sensor/actuator links. In this case, interoperation may be
+achieved by using two IEC 61499-compliant devices, each with its own
+special-purpose interface to the appropriate sensor/actuator link (or by
+a single IEC 61499-compliant device containing two such interfaces). The
+devices may then be populated with SIFBs that serve as local proxies for
+the actual interfaces located on the sensor/actuator links. Coordinated
+machine operations can then be achieved by the addition of appropriate
+application function block instances, data and event connections within
+each device, plus communication SIFBs to achieve the required event and
+data connections between the two devices. Note that communication SIFBs
+would not be required if all proxy SIFBs and application FBs could be
+co-located within a single resource of a single device.</P>
+<CENTER>
+<IMG SRC="proxy.gif" WIDTH="398" HEIGHT="177">
+<H3><A NAME="Framework"></A>Framework</H3>
+<P>- TBD -</P>
+<H3><A NAME="Methodology"></A>Methodology</H3>
+<P>- TBD -</P>
+<HR>
+<P><I>Last updated: 2006-04-19.</I><BR>
+&copy;2006 <A HREF="http://www.holobloc.com" TARGET="_blank">Holobloc
+Inc</A><BR>
+Licensed under the <A
+	HREF="http://www.opensource.org/licenses/afl-3.0.php">Academic Free
+License version 3.0</A>.</P>
+</CENTER>
+</BODY>
+</HTML>

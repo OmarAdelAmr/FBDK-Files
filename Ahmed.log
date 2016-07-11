@@ -1,0 +1,13 @@
+[17/Apr/2015:12:11:51] Agent: Ahmed@eider:1099/JADE born
+da0@eider:1099/JADE - - [17/Apr/2015:12:12:55] "RX QUERY-REF"
+da0@eider:1099/JADE - - [17/Apr/2015:12:12:55] "TX INFORM"
+da0@eider:1099/JADE - - [17/Apr/2015:12:12:59] "RX QUERY-REF"
+da0@eider:1099/JADE - - [17/Apr/2015:12:12:59] "TX INFORM"
+da0@eider:1099/JADE - - [17/Apr/2015:12:13:59] "RX QUERY-REF" (QUERY-REF
+ :sender  ( agent-identifier :name da0@eider:1099/JADE  :addresses (sequence http://eider.ad.igd.fraunhofer.de:7778/acc http://eider.ad.igd.fraunhofer.de:59259/acc ))
+ :receiver  (set ( agent-identifier :name Ahmed@eider:1099/JADE ) )
+)
+da0@eider:1099/JADE - - [17/Apr/2015:12:13:59] "TX NOT-UNDERSTOOD" (NOT-UNDERSTOOD
+ :receiver  (set ( agent-identifier :name da0@eider:1099/JADE  :addresses (sequence http://eider.ad.igd.fraunhofer.de:7778/acc http://eider.ad.igd.fraunhofer.de:59259/acc )) )
+ :content  "( UnexpectedContent (expected ping))" 
+ :reply-with  da0@eider:1099/JADE1429265639714 )

@@ -1,0 +1,67 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+<META NAME="GENERATOR" CONTENT="Visual Page 1.1 for Windows">
+<TITLE>FBDK Bugs and Workarounds</TITLE>
+</HEAD>
+<BODY>
+<H2 ALIGN="center"><A NAME="Top"></A>FBDK - Known Bugs <IMG
+	SRC="bugs.gif" WIDTH="16" HEIGHT="16" ALIGN="bottom" BORDER="0"> and
+Workarounds<BR>
+<FONT SIZE="2" FACE="Arial, Helvetica">[</FONT><A HREF="FBEditor.html"><FONT
+	SIZE="2" FACE="Arial, Helvetica">Back to FBDK Help</FONT></A><FONT
+	SIZE="2" FACE="Arial, Helvetica">]</FONT></H2>
+<CENTER>
+<P>The table below contains a list of known bugs and recommended
+workarounds in the current release of the FBDK.<BR>
+<TABLE BORDER="1">
+	<TBODY>
+		<TR>
+			<TH ALIGN="center">No.</TH>
+			<TH ALIGN="center">Bug Description</TH>
+			<TH ALIGN="center">Recommended Workaround</TH>
+		</TR>
+		<TR>
+			<TH ALIGN="center" VALIGN="TOP">1</TH>
+			<TD>IEC 61131-3 strong data typing is not enforced and IEC 61131-3
+			type conversion functions are not available in mathematical
+			expressions of ST algorithms. Instead, each expression is translated
+			token-by-token from ST notation to Java. Hence, expressions are
+			evaluated according to the rules for Java rather than the strongly
+			typed rules for IEC 61131-3.</TD>
+			<TD>In general, just be aware that evaluation of ST expressions
+			compiled in the FBDK will follow the rules for <A
+				HREF="http://java.sun.com/docs/books/tutorial/java/nutsandbolts/operators.html">operators</A>
+			given in the <A
+				HREF="http://java.sun.com/docs/books/tutorial/index.html">Java
+			Tutorial</A>. The FBEditor will automatically insert a <A
+				HREF="http://java.sun.com/docs/books/tutorial/java/nutsandbolts/other.html">cast
+			operator</A> to force the result of an expression to the required
+			type for assignment to a variable with the ST <TT>":="</TT> operator.</TD>
+		</TR>
+		<TR>
+			<TH ALIGN="CENTER" VALIGN="TOP">2</TH>
+			<TD>Accessors for structured variables are not correctly generated.</TD>
+			<TD>Fix the accessor bugs manually in the generated Java source file.</TD>
+		</TR>
+		<TR>
+			<TH ALIGN="center" VALIGN="top">3</TH>
+			<TD VALIGN="top">Bit string literals in ST expressions, e.g., <FONT
+				FACE="Courier New, Courier, monospace">16#FE</FONT>, are not
+			correctly translated to Java.<BR>
+			</TD>
+			<TD VALIGN="top">Another consequence of the weak ST parsing. It does,
+			however, work in variable initializations and graphical connections.
+			The Java notation <FONT FACE="Courier New, Courier, monospace">0xFE</FONT>
+			may work in ST expressions but is not tested.<BR>
+			</TD>
+		</TR>
+	</TBODY>
+</TABLE>
+<P><I>Last updated: 2006-04-28.</I><BR>
+&copy;2006 <A HREF="http://www.holobloc.com" TARGET="_blank">Holobloc
+Inc</A>. All rights reserved.</P>
+</CENTER>
+</BODY>
+</HTML>

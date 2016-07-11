@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html;CHARSET=iso-8859-1">
+  <meta name="GENERATOR" content="Visual Page 1.1 for Windows">
+  <title>FUNCTION_BLOCK DSCYL_DIAGL</title>
+</head>
+<body>
+<h2 align="center">FUNCTION_BLOCK DSCYL_DIAGL</h2>
+<p>An instance of <a href="#Viewer">this function block type</a>
+utilizes three instances of the <a href="MECH1_DIAG.htm"><tt>MECH1_DIAG</tt></a>
+type to provide
+diagnostics for a dual-stroke cylinder mechanism modeled by the <a href="DSCYL_MDLL.htm"><tt>DSCYL_MDLL</tt></a>
+type or the equivalent
+physical device. Faults detected are timeouts when the first or second cylinder is
+advancing
+or when both cylinders are retracting. The
+corresponding timeout periods and diagnostic messages are given by the <tt>NF1/MSGF1, NF2/MSGF2</tt>
+and <tt>NR/MSGR</tt> pairs, respectively.</p>
+The function block sends
+and receives data using the <a href="../publsubl/index.htm">local
+multicast</a> design pattern.
+Sensor and actuator data are received on the local channels identified
+by the <tt>SENSE_ID</tt> and <tt>ACT_ID</tt>
+inputs, respectively, and the diagnostic output is published on the
+local channel identified by the <tt>DIAG_ID</tt>
+input. Simulation clock events are received on the local channel
+identified by the <tt>CLK_ID</tt> input. Identification of the source
+of the diagnostic message is
+provided by the <tt>SRC</tt> input.<br>
+<p><img alt="NOTE -" src="../../fbdk/note.gif" height="24" width="32">See the
+<a href="XBAR_MDLL.htm"><tt>XBAR_MDLL</tt></a>
+function block type for descriptions and default
+values for the <tt>*_ID</tt> inputs.</p>
+<center>
+<p><a name="Viewer"></a>[<a href="../../FBViewer.html" target="help">Viewer
+Help</a>]<br>
+<table border="1">
+  <tbody>
+    <tr>
+      <td> <applet code="FBViewer" archive="../../viewer.jar"
+ align="bottom" height="650" width="700"> </applet>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</p>
+<hr>
+<p><i>Last updated: 2004-10-21.
+<br>
+&copy;2004 Rockwell Automation. All rights reserved.
+</i></p>
+</center>
+</body>
+</html>

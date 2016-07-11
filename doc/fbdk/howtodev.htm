@@ -1,0 +1,58 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+<META NAME="GENERATOR" CONTENT="Eclipse HTML Editor">
+<TITLE>Device Types</TITLE>
+</HEAD>
+<BODY>
+<H2 ALIGN="center">Build and Test a Device Type</H2>
+<OL>
+	<LI>Start the <B>FBEditor</B> application by running the <A
+		HREF="custom.htm#FBEditor"><TT>fbeditor.bat</TT></A> file.</LI>
+	<LI>Create a new device type in the editor by:
+	<UL>
+		<LI>Opening a file containing an existing device type, for
+		instance the <TT>RMT_DEV.rev</TT> file in the <TT>src\ita</TT> folder
+		or the <A HREF="TEST_DEV2.htm"><TT>TEST_DEV2.dev</TT></A> file in the
+		<TT>src/test</TT> folder; or</LI>
+		<LI>Clicking the <B>File =&gt; New =&gt; DeviceType</B> menu
+		item. Here is how the screen will look if you do this:<BR>
+		<IMG SRC="newdev.png"></LI>
+	</UL>
+	</LI>
+	<LI>Edit the device type's elements:
+	<UL>
+		<LI><A HREF="propsfrm.htm">Edit the device type's properties</A>.</LI>
+		<LI><A HREF="intfcfrm.htm">Edit the device type's interface</A>
+		(data inputs, i.e., <I>parameters</I>, only).</LI>
+		<LI><A HREF="fbdfrm.htm">Edit the device type's body</A> by
+		clicking on the resource type name in the <B>Navigation</B> area and
+		editing the graphic layout of the FBD in the <B>Worksheet/Viewport</B>
+		area.</LI>
+		<LI><A HREF="types.htm">Edit the resource types and FB types</A>
+		supported by the device.</LI>
+	</UL>
+	</LI>
+	<LI>When your editing is complete, save your work with the <B>File=&gt;Save
+	As=&gt;XML...</B> menu item.
+	<UL>
+		<LI><IMG SRC="../note.gif" ALIGN="bottom" BORDER="0" HEIGHT="24"
+			WIDTH="32">It is a good idea to <B>save your work</B> from time
+		to time while editing, too!</LI>
+	</UL>
+	</LI>
+	<LI>Generate and compile a Java source file with the <A
+		HREF="saveas.htm">File Save As...</A> menu item.</LI>
+	<LI>Device types cannot be tested independently of their system
+	configuration, so you will have to create a <A HREF="howtosys.htm">system
+	configuration</A> to do this testing. For an example see the <A
+		HREF="TEST_SYS3.htm"><TT>TEST_SYS3</TT></A> configuration.</LI>
+</OL>
+<CENTER>
+<HR>
+<I>Last updated: 2007-12-29.</I> <BR>
+&copy;2007&nbsp;<A HREF="http://www.holobloc.com" TARGET="_blank">Holobloc&nbsp;Inc</A>.
+All&nbsp;rights&nbsp;reserved.</CENTER>
+</BODY>
+</HTML>

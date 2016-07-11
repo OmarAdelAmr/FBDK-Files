@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="FB_GT_INT" Comment="INT Comparison" >
+  <Identification Standard="61499-1-D.1" Classification="Math" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.0" Author="JHC" Date="2005-06-11" />
+  <CompilerInfo header="package fb.rt.math;" classdef="class FB_GT_REAL extends FBFunction2" >
+    <Compiler Language="Java" Vendor="Sun" Product="JDK" Version="1.5.0" />
+    <Compiler Language="Java" Vendor="IBM" Product="VisualAge" Version="3.0" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="REQ" >
+        <With Var="IN1" />
+        <With Var="IN2" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="CNF" >
+        <With Var="OUT" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="IN1" Type="INT" />
+      <VarDeclaration Name="IN2" Type="INT" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="OUT" Type="BOOL" Comment="IN1>IN2" />
+    </OutputVars>
+  </InterfaceList>
+</FBType>

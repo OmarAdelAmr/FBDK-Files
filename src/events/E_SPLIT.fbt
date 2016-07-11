@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="E_SPLIT" Comment="Split an event" >
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.1" Author="JHC" Date="2006-04-25" Remarks="Corrected ECC layout." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2000-10-17" />
+  <CompilerInfo header="package fb.rt.events;" >
+    <Compiler Language="Java" Vendor="Sun" Product="JDK" Version="1.5.0" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="EI" Comment="Input event" >
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="EO1" Comment="First output event" >
+      </Event>
+      <Event Name="EO2" Comment="Second output event,etc." >
+      </Event>
+    </EventOutputs>
+  </InterfaceList>
+  <BasicFB>
+    <ECC >
+      <ECState Name="START" Comment="Initial State" x="177.77777" y="105.55555" >
+      </ECState>
+      <ECState Name="EO" Comment="Output first,second event,etc." x="577.7778" y="427.77777" >
+        <ECAction Output="EO1" />
+        <ECAction Output="EO2" />
+      </ECState>
+      <ECTransition Source="START" Destination="EO" Condition="EI" x="577.7778" y="105.55555" />
+      <ECTransition Source="EO" Destination="START" Condition="1" x="177.77777" y="427.77777" />
+    </ECC>
+  </BasicFB>
+</FBType>

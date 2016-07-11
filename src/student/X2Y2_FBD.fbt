@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="X2Y2_FBD" Comment="Compute X^2-Y^2 in FBD" >
+  <Identification Standard="61499-1" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.2" Author="JHC" Date="2006-09-06" Remarks="Made a SimpleFB." />
+  <VersionInfo Organization="Holobloc Inc" Version="0.1" Author="JHC" Date="2006-03-20" Remarks="Changed algorithm name from REQ_ALG to REQ." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2003-08-11" Remarks="Derived from FB_X2Y2_ST." />
+  <CompilerInfo header="package fb.rt.student; import fb.rt.plc.math.*;" classdef="SimpleFB" >
+    <Compiler Language="Java" Vendor="Sun" Product="JDK" Version="1.5.0" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="REQ" >
+        <With Var="X" />
+        <With Var="Y" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="CNF" >
+        <With Var="OUT" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="X" Type="REAL" />
+      <VarDeclaration Name="Y" Type="REAL" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="OUT" Type="REAL" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+  <Algorithm Name="REQ" >
+    <FBD >
+      <FB Name="SUM" Type="ADD_REAL" x="244.44443" y="77.77777" />
+      <FB Name="DIFF" Type="SUB_REAL" x="249.99998" y="650.0" />
+      <FB Name="PROD" Type="MUL_REAL" x="1005.55554" y="311.11108" />
+      <DataConnections>
+        <Connection Source="X" Destination="SUM.IN1" dx1="177.77777" />
+        <Connection Source="X" Destination="DIFF.IN1" dx1="183.33333" />
+        <Connection Source="Y" Destination="SUM.IN2" dx1="177.77777" />
+        <Connection Source="Y" Destination="DIFF.IN2" dx1="183.33333" />
+        <Connection Source="DIFF.OUT" Destination="PROD.IN2" dx1="305.55554" />
+        <Connection Source="SUM.OUT" Destination="PROD.IN1" dx1="322.2222" />
+        <Connection Source="PROD.OUT" Destination="OUT" dx1="1444.4443" />
+      </DataConnections>
+    </FBD>
+  </Algorithm>
+  </BasicFB>
+</FBType>

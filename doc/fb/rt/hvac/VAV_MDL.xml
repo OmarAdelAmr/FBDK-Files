@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="VAV_MDL" Comment="Variable Air Valve Model" >
+  <Identification Standard="61499-1" Classification="Simulation" ApplicationDomain="HVAC" Function="Variable Air Valve" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.1" Author="JHC" Date="2006-05-01" Remarks="Changed FV to FD." />
+  <VersionInfo Organization="Holobloc Inc" Version="0.0" Author="JHC" Date="2006-04-10" />
+  <CompilerInfo header="package fb.rt.hvac; import fb.rt.mva.*;" >
+    <Compiler Language="Java" Vendor="Sun" Product="JDK" Version="1.5.0" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="CLK" Comment="External Clock Event" >
+        <With Var="FAULT" />
+        <With Var="OPEN" />
+        <With Var="CLOSE" />
+        <With Var="DT" />
+        <With Var="TACT" />
+        <With Var="FSF" />
+        <With Var="FD" />
+        <With Var="SFS" />
+        <With Var="ADMAX" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INDP" Comment="POS changed" >
+        <With Var="POS" />
+      </Event>
+      <Event Name="INDS" Comment="Sensor value changed (always follows CLK)" >
+        <With Var="POS" />
+        <With Var="FLOW" />
+        <With Var="AD" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="FAULT" Type="BOOL" Comment="0=Enable,1=Simulate Fault" />
+      <VarDeclaration Name="OPEN" Type="BOOL" Comment="Open Damper" />
+      <VarDeclaration Name="CLOSE" Type="BOOL" Comment="Close Damper" />
+      <VarDeclaration Name="DT" Type="UINT" InitialValue="10" Comment="Clock period, sec" />
+      <VarDeclaration Name="TACT" Type="UINT" InitialValue="95" Comment="Damper actuation time, sec" />
+      <VarDeclaration Name="FSF" Type="REAL" InitialValue="1000.0" Comment="Air Flow at Damper Full Open, CFM" />
+      <VarDeclaration Name="FD" Type="REAL" Comment="Maximum random flow deviation in CFM" />
+      <VarDeclaration Name="SFS" Type="REAL" InitialValue="1000.0" Comment="Air Flow at Sensor Full Scale, CFM" />
+      <VarDeclaration Name="ADMAX" Type="UINT" InitialValue="4096" Comment="Maximum Flow Sensor A/D converter value + 1, default is 12 bits" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="POS" Type="UINT" Comment="Damper position, 0..100% open" />
+      <VarDeclaration Name="FLOW" Type="REAL" Comment="Air flow, CFM" />
+      <VarDeclaration Name="AD" Type="UINT" Comment="Flow sensor A/D converter value" />
+    </OutputVars>
+  </InterfaceList>
+  <FBNetwork >
+    <FB Name="DAMPER" Type="MECH2_MDL" x="1255.5555" y="11.111111" />
+    <FB Name="PRE" Type="VAV_PRE" x="222.22221" y="11.111111" />
+    <FB Name="POST" Type="VAV_POST" x="1749.9999" y="1050.0" />
+    <FB Name="SPLT" Type="E_SPLIT" Comment="Ensure CNF output" x="622.22217" y="11.111111" />
+    <EventConnections>
+      <Connection Source="CLK" Destination="PRE.CLK" dx1="116.666664" />
+      <Connection Source="POST.CNF" Destination="INDS" dx1="2200.0" />
+      <Connection Source="PRE.CNF" Destination="SPLT.EI" dx1="27.777777" />
+      <Connection Source="SPLT.EO1" Destination="DAMPER.CLK" dx1="27.777777" />
+      <Connection Source="SPLT.EO2" Destination="POST.CLK" dx1="94.44444" />
+      <Connection Source="DAMPER.INDP" Destination="INDP" dx1="1749.9999" />
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="FAULT" Destination="DAMPER.FAULT" dx1="1111.1111" />
+      <Connection Source="OPEN" Destination="DAMPER.FWD" dx1="1127.7777" />
+      <Connection Source="CLOSE" Destination="DAMPER.REV" dx1="1105.5555" />
+      <Connection Source="DAMPER.POS" Destination="POS" dx1="1744.4443" />
+      <Connection Source="DT" Destination="PRE.DT" dx1="133.33333" />
+      <Connection Source="TACT" Destination="PRE.TACT" dx1="94.44444" />
+      <Connection Source="PRE.V" Destination="DAMPER.VF" dx1="27.777777" />
+      <Connection Source="PRE.V" Destination="DAMPER.VR" dx1="27.777777" />
+      <Connection Source="DAMPER.POS" Destination="POST.POS" dx1="27.777777" />
+      <Connection Source="SFS" Destination="POST.SFS" dx1="1644.4443" />
+      <Connection Source="FSF" Destination="POST.FSF" dx1="1644.4443" />
+      <Connection Source="FD" Destination="POST.FD" dx1="1661.1111" />
+      <Connection Source="ADMAX" Destination="POST.ADMAX" dx1="1594.4443" />
+      <Connection Source="POST.FLOW" Destination="FLOW" dx1="2211.111" />
+      <Connection Source="POST.AD" Destination="AD" dx1="2172.2222" />
+    </DataConnections>
+  </FBNetwork>
+</FBType>

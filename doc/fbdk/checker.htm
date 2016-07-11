@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<HTML>
+<HEAD>
+<LINK REL="icon" HREF="http://www.holobloc.com/fbicon.png"
+	TYPE="image/png">
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+<TITLE>XMLChecker</TITLE>
+</HEAD>
+<BODY>
+<CENTER>
+<H2>XMLChecker Application</H2>
+</CENTER>
+<P>This Java&trade; application, supplied with the <A
+	HREF="index.htm" TARGET="_top">FBDK</A> download, can be used to check
+for compliance of XML files with the <A
+	HREF="http://www.holobloc.com/xml/index.htm" TARGET="_blank">DTDs</A>
+(Document Type Definitions) specified in <A
+	HREF="http://www.holobloc.com/stds/iec/sc65bwg7tf3/html/news.htm"
+	TARGET="_blank">IEC Standard 61499-2</A>. Such files are produced by
+the FBDK or similar IEC 61499-compliant software tools.</P>
+<BLOCKQUOTE><IMG SRC="../note.gif" ALT="NOTE - ">The
+<B>XMLChecker.java</B> source file is included in the <B>checker.jar</B>
+file and is licensed for use under the <A
+	HREF="http://www.opensource.org/licenses/afl-3.0.php" TARGET="_blank">Academic&nbsp;Free&nbsp;License&nbsp;version&nbsp;3.0</A>.</BLOCKQUOTE>
+<H3>Instructions</H3>
+<OL>
+	<LI>Run the <TT>checker.jar</TT> file in the FBDK home directory
+	by double-clicking on its icon or selecting the <B>Open</B> option from
+	its pop-up menu (or the equivalent operation for Linux&reg;).</LI>
+	<LI>The <B>XMLChecker</B> application will check the contents of
+	all the files in the <TT>src</TT> subdirectory of the directory in
+	which it is installed, and recursively check the contents of all
+	subdirectories of the <TT>src</TT> subdirectory.</LI>
+	<LI>If a file with non-compliant contents is found, the
+	application will open a dialog box identifying the path to the file and
+	the line and column numbers where the error was found.</LI>
+	<LI>The error can generally be fixed by opening the file with the
+	<A HREF="index.htm" TARGET="_top">FBDK</A> and re-saving it as XML.</LI>
+	<LI>Once the error has been fixed, the scan of files can be
+	re-started from the beginning by closing the dialog box and clicking on
+	the application's <B>Restart</B> button.</LI>
+	<LI>If no files are found with errors, the application will
+	display a dialog box indicating a successful completion of the scan.</LI>
+</OL>
+<CENTER>
+<HR>
+<P><I>Last updated: 2007-10-16.</I> <BR>
+&copy;2005-2007 Holobloc Inc. <BR>
+<B>Licensed under the <A
+	HREF="http://www.opensource.org/licenses/afl-3.0.php" TARGET="_blank">Academic
+Free License version 3.0</A></B></P>
+<DIV STYLE="font-family: sans-serif; font-size: xx-small">
+Java&trade; is a trademark or registered trademark of Sun Microsystems,
+Inc. in the U.S. or other countries.<BR>
+Linux&reg; is the registered trademark of Linus Torvalds in the U.S. and
+other countries.</DIV>
+</CENTER>
+</BODY>
+</HTML>

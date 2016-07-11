@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="MainAppGUIFB" Comment="JADE WORKER" >
+  <Identification Standard="61499-1" />
+  <VersionInfo Organization="Fraunhofer IGD" Version="1.0" Author="Ahmed" Date="2014-04-22" />
+  <CompilerInfo header="package fb.rt;" >
+    <Compiler Language="Java" Vendor="Sun" Product="JDK" Version="1.5.0" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="ie_init_main_gui" >
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="oe_init_new_robot_task" >
+      </Event>
+      <Event Name="oe_init_new_human_task" >
+      </Event>
+      <Event Name="oe_init_new_product" >
+      </Event>
+      <Event Name="oe_execute_product" >
+      </Event>
+    </EventOutputs>
+    <OutputVars>
+      <VarDeclaration Name="ov_product_name" Type="WSTRING" />
+    </OutputVars>
+  </InterfaceList>
+</FBType>

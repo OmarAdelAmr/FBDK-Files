@@ -1,0 +1,58 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+<META NAME="GENERATOR" CONTENT="Eclipse HTML Editor">
+<TITLE>FUNCTION_BLOCK MECH2_DIAGL</TITLE>
+</HEAD>
+<BODY>
+<H2 ALIGN="center">FUNCTION_BLOCK MECH2_DIAGL</H2>
+<P>An instance of <A HREF="#Viewer">this function block type</A>
+utilizes two instances of the <A HREF="MECH1_DIAG.htm"><TT>MECH1_DIAG</TT></A>
+type to provide diagnostics for a mechanism modeled by the <A
+	HREF="../../common/MECH2_MDL.htm"><TT>MECH2_MDL</TT></A> type or the
+equivalent physical device. Faults detected are timeouts when the
+mechanism is advancing (moving in the <TT>FWD</TT> direction) or
+retracting (moving in the <TT>REV</TT> direction). The corresponding
+timeout periods and diagnostic messages are given by the <TT>NF/MSGF</TT>
+and <TT>NR/MSGR</TT> pairs, respectively.</P>
+The function block sends and receives data using the
+<A HREF="../publsubl/index.htm">local multicast</A>
+design pattern. Sensor and actuator data are received on the local
+channels identified by the
+<TT>SENSE_ID</TT>
+and
+<TT>ACT_ID</TT>
+inputs, respectively, and the diagnostic output is published on the
+local channel identified by the
+<TT>DIAG_ID</TT>
+input. Simulation clock events are received on the local channel
+identified by the
+<TT>CLK_ID</TT>
+input. Identification of the source of the diagnostic message is
+provided by the
+<TT>SRC</TT>
+input.
+<BR>
+<P>Default values for the <TT>SENSE_ID</TT> and <TT>ACT_ID</TT> inputs
+are as described for the <A HREF="XBAR_MDLL.htm"><TT>XBAR_MDLL</TT></A>
+function block type.</P>
+<CENTER>
+<P><A NAME="Viewer"></A>[<A HREF="../../FBViewer.html" TARGET="help">Viewer
+Help</A>]<BR>
+<TABLE BORDER="1">
+	<TR>
+		<TD><APPLET CODE="FBViewer" ARCHIVE="../../viewer.jar" HEIGHT="600"
+			WIDTH="650"> </APPLET><BR>
+		</TD>
+	</TR>
+</TABLE>
+<P><I>Last updated: 2006-04-19.</I><BR>
+&copy;2006 <A HREF="http://www.holobloc.com" TARGET="_blank">Holobloc
+Inc</A><BR>
+Licensed under the <A
+	HREF="http://www.opensource.org/licenses/afl-3.0.php">Academic Free
+License version 3.0</A>.</P>
+</CENTER>
+</BODY>
+</HTML>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="EQ_TIME" Comment="IEC 61131-3,Table 28#7" >
+  <Identification Standard="61131-3" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.1" Author="JHC" Date="2006-09-14" />
+  <CompilerInfo header="package fb.rt.plc.comp;" classdef="(IN1 == IN2)" >
+  </CompilerInfo>
+  <InterfaceList>
+    <InputVars>
+      <VarDeclaration Name="IN1" Type="TIME" />
+      <VarDeclaration Name="IN2" Type="TIME" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="OUT" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+</FBType>

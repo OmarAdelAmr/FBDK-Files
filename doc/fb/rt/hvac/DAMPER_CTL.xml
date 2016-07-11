@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="DAMPER_CTL" Comment="Variable Air Volume Damper Controller" >
+  <Identification Standard="61499-1" ApplicationDomain="HVAC" Function="Control" Type="Variable Air Volume" Description="VAV Damper Controller" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.0" Author="JHC" Date="2006-05-01" />
+  <CompilerInfo header="package fb.rt.hvac;" >
+    <Compiler Language="Java" Vendor="Sun" Product="JDK" Version="1.5.0" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" >
+      </Event>
+      <Event Name="REQ" Comment="Periodic Execution Clock" >
+        <With Var="SP" />
+        <With Var="PV" />
+        <With Var="SLOPE" />
+        <With Var="DEV" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" >
+        <With Var="OPEN" />
+        <With Var="CLOSE" />
+      </Event>
+      <Event Name="CNF" Comment="OPEN/CLOSE command value change" >
+        <With Var="OPEN" />
+        <With Var="CLOSE" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="SP" Type="REAL" Comment="Set point, fraction full scale" />
+      <VarDeclaration Name="PV" Type="REAL" Comment="Estimated Velocity Sensor Reading, fraction full scale" />
+      <VarDeclaration Name="SLOPE" Type="REAL" Comment="Slope of regressed PV, units per clock period." />
+      <VarDeclaration Name="DEV" Type="REAL" Comment="Estimated standard deviation from regression line" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="OPEN" Type="BOOL" Comment="Damper OPEN command" />
+      <VarDeclaration Name="CLOSE" Type="BOOL" Comment="Damper CLOSE command" />
+    </OutputVars>
+  </InterfaceList>
+</FBType>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="TAGOUT" Comment="Remote Publication of Local Multicast Data" >
+  <Identification Standard="61499-1" Function="Communication" Type="Tagged Data" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.4" Author="JHC" Date="2007-09-12" Remarks="Corrected QO documentation." />
+  <VersionInfo Organization="Holobloc Inc" Version="0.3" Author="JHC" Date="2007-01-13" Remarks="Removed CHANNEL, TYPE initializers." />
+  <VersionInfo Organization="Holobloc Inc" Version="0.2" Author="JHC" Date="2006-12-25" Remarks="Set QI initial value := 1" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.1" Author="JHC" Date="2006-12-22" Remarks="Subclassed from TAGIO." />
+  <VersionInfo Organization="Holobloc Inc" Version="0.0" Author="JHC" Date="2006-12-21" />
+  <CompilerInfo header="package fb.rt.net;" classdef="public class TAGOUT extends TAGIO" >
+    <Compiler Language="Java" Vendor="Sun" Product="JDK" Version="1.5.0" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" >
+        <With Var="QI" />
+        <With Var="ID" />
+        <With Var="CHANNEL" />
+        <With Var="TYPE" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" >
+        <With Var="QO" />
+        <With Var="STATUS" />
+      </Event>
+      <Event Name="IND" Comment="Communication Status Indication" >
+        <With Var="QO" />
+        <With Var="STATUS" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="QI" Type="BOOL" InitialValue="1" Comment="1=Initialize; 0=Terminate" />
+      <VarDeclaration Name="ID" Type="WSTRING" Comment="Local Multicast Data ID (Default = FB Instance Name)" />
+      <VarDeclaration Name="CHANNEL" Type="WSTRING" Comment="Remote Publish Channel ID" />
+      <VarDeclaration Name="TYPE" Type="WSTRING" Comment="Comma-separated Tag Datatype List, coerces SUB.RD_x &#38; PUB.SD_x" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="QO" Type="BOOL" Comment="1=Normal Comms, 0=Comms Error or Termination" />
+      <VarDeclaration Name="STATUS" Type="WSTRING" Comment="Comms Status" />
+    </OutputVars>
+  </InterfaceList>
+  <FBNetwork >
+    <FB Name="SUB" Type="SUBL_1" x="205.55554" y="11.111111" />
+    <FB Name="PUB" Type="PUBLISH_1" x="883.3333" y="11.111111" />
+    <EventConnections>
+      <Connection Source="INIT" Destination="SUB.INIT" dx1="100.0" />
+      <Connection Source="SUB.INITO" Destination="PUB.INIT" dx1="33.333332" />
+      <Connection Source="PUB.INITO" Destination="INITO" dx1="1344.4443" />
+      <Connection Source="SUB.IND" Destination="PUB.REQ" dx1="61.111107" />
+      <Connection Source="PUB.CNF" Destination="IND" dx1="1311.1111" />
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="QI" Destination="PUB.QI" dx1="800.0" />
+      <Connection Source="ID" Destination="SUB.ID" dx1="127.77777" />
+      <Connection Source="CHANNEL" Destination="PUB.ID" dx1="700.0" />
+      <Connection Source="SUB.RD_1" Destination="PUB.SD_1" dx1="27.777777" />
+      <Connection Source="PUB.QO" Destination="QO" dx1="1311.1111" />
+      <Connection Source="PUB.STATUS" Destination="STATUS" dx1="1383.3333" />
+    </DataConnections>
+  </FBNetwork>
+</FBType>

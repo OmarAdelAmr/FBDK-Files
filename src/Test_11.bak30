@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE System SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<System Name="Test_11" Comment="System Configuration" >
+  <Identification Standard="61499-1" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.3" Author="JHC" Date="2003-12-05" Remarks="Renamed from NEWSYSTEM." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.2" Author="JHC" Date="2002-11-05" Remarks="Fixed missing (empty) FBD in Application." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2002-01-17" Remarks="Minor cleanup" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2000-05-27" />
+  <Application Name="APP1" >
+    <FBNetwork >
+    </FBNetwork>
+  </Application>
+  <Device Name="HMI" Type="FRAME_DEVICE" x="816.6666" y="438.8889" >
+    <Parameter Name="BOUNDS" Value="[400,300,800,500]" />
+    <Parameter Name="GRID" Value="[1,1]" />
+    <Resource Name="Worker1" Type="PANEL_RESOURCE" x="2244.4443" y="600.0" >
+      <Parameter Name="ROWS" Value="4" />
+      <Parameter Name="COLS" Value="2" />
+      <FBNetwork >
+        <FB Name="W1" Type="WORKER6TESTFB" x="2850.0" y="283.3333" >
+          <Parameter Name="NAME" Value="&#34;Alfa&#34;" />
+        </FB>
+        <FB Name="W1SkillsPool" Type="IN_CHOICE" x="1577.7777" y="2022.2222" >
+          <Parameter Name="CHOICES" Value="&#34;Drilling,Milling,Assembly&#34;" />
+          <Parameter Name="QI" Value="1" />
+        </FB>
+        <FB Name="W1AddSkills" Type="IN_EVENT" x="566.6666" y="1816.6666" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;AlfaAddSkills&#34;" />
+        </FB>
+        <FB Name="W1Status" Type="OUT_BOOL" x="5177.7773" y="2427.7776" >
+          <Parameter Name="C0" Value="[255,255,255]" />
+          <Parameter Name="C1" Value="[255,0,0]" />
+          <Parameter Name="LABEL" Value="&#34;        Status&#34;" />
+          <Parameter Name="QI" Value="1" />
+        </FB>
+        <FB Name="W1Job" Type="OUT_ANY" x="5711.111" y="655.55554" >
+          <Parameter Name="W" Value="40" />
+          <Parameter Name="QI" Value="1" />
+        </FB>
+        <FB Name="W1JobLabel" Type="FB_LABEL" x="4983.333" y="11.111111" >
+          <Parameter Name="LABEL" Value="&#34;        AlfaJob&#34;" />
+          <Parameter Name="QI" Value="1" />
+        </FB>
+        <FB Name="W1StatusSpace" Type="XSPACE" x="4255.555" y="1538.8888" >
+          <Parameter Name="DIMS" Value="[0,0]" />
+          <Parameter Name="DIA" Value="0" />
+          <Parameter Name="LBLS" Value="[&#34;        Alfa Status&#34;,&#34;&#34;,&#34;&#34;,&#34;&#34;,&#34;&#34;]" />
+        </FB>
+        <FB Name="ClKTICK" Type="SUBL_0" x="1305.5555" y="627.7778" >
+          <Parameter Name="ID" Value="&#34;255.0.0.1:0001&#34;" />
+        </FB>
+        <FB Name="W1_M_Status_In" Type="IN_BOOL" x="1461.1111" y="3127.7776" >
+          <Parameter Name="LABEL" Value="&#34;        ManualStatusOverride&#34;" />
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="IN" Value="0" />
+        </FB>
+        <FB Name="W1_M_StatusSpace" Type="XSPACE" x="3200.0" y="4172.222" >
+          <Parameter Name="DIMS" Value="[0,0]" />
+          <Parameter Name="DIA" Value="0" />
+          <Parameter Name="LBLS" Value="[&#34;        BUSY/FREE&#34;,&#34;&#34;,&#34;&#34;,&#34;&#34;,&#34;&#34;]" />
+        </FB>
+        <FB Name="W1JOBDONEE" Type="IN_EVENT" x="455.55554" y="2966.6665" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;JOBDONE&#34;" />
+        </FB>
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="W1.INIT" dx1="872.22217" />
+          <Connection Source="W1SkillsPool.IND" Destination="W1.NSKILL" dx1="161.1111" />
+          <Connection Source="W1AddSkills.IND" Destination="W1SkillsPool.REQ" dx1="66.666664" dx2="211.1111" dy="-2383.3333" />
+          <Connection Source="W1.NSTATE_CNF" Destination="W1Status.REQ" dx1="511.11108" />
+          <Connection Source="W1.NJOB_CNF" Destination="W1Job.REQ" dx1="416.66666" />
+          <Connection Source="START.COLD" Destination="W1JobLabel.INIT" dx1="516.6666" />
+          <Connection Source="W1JobLabel.INITO" Destination="W1Job.INIT" dx1="183.33333" />
+          <Connection Source="START.COLD" Destination="W1StatusSpace.INIT" dx1="3449.9998" />
+          <Connection Source="W1StatusSpace.INITO" Destination="W1Status.INIT" dx1="327.77777" />
+          <Connection Source="START.COLD" Destination="W1AddSkills.INIT" dx1="144.44444" />
+          <Connection Source="W1AddSkills.INITO" Destination="W1SkillsPool.INIT" dx1="438.8889" />
+          <Connection Source="START.COLD" Destination="ClKTICK.INIT" dx1="577.7778" />
+          <Connection Source="ClKTICK.IND" Destination="W1.NJOB" dx1="294.44443" />
+          <Connection Source="ClKTICK.IND" Destination="W1.NSTATE" dx1="294.44443" />
+          <Connection Source="W1_M_Status_In.IND" Destination="W1.MSTATE" dx1="677.7778" />
+          <Connection Source="W1_M_StatusSpace.INITO" Destination="W1_M_Status_In.INIT" dx1="27.777777" dx2="5.5555553" dy="-4300.0" />
+          <Connection Source="W1JOBDONEE.IND" Destination="W1.JOBDONEE" dx1="1255.5555" />
+          <Connection Source="W1JOBDONEE.INITO" Destination="W1_M_Status_In.INIT" dx1="288.8889" />
+          <Connection Source="START.COLD" Destination="W1JOBDONEE.INIT" dx1="27.777777" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="W1SkillsPool.OUT" Destination="W1.SKILL" dx1="411.11108" />
+          <Connection Source="W1.JOB" Destination="W1Job.IN" dx1="661.1111" />
+          <Connection Source="W1.STATUS" Destination="W1Status.IN" dx1="188.88889" />
+          <Connection Source="W1_M_Status_In.OUT" Destination="W1.MSTATUS" dx1="755.55554" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+    <Resource Name="Worker2" Type="PANEL_RESOURCE" x="594.4444" y="616.6666" >
+      <Parameter Name="ROWS" Value="4" />
+      <Parameter Name="COLS" Value="2" />
+      <FBNetwork >
+        <FB Name="W2" Type="WORKER6TESTFB" x="2933.3333" y="255.55554" >
+          <Parameter Name="NAME" Value="&#34;Beta&#34;" />
+        </FB>
+        <FB Name="W2SkillsPool" Type="IN_CHOICE" x="2111.111" y="1927.7777" >
+          <Parameter Name="CHOICES" Value="&#34;Drilling,Painting,Shaping&#34;" />
+          <Parameter Name="QI" Value="1" />
+        </FB>
+        <FB Name="W2AddSkills" Type="IN_EVENT" x="711.1111" y="2366.6665" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;Beta Add Skills&#34;" />
+        </FB>
+        <FB Name="W2Status" Type="OUT_BOOL" x="5177.7773" y="2427.7776" >
+          <Parameter Name="C0" Value="[255,255,255]" />
+          <Parameter Name="C1" Value="[255,0,0]" />
+          <Parameter Name="LABEL" Value="&#34;        Status&#34;" />
+          <Parameter Name="QI" Value="1" />
+        </FB>
+        <FB Name="W2Job" Type="OUT_ANY" x="5711.111" y="655.55554" >
+          <Parameter Name="W" Value="40" />
+          <Parameter Name="QI" Value="1" />
+        </FB>
+        <FB Name="W2JobLabel" Type="FB_LABEL" x="4983.333" y="11.111111" >
+          <Parameter Name="LABEL" Value="&#34;        Beta Job&#34;" />
+          <Parameter Name="QI" Value="1" />
+        </FB>
+        <FB Name="W2StatusSpace" Type="XSPACE" x="4255.555" y="1538.8888" >
+          <Parameter Name="DIMS" Value="[0,0]" />
+          <Parameter Name="DIA" Value="0" />
+          <Parameter Name="LBLS" Value="[&#34;        Beta Status&#34;,&#34;&#34;,&#34;&#34;,&#34;&#34;,&#34;&#34;]" />
+        </FB>
+        <FB Name="CLKTICK" Type="SUBL_0" x="1216.6666" y="644.4444" >
+          <Parameter Name="ID" Value="&#34;255.0.0.1:0001&#34;" />
+        </FB>
+        <FB Name="W2_M_Status_In" Type="IN_BOOL" x="1827.7777" y="3205.5554" >
+          <Parameter Name="LABEL" Value="&#34;      ManualStatusOverride&#34;" />
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="IN" Value="0" />
+        </FB>
+        <FB Name="W2_M_StatusSpace" Type="XSPACE" x="3588.8887" y="4133.333" >
+          <Parameter Name="DIMS" Value="[0,0]" />
+          <Parameter Name="DIA" Value="0" />
+          <Parameter Name="LBLS" Value="[&#34;        BUSY/FREE&#34;,&#34;&#34;,&#34;&#34;,&#34;&#34;,&#34;&#34;]" />
+        </FB>
+        <FB Name="W2JOBDONEE" Type="IN_EVENT" x="1200.0" y="2994.4443" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;JOBDONE&#34;" />
+        </FB>
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="W2.INIT" dx1="872.22217" />
+          <Connection Source="W2SkillsPool.IND" Destination="W2.NSKILL" dx1="161.1111" />
+          <Connection Source="W2AddSkills.IND" Destination="W2SkillsPool.REQ" dx1="66.666664" dx2="211.1111" dy="-2383.3333" />
+          <Connection Source="W2.NSTATE_CNF" Destination="W2Status.REQ" dx1="511.11108" />
+          <Connection Source="W2.NJOB_CNF" Destination="W2Job.REQ" dx1="416.66666" />
+          <Connection Source="START.COLD" Destination="W2JobLabel.INIT" dx1="516.6666" />
+          <Connection Source="W2JobLabel.INITO" Destination="W2Job.INIT" dx1="183.33333" />
+          <Connection Source="START.COLD" Destination="W2StatusSpace.INIT" dx1="3449.9998" />
+          <Connection Source="W2StatusSpace.INITO" Destination="W2Status.INIT" dx1="327.77777" />
+          <Connection Source="START.COLD" Destination="W2AddSkills.INIT" dx1="144.44444" />
+          <Connection Source="W2AddSkills.INITO" Destination="W2SkillsPool.INIT" dx1="438.8889" />
+          <Connection Source="START.COLD" Destination="CLKTICK.INIT" dx1="750.0" />
+          <Connection Source="CLKTICK.IND" Destination="W2.NJOB" dx1="311.11108" />
+          <Connection Source="CLKTICK.IND" Destination="W2.NSTATE" dx1="311.11108" />
+          <Connection Source="W2_M_StatusSpace.INITO" Destination="W2_M_Status_In.INIT" dx1="27.777777" dx2="5.5555553" dy="-4261.111" />
+          <Connection Source="W2_M_Status_In.IND" Destination="W2.MSTATE" dx1="733.3333" />
+          <Connection Source="START.COLD" Destination="W2JOBDONEE.INIT" dx1="488.88885" />
+          <Connection Source="W2JOBDONEE.INITO" Destination="W2_M_Status_In.INIT" dx1="383.3333" />
+          <Connection Source="W2JOBDONEE.IND" Destination="W2.JOBDONEE" dx1="394.44443" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="W2SkillsPool.OUT" Destination="W2.SKILL" dx1="216.66666" />
+          <Connection Source="W2.JOB" Destination="W2Job.IN" dx1="661.1111" />
+          <Connection Source="W2.STATUS" Destination="W2Status.IN" dx1="188.88889" />
+          <Connection Source="W2_M_Status_In.OUT" Destination="W2.MSTATUS" dx1="816.6666" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+  </Device>
+  <Device Name="Control" Type="FRAME_DEVICE" x="1466.6666" y="983.3333" >
+    <Parameter Name="BOUNDS" Value="[800,800,150,150]" />
+    <Parameter Name="GRID" Value="[1,1]" />
+    <Resource Name="GlobalClock" Type="PANEL_RESOURCE" x="1433.3333" y="716.6666" >
+      <Parameter Name="ROWS" Value="0" />
+      <Parameter Name="COLS" Value="0" />
+      <FBNetwork >
+        <FB Name="CLKTICK" Type="PUBL_0" x="1538.8888" y="577.7778" >
+          <Parameter Name="ID" Value="&#34;255.0.0.1:0001&#34;" />
+        </FB>
+        <FB Name="HEARTBEAT" Type="OUT_EVENT" x="4055.5554" y="350.0" >
+          <Parameter Name="LABEL" Value="&#34;HEARTBEAT&#34;" />
+          <Parameter Name="DT" Value="t#250ms" />
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="FLASH" Value="[0,0,255]" />
+        </FB>
+        <FB Name="CLK" Type="E_DELAY" x="2827.7776" y="594.4444" >
+          <Parameter Name="DT" Value="t#250ms" />
+        </FB>
+        <EventConnections>
+          <Connection Source="CLK.EO" Destination="HEARTBEAT.REQ" dx1="455.55554" />
+          <Connection Source="HEARTBEAT.CNF" Destination="CLK.START" dx1="755.55554" dx2="227.77777" dy="-550.0" />
+          <Connection Source="HEARTBEAT.CNF" Destination="CLKTICK.REQ" dx1="188.88889" dx2="388.8889" dy="-550.0" />
+          <Connection Source="START.COLD" Destination="CLKTICK.INIT" dx1="1011.1111" />
+          <Connection Source="START.WARM" Destination="CLKTICK.INIT" dx1="927.7778" />
+          <Connection Source="CLKTICK.INITO" Destination="HEARTBEAT.INIT" dx1="505.55554" />
+          <Connection Source="HEARTBEAT.INITO" Destination="CLK.START" dx1="27.777777" dx2="66.666664" dy="-433.3333" />
+          <Connection Source="HEARTBEAT.INITO" Destination="CLKTICK.REQ" dx1="27.777777" dx2="83.33333" dy="-433.3333" />
+        </EventConnections>
+      </FBNetwork>
+    </Resource>
+  </Device>
+  <Device Name="Robot" Type="FRAME_DEVICE" x="1955.5554" y="438.8889" >
+    <Parameter Name="GRID" Value="[1,1]" />
+    <Parameter Name="BOUNDS" Value="[1200,300,600,400]" />
+    <Resource Name="Robot" Type="PANEL_RESOURCE" x="2544.4443" y="1555.5555" >
+      <Parameter Name="ROWS" Value="3" />
+      <Parameter Name="COLS" Value="2" />
+      <FBNetwork >
+        <FB Name="Gama" Type="ROBOT6TESTFB" x="4577.778" y="344.44443" >
+          <Parameter Name="NAME" Value="&#34;Gama&#34;" />
+        </FB>
+        <FB Name="ROBOTSTART" Type="IN_EVENT" x="611.1111" y="750.0" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;START&#34;" />
+        </FB>
+        <FB Name="ADDRJOB" Type="IN_EVENT" x="2544.4443" y="1066.6666" >
+          <Parameter Name="LABEL" Value="&#34;ADD JOB&#34;" />
+          <Parameter Name="QI" Value="1" />
+        </FB>
+        <FB Name="RJOBPOOL" Type="IN_CHOICE" x="3522.2222" y="1455.5555" >
+          <Parameter Name="CHOICES" Value="&#34;Drilling,Milling,Assembly,Painting,Shaping&#34;" />
+          <Parameter Name="QI" Value="1" />
+        </FB>
+        <FB Name="JOBALARM" Type="OUT_ANY" x="7716.6665" y="1055.5555" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="W" Value="40" />
+        </FB>
+        <FB Name="JOBALARMLABEL" Type="FB_LABEL" x="6561.111" y="183.33333" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;                          ALARM&#34;" />
+        </FB>
+        <FB Name="ALARMSCANNER" Type="E_CYCLE" x="3527.7776" y="516.6666" >
+          <Parameter Name="DT" Value="t#200ms" />
+        </FB>
+        <FB Name="STARTSPACE" Type="XSPACE" x="1627.7777" y="2244.4443" >
+          <Parameter Name="DIA" Value="0" />
+          <Parameter Name="DIMS" Value="[0,0]" />
+        </FB>
+        <FB Name="SHUTDOWN" Type="IN_EVENT" x="1611.1111" y="577.7778" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;SHUTDOWN&#34;" />
+        </FB>
+        <EventConnections>
+          <Connection Source="ROBOTSTART.IND" Destination="Gama.INIT" dx1="361.11108" />
+          <Connection Source="ADDRJOB.INITO" Destination="RJOBPOOL.INIT" dx1="161.1111" />
+          <Connection Source="ADDRJOB.IND" Destination="Gama.RJOB" dx1="1572.2222" />
+          <Connection Source="Gama.JALARME_CNF" Destination="JOBALARM.REQ" dx1="205.55554" />
+          <Connection Source="JOBALARMLABEL.INITO" Destination="JOBALARM.INIT" dx1="572.2222" />
+          <Connection Source="Gama.INITO" Destination="ALARMSCANNER.START" dx1="88.888885" dx2="538.88885" dy="-405.55554" />
+          <Connection Source="ALARMSCANNER.EO" Destination="Gama.JALARME" dx1="166.66666" />
+          <Connection Source="RJOBPOOL.INITO" Destination="JOBALARMLABEL.INIT" dx1="1627.7777" />
+          <Connection Source="START.COLD" Destination="ROBOTSTART.INIT" dx1="211.1111" />
+          <Connection Source="STARTSPACE.INITO" Destination="ADDRJOB.INIT" dx1="172.22221" />
+          <Connection Source="ROBOTSTART.INITO" Destination="SHUTDOWN.INIT" dx1="461.11108" />
+          <Connection Source="SHUTDOWN.INITO" Destination="ADDRJOB.INIT" dx1="400.0" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="RJOBPOOL.OUT" Destination="Gama.JOB" dx1="1144.4445" />
+          <Connection Source="Gama.JALARM" Destination="JOBALARM.IN" dx1="333.3333" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+  </Device>
+</System>

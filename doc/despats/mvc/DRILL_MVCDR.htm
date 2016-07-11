@@ -1,0 +1,74 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+<META NAME="GENERATOR" CONTENT="Eclipse HTML Editor">
+<TITLE>SYSTEM DRILL_MVCDR</TITLE>
+</HEAD>
+<BODY>
+<H3>7. Perform Distribution Design</H3>
+<P><A HREF="#Viewer">This system configuration</A> illustrates a <A
+	HREF="syseng2.htm#7">distribution design</A> of the <A
+	HREF="DRILL_MVCDL.htm"><TT>DRILL_MVCDL</TT></A> example in which the <B>Model+View</B>
+functions are located in a remote device named <TT>MODEL</TT>, the <B>Control+HMI</B>
+functions are in a local device named <TT>CONTROL</TT>; and the <B>Diagnostic
+</B>functions are in a local device named (surprise!) <TT>DIAGNOSTICS</TT>.
+Each of the<TT> MODEL </TT>and <TT>DIAGNOSTICS </TT>devices contains a <TT>SENSORS
+</TT>resource and an <TT>ACTUATORS </TT>resource with the following
+functionality: <BR>
+</P>
+<CENTER>
+<TABLE BORDER="1" CELLPADDING="2" CELLSPACING="2">
+	<TBODY>
+		<TR>
+			<TH VALIGN="top">Resource</TH>
+			<TH VALIGN="top">Function</TH>
+		</TR>
+		<TR>
+			<TD VALIGN="top"><TT>MODEL.SENSORS</TT></TD>
+			<TD VALIGN="top">Gather sensor data and publish it using the <A
+				HREF="../tags/index.htm" TARGET="_blank">Tagged Data</A> Design
+			Pattern.</TD>
+		</TR>
+		<TR>
+			<TD VALIGN="top"><TT>DIAGNOSTICS.SENSORS</TT></TD>
+			<TD VALIGN="top">Subscribe to sensor data and publish it locally
+			to both <TT>DIAGNOSTICS </TT>and <TT>CONTROL </TT>devices, using the
+			<A HREF="../tags/index.htm" TARGET="_blank">Tagged Data</A> Design
+			Pattern.</TD>
+		</TR>
+		<TR>
+			<TD VALIGN="top"><TT>MODEL.ACTUATORS</TT></TD>
+			<TD VALIGN="top">Subscribe to actuator data and publish it
+			locally, using the <A HREF="../tags/index.htm" TARGET="_blank">Tagged
+			Data</A> Design Pattern.</TD>
+		</TR>
+		<TR>
+			<TD VALIGN="top"><TT>DIAGNOSTICS.ACTUATORS </TT></TD>
+			<TD VALIGN="top">Gather actuator data from <TT>CONTROL </TT>device
+			and publish it with the <A HREF="../tags/index.htm" TARGET="_blank">Tagged
+			Data</A> Design Pattern.</TT></TD>
+		</TR>
+	</TBODY>
+</TABLE>
+<P><A NAME="Viewer"></A>[<A HREF="../../FBViewer.html" TARGET="help">Viewer
+Help</A>]<BR>
+<TABLE BORDER="1">
+	<TBODY>
+		<TR>
+			<TD><APPLET CODE="FBViewer" ARCHIVE="../../viewer.jar"
+				ALIGN="bottom" HEIGHT="620" WIDTH="875"> </APPLET></TD>
+		</TR>
+	</TBODY>
+</TABLE>
+</P>
+<P><I>Last updated: 2007-10-15.</I><BR>
+&copy;2003,2004 Rockwell Automation.<BR>
+&copy;2007 <A HREF="http://www.holobloc.com" TARGET="_blank">Holobloc
+Inc.</A><BR>
+Licensed under the <A
+	HREF="http://www.opensource.org/licenses/afl-3.0.php">Academic Free
+License version 3.0</A>.</P>
+</CENTER>
+</BODY>
+</HTML>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE System SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<System Name="TEST_ARRAY_IO" Comment="Test ARRAY_IN,ARRAY_OUT" >
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2000-05-27" />
+  <Device Name="ARRAY_IO" Type="FRAME_DEVICE" x="1029.4117" y="564.7059" >
+    <Parameter Name="BOUNDS" Value="[100,100,200,100]" />
+    <Parameter Name="GRID" Value="[1,1]" />
+    <Resource Name="RES1" Type="PANEL_RESOURCE" x="982.3529" y="511.7647" >
+      <FBNetwork >
+        <FB Name="IN" Type="IN_ARRAY" x="741.1765" y="11.7647" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="IVAL" Value="&#34;[1,2]&#34;" />
+          <Parameter Name="N" Value="5" />
+          <Parameter Name="TYPE" Value="&#34;INT&#34;" />
+        </FB>
+        <FB Name="OUT" Type="OUT_ARRAY" x="1594.1177" y="11.7647" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="IVAL" Value="&#34;[0,0,0,0,0]&#34;" />
+          <Parameter Name="N" Value="5" />
+          <Parameter Name="TYPE" Value="&#34;INT&#34;" />
+        </FB>
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="IN.INIT" dx1="511.7647" />
+          <Connection Source="START.WARM" Destination="IN.INIT" dx1="511.7647" />
+          <Connection Source="IN.INITO" Destination="OUT.INIT" dx1="511.7647" />
+          <Connection Source="IN.IND" Destination="OUT.REQ" dx1="511.7647" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="IN.OUT" Destination="OUT.IN" dx1="70.5882" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+  </Device>
+</System>

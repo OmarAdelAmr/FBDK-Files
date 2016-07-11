@@ -1,0 +1,68 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+<META NAME="GENERATOR" CONTENT="Eclipse HTML Editor">
+<TITLE>SYSTEM TANK_MVCL</TITLE>
+</HEAD>
+<BODY>
+<H3>5. Develop and Test Controllers</H3>
+<P>
+<P>As illustrated below, the <A HREF="#Viewer"><TT>TANK_MVCL</TT>
+system configuration</A> utilizes instances of the <A
+	HREF="../../common/FACEPLATE.htm"><TT>FACEPLATE</TT></A>, <A
+	HREF="../../common/STRIP4.htm"><TT>STRIP4</TT></A>, and <A
+	HREF="FB_PIDR.htm"><TT>FB_PIDR</TT></A> function block types to
+simulate and display the Proportional/ Integral/ Derivative (PID)
+control of liquid level in the <A HREF="sketch.htm">process control
+example</A>.</P>
+<P>Set point (<FONT COLOR="orange"><TT>SP</TT></FONT>), process
+variable (<FONT COLOR="blue"><TT>PV</TT></FONT>), controller output (<FONT
+	COLOR="green"><TT>OUT</TT></FONT>), and pump speed (<FONT COLOR="red"><TT>PUMP</TT></FONT>)
+values are exchanged among resources using the <A
+	HREF="../publsubl/index.htm">local multicast pattern</A> and are
+plotted on the strip chart in colors of <FONT COLOR="orange">orange</FONT>,
+<FONT COLOR="blue">blue</FONT>, <FONT COLOR="green">green</FONT> and <FONT
+	COLOR="red">red</FONT>, respectively.</P>
+<P>The overall structure of the system is shown as the <TT>TANK_CTL</TT>
+application.</P>
+<CENTER>
+<P><IMG SRC="../../note.gif">Click on a graphic element to
+navigate to its documentation.<BR>
+<IMG ALT="[TANK_MVCL Image]" SRC="images/TANK_MVCL.gif" USEMAP="#MAP1"
+	HEIGHT="270" WIDTH="526"></P>
+<P>[<A NAME="Viewer" HREF="../../FBViewer.html" TARGET="help">Viewer
+Help</A>]<BR>
+<TABLE BORDER="1">
+	<TBODY>
+		<TR>
+			<TD><APPLET CODE="FBViewer" ARCHIVE="../../viewer.jar"
+				HEIGHT="690" WIDTH="840"></APPLET></TD>
+		</TR>
+	</TBODY>
+</TABLE>
+</P>
+<P><I>Last updated: 2007-10-17.</I><BR>
+&copy;2006,2007 <A HREF="http://www.holobloc.com" TARGET="_blank">Holobloc
+Inc</A>.<BR>
+Licensed under the <A
+	HREF="http://www.opensource.org/licenses/afl-3.0.php">Academic Free
+License version 3.0</A>.</P>
+</CENTER>
+<MAP NAME="MAP1">
+	<AREA SHAPE="RECT" COORDS="465,191,516,244" HREF="PUMP_VIEW.htm">
+	<AREA SHAPE="RECT" COORDS="423,191,465,247" HREF="PIPE_VIEW.htm">
+	<AREA SHAPE="RECT" COORDS="355,191,423,247" HREF="XSPACE.htm">
+	<AREA SHAPE="RECT" COORDS="404,41,479,191" HREF="TANK_VIEW.htm">
+	<AREA SHAPE="RECT" COORDS="354,41,404,93" HREF="VALVE_VIEW.htm">
+	<AREA SHAPE="RECT" COORDS="244,191,283,219"
+		HREF="../../common/FB_LABEL.htm">
+	<AREA SHAPE="RECT" COORDS="143,191,244,217"
+		HREF="../../common/FB_SLIDER.htm">
+	<AREA SHAPE="RECT" COORDS="139,40,348,191"
+		HREF="../../common/STRIP4.htm">
+	<AREA SHAPE="RECT" COORDS="1,40,139,268"
+		HREF="../../common/FACEPLATE.htm">
+</MAP>
+</BODY>
+</HTML>

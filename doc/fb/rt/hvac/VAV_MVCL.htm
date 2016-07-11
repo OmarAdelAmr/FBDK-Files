@@ -1,0 +1,85 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+<META NAME="GENERATOR" CONTENT="Eclipse HTML Editor">
+<META NAME="Standard" CONTENT="IEC 61499-1">
+<META NAME="Classification" CONTENT="Simulation">
+<META NAME="ApplicationDomain" CONTENT="HVAC">
+<TITLE>SYSTEM VAV_MVCL</TITLE>
+</HEAD>
+<BODY>
+<H3>5. Develop and Test Controllers</H3>
+<P>The <TT>VAV_MVCL</TT> system configuration shown <A
+	HREF="#Viewer">below</A> implements the layered <A
+	HREF="../../../despats/mvc/syseng2.htm#5"><B>Model+View+Control</B>
+testing architecture</A> for the <A HREF="sketch.htm">HVAC example</A>.</P>
+<UL>
+	<LI>Currently, this configuration is set up only to test the
+	closed-loop control of the damper valve position, using instances of
+	the <A HREF="../../../common/REGRESS.htm"><TT>REGRESS</TT></A> and <A
+		HREF="DAMPER_CTL.htm"><TT>DAMPER_CTL</TT></A> function block types.
+	These are located in the <TT>DAMPER.CTRL</TT> resource along with the
+	necessary auxiliary computation and communication blocks.</LI>
+	<LI>In this example, the <TT>SP</TT> (setpoint) output of the <A
+		HREF="../../../common/FACEPLATE.htm"><TT>FACEPLATE</TT></A> type is
+	used as the <TT>SP</TT> input of a <A HREF="DAMPER_CTL.htm"><TT>DAMPER_CTL</TT></A>
+	block. In a complete example, a <I>cascade control</I> arrangement
+	would be used, where the <TT>FACEPLATE.SP</TT> output would be used as
+	the <TT>SP</TT> input of a <A
+		HREF="../../../despats/process/FB_PIDR.htm"><TT>FB_PIDR</TT></A>
+	instance, whose <TT>XOUT</TT> variable would serve as the <TT>SP</TT>
+	input of the <A HREF="DAMPER_CTL.htm"><TT>DAMPER_CTL</TT></A> block.</LI>
+	<LI>The <TT>DAMPER.HMI</TT> resource utilizes an instance of the
+	composite <A HREF="../../../common/REGRESS_OUT.htm"><TT>REGRESS_OUT</TT></A>
+	function block type to provide the <B>HMI</B> elements necessary to
+	display the outputs of the <A HREF="../../../common/REGRESS.htm"><TT>REGRESS</TT></A>
+	function block instance, as well as the <TT>SP</TT> input and <TT>OPEN/CLOSE</TT>
+	outputs of the <A HREF="DAMPER_CTL.htm"><TT>DAMPER_CTL</TT></A>
+	instance.</LI>
+	<LI>The color coding of the traces on the <TT>RECORDER</TT> device
+	are as follows:<BR>
+	<TABLE ALIGN="center" BORDER="1">
+		<TR>
+			<TH>Color</TH>
+			<TH>Variable</TH>
+		</TR>
+		<TR>
+			<TH>blue</TH>
+			<TD>Damper inlet air temperature (blue slider)</TD>
+		</TR>
+		<TR>
+			<TH>yellow</TH>
+			<TD>Zone (room) temperature</TD>
+		</TR>
+		<TR>
+			<TH>cyan</TH>
+			<TD>Outside air temperature (yellow slider)</TD>
+		</TR>
+		<TR>
+			<TH>green</TH>
+			<TD>Damper air flow sensor value</TD>
+		</TR>
+	</TABLE>
+	</LI>
+	<LI>The recorder traces below show the result of shifting the
+	damper flow set point from approximately 50% to 28% of full scale.</LI>
+</UL>
+<CENTER><IMG SRC="images/VAV_MVCL.png">
+<P>[<A NAME="Viewer" HREF="../../../FBViewer.html" TARGET="_blank">Viewer
+Help</A>]</P>
+<TABLE BORDER="1">
+	<TR>
+		<TD><APPLET CODE="FBViewer" ARCHIVE="../../../viewer.jar"
+			WIDTH="825" HEIGHT="550"></APPLET></TD>
+	</TR>
+</TABLE>
+<P><I>Last updated: 2006-07-20.</I><BR>
+&copy;2006 <A HREF="http://www.holobloc.com" TARGET="_blank">Holobloc
+Inc</A><BR>
+Licensed under the <A
+	HREF="http://www.opensource.org/licenses/afl-3.0.php">Academic Free
+License version 3.0</A>.</P>
+</CENTER>
+</BODY>
+</HTML>

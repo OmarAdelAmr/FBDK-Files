@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="ADD_UINT" Comment="IEC 61131-3 UINT Addition" >
+  <Identification Standard="61131-3" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.0" Author="JHC" Date="2006-09-11" />
+  <CompilerInfo header="package fb.rt.plc.math;" classdef="(Math.min(65535, IN1 + IN2 ))" >
+  </CompilerInfo>
+  <InterfaceList>
+    <InputVars>
+      <VarDeclaration Name="IN1" Type="UINT" Comment="Augend" />
+      <VarDeclaration Name="IN2" Type="UINT" Comment="Addend" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="OUT" Type="UINT" Comment="Sum" />
+    </OutputVars>
+  </InterfaceList>
+</FBType>

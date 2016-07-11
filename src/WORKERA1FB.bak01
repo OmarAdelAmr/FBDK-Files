@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="WORKERA1FB" Comment="JADE WORKER" >
+  <Identification Standard="61499-1" />
+  <VersionInfo Organization="Fraunhofer IGD" Version="1.0" Author="Ahmed" Date="2014-04-22" />
+  <CompilerInfo header="package fb.rt;" >
+    <Compiler Language="Java" Vendor="Sun" Product="JDK" Version="1.5.0" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INITE" >
+        <With Var="NAME" />
+      </Event>
+      <Event Name="STARTE" Comment="Normal Execution Request" >
+      </Event>
+      <Event Name="STOPE" >
+      </Event>
+      <Event Name="ADDRECIPEE" >
+        <With Var="PRODUCTRECIPE" />
+      </Event>
+      <Event Name="RECIPEDONEE" >
+        <With Var="PRODUCTRECIPE" />
+      </Event>
+      <Event Name="TASKDONEE" >
+      </Event>
+      <Event Name="MYSKILLE" >
+        <With Var="MYSKILL" />
+      </Event>
+      <Event Name="MYSTATEE" >
+      </Event>
+      <Event Name="WORKERSTATEE" >
+      </Event>
+      <Event Name="ALARME" >
+      </Event>
+      <Event Name="CURRENTTASKE" >
+      </Event>
+      <Event Name="FINISHEDPRODUCTSE" >
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" >
+      </Event>
+      <Event Name="STARTO" Comment="Execution Confirmation" >
+      </Event>
+      <Event Name="STOPO" >
+      </Event>
+      <Event Name="ADDRECIPEO" >
+      </Event>
+      <Event Name="RECIPEDONEO" >
+      </Event>
+      <Event Name="TASKDONEO" >
+      </Event>
+      <Event Name="MYSKILLO" >
+      </Event>
+      <Event Name="MYSTATEO" >
+        <With Var="MYSTATE" />
+        <With Var="MYSTATETYPE" />
+      </Event>
+      <Event Name="WORKERSTATEO" >
+        <With Var="WORKERSTATE" />
+        <With Var="WORKERSTATETYPE" />
+      </Event>
+      <Event Name="ALARMO" >
+        <With Var="ALARM" />
+        <With Var="ALARMTYPE" />
+      </Event>
+      <Event Name="CURRENTTASKO" >
+        <With Var="CURRENTTASK" />
+      </Event>
+      <Event Name="FINISHEDPRODUCTSO" >
+        <With Var="FINISHEDPRODUCTS" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="NAME" Type="WSTRING" />
+      <VarDeclaration Name="PRODUCTRECIPE" Type="WSTRING" />
+      <VarDeclaration Name="MYSKILL" Type="WSTRING" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="MYSTATE" Type="BOOL" />
+      <VarDeclaration Name="MYSTATETYPE" Type="WSTRING" />
+      <VarDeclaration Name="WORKERSTATE" Type="BOOL" />
+      <VarDeclaration Name="WORKERSTATETYPE" Type="WSTRING" />
+      <VarDeclaration Name="ALARM" Type="BOOL" />
+      <VarDeclaration Name="ALARMTYPE" Type="WSTRING" />
+      <VarDeclaration Name="CURRENTTASK" Type="WSTRING" />
+      <VarDeclaration Name="FINISHEDPRODUCTS" Type="INT" />
+    </OutputVars>
+  </InterfaceList>
+</FBType>

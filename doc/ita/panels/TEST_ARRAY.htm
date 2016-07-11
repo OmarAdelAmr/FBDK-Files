@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+<META NAME="GENERATOR" CONTENT="Eclipse HTML Editor">
+<TITLE>APPLICATION TEST_ARRAY</TITLE>
+</HEAD>
+
+<BODY>
+
+<H2 ALIGN="CENTER">APPLICATION TEST_ARRAY</H2>
+<P><A HREF="#Viewer">This application</A> is part of the <A
+	HREF="CODEC_TEST.htm"><TT>CODEC_TEST</TT></A> system configuration. It
+utilizes instances of <A HREF="IN_ARRAY.htm"><TT>IN_ARRAY</TT></A> and <A
+	HREF="OUT_ARRAY.htm"><TT>OUT_ARRAY</TT></A> for input and output of
+transmitted data, respectively.</P>
+<P>See <A HREF="TEST_BITS.htm"><TT>TEST_BITS</TT></A> and <A
+	HREF="MONITOR.htm"><TT>MONITOR</TT></A> for further documentation of
+the operation of these test panels.</P>
+<P>In this example, an array (ASN.1 tag of <TT>76</TT> hexadecimal) of 5
+elements of <TT>UINT</TT> type (ASN.1 tag of <TT>47</TT> hexadecimal) is
+transmitted.</P>
+<CENTER>
+<P>
+<TABLE BORDER="1">
+	<TR>
+		<TD ALIGN="CENTER">The initial situation before data transmission.</TD>
+		<TD><IMG SRC="images/TEST_ARRAY0.gif" WIDTH="401" HEIGHT="266"></TD>
+	</TR>
+	<TR>
+		<TD ALIGN="CENTER">Data transmission is triggered by pressing the <B>Enter</B>
+		key in the text field or clicking the <TT>&quot;&gt;&gt;&quot;</TT>
+		button.<BR>
+		Note that the array is filled with the default initial value (0).</TD>
+		<TD><IMG SRC="images/TEST_ARRAY1.gif" WIDTH="402" HEIGHT="266"></TD>
+	</TR>
+	<TR>
+		<TD ALIGN="CENTER">The results after transmitting a full array of
+		data.</TD>
+		<TD><IMG SRC="images/TEST_ARRAY2.gif" WIDTH="402" HEIGHT="266"></TD>
+	</TR>
+	<TR>
+		<TD ALIGN="CENTER">The results after <B>Enter</B>ing an extra array
+		element.<BR>
+		Note that only <TT>N</TT> elements are passed from the <TT>IN_ARRAY</TT>
+		block for transmission.</TD>
+		<TD><IMG SRC="images/TEST_ARRAY3.gif" WIDTH="401" HEIGHT="266"></TD>
+	</TR>
+	<TR>
+		<TD ALIGN="CENTER">The results after <B>Enter</B>ing fewer than <TT>N</TT>
+		elements.<BR>
+		Note that the remaining elements are transmitted unchanged.</TD>
+		<TD><IMG SRC="images/TEST_ARRAY4.gif" WIDTH="401" HEIGHT="265"></TD>
+	</TR>
+</TABLE>
+</P>
+<P>
+[<A NAME="Viewer"></A><A HREF="../../FBViewer.html" TARGET="help">Viewer
+Help</A>]<BR>
+<TABLE BORDER="1">
+	<TR>
+		<TD>
+		<APPLET CODE="FBViewer" WIDTH="500" HEIGHT="379"
+			ARCHIVE="../../viewer.jar">
+			<PARAM NAME="src" VALUE="CODEC_TEST.xml">
+			<PARAM NAME="fbd" VALUE="CODEC_TEST.TEST_ARRAY">
+		</APPLET>
+		</TD>
+	</TR>
+</TABLE>
+</P>
+<P><I>Last updated: 2006-04-18.</I><BR>
+&copy;2006 <A HREF="http://www.holobloc.com" TARGET="_blank">Holobloc
+Inc</A><BR>
+Licensed under the <A
+	HREF="http://www.opensource.org/licenses/afl-3.0.php">Academic Free
+License version 3.0</A>.</P>
+</CENTER>
+</BODY>
+</HTML>

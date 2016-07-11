@@ -1,0 +1,163 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+<META NAME="KEYWORDS"
+	CONTENT="IEC 61499, IEC, 61499, standards,function blocks,control,automation,open,distributed,process control,intelligent automation">
+<META NAME="GENERATOR" CONTENT="Eclipse HTML Editor">
+<TITLE>Control Systems Engineering</TITLE>
+</HEAD>
+<BODY>
+<OL>
+	<LI><A NAME="1"></A>Start with a <B>sketch</B> of the machine or
+	process to be controlled, along with a verbal description of the
+	desired behavior. This may be included in a hypertext document with
+	links to existing process specifications and CAD drawings, but should
+	abstract such detailed information into a high-level view of the
+	desired functionality.</LI>
+	<HR>
+	<LI><A NAME="2"></A>From the sketch, develop and test a number of
+	<B>Views</B> which are capable of presenting visually the essential
+	information about the states of the controlled devices, e.g., the
+	location of workpieces, the position of tools, the state of spindle
+	motors, the temperature or level of liquids in a tank, etc. A suitable
+	layered architecture for performing this task is illustrated in the
+	figure below.</LI>
+	<UL>
+		<LI>The <A href="../publsubl/index.htm" target="_blank">Local
+		Multicast</A> design pattern can be used for inter-layer communication.</LI>
+		<LI>The <A href="../tags/index.htm" target="_blank">Tagged
+		Data</A> design pattern can be used to simplify and avoid errors in this
+		step.</LI>
+	</UL>
+	<A name="3"><IMG SRC="images/viewtest.gif"></A>
+	<LI>Using the architecture shown above, integrate the views into a
+	static <B>animation</B> of the system to be controlled, and utilize the
+	animation to develop descriptions of the desired operational <B>sequences</B>
+	of the system under both normal and abnormal conditions.</LI>
+	<HR>
+	<LI><A NAME="4"></A>For each view, develop and test one or more <B>Models</B>
+	capable of simulating the dynamic behavior of the associated machine or
+	process equipment in response to external stimuli and commanding the
+	associated view to display the corresponding equipment states. Models
+	should typically execute in their own threads of execution, e.g., in
+	conjunction with external or internal timers or integrators. The
+	layered architecture shown below can be used to test Models in
+	conjunction with their Views and HMI elements.</LI>
+	<UL>
+		<LI>The <A href="../publsubl/index.htm" target="_blank">Local
+		Multicast</A> design pattern can be used for inter-layer communication.</LI>
+		<LI>The <A href="../tags/index.htm" target="_blank">Tagged
+		Data</A> design pattern can be used to simplify and avoid errors in this
+		step.</LI>
+		<LI>In some cases, <B>Models</B> and their associated <B>Views</B>
+		may be represented by IEC 61499 service interfaces to external
+		simulation or animation applications.</LI>
+	</UL>
+	<IMG SRC="images/mvtest.gif">
+	<HR>
+	<LI><A NAME="5"></A>Encapsulate control logic in <B>Controller</B>
+	blocks as necessary to achieve additional required functions, e.g.,
+	sequencing of the simulated equipment, event and data interfaces for
+	integration with other controller blocks. The layered architecture
+	shown below can be used to test Controller elements in conjunction with
+	their associated Model elements.</LI>
+	<UL>
+		<LI>The <A href="../publsubl/index.htm" target="_blank">Local
+		Multicast</A> design pattern can be used for inter-layer communication.</LI>
+		<LI>The <A href="../tags/index.htm" target="_blank">Tagged
+		Data</A> design pattern can be used to simplify and avoid errors in this
+		step.</LI>
+	</UL>
+	<IMG SRC="images/mvctest.gif">
+	<HR>
+	<LI><A NAME="6"></A>Add <B>diagnostic and fault recovery</B> logic
+	and test together with the previously developed <B>Models, Views</B>
+	and <B>Controllers</B>. The layered architecture shown <A
+		HREF="#DiagFig">below</A> illustrates the testing of simple <B>Diagnostic</B>
+	elements in conjunction with their associated <B>Controller </B>and <B>Model
+	</B>elements. In this case, the <B>Diagnostic </B>elements are simply
+	monitoring actuator outputs and sensor inputs and reporting whether
+	they are occurring in the correct combinations and sequences. The
+	following principles will help you to maximize the benefits of applying
+	the IEC 61499 architecture to fault detection, diagnosis and recovery:
+	</LI>
+	<UL>
+		<LI>Keep fault detection, diagnosis and recovery functions <B>as
+		close as possible to the equipment being controlled.</B> It is much easier
+		to detect, diagnose and recover from faulty operation of an individual
+		machine or control component, based on deviations from its expected
+		behavior, than to deduce the cause of a system crash once the fault
+		has occurred. This rule is illustrated by those function block whose
+		end with the suffixes <TT>_DIAG</TT> and <TT>_DIAGL</TT>.</LI>
+		<LI>Avoid complexity in control functions and improve reusability
+		of both control and fault functions by <B>encapsulating fault
+		detection, diagnosis and recovery functions separately from control
+		functions.</B></LI>
+		<LI>Include the capability of <B>injecting fault conditions</B>
+		either manually at the <B>View</B> level or automatically at the <B>Model</B>
+		level. In the current examples, each of the <TT>*_VIEW</TT> function
+		blocks shown in the index has a <TT>FAULT</TT> data output, associated
+		with an <TT>IND</TT> event output, which can be set or reset by
+		clicking on a "fault indicator" in the upper left-hand corner of the
+		user interface. The <TT>TRUE</TT> or <TT>FALSE</TT> state of the <TT>FAULT</TT>
+		output is indicated by a red or green color of the fault indicator,
+		respectively. In the <B>Model</B> elements, the <TT>FAULT</TT>
+		condition inhibits motion to simulate failure of an actuator element.
+		</LI>
+		<LI>Establish an architecture for reporting and logging faults
+		and diagnostics. This may include an appropriate HMI such as an
+		instance of the&nbsp;<A HREF="DIAG_LOG.htm"><TT>DIAG_LOG</TT></A>
+		type.</LI>
+		<LI>The <A href="../publsubl/index.htm" target="_blank">Local
+		Multicast</A> design pattern can be used for inter-layer communication.</LI>
+		<LI>The <A href="../tags/index.htm" target="_blank">Tagged
+		Data</A> design pattern can be used to simplify and avoid errors in this
+		step.</LI>
+	</UL>
+	<A NAME="DiagFig"></A>
+	<IMG SRC="images/mvcdtest.gif">
+	<HR>
+	<LI><A NAME="7"></A>Perform <B>distribution design</B> by
+	allocating <B>Model</B> elements to separate devices and converting
+	local communication links to distributed links as shown in the figure
+	below.</LI>
+	<UL>
+		<LI>The <A href="../tags/index.htm" target="_blank">Tagged
+		Data</A> design pattern can be used to simplify and avoid errors in this
+		step.</LI>
+	</UL>
+	<IMG src="images/mvcddist.gif">
+	<HR>
+	<LI><A NAME="8"></A>Perform <B>physical design:</B> Replace <B>Model/View</B>
+	complexes by <B>service interfaces</B> to actual control system I/O as
+	shown below.</LI>
+	<IMG SRC="images/physical.gif">
+	<HR>
+	<LI><A NAME="9"></A>Perform <B>mechatronic design</B> as shown
+	below:</LI>
+	<UL>
+		<LI>Partition control and diagnostic blocks into high-level (HLC)
+		blocks which cross device boundaries, and which cannot be accomplished
+		by simple interconnections of existing low-level control (LLC) blocks,
+		e.g., mode control, systemwide startup, <A HREF="#6">diagnostic
+		reporting</A>, etc.</LI>
+		<LI>Allocate function block instances to the integrated
+		controllers of specific mechanical <B>devices</B>, adding
+		communication function blocks as necessary to maintain data and event
+		connections. This may involve the use and configuration of existing
+		mechatronic devices where available.</LI>
+	</UL>
+	<IMG SRC="images/mechatro.gif">
+</OL>
+<CENTER>
+<HR>
+<P><I>Last updated: 2007-10-17.</I><BR>
+&copy;2002-2004 Rockwell Automation, &copy;2005-2007&nbsp;<A
+	HREF="http://www.holobloc.com" TARGET="_blank">Holobloc&nbsp;Inc</A>.<BR>
+Licensed under the <A
+	HREF="http://www.opensource.org/licenses/afl-3.0.php" TARGET="_blank">Academic
+Free License version 3.0</A></P>
+</CENTER>
+</BODY>
+</HTML>

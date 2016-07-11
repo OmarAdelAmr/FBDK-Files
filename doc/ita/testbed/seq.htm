@@ -1,0 +1,109 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html;CHARSET=iso-8859-1">
+  <meta name="GENERATOR" content="Visual Page 1.1 for Windows">
+  <title>Testbed Sequences</title>
+</head>
+<body>
+<h3>3. Animate operational sequences</h3>
+<p>The <a href="TESTBED_VIEWL.htm"><tt>TESTBED_VIEWL</tt></a> system
+configuration can be used as shown below to produce
+static animations of both normal and abnormal operational sequences for
+the <a href="sketch.htm">Sortation/Inspection testbed</a>.<br>
+<img alt="NOTE -" src="../../note.gif" height="24" width="32">The image
+size is reduced from the original <tt>TESTBED_VIEWL</tt> configuration
+by simply changing the <tt>DIA</tt> parameter of the resources in the <tt>MODEL</tt>
+device from <tt>40</tt> to <tt>30</tt> and reducing the <tt>MODEL.BOUNDS</tt>
+parameter from <tt>[475,100,280,360]</tt> to <tt>[475,100,218,286]</tt>.<br>
+</p>
+<h4>3.1 <a name="Normal"></a>Normal operation [<a href="#Blocked">Blocked</a>][<a
+ href="#Starved">Starved</a>]
+</h4>
+<p>
+<table border="1">
+  <tbody>
+    <tr>
+      <td colspan="4" rowspan="1" valign="top">The sequence shown below
+is one of many possible normal operational
+sequences, depending on the relative speed
+of operation of the various physical components of the system and the
+order in which pegs and rings are fed to the chain.</td>
+    </tr>
+    <tr>
+      <td><b>1.</b> A ring is fed into the supply transfer bar (<a
+ href="step1.htm"><b>s1</b></a>).</td>
+      <td><b>2.</b> The ring has arrived at the sortation area and the
+sort solenoid has begun its motion (<a href="step2.htm"><b>s2</b></a>).</td>
+      <td><b>3.</b> The sortation is complete and the ring has arrived
+at the rotary solenoid which has begun operation (<a href="step3.htm"><b>s3</b></a>).</td>
+      <td><b>4.</b> The ring has been moved to the assembly area by the
+rotary solenoid, which has returned to its original position.</td>
+    </tr>
+    <tr>
+      <td><img src="seq1.gif" border="0" height="240" width="210"></td>
+      <td><img src="seq2.gif" height="240" width="210"></td>
+      <td><img src="seq3.gif" height="240" width="210"></td>
+      <td><img src="seq4.gif" height="240" width="210"></td>
+    </tr>
+    <tr>
+      <td><b>5.</b> A second ring has been deflected from the sortation
+area to the rotary solenoid area, and a peg has passed the sortation
+area.</td>
+      <td><b>6.</b> The peg slides down the chute.</td>
+      <td><b>7.</b> The peg is carried by the belt toward the assembly
+area (<a href="step4.htm"><b>s4</b></a>).</td>
+      <td><b>8.</b> Assembly has completed (<a href="step5.htm"><b>s5</b></a>)
+and the rotary solenoid has
+advanced the second disk to the assembly area. The assembled
+combination has passed the inspection station (<a href="step6.htm"><b>s6</b></a>)
+and will proceed to the delivery chute (<a href="step7.htm"><b>s7</b></a>).</td>
+    </tr>
+    <tr>
+      <td><img src="seq5.gif" height="240" width="210"></td>
+      <td><img src="seq6.gif" height="240" width="210"></td>
+      <td><img src="seq7.gif" height="240" width="210"></td>
+      <td><img src="seq8.gif" height="240" width="210"></td>
+    </tr>
+  </tbody>
+</table>
+</p>
+<h4>3.2 <a name="Blocked"></a>Blocked operation [<a href="#Normal">Normal</a>][<a
+ href="#Starved">Starved</a>]</h4>
+<p>
+<table border="1" cellpadding="2" cellspacing="2">
+  <tbody>
+    <tr>
+      <td valign="middle" width="250">In this abnormal operational
+sequence,
+sortation of
+a ring is blocked when
+a ring is already present in the upper hopper. The ring will then fall
+off the end of the chain into a surplus ring hopper.</td>
+      <td><img src="blocked.gif" height="240" width="210"> </td>
+    </tr>
+  </tbody>
+</table>
+</p>
+<h4>3.3 <a name="Starved"></a>Starved operation [<a href="#Normal">Normal</a>][<a
+ href="#Blocked">Blocked</a>]</h4>
+<p>
+<table border="1">
+  <tbody>
+    <tr>
+      <td valign="middle" width="250">In this abnormal operational
+sequence, a peg
+passes
+throught the assembly station when a ring is not available. It will
+then be deflected into the reject bin. </td>
+      <td><img src="starved.gif" height="240" width="210"> </td>
+    </tr>
+  </tbody>
+</table>
+</p>
+<hr size="2" width="100%">
+<p align="center"><i>Last updated: 2004-10-26.<br>
+&copy;2004 Rockwell Automation. All rights reserved.<br>
+</i></p>
+</body>
+</html>

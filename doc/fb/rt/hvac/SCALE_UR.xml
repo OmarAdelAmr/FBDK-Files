@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="SCALE_UR" Comment="Scaling of a UINT input to a REAL range of{0.0..1.0}" >
+  <Identification Standard="IEC 61499-1" Classification="Math" ApplicationDomain="Process Control, HVAC" Function="Scaling" Type="UINT to REAL" Description="Scaling a UINT to a REAL range of {0.0..1.0}" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.1" Author="JHC" Date="2006-05-03" Remarks="Corrected documentation of OUT." />
+  <VersionInfo Organization="Holobloc Inc" Version="0.0" Author="JHC" Date="2006-04-28" />
+  <CompilerInfo header="package fb.rt.hvac;" >
+    <Compiler Language="Java" Vendor="Sun" Product="JDK" Version="1.5.0" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="REQ" Comment="Normal Execution Request" >
+        <With Var="IN" />
+        <With Var="MAX" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="CNF" Comment="Execution Confirmation" >
+        <With Var="OUT" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="IN" Type="UINT" Comment="Process (typically A/D) input" />
+      <VarDeclaration Name="MAX" Type="UINT" Comment="IN value corrsponding to OUT=1.0" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="OUT" Type="REAL" Comment="Scaled Output, limited to {0.0..1.0}" />
+    </OutputVars>
+  </InterfaceList>
+</FBType>

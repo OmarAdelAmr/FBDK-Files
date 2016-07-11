@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="PNP_CTL_FBD" Comment="Pick and Place AUTO Control with FBD Algorithm" >
+  <Identification Standard="IEC 61499" ApplicationDomain="Discrete Assembly" Function="Pick&#38;Place" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.0" Author="JHC" Date="2006-09-18" Remarks="Adapted from PNP_CTL_LD." />
+  <CompilerInfo header="package fb.rt.mach;" classdef="SimpleFB" >
+    <Compiler Language="Java" Vendor="Sun" Product="JDK" Version="1.5.0" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="REQ" Comment="Execute control if AUTO mode is ON" >
+        <With Var="HOMEx" />
+        <With Var="ENDx" />
+        <With Var="HOMEy" />
+        <With Var="ENDy" />
+        <With Var="PRESENT" />
+        <With Var="LOADED" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="CNF" Comment="AUTO mode control executed" >
+        <With Var="FWDx" />
+        <With Var="FWDy" />
+        <With Var="REVy" />
+        <With Var="REVx" />
+        <With Var="MAGNET" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="PRESENT" Type="BOOL" Comment="Workpiece Sensor at end of Conveyor" />
+      <VarDeclaration Name="LOADED" Type="BOOL" Comment="Workpiece Sensor on XY transport" />
+      <VarDeclaration Name="HOMEx" Type="BOOL" Comment="x-axis at HOME position" />
+      <VarDeclaration Name="ENDx" Type="BOOL" Comment="x-axis at END position" />
+      <VarDeclaration Name="HOMEy" Type="BOOL" Comment="y-axis at HOME position" />
+      <VarDeclaration Name="ENDy" Type="BOOL" Comment="y-axis at END position" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="FWDx" Type="BOOL" Comment="Drive x-axis Motor Forward (toward ENDx)" />
+      <VarDeclaration Name="REVx" Type="BOOL" Comment="Drive x-axis Motor 1 in Reverse (toward HOMEx)" />
+      <VarDeclaration Name="FWDy" Type="BOOL" Comment="Drive y-axis Motor Forward (toward ENDy)" />
+      <VarDeclaration Name="REVy" Type="BOOL" Comment="Drive y-axis Motor 2 in Reverse (toward HOMEy)" />
+      <VarDeclaration Name="MAGNET" Type="BOOL" Comment="Electromagnet ON (grasp workpiece)" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+  <Algorithm Name="REQ" Comment="AUTO control algorithm" >
+    <FBD >
+      <FB Name="UNLOADED" Type="NOT_BOOL" x="311.11108" y="11.111111" />
+      <FB Name="NOTHOMEX" Type="NOT_BOOL" x="305.55554" y="1711.1111" />
+      <FB Name="NOTHOMEY" Type="NOT_BOOL" x="1366.6666" y="1183.3333" />
+      <FB Name="NOTENDX" Type="NOT_BOOL" x="827.7778" y="499.99997" />
+      <FB Name="NOTENDY" Type="NOT_BOOL" x="227.77777" y="611.1111" />
+      <FB Name="AND11" Type="AND_BOOL" x="822.22217" y="11.111111" />
+      <FB Name="AND12" Type="AND_BOOL" x="1361.1111" y="11.111111" />
+      <FB Name="AND13" Type="AND_BOOL" x="1799.9999" y="11.111111" />
+      <FB Name="OR12" Type="OR_BOOL" x="2216.6665" y="11.111111" />
+      <FB Name="OR11" Type="OR_BOOL" x="1200.0" y="499.99997" />
+      <FB Name="AND14" Type="AND_BOOL" x="1688.8888" y="499.99997" />
+      <FB Name="AND21" Type="AND_BOOL" x="2100.0" y="716.6666" />
+      <FB Name="AND31" Type="AND_BOOL" x="322.2222" y="1061.1111" />
+      <FB Name="AND32" Type="AND_BOOL" x="838.88885" y="949.99994" />
+      <FB Name="AND41" Type="AND_BOOL" x="711.1111" y="1611.1111" />
+      <FB Name="AND51" Type="AND_BOOL" x="1683.3333" y="1183.3333" />
+      <DataConnections>
+        <Connection Source="LOADED" Destination="UNLOADED.in" dx1="144.44444" />
+        <Connection Source="HOMEx" Destination="NOTHOMEX.in" dx1="155.55554" />
+        <Connection Source="HOMEy" Destination="NOTHOMEY.in" dx1="1216.6666" />
+        <Connection Source="ENDx" Destination="NOTENDX.in" dx1="705.55554" />
+        <Connection Source="ENDy" Destination="NOTENDY.in" dx1="105.55555" />
+        <Connection Source="UNLOADED.Q" Destination="AND11.i1" dx1="72.22222" />
+        <Connection Source="PRESENT" Destination="AND11.i2" dx1="633.3333" />
+        <Connection Source="AND11.Q" Destination="AND12.i1" dx1="38.888885" />
+        <Connection Source="HOMEx" Destination="AND12.i2" dx1="1211.1111" />
+        <Connection Source="AND12.Q" Destination="AND13.i1" dx1="33.333332" />
+        <Connection Source="HOMEy" Destination="AND13.i2" dx1="1649.9999" />
+        <Connection Source="AND13.Q" Destination="OR12.i1" dx1="50.0" />
+        <Connection Source="OR12.Q" Destination="MAGNET" dx1="2527.7776" />
+        <Connection Source="NOTENDX.Q" Destination="OR11.i1" dx1="88.888885" />
+        <Connection Source="NOTENDY.Q" Destination="OR11.i2" dx1="83.33333" />
+        <Connection Source="OR11.Q" Destination="AND14.i1" dx1="66.666664" />
+        <Connection Source="LOADED" Destination="AND14.i2" dx1="1522.2222" />
+        <Connection Source="AND14.Q" Destination="OR12.i2" dx1="166.66666" />
+        <Connection Source="NOTENDX.Q" Destination="AND21.i1" dx1="94.44444" />
+        <Connection Source="LOADED" Destination="AND21.i2" dx1="1933.3333" />
+        <Connection Source="AND21.Q" Destination="FWDx" dx1="2361.111" />
+        <Connection Source="LOADED" Destination="AND31.i1" dx1="155.55554" />
+        <Connection Source="ENDx" Destination="AND31.i2" dx1="200.0" />
+        <Connection Source="AND31.Q" Destination="AND32.i2" dx1="66.666664" />
+        <Connection Source="NOTENDY.Q" Destination="AND32.i1" dx1="355.55554" />
+        <Connection Source="AND32.Q" Destination="FWDy" dx1="1100.0" />
+        <Connection Source="AND41.Q" Destination="REVx" dx1="972.22217" />
+        <Connection Source="UNLOADED.Q" Destination="AND41.i1" dx1="122.22221" />
+        <Connection Source="NOTHOMEX.Q" Destination="AND41.i2" dx1="27.777777" />
+        <Connection Source="AND51.Q" Destination="REVy" dx1="1944.4443" />
+        <Connection Source="UNLOADED.Q" Destination="AND51.i2" dx1="122.22221" />
+        <Connection Source="NOTHOMEY.Q" Destination="AND51.i1" dx1="83.33333" />
+      </DataConnections>
+    </FBD>
+  </Algorithm>
+  </BasicFB>
+</FBType>

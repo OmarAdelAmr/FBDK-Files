@@ -1,0 +1,64 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+<META NAME="GENERATOR" CONTENT="Eclipse HTML Editor">
+<TITLE>FBDK: Basic FB Types</TITLE>
+<META CONTENT="JHC" NAME="author">
+</HEAD>
+<BODY>
+<CENTER>
+<H2>Build and Test a Basic Function Block Type</H2>
+</CENTER>
+<OL>
+	<LI>Start the <B>FBEditor</B> application by running the <A
+		HREF="custom.htm#FBEditor"><TT>fbeditor.bat</TT></A> file.</LI>
+	<LI>Create a new basic FB type in the editor by:
+	<UL>
+		<LI>Opening a file containing an existing basic function block type;
+		examples are the <TT>X2Y2_ST.fbt</TT> and <TT>X2Y2_FBD.fbt</TT> files
+		in the <TT>src\student</TT> folder, or</LI>
+		<LI>Clicking the <B>File =&gt; New =&gt; FB Type =&gt; Basic </B>menu
+		item. See the <A HREF="howtogen.htm">general info</A> for a picture of
+		how the screen will look.</LI>
+	</UL>
+	</LI>
+	<LI>Edit the function block's elements:
+	<UL>
+		<LI><A HREF="propsfrm.htm">Edit the FB type's properties</A>. <IMG
+			SRC="../note.gif">Be sure to enter <TT>package fb.rt.&lt;mypkg&gt;;</TT>
+		in the <B>Compiler Info header</B> field, where <TT>&lt;mypkg&gt;</TT>
+		is the name of the <TT>src</TT> subdirectory you are working in, for
+		example, <TT>student</TT> or <TT>book</TT>.</LI>
+		<LI><A HREF="intfcfrm.htm">Edit the FB type's interface</A>.</LI>
+		<LI>Select the <B>- ECC -</B> item in the Navigation area to use the
+		Workspace area for editing the <A HREF="eccfrm.htm">ECC</A> and its
+		associated <A HREF="algorithm.htm">algorithms</A>.</LI>
+		<LI>Double-click on an algorithm in the <B>Navigation</B> panel to
+		bring up an <A HREF="algorithm.htm">editing dialog</A> for the
+		algorithm.</LI>
+	</UL>
+	</LI>
+	<LI>When your editing is complete, save your work with the <B>File=&gt;Save
+	As=&gt;XML...</B> menu item. <IMG SRC="../note.gif" ALIGN="bottom"
+		BORDER="0" HEIGHT="24" WIDTH="32">It is a good idea to <B>save your
+	work</B> from time to time while editing, too!</LI>
+	<LI>Generate a Java<SUP>TM</SUP> source file with the <B>File=&gt;Save
+	As=&gt;Java...</B> menu item in the subdirectory of the <TT>lib/fb/rt</TT>
+	path corresponding to the package name given in your <B>Compiler Info
+	header</B> field.</LI>
+	<LI>Generate and compile a Java<SUP>TM</SUP> class file with the <B>File=&gt;Compile...</B>
+	menu item. A dialog window will open showing the Java source text and
+	the compilation results. <BR>
+	<IMG SRC="../note.gif" ALIGN="bottom" BORDER="0" HEIGHT="24" WIDTH="32">If
+	you change the code of the block and recompile, you will have to exit
+	the FBEditor application and restart it in order to force a reload of
+	the class file.</LI>
+</OL>
+<CENTER>
+<P></P>
+<HR ALIGN="center">
+<I>Last updated: 2006-03-16.</I><BR>
+&copy;2006 Holobloc Inc. All rights reserved.</CENTER>
+</BODY>
+</HTML>

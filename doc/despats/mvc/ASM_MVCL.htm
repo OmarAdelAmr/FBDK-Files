@@ -1,0 +1,60 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+<META NAME="GENERATOR" CONTENT="Eclipse HTML Editor">
+<TITLE>SYSTEM ASM_MVCL</TITLE>
+</HEAD>
+<BODY>
+<H3>5. Develop and Test Controllers</H3>
+<P><A HREF="#Viewer">This system configuration</A> implements the
+layered <A HREF="syseng2.htm#5"><B>Model+View+Control</B> testing
+architecture</A> for the <A HREF="asmsket.htm">assembly example</A>.<BR>
+</P>
+<CENTER>
+<IMG ALT="" SRC="images/ASM_MVCL.gif" HEIGHT="150"
+	WIDTH="465"><BR>
+</CENTER>
+<UL>
+	<LI>The<TT> MODEL</TT> and <TT>CONTROL</TT> devices encapsulate
+	combined architectural functions in the same manner as in the <TT><A
+		HREF="DRILL_MVCDL.htm">DRILL_MVCDL</A></TT> example.</LI>
+	<LI>As in the <A HREF="ASM_VIEWL.htm"><TT>ASM_VIEWL</TT></A>
+	configuration, the <TT>VIEW</TT> device contains one instance of the
+	specialized <A HREF="../../common/VIEW_PANEL.htm"><TT>VIEW_PANEL</TT></A> resource
+	type to provide the necessary layout of View elements for the drilling
+	example.</LI>
+	<LI>As in the <A HREF="ASM_MVL.htm"><TT>ASM_MVL</TT></A> configuration,
+	the <TT>MODEL</TT> device contains the <B>Model</B> elements and the
+	logic for their interactions, including the transfer of workpieces
+	among the modeled physical elements.</LI>
+	<LI>The <TT>CONTROL</TT> device contains the <B>Controller</B> and <B>HMI</B>
+	elements, including the logic for sequencing and interlocking of
+	operations among the modeled physical elements as well as a <TT>RUN/STOP</TT>
+	switch for starting and stopping the assembly sequence. Control is
+	achieved through an instance of the function block type <A
+		HREF="ASM_CTL.htm"><TT>ASM_CTL</TT></A>.</LI>
+	<LI>Inter-layer communication is implemented with the <A
+		HREF="../publsubl/index.htm">local multicast</A> pattern.</LI>
+</UL>
+<CENTER>
+<P><A NAME="Viewer"></A>[<A HREF="../../FBViewer.html" TARGET="help">Viewer
+Help</A>]<BR>
+<TABLE BORDER="1">
+	<TBODY>
+		<TR>
+			<TD><APPLET CODE="FBViewer" ARCHIVE="../../viewer.jar" ALIGN="bottom"
+				HEIGHT="700" WIDTH="910"> </APPLET></TD>
+		</TR>
+	</TBODY>
+</TABLE>
+</P>
+<P><I>Last updated: 2007-09-22.</I><BR>
+&copy;2006,2007 <A HREF="http://www.holobloc.com" TARGET="_blank">Holobloc
+Inc</A>.<BR>
+Licensed under the <A
+	HREF="http://www.opensource.org/licenses/afl-3.0.php">Academic Free
+License version 3.0</A>.</P>
+</CENTER>
+</BODY>
+</HTML>

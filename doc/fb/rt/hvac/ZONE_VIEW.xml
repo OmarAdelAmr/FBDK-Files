@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="ZONE_VIEW" Comment="Data Presentation for an HVAC Zone" >
+  <Identification Standard="61499-1" Classification="HMI" ApplicationDomain="HVAC" Function="View" Type="Zone" Description="HVAC Zone View" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.0" Author="JHC" Date="2006-04-06" />
+  <CompilerInfo header="package fb.rt.hvac;" >
+    <Compiler Language="Java" Vendor="Sun" Product="JDK" Version="1.5.0" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization" >
+        <With Var="W" />
+        <With Var="SZ" />
+        <With Var="FGD" />
+        <With Var="BKGD" />
+      </Event>
+      <Event Name="REQ" Comment="Data Display Request" >
+        <With Var="TEMP" />
+        <With Var="XTEMP" />
+        <With Var="LOAD" />
+        <With Var="STEMP" />
+        <With Var="FLOW" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="INIT Confirmation" >
+      </Event>
+      <Event Name="CNF" Comment="REQ Confirmation" >
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="TEMP" Type="REAL" Comment="Room Temperature, deg. F" />
+      <VarDeclaration Name="FLOW" Type="REAL" Comment="Air Flow, CFM" />
+      <VarDeclaration Name="STEMP" Type="UINT" Comment="Supply Air Temperature, deg F" />
+      <VarDeclaration Name="XTEMP" Type="UINT" Comment="Exterior Temperature, deg F" />
+      <VarDeclaration Name="LOAD" Type="UINT" Comment="Heat Load, KBTU/hr" />
+      <VarDeclaration Name="FGD" Type="COLOR" InitialValue="COLOR#white" Comment="Foreground Color" />
+      <VarDeclaration Name="BKGD" Type="COLOR" InitialValue="COLOR#blue" Comment="Background Color" />
+      <VarDeclaration Name="W" Type="UINT" Comment="Square room side dimension in pixels" />
+      <VarDeclaration Name="SZ" Type="UINT" InitialValue="12" Comment="Font size in points" />
+    </InputVars>
+  </InterfaceList>
+  <Service RightInterface="RESOURCE" LeftInterface="APPLICATION" >
+    <ServiceSequence Name="initialize" >
+      <ServiceTransaction >
+        <InputPrimitive Interface="APPLICATION" Event="INIT" Parameters="FGD,BKGD,W,SZ" />
+        <OutputPrimitive Interface="RESOURCE" Event="initialize" Parameters="FGD,BKGD,W,SZ" />
+        <OutputPrimitive Interface="APPLICATION" Event="INITO" />
+      </ServiceTransaction>
+    </ServiceSequence>
+    <ServiceSequence Name="request" >
+      <ServiceTransaction >
+        <InputPrimitive Interface="APPLICATION" Event="REQ" Parameters="TEMP,FLOW,STEMP,XTEMP,LOAD" />
+        <OutputPrimitive Interface="RESOURCE" Event="request" Parameters="TEMP,FLOW,STEMP,XTEMP,LOAD" />
+        <OutputPrimitive Interface="APPLICATION" Event="CNF" />
+      </ServiceTransaction>
+    </ServiceSequence>
+  </Service>
+</FBType>

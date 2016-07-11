@@ -1,0 +1,46 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+<META NAME="GENERATOR" CONTENT="Eclipse HTML Editor">
+<META NAME="Standard" CONTENT="IEC 61499">
+<META NAME="ApplicationDomain" CONTENT="HVAC">
+<META NAME="Function" CONTENT="Control">
+<META NAME="Type" CONTENT="Variable Air Volume">
+<META NAME="Description" CONTENT="VAV Damper Controller">
+<TITLE>FUNCTION_BLOCK DAMPER_CTL</TITLE>
+</HEAD>
+<BODY>
+<H2 ALIGN="CENTER">FUNCTION_BLOCK DAMPER_CTL</H2>
+<P>An instance of <A HREF="#Viewer">this function block type</A>
+implements OPEN/CLOSE control of a bidirectional motor-driven <A
+	HREF="sketch.htm">HVAC damper valve</A>. Control action is based on the
+linear regression parameters of the trend line of the noisy sensor data,
+derived from an instance of the <A HREF="../../../common/REGRESS.htm"><TT>REGRESS</TT></A>
+function block type. <A HREF="http://en.wikipedia.org/wiki/Deadband"
+	TARGET="_blank">Deadband</A> based on the estimated standard deviation
+<TT>DEV</TT> of the data is used to avoid excessive wear of the motor
+gearing and valve stem.</P>
+<P>See the <A HREF="DAMPER_CTL.java">Java source code</A> for
+details of the operation of this function block type.</P>
+<P>See the <A HREF="VAV_MVCL.htm"><TT>VAV_MVCL</TT></A> system
+configuration for an example of the use of an instance of this type.</P>
+<CENTER>
+<P>[<A NAME="Viewer" HREF="../../../FBViewer.html" TARGET="_blank">Viewer
+Help</A>]<BR>
+<TABLE BORDER="1">
+	<TR>
+		<TD><APPLET CODE="FBViewer" ARCHIVE="../../../viewer.jar"
+			WIDTH="500" HEIGHT="400"></APPLET></TD>
+	</TR>
+</TABLE>
+</P>
+<P><I>Last updated: 2006-07-20.</I><BR>
+&copy;2006 <A HREF="http://www.holobloc.com" TARGET="_blank">Holobloc
+Inc</A><BR>
+Licensed under the <A
+	HREF="http://www.opensource.org/licenses/afl-3.0.php">Academic Free
+License version 3.0</A>.</P>
+</CENTER>
+</BODY>
+</HTML>

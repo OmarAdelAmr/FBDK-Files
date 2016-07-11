@@ -1,0 +1,108 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+<META NAME="GENERATOR" CONTENT="Eclipse HTML Editor">
+<TITLE>SYSTEM TESTBED_MVL</TITLE>
+</HEAD>
+<BODY>
+<H3>4. Develop and Test Models</H3>
+<P><A HREF="#Viewer">This system configuration</A> implements the
+layered <A HREF="../../despats/mvc/syseng2.htm#4"><B>Model+View</B>
+testing architecture</A> for the <A HREF="sketch.htm">Sortation/Inspection
+testbed</A>.</P>
+<P>The <TT>HMI</TT> device encapsulates the functionality of the <B>HMI
+</B>layer of the architecture - specifically the HMI elements needed to
+read sensor values and write actuator values - while the <TT>MODEL</TT>
+device encapsulates both the <B>Model </B>and the <B>View</B> layers.</P>
+<P>As in the <TT>VIEW</TT> device of the <A HREF="TESTBED_VIEWL.htm"><TT>TESTBED_VIEWL</TT></A>
+configuration, the <TT>MODEL</TT> device contains three instances of the
+specialized <A HREF="../../common/VIEW_PANEL.htm"><TT>VIEW_PANEL</TT></A>
+resource type to provide the necessary layout of <B>View </B>elements
+for the testbed example. In addition, the <TT>CHAIN</TT> resource
+contains an <A HREF="../../common/FB_SLIDER.htm"><TT>FB_SLIDER</TT></A>
+control to adjust the proportion of pegs to rings injected into the
+system by the <A HREF="../../despats/mvc/WKPC_EMIT.htm"><TT>WKPC_EMIT</TT></A>
+function block instance in the <TT>CHAIN_MDL</TT> resource.</P>
+<P>The <TT>MODEL</TT> device also contains eight instances of the <A
+	HREF="../../common/EMB_RES.htm"><TT>EMB_RES</TT></A> type, which in turn
+contain the <B>Model</B> elements for the corresponding <B>Views</B>, as
+well as logic to simulate the physics of the interactions among <B>Model</B>
+elements including their sensors and actuators and transfer of
+workpieces.</P>
+<OL>
+	<LI>The <TT>CLK</TT> resource contains the simulation clock, whose
+	events are distributed using the <A
+		HREF="../../despats/publsubl/index.htm" TARGET="_top">local multicast</A>
+	pattern. It also contains additional logic to provide "artificial
+	gravity", i.e., a constant ON signal to the "motors" of the chutes in
+	the <TT>PEG_CHUTE</TT> and <TT>RING_CHUTES</TT> resources.</LI>
+	<LI>The <TT>CHAIN_MDL</TT> resource contains an instance of the <A
+		HREF="../../despats/mvc/CNV_MDLL.htm"><TT>CNV_MDLL</TT></A> type,
+	corresponding to the chain in the <TT>CHAIN</TT> view. An instance of
+	the <A HREF="../../despats/mvc/WKPC_EMIT.htm"><TT>WKPC_EMIT</TT></A>
+	type is used to feed a random selection of pegs and rings to the chain
+	conveyor model.</LI>
+	<LI>The <TT>SORT_MDL</TT> resource contains an instance of the <A
+		HREF="../../despats/mvc/SOL_MDLL.htm"><TT>SOL_MDLL</TT></A> type,
+	corresponding to the sorter solenoid in the <TT>CHAIN</TT> view.</LI>
+	<LI>The <TT>PEG_CHUTE</TT> resource contains an instance of the <A
+		HREF="../../despats/mvc/CNV_MDLL.htm"><TT>CNV_MDLL</TT></A> type,
+	corresponding to the <TT>CHUTE</TT> element of the <TT>CHUTES</TT>
+	view.</LI>
+	<LI>The <TT>RING_CHUTES</TT> resource contains instances of the <A
+		HREF="../../despats/mvc/CNV_MDLL.htm"><TT>CNV_MDLL</TT></A> type,
+	corresponding to the <TT>CHUTE</TT> element of the <TT>CHUTES</TT>
+	view.</LI>
+	<LI>The <TT>BELT_MDL</TT> resource contains intances of the <A
+		HREF="../../despats/mvc/CNV_MDLL.htm"><TT>CNV_MDLL</TT></A> and <A
+		HREF="../../despats/mvc/CNVG_MDLL.htm"><TT>CNVG_MDLL</TT></A> types,
+	corresponding to the <TT>ASSY_CHUTE</TT> and <TT>RING_FEED</TT>
+	elements of the <TT>CHUTES</TT> view, respectively.</LI>
+	<LI>The <TT>ASSY_MDL</TT> resource models the peg/ring assembly.</LI>
+	<LI>The <TT>INSP_MDL</TT> resource uses an instance of the <A
+		HREF="WP_SENSE.htm"><TT>WP_SENSE</TT></A> type to model the operation
+	of the inspection station.</LI>
+</OL>
+<P>Inter- and intra-layer communication is implemented with the <A
+	HREF="../../despats/publsubl/index.htm" TARGET="_top">local multicast</A>
+pattern, in particular for the distribution of the simulation clock and
+the simulation of workpiece transfer with instances of the <A
+	HREF="../../despats/mvc/LOADL.htm"><TT>LOADL</TT></A> and <A
+	HREF="../../despats/mvc/LOADLE.htm"><TT>LOADLE</TT></A> types.</P>
+<CENTER>
+<P><IMG SRC="../../note.gif">Click on a graphic element to navigate to its Model.<BR>
+<IMG SRC="TESTBED_MVL.gif" USEMAP="#MAP1" HEIGHT="360"
+	WIDTH="660"></P>
+<P>[<A NAME="Viewer" HREF="../../FBViewer.html" TARGET="help">Viewer
+Help</A>]<BR>
+<TABLE BORDER="1">
+	<TBODY>
+		<TR>
+			<TD><APPLET CODE="FBViewer" ARCHIVE="../../viewer.jar" HEIGHT="600"
+				WIDTH="950"></APPLET></TD>
+		</TR>
+	</TBODY>
+</TABLE>
+</P>
+<P><I>Last updated: 2007-09-22.</I><BR>
+&copy;2006,2007 <A HREF="http://www.holobloc.com" TARGET="_blank">Holobloc
+Inc</A>.<BR>
+Licensed under the <A
+	HREF="http://www.opensource.org/licenses/afl-3.0.php">Academic Free
+License version 3.0</A>.</P>
+</CENTER>
+<MAP NAME="MAP1">
+	<AREA SHAPE="RECT" COORDS="179,43,357,299"
+		HREF="../../common/IN_BOOL.htm">
+	<AREA COORDS="4,43,179,338" HREF="../../common/OUT_BOOL.htm">
+	<AREA COORDS="445,42,485,82" HREF="../../despats/mvc/SOL_MDLL.htm">
+	<AREA COORDS="485,162,525,202" HREF="../../despats/mvc/SOL_MDLL.htm">
+	<AREA COORDS="605,325,645,365" HREF="../../despats/mvc/SOL_MDLL.htm">
+	<AREA COORDS="363,82,644,122" HREF="../../despats/mvc/CNV_MDLL.htm">
+	<AREA COORDS="363,122,404,282" HREF="../../despats/mvc/CNV_MDLL.htm">
+	<AREA COORDS="443,122,483,282" HREF="../../despats/mvc/CNV_MDLL.htm">
+	<AREA COORDS="363,284,644,324" HREF="../../despats/mvc/CNV_MDLL.htm">
+</MAP>
+</BODY>
+</HTML>

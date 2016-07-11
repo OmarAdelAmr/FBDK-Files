@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE System SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<System Name="TEST_FIFO" Comment="Test FIFO_UINT in a RMT_DEV" >
+  <Identification Standard="61499-1" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.0" Author="JHC" Date="2005-12-13" />
+  <Device Name="GUI" Type="FRAME_DEVICE" x="600.0" y="11.111111" >
+    <Parameter Name="BOUNDS" Value="[100,100,200,150]" />
+    <Parameter Name="GRID" Value="[1,2]" />
+    <Resource Name="INPUT" Type="PANEL_RESOURCE" x="238.88889" y="11.111111" >
+      <FBNetwork >
+        <FB Name="SEND" Type="IN_EVENT" x="594.4444" y="11.111111" >
+          <Parameter Name="LABEL" Value="&#34;SEND&#34;" />
+        </FB>
+        <FB Name="IN" Type="IN_ARRAY" x="1072.2222" y="11.111111" >
+          <Parameter Name="TYPE" Value="&#34;UINT&#34;" />
+          <Parameter Name="N" Value="10" />
+          <Parameter Name="IVAL" Value="[6,7,8,9,10]" />
+        </FB>
+        <FB Name="PUSHER" Type="PUBLISH_1" x="2527.7776" y="11.111111" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="ID" Value="&#34;225.0.0.1:1025&#34;" />
+        </FB>
+        <FB Name="TRIGGER" Type="E_TRAIN" x="1494.4443" y="783.3333" >
+          <Parameter Name="DT" Value="t#250ms" />
+          <Parameter Name="N" Value="5" />
+        </FB>
+        <FB Name="SEL" Type="ASEL_UINT" x="1955.5554" y="783.3333" />
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="SEND.INIT" dx1="44.444443" />
+          <Connection Source="START.WARM" Destination="SEND.INIT" dx1="83.33333" />
+          <Connection Source="SEND.INITO" Destination="IN.INIT" dx1="27.777777" />
+          <Connection Source="SEND.IND" Destination="IN.REQ" dx1="44.444443" />
+          <Connection Source="IN.INITO" Destination="PUSHER.INIT" dx1="33.333332" />
+          <Connection Source="IN.IND" Destination="TRIGGER.START" dx1="55.555553" />
+          <Connection Source="TRIGGER.EO" Destination="SEL.REQ" dx1="111.11111" />
+          <Connection Source="SEL.CNF" Destination="PUSHER.REQ" dx1="77.77777" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="IN.OUT" Destination="SEL.IN" dx1="494.44443" />
+          <Connection Source="TRIGGER.CV" Destination="SEL.N" dx1="61.111107" />
+          <Connection Source="SEL.OUT" Destination="PUSHER.SD_1" dx1="144.44444" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+    <Resource Name="OUTPUT" Type="PANEL_RESOURCE" x="1194.4445" y="11.111111" >
+      <FBNetwork >
+        <FB Name="PULLER" Type="CLIENT_0_3" x="1383.3333" y="11.111111" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="ID" Value="&#34;localhost:4445&#34;" />
+        </FB>
+        <FB Name="PULL" Type="IN_EVENT" x="544.4444" y="11.111111" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;PULL&#34;" />
+        </FB>
+        <FB Name="OK" Type="OUT_BOOL" x="1966.6666" y="11.111111" >
+          <Parameter Name="LABEL" Value="&#34;OK&#34;" />
+        </FB>
+        <FB Name="N" Type="OUT_ANY" x="2450.0" y="455.55554" >
+          <Parameter Name="TYPE" Value="&#34;UINT&#34;" />
+        </FB>
+        <FB Name="OUT" Type="OUT_ANY" x="2877.7776" y="905.55554" >
+          <Parameter Name="TYPE" Value="&#34;UINT&#34;" />
+        </FB>
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="PULL.INIT" dx1="27.777777" />
+          <Connection Source="START.WARM" Destination="PULL.INIT" dx1="33.333332" />
+          <Connection Source="PULL.INITO" Destination="PULLER.INIT" dx1="72.22222" />
+          <Connection Source="PULL.IND" Destination="PULLER.REQ" dx1="116.666664" />
+          <Connection Source="PULLER.INITO" Destination="OK.INIT" dx1="50.0" />
+          <Connection Source="PULLER.CNF" Destination="OK.REQ" dx1="83.33333" />
+          <Connection Source="OK.INITO" Destination="N.INIT" dx1="88.888885" />
+          <Connection Source="OK.CNF" Destination="N.REQ" dx1="50.0" />
+          <Connection Source="N.INITO" Destination="OUT.INIT" dx1="72.22222" />
+          <Connection Source="N.CNF" Destination="OUT.REQ" dx1="38.888885" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="PULLER.RD_1" Destination="OK.IN" dx1="249.99998" />
+          <Connection Source="PULLER.RD_2" Destination="N.IN" dx1="77.77777" />
+          <Connection Source="PULLER.RD_3" Destination="OUT.IN" dx1="27.777777" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+  </Device>
+  <Device Name="REMOTE" Type="RMT_DEV" x="1466.6666" y="11.111111" >
+    <Resource Name="FIFO_RES" Type="EMB_RES" x="227.77777" y="222.22221" >
+      <FBNetwork >
+        <FB Name="FIFO" Type="FIFO_UINT" x="1172.2222" y="11.111111" />
+        <FB Name="PUSHER" Type="SUBSCRIBE_1" x="616.6666" y="11.111111" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="ID" Value="&#34;225.0.0.1:1025&#34;" />
+        </FB>
+        <FB Name="PULLER" Type="SERVER_3_0" x="2177.7776" y="11.111111" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="ID" Value="&#34;localhost:4445&#34;" />
+        </FB>
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="PUSHER.INIT" dx1="33.333332" />
+          <Connection Source="START.WARM" Destination="PUSHER.INIT" dx1="55.555553" />
+          <Connection Source="FIFO.PULLO" Destination="PULLER.RSP" dx1="133.33333" />
+          <Connection Source="PULLER.IND" Destination="FIFO.PULL" dx1="72.22222" dx2="50.0" dy="938.88885" />
+          <Connection Source="PUSHER.IND" Destination="FIFO.PUSH" dx1="61.111107" />
+          <Connection Source="FIFO.PUSHO" Destination="PULLER.RSP" dx1="133.33333" />
+          <Connection Source="PUSHER.INITO" Destination="FIFO.RST" dx1="27.777777" />
+          <Connection Source="FIFO.RSTO" Destination="PULLER.INIT" dx1="83.33333" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="PUSHER.RD_1" Destination="FIFO.IN" dx1="27.777777" />
+          <Connection Source="FIFO.OK" Destination="PULLER.SD_1" dx1="83.33333" />
+          <Connection Source="FIFO.N" Destination="PULLER.SD_2" dx1="77.77777" />
+          <Connection Source="FIFO.OUT" Destination="PULLER.SD_3" dx1="77.77777" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+  </Device>
+</System>

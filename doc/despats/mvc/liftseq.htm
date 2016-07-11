@@ -1,0 +1,198 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html;CHARSET=iso-8859-1">
+  <meta name="GENERATOR" content="Visual Page 1.1 for Windows">
+  <title>Pallet Handling Sequences</title>
+</head>
+<body>
+<h3>3. Animate operational sequences</h3>
+<p>The <a href="LIFTER_VIEWL.htm"><tt>LIFTER_VIEWL</tt></a>
+configuration is used to produce an animation of the normal and
+abnormal operational sequences for the <a href="liftsket.htm">pallet
+handling example</a>.</p>
+<center>
+<p><big><b><a name="Normal"></a>Normal operation</b></big>&nbsp;&nbsp;<a
+ href="#Jam">Jammed</a>&nbsp;&nbsp;<a href="#Half_In">Half-In</a>&nbsp;&nbsp;<a
+ href="#Crush">Crushed</a>&nbsp;&nbsp;<a href="#Drop">Dropped</a>&nbsp;&nbsp;<a
+ href="#Half_Out">Half-Out</a>&nbsp;&nbsp;<a href="liftseq.htm#Fallen">Fallen</a>
+</p>
+<table border="1">
+  <tbody>
+    <tr>
+      <td width="152"><b>0.</b> Lifter at bottom position with stopper
+engaged. Feed conveyor is ON, waiting for pallet. </td>
+      <td width="152"><b>1.</b> Pallet is loaded to feed conveyor. </td>
+      <td width="152"><b>2.</b> Pallet advances to stopper position.</td>
+      <td width="152"><b>3.</b> Pallet advances into lifter with
+stopper disengaged, feed conveyor motor ON and lifter motor ON in
+loading direction.<br>
+      </td>
+    </tr>
+    <tr>
+      <td><img alt="" src="images/liftseq0.gif" height="149"></td>
+      <td><img src="images/liftseq1.gif"></td>
+      <td><img src="images/liftseq2.gif"></td>
+      <td><img src="images/liftseq3.gif"></td>
+    </tr>
+    <tr>
+      <td width="152"><b>4.</b> Lifter motor is disengaged, stopper is
+re-engaged,
+and lifter moves to top
+position. A new pallet may be loaded to the feed conveyor.<br>
+      </td>
+      <td width="152"><b>5.</b> Lifter motor is turned ON in unloading
+direction
+and takeoff motor is turned ON. Old pallet moves to takeoff conveyor
+and new pallet is advancing.<br>
+      </td>
+      <td width="152"><b>6.</b>Pallet moves to end of takeoff conveyor,
+lifter
+motor is disengaged, and lifter begins motion downward. Pallet has
+advanced to stopper position.<br>
+      </td>
+      <td width="152"><b>7.</b> Pallet has moved off takeoff conveyor.
+Operation is
+ready to resume from step <b>2</b>.<br>
+      </td>
+    </tr>
+    <tr>
+      <td><img src="images/liftseq4.gif" height="149"></td>
+      <td><img src="images/liftseq5.gif"></td>
+      <td><img src="images/liftseq6.gif"></td>
+      <td><img src="images/liftseq2.gif"></td>
+    </tr>
+  </tbody>
+</table>
+<hr>
+<p><a name="Jam"></a><big><b>Jammed</b></big>&nbsp;&nbsp;<a
+ href="#Normal">Normal operation</a>&nbsp;&nbsp;<a
+ href="liftseq.htm#Half_In">Half-In</a>&nbsp;&nbsp;<a
+ href="liftseq.htm#Crush">Crushed</a>&nbsp;&nbsp;<a
+ href="liftseq.htm#Drop">Dropped</a>&nbsp;&nbsp;<a
+ href="liftseq.htm#Half_Out">Half-Out</a>&nbsp;&nbsp;<a
+ href="liftseq.htm#Fallen">Fallen</a>
+</p>
+<table border="1">
+  <tbody>
+    <tr>
+      <td><img alt="" src="images/liftjam.gif" height="149" width="152"></td>
+      <td width="300">This condition arises when the stopper is
+retracted with the feed conveyor motor ON with pallets present in both
+the lifter at the bottom position and the feed conveyor. It is
+indicated by showing the pallet at the loading position in a
+yellow color.</td>
+    </tr>
+  </tbody>
+</table>
+<hr>
+<p><big><a name="Half_In"></a><b>Half-In</b></big>&nbsp;
+<a href="#Normal">Normal operation</a>&nbsp;&nbsp;<a href="#Jam">Jammed</a>&nbsp;&nbsp;<a
+ href="liftseq.htm#Crush">Crushed</a>&nbsp;&nbsp;<a
+ href="liftseq.htm#Drop">Dropped</a>&nbsp;&nbsp;<a
+ href="liftseq.htm#Half_Out">Half-Out</a>&nbsp;&nbsp;<a
+ href="liftseq.htm#Fallen">Fallen</a>
+</p>
+<table border="1" height="159" width="471">
+  <tbody>
+    <tr>
+      <td><img alt="" src="images/lifthalfin.gif" height="149"
+ width="152"></td>
+      <td width="300">This condition arises when the stopper is
+retracted with a pallet at the stopper position and the feed conveyor
+motor ON when the lifter motor is
+either disengaged or engaged in the unload direction. It is
+indicated by showing the pallet at the loading position in a
+yellow color.</td>
+    </tr>
+  </tbody>
+</table>
+<hr>
+<p><big><a name="Crush"></a><b>Crushed</b></big>&nbsp;&nbsp;<a
+ href="#Normal">Normal operation</a>&nbsp;&nbsp;<a
+ href="liftseq.htm#Jam">Jammed</a>&nbsp;&nbsp;<a
+ href="liftseq.htm#Half_In">Half-In</a>&nbsp;&nbsp;<a
+ href="liftseq.htm#Drop">Dropped</a>&nbsp;&nbsp;<a
+ href="liftseq.htm#Half_Out">Half-Out</a>&nbsp; <a
+ href="liftseq.htm#Fallen">Fallen</a>
+</p>
+<table border="1" height="159" width="471">
+  <tbody>
+    <tr>
+      <td><img alt="" src="images/liftcrush.gif" height="149"
+ width="152"></td>
+      <td width="300">This condition arises when the pallet is in the <a
+ href="#Half_In">Half-In</a> position and the lifter is raised. It is
+indicated by showing the pallet at the "Crushed" position in a red
+color.</td>
+    </tr>
+  </tbody>
+</table>
+<hr>
+<p><big><a name="Drop"></a><b>Dropped</b></big>&nbsp;&nbsp;<a
+ href="#Normal">Normal Operation</a>&nbsp;&nbsp;<a
+ href="liftseq.htm#Jam">Jammed</a>&nbsp; <a href="liftseq.htm#Half_In">Half-In</a>&nbsp;&nbsp;<a
+ href="liftseq.htm#Crush">Crushed</a>&nbsp;&nbsp;<a
+ href="liftseq.htm#Half_Out">Half-Out</a>&nbsp;&nbsp;<a
+ href="liftseq.htm#Fallen">Fallen</a>
+</p>
+<table border="1">
+  <tbody>
+    <tr>
+      <td><img alt="" src="images/liftdrop.gif" height="149" width="152"></td>
+      <td width="300">This condition arises when the stopper is
+retracted with a pallet at the stopper position and the feed conveyor
+motor ON when the lifter is not in the bottom position. It is
+indicated by showing the pallet at the loading position in a red
+color.</td>
+    </tr>
+  </tbody>
+</table>
+<hr>
+<p><big><a name="Half_Out"></a><b>Half-Out</b></big>&nbsp;&nbsp;<a
+ href="liftseq.htm#Normal">Normal operation</a>&nbsp;&nbsp;<a
+ href="liftseq.htm#Jam">Jammed</a>&nbsp;&nbsp;<a
+ href="liftseq.htm#Half_In">Half-In</a>&nbsp;&nbsp;<a
+ href="liftseq.htm#Crush">Crushed</a>&nbsp;&nbsp;<a
+ href="liftseq.htm#Drop">Dropped</a>&nbsp;&nbsp;<a
+ href="liftseq.htm#Fallen">Fallen</a>
+</p>
+<table border="1">
+  <tbody>
+    <tr>
+      <td><img src="images/lifthalfout.gif" height="149" width="152"></td>
+      <td width="300">This condition arises when the lifter is in the
+top position with a pallet present and the lifter motor is engaged to
+unload the pallet when the takeoff motor is OFF. It is indicated
+by
+showing the pallet at the unloading position in a yellow color.</td>
+    </tr>
+  </tbody>
+</table>
+<hr>
+<p><big><a name="Fallen"></a><b>Fallen</b></big>&nbsp;&nbsp;<a
+ href="liftseq.htm#Normal">Normal operation</a>&nbsp;&nbsp;<a
+ href="liftseq.htm#Jam">Jammed</a>&nbsp;&nbsp;<a
+ href="liftseq.htm#Half_In">Half-In</a>&nbsp;&nbsp;<a
+ href="liftseq.htm#Crush">Crushed</a>&nbsp;&nbsp;<a
+ href="liftseq.htm#Drop">Dropped</a>&nbsp;&nbsp;<a
+ href="liftseq.htm#Half_Out">Half-Out</a>
+</p>
+<table border="1">
+  <tbody>
+    <tr>
+      <td><img alt="" src="images/liftfall.gif" height="149" width="152"></td>
+      <td width="300">This condition arises when the pallet is in the <a
+ href="#Half_Out">Half-Out</a> position and the lifter is lowered. It is
+indicated by showing the pallet at a "Fallen" position in a red
+color.</td>
+    </tr>
+  </tbody>
+</table>
+<hr>
+<i>Last updated: 2004-11-09.<br>
+&copy;2004 Rockwell Automation. All rights reserved.<br>
+</i>
+</center>
+</body>
+</html>

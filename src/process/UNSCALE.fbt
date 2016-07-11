@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="UNSCALE" Comment="Converts scaled UINT input of 0-100% to a D/A output value" >
+  <Identification Standard="61499-1" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2004-09-01" />
+  <CompilerInfo header="package fb.rt.process;" >
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="REQ" Comment="Normal Execution Request" >
+        <With Var="IN" />
+        <With Var="MIN" />
+        <With Var="MAX" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="CNF" Comment="Execution Confirmation" >
+        <With Var="OUT" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="IN" Type="UINT" Comment="Scaled Input, 0-100%" />
+      <VarDeclaration Name="MIN" Type="INT" Comment="OUT value corresponding to IN=0" />
+      <VarDeclaration Name="MAX" Type="INT" Comment="OUT value corresponding to IN=100%, e.g., 4096 for a 12-bit D/A" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="OUT" Type="INT" Comment="D/A Output corresponding to IN value, limited to {MIN..MAX-1}" />
+    </OutputVars>
+  </InterfaceList>
+</FBType>

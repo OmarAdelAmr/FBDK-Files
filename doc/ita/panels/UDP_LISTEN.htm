@@ -1,0 +1,55 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+<META NAME="GENERATOR" CONTENT="Eclipse HTML Editor">
+<TITLE>FUNCTION_BLOCK UDP_LISTEN</TITLE>
+</HEAD>
+
+<BODY>
+
+<H2 ALIGN="CENTER">FUNCTION_BLOCK UDP_LISTEN</H2>
+<P>An instance of this type encapsulates an editable instance of the <A
+	HREF="http://java.sun.com/products/jdk/1.1/docs/api/java.net.MulticastSocket.html#_top_">java.net.MulticastSocket</A>
+class. Since its <TT>RD_1</TT> output is a string containing a
+hexadecimal representation of the most recently received message, it can
+be used to monitor the operation of a <TT>PUBLISH_x</TT> block that
+publishes any number (<TT>x</TT>) of data items on the associated
+multicast channel.</P>
+<P>The format of the <TT>RD_1</TT> output is a space-separated sequence
+of 2-digit hexadecimal representations of the individual bytes in the
+receive buffer. Since the buffer is zero-filled before message
+reception, the output string terminates with the characters <TT>&quot;...&quot;</TT>
+following the first zero byte in the set of contiguous zero bytes to the
+end of the buffer. Thus, if the message contains trailing zero bytes,
+only the first is shown.</P>
+<P>See the <A HREF="TEST_BITS.htm"><TT>TEST_BITS</TT></A> application
+and the <A HREF="MONITOR.htm"><TT>MONITOR</TT></A> device configuration
+for an example of the use of an instance of this type.</P>
+
+
+<BLOCKQUOTE>
+<P><I>NOTE -</I> <TT>RSP+</TT> or <TT>RSP-</TT> inputs are not required
+for proper operation of this block, and are ignored if they do occur.</P>
+
+</BLOCKQUOTE>
+
+<CENTER>
+<P>[<A HREF="../../FBViewer.html" TARGET="help">Viewer Help</A>]<BR>
+<TABLE BORDER="1">
+	<TR>
+		<TD><APPLET CODE="FBViewer" WIDTH="529" HEIGHT="393"
+			ARCHIVE="../../viewer.jar"> </APPLET></TD>
+	</TR>
+</TABLE>
+</P>
+<P><I>Last updated: 2006-04-19.</I><BR>
+&copy;2006 <A HREF="http://www.holobloc.com" TARGET="_blank">Holobloc
+Inc</A><BR>
+Licensed under the <A
+	HREF="http://www.opensource.org/licenses/afl-3.0.php">Academic Free
+License version 3.0</A>.</P>
+</CENTER>
+</BODY>
+</HTML>

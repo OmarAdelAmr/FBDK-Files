@@ -1,0 +1,92 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="CONTENT-TYPE"
+	CONTENT="text/html; charset=windows-1252">
+<TITLE>SYSTEM TANK_MVL</TITLE>
+<META NAME="GENERATOR" CONTENT="Eclipse HTML Editor">
+</HEAD>
+<BODY LANG="en-US" DIR="LTR">
+<H3>3. Animate operational sequences<BR>
+4. Develop and Test Models</H3>
+<P>The <TT>TANK_MVL</TT> system configuration shown <A HREF="#Viewer">below</A>
+implements the layered <A HREF="../mvc/syseng2.htm#4"><B>Model+View</B>
+testing architecture</A> for the <A HREF="sketch.htm">process control
+example</A>.</P>
+<UL>
+	<LI>The <TT>HMI</TT> device encapsulates the functionality of the <B>HMI</B>
+	layer of the architecture.</LI>
+	<LI>The <TT>VIEW</TT> device of the <TT><A HREF="TANK_VIEWL.htm">TANK_VIEWL</A></TT>
+	configuration is replaced by the <TT>MV </TT>device encapsulating the
+	functionality of both the <B>Model</B> and <B>View </B>layers:</LI>
+	<UL>
+		<LI>As before, there are three instances of the specialized <TT><A
+			HREF="../../common/VIEW_PANEL.htm">VIEW_PANEL</A></TT> resource type to
+		provide the necessary layout of <B>View </B>elements for the process
+		control example.
+		<LI>In addition, there are two resources containing the models for the
+		tank and pump, respectively (the valve does not have a dynamic model).
+		An instance of the <TT><A HREF="SHAFT_MDL.htm">SHAFT_MDL</A></TT> type
+		models the pump, and an instance of the <TT><A HREF="TANK_MDL.htm">TANK_MDL</A></TT>
+		type models the tank.</LI>
+	</UL>
+	<LI>An additional HMI frame provides an instance of the <TT><A
+		HREF="STRIP3.htm">STRIP3</A></TT> class to record the system's dynamic
+	behaviors as shown below. The colors and local multicast channels of
+	the plotted variables are shown in the table below, and a record of
+	typical behaviors is shown in the following <A HREF="#Graphic">graphic</A>.</LI>
+</UL>
+<CENTER>
+<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+	<TR ALIGN=CENTER VALIGN=MIDDLE>
+		<TH>Variable</TH>
+		<TH>Channel</TH>
+		<TH>Color</TH>
+	</TR>
+	<TR ALIGN=CENTER VALIGN=MIDDLE>
+		<TH>Tank Level</TH>
+		<TD><TT>PV</TT></TD>
+		<TD>blue</TD>
+	</TR>
+	<TR ALIGN=CENTER VALIGN=MIDDLE>
+		<TH>Valve Position</TH>
+		<TD><TT>OUT</TT></TD>
+		<TD>green</TD>
+	</TR>
+	<TR ALIGN=CENTER VALIGN=MIDDLE>
+		<TH>Pump Speed</TH>
+		<TD><TT>PUMP_SPEED</TT></TD>
+		<TD>red</TD>
+	</TR>
+</TABLE>
+<A NAME="Graphic"></A>
+<P><IMG SRC="../../note.gif">Click on a graphic element to navigate to
+its documentation.</I><BR>
+<MAP NAME="MAP1">
+	<AREA SHAPE=RECT COORDS="273,192,325,243" HREF="PIPE_VIEW.htm">
+	<AREA SHAPE=RECT COORDS="325,192,375,243" HREF="SHAFT_MDL.htm">
+	<AREA SHAPE=RECT COORDS="262,41,337,192" HREF="TANK_MDL.htm">
+	<AREA SHAPE=RECT COORDS="212,41,262,92" HREF="VALVE_VIEW.htm">
+	<AREA SHAPE=RECT COORDS="3,141,203,294" HREF="STRIP3.htm">
+	<AREA SHAPE=RECT COORDS="103,42,205,96"
+		HREF="../../common/FB_LABEL.htm">
+	<AREA SHAPE=RECT COORDS="3,42,103,93" HREF="../../common/FB_SLIDER.htm">
+</MAP> <IMG SRC="images/TANK_MVL.gif" NAME="Graphic2"
+	ALT="[TANK_MVL image]" WIDTH=385 HEIGHT=300 BORDER=0 USEMAP="#MAP1"></P>
+<P><A NAME="Viewer"></A>[<A HREF="../../FBViewer.html" TARGET="help">Viewer
+Help</A>]<BR>
+<TABLE BORDER=1 CELLPADDING=2 CELLSPACING=2>
+	<TR ALIGN=CENTER VALIGN=MIDDLE>
+		<TD><APPLET CODE="FBViewer" ALIGN=BOTTOM WIDTH=600 HEIGHT=580
+			archive="../../viewer.jar"> </APPLET></TD>
+	</TR>
+</TABLE>
+</P>
+<P><I>Last updated: 2006-04-17.</I><BR>
+&copy;2006 Holobloc Inc.<BR>
+Licensed under the <A
+	HREF="http://www.opensource.org/licenses/afl-3.0.php">Academic Free
+License version 3.0</A>.</P>
+</CENTER>
+</BODY>
+</HTML>

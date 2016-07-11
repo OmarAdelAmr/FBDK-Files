@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE System SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<System Name="ControlPanel" Comment="System Configuration" >
+  <Identification Standard="61499-1" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.3" Author="JHC" Date="2003-12-05" Remarks="Renamed from NEWSYSTEM." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.2" Author="JHC" Date="2002-11-05" Remarks="Fixed missing (empty) FBD in Application." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2002-01-17" Remarks="Minor cleanup" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2000-05-27" />
+  <Application Name="APP1" >
+    <FBNetwork >
+    </FBNetwork>
+  </Application>
+  <Device Name="DEV1" Type="FRAME_DEVICE" x="711.1111" y="155.55554" >
+    <Parameter Name="BOUNDS" Value="[300,300,300,300]" />
+    <Parameter Name="GRID" Value="[2,2]" />
+    <Resource Name="WorkerHMI" Type="PANEL_RESOURCE" x="1144.4445" y="177.77777" >
+      <Parameter Name="ROWS" Value="2" />
+      <Parameter Name="COLS" Value="2" />
+      <FBNetwork >
+        <FB Name="ON" Type="IN_EVENT" x="922.22217" y="88.888885" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;ON&#34;" />
+        </FB>
+        <FB Name="SkillPoll" Type="IN_CHOICE" x="3716.6665" y="11.111111" >
+          <Parameter Name="CHOICES" Value="&#34;Drilling,Shaping,Machining&#34;" />
+        </FB>
+        <FB Name="StatusIND" Type="OUT_BOOL" x="3783.3333" y="972.22217" >
+          <Parameter Name="LABEL" Value="&#34;Status&#34;" />
+          <Parameter Name="C0" Value="[255,0,0]" />
+          <Parameter Name="C1" Value="[255,255,255]" />
+          <Parameter Name="IN" Value="1" />
+          <Parameter Name="QI" Value="1" />
+        </FB>
+        <FB Name="OFF" Type="IN_EVENT" x="933.3333" y="1272.2222" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;OFF&#34;" />
+        </FB>
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="ON.INIT" dx1="344.44443" />
+          <Connection Source="ON.IND" Destination="SkillPoll.REQ" dx1="633.3333" />
+          <Connection Source="ON.INITO" Destination="SkillPoll.INIT" dx1="527.7778" />
+          <Connection Source="START.COLD" Destination="OFF.INIT" dx1="322.2222" />
+          <Connection Source="OFF.INITO" Destination="StatusIND.INIT" dx1="1600.0" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="ON.QO" Destination="SkillPoll.QI" dx1="944.4444" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+  </Device>
+</System>

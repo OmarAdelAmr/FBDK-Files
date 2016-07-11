@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="SAMPLE_BYTE" Comment="Sample a single byte - see SAMPLE_1" >
+  <Identification Standard="61499-1" Classification="Math" Function="Sampling" Type="BYTE" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.0" Author="JHC" Date="2006-05-28" />
+  <CompilerInfo header="package fb.rt.math;" >
+    <Compiler Language="Java" Vendor="Sun" Product="JDK" Version="1.5.0" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="REQ" Comment="Request to Sample with Monitor Lock" >
+        <With Var="IN1" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="CNF" Comment="Initial Sample or OUT1 changed" >
+        <With Var="OUT1" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="IN1" Type="BYTE" Comment="Data to Sample" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="OUT1" Type="BYTE" Comment="Sampled Data" />
+    </OutputVars>
+  </InterfaceList>
+</FBType>

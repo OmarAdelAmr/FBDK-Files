@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="TEST_BOOLN" Comment="Test Boolean NAND,NOR" >
+  <Identification Standard="61499-1" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.0" Author="JHC" Date="2006-09-19" />
+  <CompilerInfo header="package fb.rt.test;" classdef="SimpleFB" >
+    <Compiler Language="Java" Vendor="Sun" Product="JDK" Version="1.5.0" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="REQ" >
+        <With Var="I1" />
+        <With Var="I2" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="CNF" >
+        <With Var="NANDO" />
+        <With Var="NORO" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="I1" Type="BOOL" />
+      <VarDeclaration Name="I2" Type="BOOL" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="NANDO" Type="BOOL" />
+      <VarDeclaration Name="NORO" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+  <Algorithm Name="REQ" >
+    <FBD >
+      <FB Name="a1" Type="NAND_BOOL" x="283.3333" y="11.111111" />
+      <FB Name="a2" Type="NOR_BOOL" x="922.22217" y="11.111111" />
+      <DataConnections>
+        <Connection Source="I2" Destination="a1.i2" dx1="205.55554" />
+        <Connection Source="I1" Destination="a2.i1" dx1="844.4444" />
+        <Connection Source="I1" Destination="a1.i1" dx1="205.55554" />
+        <Connection Source="a1.Q" Destination="NANDO" dx1="611.1111" />
+        <Connection Source="I2" Destination="a2.i2" dx1="844.4444" />
+        <Connection Source="a2.Q" Destination="NORO" dx1="1200.0" />
+      </DataConnections>
+    </FBD>
+  </Algorithm>
+  </BasicFB>
+</FBType>

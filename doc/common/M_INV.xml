@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="M_INV" Comment="Solve the matrix equation IN1*OUT=IN2 for OUT by inverting IN1" >
+  <Identification Standard="61499-1" Classification="Matrix Operations" Function="Addition" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.2" Author="JHC" Date="2007-10-26" Remarks="Changed to single IN1 input." />
+  <VersionInfo Organization="Holobloc Inc" Version="0.1" Author="JHC" Date="2007-10-19" Remarks="Moved to fb.rt.math.matrix." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2002-03-06" />
+  <CompilerInfo header="package fb.rt.math.matrix;" classdef="public class M_MUL extends M_ADD" >
+    <Compiler Language="Java" Vendor="Sun" Product="JDK" Version="1.6.0" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="REQ" Comment="Solve IN1*OUT=IN2 for OUT" >
+        <With Var="QI" />
+        <With Var="IN1" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="CNF" Comment="Confirmation of Requested Service" >
+        <With Var="QO" />
+        <With Var="STATUS" />
+        <With Var="OUT" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="QI" Type="BOOL" Comment="Event Input Qualifier" />
+      <VarDeclaration Name="IN1" Type="MATRIX" Comment="Matrix to be inverted - unaffected by inversion operation" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="QO" Type="BOOL" Comment="Event Output Qualifier" />
+      <VarDeclaration Name="STATUS" Type="UINT" Comment="0=OK, 4=DIVISION_BY_0, 13=ARRAY_SIZE_ERROR" />
+      <VarDeclaration Name="OUT" Type="MATRIX" Comment="Inverse of IN1" />
+    </OutputVars>
+  </InterfaceList>
+</FBType>

@@ -1,0 +1,81 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+<META NAME="GENERATOR" CONTENT="Eclipse HTML Editor">
+<TITLE>SYSTEM PNP_MVL</TITLE>
+</HEAD>
+<BODY>
+<H3>4. Develop and Test Models</H3>
+<P><A HREF="#Viewer">This system configuration</A> implements the
+layered <A HREF="syseng2.htm#4"><B>Model+View</B> testing
+architecture</A> for the <A HREF="pnpsket.htm">pick and place example</A>.</P>
+<UL>
+	<LI>The <TT>HMI</TT> devices encapsulates the functionality of the
+	corresponding layer of the architecture, while the <TT>PNP</TT> device
+	encapsulates the functionality of the <B>Model</B> and <B>View</B>
+	layers.</LI>
+	<LI>As in the <A HREF="PNP_VIEWL.htm"><TT>PNP_VIEWL</TT></A>
+	configuration, the <TT>PNP</TT> device contains an instance of the
+	specialized <A HREF="../../common/VIEW_PANEL.htm"><TT>VIEW_PANEL</TT></A>
+	resource type to provide the necessary layout of View elements for the
+	pick and place example.</LI>
+	<LI>The <TT>CONVEYOR</TT> and <TT>XY</TT> resources contain the <B>Model</B>
+	elements for the physical elements of the pick and place example. An
+	instance of the <A HREF="XY_MDLL.htm"><TT>XY_MDLL</TT></A> type models
+	the pick and place mechanism, and an instance of the <A
+		HREF="CNV_MDLL.htm"><TT>CNV_MDLL</TT></A> type models the conveyor.</LI>
+	<LI>The <TT>PRESENT</TT> sensor (workpiece present at end of
+	conveyor) is modeled by an instance of the <A HREF="V_SENSE.htm"><TT>V_SENSE</TT></A>
+	type.</LI>
+	<LI>The logic for loading and unloading a workpiece with the
+	electromagnet and detecting its presence there (the <TT>LOADED</TT>
+	sensor) is modeled by an instance of the <A HREF="E_LDU.htm"><TT>E_LDU</TT></A>
+	type inside the composite <A HREF="XY_MDLL.htm"><TT>XY_MDLL</TT></A>
+	type.</LI>
+	<LI>Inter-layer communication is implemented with the <A
+		HREF="../publsubl/index.htm">local multicast</A> pattern.</LI>
+	<LI>The x- and y-axis overcurrent sensors are modeled by a single
+	fault signal that is published on the <TT>FAULT</TT> local channel.
+	This signal is set and cleared by the user by clicking in the two-axis
+	mechanism view, and when set causes motion to cease immediately
+	independent of any control actions.</LI>
+	<LI>The <TT>CLOCK</TT> resource contains the simulation clock,
+	which is also distributed via the local multicast mechanism.</LI>
+</UL>
+<CENTER>
+<P><IMG SRC="../../note.gif">Click on a graphic element to
+navigate to its description.<BR>
+<IMG SRC="images/PNP_MVL.png" USEMAP="#MAP1"></P>
+<P><A NAME="Viewer"></A>[<A HREF="../../FBViewer.html" TARGET="help">Viewer
+Help</A>]<BR>
+<TABLE BORDER="1">
+	<TR>
+		<TD><APPLET CODE="FBViewer" ARCHIVE="../../viewer.jar"
+			HEIGHT="620" WIDTH="840"> </APPLET></TD>
+	</TR>
+</TABLE>
+<BR>
+<I>Last updated: 2007-09-24.</I><BR>
+&copy;2006,2007 <A HREF="http://www.holobloc.com" TARGET="_blank">Holobloc
+Inc</A><BR>
+Licensed under the <A
+	HREF="http://www.opensource.org/licenses/afl-3.0.php">Academic Free
+License version 3.0</A>.
+</P>
+</CENTER>
+<MAP NAME="MAP1">
+	<AREA SHAPE="RECT" COORDS="5,50,75,62" HREF="../../common/FB_LABEL.htm">
+	<AREA SHAPE="RECT" COORDS="5,66,45,90" HREF="../../common/IN_EVENT.htm">
+	<AREA SHAPE="RECT" COORDS="5,95,70,110" HREF="../../common/IN_BOOL.htm">
+	<AREA SHAPE="RECT" COORDS="5,114,75,130"
+		HREF="../../common/OUT_BOOL.htm">
+	<AREA SHAPE="RECT" COORDS="80,55,145,165"
+		HREF="../../common/IN_BOOL.htm">
+	<AREA SHAPE="RECT" COORDS="150,50,220,145"
+		HREF="../../common/OUT_BOOL.htm">
+	<AREA SHAPE="RECT" COORDS="235,50,260,175" HREF="CNV_MDLL.htm">
+	<AREA SHAPE="RECT" COORDS="260,50,385,175" HREF="XY_MDLL.htm">
+</MAP>
+</BODY>
+</HTML>

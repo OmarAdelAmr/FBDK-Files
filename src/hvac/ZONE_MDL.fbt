@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="ZONE_MDL" Comment="HVAC Zone Model" >
+  <Identification Standard="61499-1" Classification="Simulation" ApplicationDomain="HVAC" Function="Zone Model" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.0" Author="JHC" Date="2006-04-10" />
+  <CompilerInfo header="package fb.rt.hvac;" >
+    <Compiler Language="Java" Vendor="Sun" Product="JDK" Version="1.5.0" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" >
+        <With Var="T0" />
+        <With Var="V" />
+        <With Var="AR" />
+        <With Var="DT" />
+      </Event>
+      <Event Name="CLK" Comment="Simulation Clock" >
+        <With Var="FLOW" />
+        <With Var="TI" />
+        <With Var="H" />
+        <With Var="TA" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="INIT completed" >
+        <With Var="T" />
+      </Event>
+      <Event Name="CNF" Comment="Simulation step completed" >
+        <With Var="T" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="T0" Type="UINT" InitialValue="70" Comment="Initial Temperature, deg F" />
+      <VarDeclaration Name="V" Type="UINT" InitialValue="5000" Comment="Zone volume, cu ft" />
+      <VarDeclaration Name="AR" Type="UINT" InitialValue="20" Comment="Wall A/R, BTU/hr/deg F" />
+      <VarDeclaration Name="DT" Type="UINT" Comment="CLK cycle time, sec" />
+      <VarDeclaration Name="FLOW" Type="REAL" Comment="Air Flow, CFM" />
+      <VarDeclaration Name="TI" Type="UINT" Comment="Inlet Temperature, deg F" />
+      <VarDeclaration Name="TA" Type="UINT" Comment="Outside Temperature, deg F" />
+      <VarDeclaration Name="H" Type="UINT" Comment="Heat Load, BTU/hr" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="T" Type="REAL" Comment="Zone Temperature, deg F" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <InternalVars>
+      <VarDeclaration Name="VCV" Type="REAL" Comment="Multiplier for heat load and net wall heat gain" />
+      <VarDeclaration Name="FV" Type="REAL" Comment="Multiplier for (F/V) term" />
+    </InternalVars>
+  <Algorithm Name="INIT" Comment="Initialization algorithm" >
+    <ST Text="T := T0;&#10;VCV := DT/3600.0/V/0.018;&#10;FV := DT/60.0/V;&#10;INITO.serviceEvent(this);&#10;" />
+  </Algorithm>
+  <Algorithm Name="CLK" Comment="Simulation Step algorithm" >
+    <ST Text="T := T + FV*FLOW*(TI-T) + VCV*(H+AR*(TA-T));&#10;CNF.serviceEvent(this);&#10;" />
+  </Algorithm>
+  </BasicFB>
+</FBType>

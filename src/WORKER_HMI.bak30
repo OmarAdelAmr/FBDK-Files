@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE System SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<System Name="WORKER_HMI" Comment="System Configuration" >
+  <Identification Standard="61499-1" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.3" Author="JHC" Date="2003-12-05" Remarks="Renamed from NEWSYSTEM." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.2" Author="JHC" Date="2002-11-05" Remarks="Fixed missing (empty) FBD in Application." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2002-01-17" Remarks="Minor cleanup" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2000-05-27" />
+  <Application Name="APP1" >
+    <FBNetwork >
+    </FBNetwork>
+  </Application>
+  <Device Name="WORKER_HMI_DEVICE" Type="FRAME_DEVICE" x="1055.5555" y="427.77777" >
+    <Parameter Name="BOUNDS" Value="[1100,300,600,400]" />
+    <Parameter Name="GRID" Value="[1,1]" />
+    <Resource Name="WORKER_HMI_PROCESSOR" Type="PANEL_RESOURCE" x="1358.8235" y="670.5882" >
+      <Parameter Name="ROWS" Value="6" />
+      <Parameter Name="COLS" Value="2" />
+      <FBNetwork >
+        <FB Name="TaskGUIFB" Type="TaskGUIFB" x="1123.5294" y="229.41176" />
+        <FB Name="MultiAgentSystemConnector" Type="MultiAgentSystemConnector" x="3305.8823" y="11.764706" />
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="MultiAgentSystemConnector.INPUT_INIT_EVENT" dx1="382.35294" />
+          <Connection Source="TaskGUIFB.OUTPUT_TEACH_EVENT" Destination="MultiAgentSystemConnector.INPUT_TEACH_EVENT" dx1="164.70587" />
+          <Connection Source="TaskGUIFB.OUTPUT_RETEACH_EVENT" Destination="MultiAgentSystemConnector.INPUT_RETEACH_EVENT" dx1="211.76471" />
+          <Connection Source="TaskGUIFB.OUTPUT_EXECUTE_EVENT" Destination="MultiAgentSystemConnector.INPUT_EXECUTE_EVENT" dx1="258.82352" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="TaskGUIFB.NewTaskNameOutput" Destination="MultiAgentSystemConnector.NewTaskNameInput" dx1="435.2941" />
+          <Connection Source="TaskGUIFB.ReteachTaskOutput" Destination="MultiAgentSystemConnector.ReteachTaskInput" dx1="482.35294" />
+          <Connection Source="TaskGUIFB.ExecuteTaskOutput" Destination="MultiAgentSystemConnector.ExecuteTaskInput" dx1="529.41174" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+  </Device>
+</System>

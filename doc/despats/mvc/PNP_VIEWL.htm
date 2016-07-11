@@ -1,0 +1,58 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+<META NAME="GENERATOR" CONTENT="Eclipse HTML Editor">
+<META NAME="Standard" CONTENT="IEC 61499">
+<META NAME="Classification" CONTENT="Simulation">
+<META NAME="ApplicationDomain" CONTENT="Assembly">
+<META NAME="Type" CONTENT="Pick &amp; Place">
+<TITLE>SYSTEM PNP_VIEWL</TITLE>
+</HEAD>
+<BODY>
+<H3>2. Develop and Test Views</H3>
+<P>The <TT>PNP_VIEWL</TT> system configuration shown <A HREF="#Viewer">below</A>
+implements the layered <A HREF="syseng2.htm#2"><B>View</B> testing
+architecture</A> for the <A HREF="pnpsket.htm">pick and place example</A>.
+The <TT>HMI</TT> device encapsulates the functionality of the human
+interface layer, and the <TT>VIEW</TT> device encapsulates the
+functionality of the <B>View </B>layer. The <TT>VIEW</TT> device
+contains an instance of the specialized <A
+	HREF="../../common/VIEW_PANEL.htm"><TT>VIEW_PANEL</TT></A> resource
+type to provide the necessary layout of View elements for the pick and
+place example. Inter-layer communication is implemented with the <A
+	HREF="../publsubl/index.htm" TARGET="_self">local multicast</A>
+pattern, e.g., by using <TT>PUBL_4/SUBL_4</TT> for linking the <TT><A
+	HREF="MECHC_HMIL.htm">MECHC_HMIL</A>/<A HREF="XY_VIEWL.htm">XY_VIEWL</A></TT>
+pair.</P>
+<CENTER>
+<P><IMG SRC="../../note.gif" HEIGHT="24" WIDTH="32">Click on a graphic
+element to navigate to its documentation.<BR>
+<IMG ALT="PNP_VIEWL Navigation Image" SRC="images/PNP_VIEWL.png"
+	USEMAP="#MAP1" BORDER="0"><BR>
+</P>
+<P>[<A NAME="Viewer" HREF="../../FBViewer.html" TARGET="_blank">Viewer
+Help</A>]<BR>
+</P>
+<TABLE BORDER="1">
+	<TR>
+		<TD><APPLET CODE="FBViewer" ARCHIVE="../../viewer.jar" WIDTH="600"
+			HEIGHT="380"></APPLET></TD>
+	</TR>
+</TABLE>
+<P><I>Last updated: 2006-06-28.</I><BR>
+&copy;2006 Holobloc Inc.<BR>
+Licensed under the <A
+	HREF="http://www.opensource.org/licenses/afl-3.0.php">Academic Free
+License version 3.0</A>.</P>
+</CENTER>
+<MAP NAME="MAP1">
+	<AREA SHAPE="RECT" COORDS="4,47,315,70" HREF="MECH_HMIL.htm">
+	<AREA SHAPE="RECT" COORDS="4,74,309,95" HREF="MECHC_HMIL.htm">
+	<AREA SHAPE="RECT" COORDS="4,97,90,117"
+		HREF="../../common/OUT_BOOL.htm">
+	<AREA SHAPE="RECT" COORDS="329,50,353,175" HREF="MECH_VIEWL.htm">
+	<AREA SHAPE="RECT" COORDS="354,50,478,172" HREF="XY_VIEWL.htm">
+</MAP>
+</BODY>
+</HTML>

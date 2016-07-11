@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="Agent_FB_1" Comment="JADE Implementation" >
+  <Identification Standard="61499-1" />
+  <VersionInfo Organization="FraunhoferIGD" Version="1.0" Author="Sadik" Date="2015-04-13" />
+  <CompilerInfo header="package fb.rt;" >
+    <Compiler Language="Java" Vendor="Sun" Product="JDK" Version="1.5.0" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="StartMC" Comment="Normal Execution Request" >
+      </Event>
+      <Event Name="StartAC" Comment="Normal Execution Request" >
+      </Event>
+      <Event Name="StartAG" Comment="Normal Execution Request" >
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="CNF" Comment="Execution Confirmation" >
+      </Event>
+    </EventOutputs>
+  </InterfaceList>
+</FBType>

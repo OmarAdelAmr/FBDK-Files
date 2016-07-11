@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="ConvSync" Comment="Conveyors synchronization" >
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.2" Author="JHC" Date="2003-12-05" Remarks="Renamed from NEWCOMPFB." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2002-01-08" Remarks="Added DLY FB as example." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2000-05-27" />
+  <CompilerInfo header="package fb.rt.template; import fb.rt.mva.*; import fb.rt.compare.*; import fb.rt.events.*; import fb.rt.math.*;" >
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="REQ" Comment="Normal Execution Request" >
+        <With Var="END1" />
+        <With Var="MOTOR1" />
+        <With Var="MOTOR2" />
+        <With Var="STYLE2" />
+        <With Var="STYLE1" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="CNF" Comment="Execution Confirmation" >
+        <With Var="QO" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="END1" Type="BOOL" Comment="Input event qualifier" />
+      <VarDeclaration Name="MOTOR1" Type="BOOL" />
+      <VarDeclaration Name="MOTOR2" Type="BOOL" />
+      <VarDeclaration Name="STYLE1" Type="VSTYLE" InitialValue="NONE" Comment="Workpiece style for the curr conv" />
+      <VarDeclaration Name="STYLE2" Type="VSTYLE" InitialValue="NONE" Comment="Workpiece style for the next conv" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="QO" Type="BOOL" Comment="Output event qualifier" />
+    </OutputVars>
+  </InterfaceList>
+  <FBNetwork >
+    <FB Name="EQ_MOTORS" Type="FB_AND" x="966.6666" y="361.11108" />
+    <FB Name="EQ_STYLE" Type="FB_EQ" x="944.4444" y="1355.5555" />
+    <FB Name="cmp" Type="FB_AND" x="1883.3333" y="833.3333" />
+    <FB Name="EQ_END" Type="FB_AND" x="2577.7776" y="1127.7777" />
+    <FB Name="prmt" Type="E_PERMIT" x="3205.5554" y="1127.7777" />
+    <EventConnections>
+      <Connection Source="REQ" Destination="EQ_MOTORS.REQ" dx1="855.55554" />
+      <Connection Source="EQ_MOTORS.CNF" Destination="EQ_STYLE.REQ" dx1="66.666664" dx2="111.11111" dy="705.55554" />
+      <Connection Source="EQ_STYLE.CNF" Destination="cmp.REQ" dx1="416.66666" />
+      <Connection Source="cmp.CNF" Destination="EQ_END.REQ" dx1="266.66666" />
+      <Connection Source="EQ_END.CNF" Destination="prmt.EI" dx1="188.88889" />
+      <Connection Source="prmt.EO" Destination="CNF" dx1="3622.2222" />
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="MOTOR1" Destination="EQ_MOTORS.IN1" dx1="794.4444" />
+      <Connection Source="MOTOR2" Destination="EQ_MOTORS.IN2" dx1="794.4444" />
+      <Connection Source="STYLE2" Destination="EQ_STYLE.IN2" dx1="783.3333" />
+      <Connection Source="EQ_STYLE.OUT" Destination="cmp.IN2" dx1="527.7778" />
+      <Connection Source="EQ_MOTORS.OUT" Destination="cmp.IN1" dx1="449.99997" />
+      <Connection Source="cmp.OUT" Destination="EQ_END.IN1" dx1="194.44444" />
+      <Connection Source="END1" Destination="EQ_END.IN2" dx1="2455.5554" />
+      <Connection Source="STYLE1" Destination="EQ_STYLE.IN1" dx1="783.3333" />
+      <Connection Source="EQ_END.OUT" Destination="prmt.PERMIT" dx1="183.33333" />
+    </DataConnections>
+  </FBNetwork>
+</FBType>

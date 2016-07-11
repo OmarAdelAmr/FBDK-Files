@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+<META NAME="GENERATOR" CONTENT="Eclipse HTML Editor">
+<TITLE>Composite FB Types</TITLE>
+</HEAD>
+<BODY>
+<H2 ALIGN="center">Build and Test a Composite Function Block Type</H2>
+<OL>
+	<LI>Start the <B>FBEditor</B> application by running the <A
+		HREF="custom.htm"><TT>fbeditor.bat</TT></A> file.</LI>
+	<LI>Create a new composite FB type in the editor by:
+	<UL>
+		<LI>Opening a file containing an existing composite function block
+		type, for example the <TT>X2Y2.fbt</TT> file in the <TT>src\student</TT>
+		folder; or</LI>
+		<LI>Clicking the <B>File =&gt; New =&gt; FB Type =&gt; Composite </B>menu
+		item. Here is how the screen will look if you do this:
+		<P ALIGN="center"><IMG SRC="newcmpfb.png"></P>
+		</LI>
+	</UL>
+	</LI>
+	<LI>Edit the function block's elements:
+	<UL>
+		<LI><A HREF="propsfrm.htm">Edit the function block's properties</A></LI>
+		<LI><A HREF="intfcfrm.htm">Edit the function block's interface</A>.</LI>
+		<LI><A HREF="fbdfrm.htm">Edit the FB body</A> by clicking on the FBD
+		element with the function block's type name in the <B>Navigation</B>
+		area and editing the graphic layout of the FBD in the <B>Worksheet/Viewport</B>
+		area.</LI>
+	</UL>
+	</LI>
+	<LI>When your editing is complete, save your work with the <B>File=&gt;Save
+	As=&gt;XML...</B> menu item.
+	<UL>
+		<LI><IMG SRC="../note.gif">It is a good idea to <B>save your work</B>
+		from time to time while editing, too!</LI>
+	</UL>
+	</LI>
+	<LI>Generate and compile a Java<SUP>TM</SUP> source file with the <B>File=&gt;Save
+	As=&gt;Java...</B> menu item.</LI>
+	<LI>Test the FB type by clicking the <B>Run=&gt;Launch</B> menu item.
+	In the test window, you can set or clear the values of the inputs,
+	click on event input buttons and observe the resulting event and
+	variable outputs.
+	<UL>
+		<LI><IMG SRC="../note.gif">If you change the code of the block and
+		recompile, you will have to exit the FBEditor application and restart
+		it in order to force a reload of the class file.</LI>
+	</UL>
+	</LI>
+</OL>
+<CENTER>
+<HR>
+<I>Last updated: 2006-03-19.</I><BR>
+&copy;2006 Holobloc Inc. All rights reserved.</CENTER>
+</BODY>
+</HTML>

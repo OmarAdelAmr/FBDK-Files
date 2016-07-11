@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="FB_LIMIT_WSTRING" Comment="See FB_LIMIT_ANY" >
+  <Identification Standard="IEC 61499" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.1" Author="JHC" Date="2005-06-01" Remarks="Moved to fb.rt.strings." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2004-12-15" Remarks="Converted from SRC format." />
+  <CompilerInfo header="package fb.rt.strings;" >
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="REQ" >
+        <With Var="MN" />
+        <With Var="IN" />
+        <With Var="MX" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="CNF" >
+        <With Var="OUT" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="MN" Type="WSTRING" />
+      <VarDeclaration Name="IN" Type="WSTRING" />
+      <VarDeclaration Name="MX" Type="WSTRING" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="OUT" Type="WSTRING" />
+    </OutputVars>
+  </InterfaceList>
+</FBType>

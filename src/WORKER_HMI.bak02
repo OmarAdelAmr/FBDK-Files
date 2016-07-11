@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE System SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<System Name="WORKER_HMI" Comment="System Configuration" >
+  <Identification Standard="61499-1" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.3" Author="JHC" Date="2003-12-05" Remarks="Renamed from NEWSYSTEM." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.2" Author="JHC" Date="2002-11-05" Remarks="Fixed missing (empty) FBD in Application." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2002-01-17" Remarks="Minor cleanup" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2000-05-27" />
+  <Application Name="APP1" >
+    <FBNetwork >
+    </FBNetwork>
+  </Application>
+  <Device Name="WORKER_HMI_DEVICE" Type="FRAME_DEVICE" x="1055.5555" y="427.77777" >
+    <Parameter Name="BOUNDS" Value="[1100,300,600,400]" />
+    <Parameter Name="GRID" Value="[1,1]" />
+    <Resource Name="WORKER_HMI_PROCESSOR" Type="PANEL_RESOURCE" x="1361.1111" y="672.22217" >
+      <Parameter Name="ROWS" Value="10" />
+      <Parameter Name="COLS" Value="2" />
+      <FBNetwork >
+        <FB Name="WORKER" Type="WORKERA1FB" x="3449.9998" y="433.3333" />
+        <FB Name="ADDRECIPETASK" Type="IN_EVENT" x="1594.4443" y="1066.6666" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;ADD RECEIPE TASK&#34;" />
+        </FB>
+        <FB Name="RECIPETASKS" Type="IN_CHOICE" x="2200.0" y="1511.1111" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="CHOICES" Value="&#34;Drilling,Milling,Assembly,Painting,Shaping&#34;" />
+        </FB>
+        <FB Name="RECIPEDONE" Type="IN_EVENT" x="155.55554" y="1083.3333" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;RECEIPE DONE&#34;" />
+        </FB>
+        <FB Name="MYSTATETYPE" Type="OUT_ANY" x="6405.555" y="300.0" >
+          <Parameter Name="QI" Value="1" />
+        </FB>
+        <FB Name="ALARMTYPE" Type="OUT_ANY" x="7944.4443" y="1722.2222" >
+          <Parameter Name="QI" Value="1" />
+        </FB>
+        <FB Name="ALARM" Type="OUT_BOOL" x="6933.333" y="1472.2222" >
+          <Parameter Name="LABEL" Value="&#34;                                    ALARM&#34;" />
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="C0" Value="[0,255,0]" />
+          <Parameter Name="C1" Value="[255,0,0]" />
+        </FB>
+        <FB Name="REQUISTEDSKILLLABEL" Type="FB_LABEL" x="5288.8887" y="1550.0" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;                                   REQUIRED SKILL&#34;" />
+        </FB>
+        <FB Name="REQUISTEDSKILL" Type="OUT_ANY" x="6216.6665" y="2377.7776" >
+          <Parameter Name="QI" Value="1" />
+        </FB>
+        <FB Name="FINISHEDPRODUCTSLABEL" Type="FB_LABEL" x="5222.222" y="2794.4443" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;                               FINISHED PRODCUTS&#34;" />
+        </FB>
+        <FB Name="FINISHEDPRODUCTS" Type="OUT_ANY" x="7499.9995" y="3066.6665" >
+          <Parameter Name="QI" Value="1" />
+        </FB>
+        <FB Name="WORKERSTATETYPE" Type="OUT_ANY" x="7944.4443" y="33.333332" >
+          <Parameter Name="QI" Value="1" />
+        </FB>
+        <FB Name="STARTROBOT" Type="IN_EVENT" x="772.22217" y="88.888885" >
+          <Parameter Name="LABEL" Value="&#34;START ROBOT AGENT&#34;" />
+          <Parameter Name="QI" Value="1" />
+        </FB>
+        <FB Name="STOPROBOT" Type="IN_EVENT" x="1527.7777" y="111.11111" >
+          <Parameter Name="LABEL" Value="&#34;STOP ROBOT AGENT&#34;" />
+        </FB>
+        <FB Name="ADDMYSKILLS" Type="IN_EVENT" x="238.88889" y="1972.2222" >
+          <Parameter Name="LABEL" Value="&#34;ADD NEW SKILL&#34;" />
+          <Parameter Name="QI" Value="1" />
+        </FB>
+        <FB Name="MYSKILLS" Type="IN_CHOICE" x="777.7778" y="2333.3333" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="CHOICES" Value="&#34;Drilling,Milling,Assembly,Painting,Shaping&#34;" />
+        </FB>
+        <FB Name="ROBOTHEARTBEAT" Type="OUT_EVENT" x="2372.2222" y="2705.5554" >
+          <Parameter Name="DT" Value="t#200ms" />
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;                         ROBOT HEART BEAT&#34;" />
+          <Parameter Name="FLASH" Value="[0,0,255]" />
+        </FB>
+        <FB Name="CLOCK" Type="E_CYCLE" x="1677.7777" y="2305.5554" >
+          <Parameter Name="DT" Value="t#400ms" />
+        </FB>
+        <FB Name="HEARTBEATSPACE" Type="XSPACE" x="4205.555" y="2594.4443" />
+        <FB Name="TASKDONE" Type="IN_EVENT" x="783.3333" y="1016.6666" >
+          <Parameter Name="LABEL" Value="&#34;TASK DONE&#34;" />
+          <Parameter Name="QI" Value="1" />
+        </FB>
+        <FB Name="MYSTATE" Type="OUT_BOOL" x="5683.333" y="55.555553" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;                                        MYSTATE&#34;" />
+          <Parameter Name="C0" Value="[0,255,0]" />
+          <Parameter Name="C1" Value="[255,0,0]" />
+        </FB>
+        <FB Name="WORKERSTATE" Type="OUT_BOOL" x="7083.333" y="133.33333" >
+          <Parameter Name="LABEL" Value="&#34;                                   WORKERSTATE&#34;" />
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="C0" Value="[0,255,0]" />
+          <Parameter Name="C1" Value="[255,0,0]" />
+        </FB>
+        <EventConnections>
+          <Connection Source="ALARM.INITO" Destination="ALARMTYPE.INIT" dx1="327.77777" />
+          <Connection Source="ALARM.CNF" Destination="ALARMTYPE.REQ" dx1="211.1111" />
+        </EventConnections>
+      </FBNetwork>
+    </Resource>
+  </Device>
+</System>

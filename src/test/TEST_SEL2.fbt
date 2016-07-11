@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="TEST_SEL2" Comment="Test Misc SEL functions" >
+  <Identification Standard="IEC 61499-1" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.0" Author="JHC" Date="2006-09-14" />
+  <CompilerInfo header="package fb.rt.test;" classdef="SimpleFB" >
+    <Compiler Language="Java" Vendor="Sun" Product="JDK" Version="1.5.0" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="REQ" >
+        <With Var="IN1R" />
+        <With Var="IN0R" />
+        <With Var="IN0T" />
+        <With Var="G" />
+        <With Var="IN1T" />
+        <With Var="IN0C" />
+        <With Var="IN1C" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="CNF" >
+        <With Var="OUTR" />
+        <With Var="OUTT" />
+        <With Var="OUTC" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="G" Type="BOOL" Comment="Selection gate" />
+      <VarDeclaration Name="IN0R" Type="REAL" />
+      <VarDeclaration Name="IN1R" Type="REAL" />
+      <VarDeclaration Name="IN0T" Type="TIME" />
+      <VarDeclaration Name="IN1T" Type="TIME" />
+      <VarDeclaration Name="IN0C" Type="COLOR" />
+      <VarDeclaration Name="IN1C" Type="COLOR" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="OUTR" Type="REAL" />
+      <VarDeclaration Name="OUTT" Type="TIME" />
+      <VarDeclaration Name="OUTC" Type="COLOR" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+  <Algorithm Name="REQ" >
+    <FBD >
+      <FB Name="SELR" Type="SEL_REAL" x="233.33333" y="11.111111" />
+      <FB Name="SELT" Type="SEL_TIME" x="949.99994" y="11.111111" />
+      <FB Name="SELC" Type="SEL_COLOR" x="1627.7777" y="11.111111" />
+      <DataConnections>
+        <Connection Source="IN1R" Destination="SELR.IN1" dx1="122.22221" />
+        <Connection Source="SELR.OUT" Destination="OUTR" dx1="677.7778" />
+        <Connection Source="IN1T" Destination="SELT.IN1" dx1="838.88885" />
+        <Connection Source="SELT.OUT" Destination="OUTT" dx1="1388.8888" />
+        <Connection Source="G" Destination="SELR.G" dx1="161.1111" />
+        <Connection Source="IN0R" Destination="SELR.IN0" dx1="122.22221" />
+        <Connection Source="G" Destination="SELT.G" dx1="877.7778" />
+        <Connection Source="IN0T" Destination="SELT.IN0" dx1="838.88885" />
+        <Connection Source="G" Destination="SELC.G" dx1="1555.5555" />
+        <Connection Source="IN0C" Destination="SELC.IN0" dx1="1516.6666" />
+        <Connection Source="IN1C" Destination="SELC.IN1" dx1="1516.6666" />
+        <Connection Source="SELC.OUT" Destination="OUTC" dx1="2122.2222" />
+      </DataConnections>
+    </FBD>
+  </Algorithm>
+  </BasicFB>
+</FBType>

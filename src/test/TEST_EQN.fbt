@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="TEST_EQN" Comment="Test EQ functions of numerical values" >
+  <Identification Standard="IEC 61499-1" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.0" Author="JHC" Date="2006-09-11" />
+  <CompilerInfo header="package fb.rt.test;" classdef="SimpleFB" >
+    <Compiler Language="Java" Vendor="Sun" Product="JDK" Version="1.5.0" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="REQ" >
+        <With Var="INI" />
+        <With Var="INL" />
+        <With Var="INU" />
+        <With Var="IND" />
+        <With Var="INR" />
+        <With Var="IN1T" />
+        <With Var="IN2T" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="CNF" >
+        <With Var="QI" />
+        <With Var="QD" />
+        <With Var="QL" />
+        <With Var="QU" />
+        <With Var="QR" />
+        <With Var="QT" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="INI" Type="INT" />
+      <VarDeclaration Name="IND" Type="DINT" />
+      <VarDeclaration Name="INL" Type="LINT" />
+      <VarDeclaration Name="INU" Type="UINT" />
+      <VarDeclaration Name="INR" Type="REAL" />
+      <VarDeclaration Name="IN1T" Type="TIME" />
+      <VarDeclaration Name="IN2T" Type="TIME" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="QI" Type="BOOL" />
+      <VarDeclaration Name="QD" Type="BOOL" />
+      <VarDeclaration Name="QL" Type="BOOL" />
+      <VarDeclaration Name="QU" Type="BOOL" />
+      <VarDeclaration Name="QR" Type="BOOL" />
+      <VarDeclaration Name="QT" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+  <Algorithm Name="REQ" >
+    <FBD >
+      <FB Name="EQI" Type="EQ_INT" x="200.0" y="11.111111" >
+        <Parameter Name="IN2" Value="5" />
+      </FB>
+      <FB Name="EQD" Type="EQ_DINT" x="755.55554" y="11.111111" >
+        <Parameter Name="IN2" Value="5" />
+      </FB>
+      <FB Name="EQL" Type="EQ_LINT" x="1344.4443" y="11.111111" >
+        <Parameter Name="IN2" Value="5" />
+      </FB>
+      <FB Name="EQU" Type="EQ_UINT" x="183.33333" y="538.88885" >
+        <Parameter Name="IN2" Value="5" />
+      </FB>
+      <FB Name="EQR" Type="EQ_REAL" x="788.88885" y="538.88885" >
+        <Parameter Name="IN2" Value="5.0" />
+      </FB>
+      <FB Name="EQT" Type="EQ_TIME" x="1444.4443" y="522.2222" />
+      <DataConnections>
+        <Connection Source="INI" Destination="EQI.IN1" dx1="116.666664" />
+        <Connection Source="IND" Destination="EQD.IN1" dx1="661.1111" />
+        <Connection Source="INL" Destination="EQL.IN1" dx1="1250.0" />
+        <Connection Source="INU" Destination="EQU.IN1" dx1="88.888885" />
+        <Connection Source="INR" Destination="EQR.IN1" dx1="694.4444" />
+        <Connection Source="EQI.OUT" Destination="QI" dx1="533.3333" />
+        <Connection Source="EQD.OUT" Destination="QD" dx1="1116.6666" />
+        <Connection Source="EQL.OUT" Destination="QL" dx1="1699.9999" />
+        <Connection Source="EQU.OUT" Destination="QU" dx1="544.4444" />
+        <Connection Source="EQR.OUT" Destination="QR" dx1="1166.6666" />
+        <Connection Source="EQT.OUT" Destination="QT" dx1="1816.6666" />
+        <Connection Source="IN1T" Destination="EQT.IN1" dx1="1333.3333" />
+        <Connection Source="IN2T" Destination="EQT.IN2" dx1="1333.3333" />
+      </DataConnections>
+    </FBD>
+  </Algorithm>
+  </BasicFB>
+</FBType>

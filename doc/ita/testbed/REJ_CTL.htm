@@ -1,0 +1,44 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html;CHARSET=iso-8859-1">
+  <meta name="GENERATOR" content="Rockwell Automation IEC 61499 Editor">
+  <title>FUNCTION_BLOCK REJ_CTL</title>
+</head>
+<body>
+<h2 align="center">FUNCTION_BLOCK REJ_CTL</h2>
+<p>This function block type provides the logic for sorting peg/ring
+assemblies from unassembled pegs in the <a href="sketch.htm">Sortation/Inspection
+example</a>. Since the sortation solenoid is physically separated from
+the inspection area, the result of the inspection is stored in the
+internal variable <tt>REJ_BIT</tt> until the presence of the workpiece
+is detected in the sortation area.
+</p>
+<blockquote><img alt="NOTE -" src="../../note.gif" height="24"
+ width="32">This works as long as the workpiece passes the sortation
+area before another workpiece enters the inspection area. If this were
+not the case, a queue of inspection results would have to be maintained.<br>
+</blockquote>
+<p>See the <a href="TESTBED_MVCL.htm"><tt>TESTBED_MVCL</tt></a>
+system configuration
+for an example of the use of an instance of this type.
+</p>
+<p align="center">[<a name="Viewer" href="../FBViewer.html"
+ target="help">Viewer Help</a>]<br>
+<table border="1">
+  <tbody>
+    <tr>
+      <td><applet code="FBViewer" archive="../../viewer.jar"
+ height="475" width="625"> </applet>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</p>
+<hr>
+<p align="center"><i>Last updated: 2004-09-17.
+<br>
+&copy;2004 Rockwell Automation. All rights reserved.
+</i></p>
+</body>
+</html>

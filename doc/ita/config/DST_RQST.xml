@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="DST_RQST" Comment="Concatenates management command DST and RQST fields" >
+  <Identification Standard="61499-1" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.0" Author="JHC" Date="2007-12-14" />
+  <CompilerInfo header="package fb.rt.ita;" classdef="SimpleFB" >
+    <Compiler Language="Java" Vendor="Sun" Product="JDK" Version="1.5.0" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="REQ" Comment="Normal Execution Request" >
+        <With Var="DST" />
+        <With Var="RQST" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="CNF" Comment="Execution Confirmation" >
+        <With Var="OUT" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="DST" Type="STRING" Comment="Destination name" />
+      <VarDeclaration Name="RQST" Type="STRING" Comment="Management request" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="OUT" Type="STRING" Comment="DST '.' RQST" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+  <Algorithm Name="REQ" Comment="Normally executed algorithm" >
+    <Other Language="Java" Text="OUT.length = DST.length + RQST.length + 1;&#10;OUT.value = new byte[OUT.length];&#10;System.arraycopy(DST.value,0,OUT.value,0,DST.length);&#10;OUT.value[DST.length] = (byte)':';&#10;System.arraycopy(RQST.value,0,OUT.value,DST.length+1,RQST.length);&#10;" />
+  </Algorithm>
+  </BasicFB>
+</FBType>

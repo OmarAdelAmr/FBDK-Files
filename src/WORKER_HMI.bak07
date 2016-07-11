@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE System SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<System Name="WORKER_HMI" Comment="System Configuration" >
+  <Identification Standard="61499-1" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.3" Author="JHC" Date="2003-12-05" Remarks="Renamed from NEWSYSTEM." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.2" Author="JHC" Date="2002-11-05" Remarks="Fixed missing (empty) FBD in Application." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2002-01-17" Remarks="Minor cleanup" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2000-05-27" />
+  <Application Name="APP1" >
+    <FBNetwork >
+    </FBNetwork>
+  </Application>
+  <Device Name="WORKER_HMI_DEVICE" Type="FRAME_DEVICE" x="1055.5555" y="427.77777" >
+    <Parameter Name="BOUNDS" Value="[1100,300,600,400]" />
+    <Parameter Name="GRID" Value="[1,1]" />
+    <Resource Name="WORKER_HMI_PROCESSOR" Type="PANEL_RESOURCE" x="1361.1111" y="672.22217" >
+      <Parameter Name="ROWS" Value="7" />
+      <Parameter Name="COLS" Value="2" />
+      <FBNetwork >
+        <FB Name="WORKER" Type="WORKERA1FB" x="3555.5554" y="11.111111" >
+          <Parameter Name="NAME" Value="&#34;WorkerAgent&#34;" />
+        </FB>
+        <FB Name="MYSTATETYPE" Type="OUT_ANY" x="6994.4443" y="11.111111" >
+          <Parameter Name="QI" Value="1" />
+        </FB>
+        <FB Name="ALARMTYPE" Type="OUT_ANY" x="6877.7773" y="2383.3333" >
+          <Parameter Name="QI" Value="1" />
+        </FB>
+        <FB Name="ALARM" Type="OUT_BOOL" x="6250.0" y="2338.889" >
+          <Parameter Name="LABEL" Value="&#34;                                    ALARM&#34;" />
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="C0" Value="[0,255,0]" />
+          <Parameter Name="C1" Value="[255,0,0]" />
+        </FB>
+        <FB Name="ASSIGNEDTASKLABEL" Type="FB_LABEL" x="6211.111" y="3533.3333" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;                                   ASSIGNED TASK&#34;" />
+        </FB>
+        <FB Name="ASSIGNEDTASK" Type="OUT_ANY" x="6805.555" y="3505.5554" >
+          <Parameter Name="QI" Value="1" />
+        </FB>
+        <FB Name="FINISHEDPRODUCTSLABEL" Type="FB_LABEL" x="8144.4443" y="1600.0" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;                               FINISHED PRODCUTS&#34;" />
+        </FB>
+        <FB Name="FINISHEDPRODUCTS" Type="OUT_ANY" x="8049.9995" y="377.77777" >
+          <Parameter Name="QI" Value="1" />
+        </FB>
+        <FB Name="WORKERSTATETYPE" Type="OUT_ANY" x="6988.8887" y="1177.7777" >
+          <Parameter Name="QI" Value="1" />
+        </FB>
+        <FB Name="STARTROBOT" Type="IN_EVENT" x="233.33333" y="4211.111" >
+          <Parameter Name="LABEL" Value="&#34;START ROBOT AGENT&#34;" />
+          <Parameter Name="QI" Value="1" />
+        </FB>
+        <FB Name="BUSYOVERRIDE" Type="IN_EVENT" x="1455.5555" y="177.77777" >
+          <Parameter Name="LABEL" Value="&#34;BUSY OVERRIDE&#34;" />
+          <Parameter Name="QI" Value="1" />
+        </FB>
+        <FB Name="ADDMYSKILLS" Type="IN_EVENT" x="1999.9999" y="949.99994" >
+          <Parameter Name="LABEL" Value="&#34;ADD NEW SKILL&#34;" />
+          <Parameter Name="QI" Value="1" />
+        </FB>
+        <FB Name="MYSKILLS" Type="IN_CHOICE" x="2727.7776" y="1372.2222" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="CHOICES" Value="&#34;Drilling,Milling,Assembly,Painting,Shaping&#34;" />
+        </FB>
+        <FB Name="WORKERHEARTBEAT" Type="OUT_EVENT" x="3405.5554" y="2444.4443" >
+          <Parameter Name="DT" Value="t#200ms" />
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;                         ROBOT HEART BEAT&#34;" />
+          <Parameter Name="FLASH" Value="[0,0,255]" />
+        </FB>
+        <FB Name="CLOCK" Type="E_CYCLE" x="761.1111" y="1333.3333" >
+          <Parameter Name="DT" Value="t#400ms" />
+        </FB>
+        <FB Name="HEARTBEATSPACE" Type="XSPACE" x="4144.4443" y="2505.5554" />
+        <FB Name="TASKDONE" Type="IN_EVENT" x="883.3333" y="200.0" >
+          <Parameter Name="LABEL" Value="&#34;TASK DONE&#34;" />
+          <Parameter Name="QI" Value="1" />
+        </FB>
+        <FB Name="MYSTATE" Type="OUT_BOOL" x="6422.222" y="27.777777" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;                                        MYSTATE&#34;" />
+          <Parameter Name="C0" Value="[0,255,0]" />
+          <Parameter Name="C1" Value="[255,0,0]" />
+        </FB>
+        <FB Name="ROBOTSTATE" Type="OUT_BOOL" x="6394.4443" y="1127.7777" >
+          <Parameter Name="LABEL" Value="&#34;                                   WORKERSTATE&#34;" />
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="C0" Value="[0,255,0]" />
+          <Parameter Name="C1" Value="[255,0,0]" />
+        </FB>
+        <EventConnections>
+          <Connection Source="ALARM.INITO" Destination="ALARMTYPE.INIT" dx1="327.77777" />
+          <Connection Source="ALARM.CNF" Destination="ALARMTYPE.REQ" dx1="211.1111" />
+          <Connection Source="ADDMYSKILLS.IND" Destination="WORKER.MYSKILLE" dx1="316.66666" />
+          <Connection Source="ADDMYSKILLS.INITO" Destination="MYSKILLS.INIT" dx1="249.99998" />
+          <Connection Source="CLOCK.EO" Destination="WORKER.MYSTATEE" dx1="1183.3333" />
+          <Connection Source="CLOCK.EO" Destination="WORKER.ROBOTSTATEE" dx1="1183.3333" />
+          <Connection Source="CLOCK.EO" Destination="WORKER.ALARME" dx1="1183.3333" />
+          <Connection Source="CLOCK.EO" Destination="WORKER.ASSIGNEDTASKE" dx1="1183.3333" />
+          <Connection Source="CLOCK.EO" Destination="WORKERHEARTBEAT.REQ" dx1="716.6666" />
+          <Connection Source="TASKDONE.IND" Destination="WORKER.TASKDONEE" dx1="338.8889" />
+          <Connection Source="MYSTATE.INITO" Destination="MYSTATETYPE.INIT" dx1="38.888885" />
+          <Connection Source="MYSTATE.CNF" Destination="MYSTATETYPE.REQ" dx1="44.444443" />
+          <Connection Source="ROBOTSTATE.INITO" Destination="WORKERSTATETYPE.INIT" dx1="111.11111" />
+          <Connection Source="ROBOTSTATE.CNF" Destination="WORKERSTATETYPE.REQ" dx1="122.22221" />
+          <Connection Source="WORKER.MYSTATEO" Destination="MYSTATE.REQ" dx1="188.88889" />
+          <Connection Source="WORKER.ROBOTSTATEO" Destination="ROBOTSTATE.REQ" dx1="883.3333" />
+          <Connection Source="WORKER.ALARMO" Destination="ALARM.REQ" dx1="150.0" />
+          <Connection Source="ASSIGNEDTASKLABEL.INITO" Destination="ASSIGNEDTASK.INIT" dx1="249.99998" />
+          <Connection Source="WORKER.ASSIGNEDTASKO" Destination="ASSIGNEDTASK.REQ" dx1="1505.5555" />
+          <Connection Source="START.COLD" Destination="WORKER.INITE" dx1="338.8889" />
+          <Connection Source="WORKER.INITO" Destination="WORKERHEARTBEAT.INIT" dx1="27.777777" dx2="844.4444" dy="-66.666664" />
+          <Connection Source="WORKERHEARTBEAT.INITO" Destination="HEARTBEATSPACE.INIT" dx1="238.88889" />
+          <Connection Source="HEARTBEATSPACE.INITO" Destination="ADDMYSKILLS.INIT" dx1="194.44444" dx2="66.666664" dy="-2822.2222" />
+          <Connection Source="MYSKILLS.INITO" Destination="TASKDONE.INIT" dx1="27.777777" dx2="183.33333" dy="-1450.0" />
+          <Connection Source="TASKDONE.INITO" Destination="BUSYOVERRIDE.INIT" dx1="44.444443" />
+          <Connection Source="BUSYOVERRIDE.INITO" Destination="MYSTATE.INIT" dx1="3316.6665" />
+          <Connection Source="MYSTATETYPE.INITO" Destination="ROBOTSTATE.INIT" dx1="27.777777" dx2="133.33333" dy="-66.666664" />
+          <Connection Source="WORKERSTATETYPE.INITO" Destination="ALARM.INIT" dx1="27.777777" dx2="0.0" dy="-1250.0" />
+          <Connection Source="ALARMTYPE.INITO" Destination="ASSIGNEDTASKLABEL.INIT" dx1="27.777777" dx2="0.0" dy="-2477.7776" />
+          <Connection Source="BUSYOVERRIDE.IND" Destination="WORKER.MANUALSTATEE" dx1="1516.6666" />
+          <Connection Source="WORKER.INITO" Destination="CLOCK.START" dx1="27.777777" dx2="266.66666" dy="-66.666664" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="MYSKILLS.OUT" Destination="WORKER.MYSKILL" dx1="188.88889" />
+          <Connection Source="WORKER.MYSTATE" Destination="MYSTATE.IN" dx1="327.77777" />
+          <Connection Source="WORKER.ROBOTSTATE" Destination="ROBOTSTATE.IN" dx1="711.1111" />
+          <Connection Source="WORKER.MYSTATETYPE" Destination="MYSTATETYPE.IN" dx1="550.0" />
+          <Connection Source="WORKER.ROBOTSTATETYPE" Destination="WORKERSTATETYPE.IN" dx1="1133.3333" />
+          <Connection Source="WORKER.ALARM" Destination="ALARM.IN" dx1="661.1111" />
+          <Connection Source="WORKER.ALARMTYPE" Destination="ALARMTYPE.IN" dx1="1044.4445" />
+          <Connection Source="WORKER.ASSIGNEDTASK" Destination="ASSIGNEDTASK.IN" dx1="1033.3333" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+  </Device>
+</System>

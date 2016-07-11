@@ -1,0 +1,84 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+<META NAME="GENERATOR" CONTENT="Eclipse HTML Editor">
+<TITLE>APPLICATION TEST_AI16C</TITLE>
+</HEAD>
+
+<BODY>
+<CENTER>
+<H2>APPLICATION TEST_AI16C</H2>
+<TABLE BORDER="1">
+	<TR>
+		<TD><A HREF="#Viewer">This application</A> is part of the <A
+			HREF="CODEC_TEST2.htm"><TT>CODEC_TEST2</TT></A> system configuration.
+		It utilizes instances of <A HREF="../../common/IN_ANY.htm"><TT>IN_ANY</TT></A> and
+		<A HREF="../../common/OUT_ANY.htm"><TT>OUT_ANY</TT></A> for input and
+		output of transmitted data, respectively. This data is of the derived
+		data type <TT>ANALOG_16_INPUT_CONFIGURATION</TT> as shown at the right
+		and further described in subclause 2.3.3.1 and Table 12 of <A
+			HREF="http://www.holobloc.com/stds/iec/sc65bwg7tf3/html/news.htm">IEC
+		61131-3</A>.<BR>
+		<BR>
+		The <TT>ANALOG_16_INPUT_CONFIGURATION</TT> type utilizes the data
+		types <TT>ANALOG_SIGNAL_TYPE</TT> and <TT>ANALOG_CHANNEL_CONFIGURATION</TT>
+		which are also defined in Table 12 of IEC 61131-3, and the data type <TT>FILTER_PARAMETER</TT>
+		which is defined as follows:<BR>
+		<BR>
+		<TT>TYPE FILTER_PARAMETER :<BR>
+		SINT(0..99) ;<BR>
+		END_TYPE</TT></TD>
+		<TD><APPLET CODE="FBViewer" WIDTH="400" HEIGHT="285"
+			ARCHIVE="../../viewer.jar">
+			<PARAM NAME="src" VALUE="ANALOG_16_INPUT_CONFIGURATION">
+		</APPLET></TD>
+	</TR>
+	<TR>
+		<TD>Here is the situation after data transmission has been triggered
+		by pressing the <B>Enter</B> key in the lower left text field (data in
+		the monitor window has been reformatted for easier reading). The
+		transmitted data has been constructed from the initial value
+		specification <TT>(SIGNAL_TYPE:=DIFFERENTIAL,<BR>
+		FILTER:=50,<BR>
+		CHANNEL:=[(RANGE:=UNIPOLAR_10V),<BR>
+		(MAX_SCALE:= 100, MIN_SCALE:=0)])</TT><BR>
+		Default values have been inserted where initial values have not been
+		given. Hence, the transmitted values are as shown at right,
+		corresponding to the following set of received values:<BR>
+		<BR>
+		<TT>(SIGNAL_TYPE:=DIFFERENTIAL,FILTER:=50,CHANNEL:=[<BR>
+		(RANGE:=UNIPOLAR_10V,MIN_SCALE:=-4095,MAX_SCALE:=4095),<BR>
+		(RANGE:=UNIPOLAR_1_5V,MIN_SCALE:=0,MAX_SCALE:=100),<BR>
+		(RANGE:=UNIPOLAR_1_5V,MIN_SCALE:=-4095,MAX_SCALE:=4095),<BR>
+		...])<BR>
+		<BR>
+		</TT>The ellipsis (<TT>...</TT>) corresponds to 13 additional default
+		values of the <TT>ANALOG_CHANNEL_CONFIGURATION</TT> type.</TD>
+		<TD ALIGN="CENTER"><IMG SRC="images/TEST_AI16C.gif" WIDTH="400"
+			HEIGHT="263"></TD>
+	</TR>
+</TABLE>
+<P>[<A NAME="Viewer"></A><A HREF="../../FBViewer.html" TARGET="help">Viewer
+Help</A>]<BR>
+<TABLE BORDER="1">
+	<TR>
+		<TD><APPLET CODE="FBViewer" WIDTH="640" HEIGHT="440"
+			ARCHIVE="../../viewer.jar">
+			<PARAM NAME="src" VALUE="CODEC_TEST2">
+			<PARAM NAME="fbd" VALUE="CODEC_TEST2.TEST_AI16C">
+		</APPLET></TD>
+	</TR>
+</TABLE>
+</P>
+<P><I>Last updated: 2006-04-18.</I><BR>
+&copy;2006 <A HREF="http://www.holobloc.com" TARGET="_blank">Holobloc
+Inc</A><BR>
+Licensed under the <A
+	HREF="http://www.opensource.org/licenses/afl-3.0.php">Academic Free
+License version 3.0</A>.</P>
+</CENTER>
+</BODY>
+
+</HTML>

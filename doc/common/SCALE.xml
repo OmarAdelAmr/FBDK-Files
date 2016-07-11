@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="SCALE" Comment="Scaling of an INT input to a UINT range of 0-100%" >
+  <Identification Standard="61499-1" Function="I/O" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.0" Author="JHC" Date="2006-04-13" />
+  <CompilerInfo header="package fb.rt.process;" >
+    <Compiler Language="Java" Vendor="Sun" Product="JDK" Version="1.5.0" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="REQ" Comment="Normal Execution Request" >
+        <With Var="IN" />
+        <With Var="MIN" />
+        <With Var="MAX" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="CNF" Comment="Execution Confirmation" >
+        <With Var="OUT" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="IN" Type="INT" Comment="Process (typically A/D) input" />
+      <VarDeclaration Name="MIN" Type="INT" Comment="IN value corresponding to OUT=0" />
+      <VarDeclaration Name="MAX" Type="INT" Comment="IN value corrsponding to OUT=100%" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="OUT" Type="UINT" Comment="Scaled Output, limited to {0..100}%" />
+    </OutputVars>
+  </InterfaceList>
+</FBType>

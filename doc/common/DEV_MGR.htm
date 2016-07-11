@@ -1,0 +1,79 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+<META NAME="GENERATOR" CONTENT="Eclipse HTML Editor">
+<TITLE>FUNCTION_BLOCK DEV_MGR</TITLE>
+</HEAD>
+
+<BODY>
+
+<H2 ALIGN="CENTER">FUNCTION_BLOCK DEV_MGR</H2>
+<P>An instance of <A HREF="#f4.2-1">this function block type</A>
+provides the device management services described in subclause 3.3.2 of
+IEC <A
+	HREF="http://webstore.iec.ch/webstore/webstore.nsf/searchview/?searchView=&SearchOrder=4&SearchWV=TRUE&SearchMax=1000&Submit=OK&Query=(%5BHead_Number%5D=%221%22)%20AND%20(%5BDocument_Name%5D%20CONTAINS%20%2261499-1%22)"
+	TARGET="_blank">61499-1</A>. The types and semantics of the inputs and
+outputs of this type are identical to the correspondingly named inputs
+and outputs of the <TT>MANAGER</TT> type defined in IEC 61499-1, with
+the following differences:
+<OL>
+	<LI>The <TT>DST</TT> input designates the destination of the <TT>RQST</TT>
+	input as follows:
+	<UL>
+		<LI>A value of<TT> &quot;&quot;</TT> (the empty string)
+		designates the device;
+		<LI>A value containing an IEC 61131-3 identifier designates a
+		resource within the device;
+		<LI>A value containing a sequence of IEC 61131-3 identifiers
+		separate by periods (the &quot;.&quot; character) indicates a resource
+		in a containment hierarchy of resources, with the leftmost identifier
+		corresponding to the outermost resource and the rightmost identifier
+		corresponding to the innermost resource.
+	</UL>
+	<LI>The <TT>RQST</TT> input and <TT>RESP</TT> outputs are encoded
+	according to the <TT>Request</TT> and <TT>Response</TT> elements,
+	respectively of the XML DTD given in <A HREF="../ita/s4.htm#4.4">subclause
+	6.4</A> of the Compliance Profile. The semantics of these elements shall be
+	as defined in <A HREF="../ita/s4.htm#4.5">subclause 6.5</A>.
+	<LI>As illustrated in <A HREF="#f4.2-1">below</A>, a <TT>REQ+</TT>
+	primitive input always results in a <TT>CNF+</TT> primitive output,
+	since the actual result including failure conditions is encoded in the
+	<TT>RESP</TT> output. Similarly, a <TT>REQ-</TT> input always results
+	in a <TT>CNF-</TT> output, since no management operation is attempted
+	in this case. In particular, this means that, in an instance of the <TT><A
+		HREF="DM_KRNL.htm">DM_KRNL</A></TT> function block type, an <TT>IND-</TT>
+	primitive from the communication service interface will neither cause a
+	management operation to be performed, nor will a response message be
+	generated.
+</OL>
+<P>NOTES:</P>
+<OL>
+	<LI>The object denoted <TT>manager</TT> in the service sequences <A
+		HREF="#f4.2-1">below</A> is an instance of class <TT>FBManager</TT>
+	described in Annex C.2 of IEC 61499-1. This is the manager of the <I>device</I>
+	or a contained <I>resource</I> depending on the value of the <TT>DST</TT>
+	input.</LI>
+
+	<LI>Additional details and examples are given in subclause <A
+		HREF="../ita/s4.htm#4.2">6.2</A> of the Compliance Profile.</LI>
+</OL>
+<CENTER>
+<P><A NAME="f4.2-1"></A>[<A HREF="../FBViewer.html" TARGET="help">Viewer
+Help</A>]<BR>
+<TABLE BORDER="1">
+	<TR>
+		<TD><APPLET CODE="FBViewer.class" WIDTH="569" HEIGHT="403"
+			ALIGN="BOTTOM" ARCHIVE="../viewer.jar"> </APPLET></TD>
+	</TR>
+</TABLE>
+<P><I>Last updated: 2006-10-09.</I><BR>
+&copy;2006 <A HREF="http://www.holobloc.com" TARGET="_blank">Holobloc
+Inc</A><BR>
+Licensed under the <A
+	HREF="http://www.opensource.org/licenses/afl-3.0.php">Academic Free
+License version 3.0</A>.</P>
+</CENTER>
+</BODY>
+</HTML>

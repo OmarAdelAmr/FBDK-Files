@@ -1,0 +1,117 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+<META NAME="GENERATOR" CONTENT="Eclipse HTML Editor">
+<META NAME="Standard" CONTENT="61499 ITA">
+<META NAME="Function" CONTENT="Device Manager Functional Test">
+<TITLE>SYSTEM MGR_TEST2</TITLE>
+<STYLE type="text/css">
+</STYLE>
+</HEAD>
+<BODY STYLE="font-family: sans-serif; background-color: white;">
+<H2 ALIGN="CENTER">SYSTEM MGR_TEST2</H2>
+<P><A HREF="#Viewer">This system configuration</A> provides
+facilities to test the functionality of the <A HREF="../s4.htm#4.4">management
+commands and responses</A> required by the <A HREF="../index.htm"
+	TARGET="_blank">Compliance Profile</A>, in a remote device with
+multiple resources. The table below shows a typical testing session
+using this configuration.</P>
+<TABLE BORDER="1">
+	<TR VALIGN="top">
+		<TD COLSPAN="2">Open the DUT (Device Under Test) using the <IMG
+			SRC="../../fbdk/Play16.gif" ALIGN="top"><B>Run</B> option of
+		its pop-up menu. In this case the remote device (an instance of <A
+			HREF="../../common/RMT_DEV.htm"><TT>RMT_DEV</TT></A>) will not be
+		visible; its test panel will be a separate instance of <A
+			HREF="../../common/FRAME_DEVICE.htm"><TT>FRAME_DEVICE</TT></A>.</TD>
+	</TR>
+	<TR VALIGN="top">
+		<TD>Launch the test configuration using the <IMG
+			SRC="../../fbdk/runbutton.png" ALIGN="top"><B>Run</B> button on
+		the FBEditor's menu bar (you may need to use desktop controls to make
+		the DUT visible after starting).</TD>
+		<TD><IMG SRC="MGR_TEST2b.png"></TD>
+	</TR>
+	<TR VALIGN="top">
+		<TD>Verify that the DUT correctly implements the addition and
+		counter functions.</TD>
+		<TD><IMG SRC="MGR_TEST2c.png"></TD>
+	</TR>
+	<TR VALIGN="top">
+		<TD>Use the <TT>QUERY</TT> command to verify that <TT>DUT.RES1</TT>
+		contains a FB named <TT>AD</TT>.</TD>
+		<TD><IMG SRC="MGR_TEST2d.png"></TD>
+	</TR>
+	<TR VALIGN="top">
+		<TD>Verify that <TT>DUT.RES2</TT> does not contain a FB named <TT>AD</TT>.</TD>
+		<TD><IMG SRC="MGR_TEST2e.png"></TD>
+	</TR>
+	<TR VALIGN="top">
+		<TD>Delete <TT>DUT.RES.AD</TT> and verify the deletion (to save
+		space, only the textual command and response are shown here).</TD>
+		<TD><PRE STYLE="font-size: x-small;">RES1:&lt;Request ID="3" Action="DELETE" &gt;
+  &lt;FB Name="AD" Type="FB_ADD_INT" /&gt;
+&lt;/Request&gt;
+&lt;Response ID="3" /&gt;
+RES1:&lt;Request ID="4" Action="QUERY" &gt;
+  &lt;FB Name="AD" Type="*" /&gt;
+&lt;/Request&gt;
+&lt;Response ID="4" Reason="NO_SUCH_OBJECT" /&gt;
+</PRE></TD>
+	</TR>
+	<TR VALIGN="top">
+		<TD>Create a new FB of type <TT>FB_SUB_INT</TT> and its
+		associated connections in <TT>DUT.RES1</TT>.</TD>
+		<TD><PRE STYLE="font-size: x-small;">RES1:&lt;Request ID="6" Action="CREATE" &gt;
+  &lt;FB Name="SBTR" Type="FB_SUB_INT" /&gt;
+&lt;/Request&gt;
+&lt;Response ID="6" /&gt;
+RES1:&lt;Request ID="7" Action="CREATE" &gt;
+  &lt;Connection Source="SB.IND" Destination="SBTR.REQ" /&gt;
+&lt;/Request&gt;
+&lt;Response ID="7" /&gt;
+RES1:&lt;Request ID="8" Action="CREATE" &gt;
+  &lt;Connection Source="SB.RD_1" Destination="SBTR.IN1" /&gt;
+&lt;/Request&gt;
+&lt;Response ID="8" /&gt;
+RES1:&lt;Request ID="9" Action="CREATE" &gt;
+  &lt;Connection Source="SB.RD_2" Destination="SBTR.IN2" /&gt;
+&lt;/Request&gt;
+&lt;Response ID="9" /&gt;
+RES1:&lt;Request ID="10" Action="CREATE" &gt;
+  &lt;Connection Source="SBTR.CNF" Destination="PUB.REQ" /&gt;
+&lt;/Request&gt;
+&lt;Response ID="10" /&gt;
+RES1:&lt;Request ID="11" Action="CREATE" &gt;
+  &lt;Connection Source="SBTR.OUT" Destination="PUB.SD_1" /&gt;
+&lt;/Request&gt;
+&lt;Response ID="11" /&gt;</PRE></TD>
+	</TR>
+	<TR VALIGN="top">
+		<TD>Verify that <TT>DUT.RES1</TT> now performs integer
+		subtraction (note that it is not possible to change the <TT>"+"</TT>
+		label in the <TT>DEV_TESTER</TT> device, since it is not a remote
+		device and does not contain a management resource).</TD>
+		<TD><IMG SRC="MGR_TEST2f.png"></TD>
+	</TR>
+</TABLE>
+<CENTER>
+<P>[<A NAME="Viewer" HREF="../../FBViewer.html" TARGET="_blank">Viewer
+Help</A>]</P>
+<TABLE BORDER="1">
+	<TR>
+		<TD><APPLET CODE="FBViewer" ARCHIVE="../../viewer.jar"
+			WIDTH="800" HEIGHT="750">
+			<PARAM NAME="src" VALUE="MGR_TEST2">
+		</APPLET></TD>
+	</TR>
+</TABLE>
+<P><I>Last updated: 2007-12-16.</I> <BR>
+&copy;2007 Holobloc Inc.<BR>
+Licensed under the <A
+	HREF="http://www.opensource.org/licenses/afl-3.0.php" TARGET="_blank">Academic
+Free License version 3.0</A>.</P>
+</CENTER>
+</BODY>
+</HTML>

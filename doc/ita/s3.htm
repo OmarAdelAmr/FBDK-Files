@@ -1,0 +1,406 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+<META NAME="GENERATOR" CONTENT="Eclipse HTML Editor">
+<LINK REL="icon" HREF="http://www.holobloc.com/fbicon.png"
+	TYPE="image/png">
+<TITLE>Interoperability Provisions</TITLE>
+</HEAD>
+<BODY STYLE="font-family: sans-serif;">
+<H2>5. INTEROPERABILITY PROVISIONS</H2>
+<P><I>Devices</I> and <I>resources</I> conforming to this
+specification shall fulfill the following interoperability requirements.</P>
+<H3><A NAME="3.1"></A>5.1 Physical layer</H3>
+<P>The physical layer shall be Ethernet cabling and signalling per <A
+	HREF="s1.htm#8802-3">ISO/IEC 8802-3</A>, preferably installed according
+to the guidelines established by <A HREF="http://www.iaona.org">IAONA</A>.</P>
+<H3><A NAME="3.2"></A>5.2 Data link layer</H3>
+<P>Data link layer services shall be Ethernet per <A
+	HREF="s1.htm#8802-3">ISO/IEC 8802-3</A>.</P>
+<H3><A NAME="3.3"></A>5.3 Network, Transport and Session layers</H3>
+<P>The Network layer services shall be Internet Protocol (IP) as
+defined in <A HREF="s1.htm#IETF">IETF RFCs</A> 791, 792 and 950.
+Transport and Session layer services shall be Transmission Control
+Protocol (TCP) as defined in IETF RFC 761 or multicast User Datagram
+Protocol (UDP) as defined in IETF RFC 768, with packet lifetime limited
+to a single hop.</P>
+<P>In order to avoid conflict with addresses reserved by IETF RFCs
+1112 and 1700, the following restrictions shall be observed:</P>
+
+<OL>
+	<LI>IP addresses for multicast UDP shall be limited to the ranges
+	<TT>225.0.0.0</TT> through <TT>231.255.255.255</TT> and <TT>233.0.0.0</TT>
+	through <TT>239.255.255.255</TT>, respectively.</LI>
+	<LI>Port numbers shall be restricted to the range <TT>1024</TT>
+	through <TT>65535</TT>.</LI>
+	<LI>The "special cases for IP addresses" listed in IETF RFC 1700
+	shall be observed.</LI>
+</OL>
+
+<P>The services of these layers shall be provided by the functional
+equivalent of encapsulating an instance of the appropriate class from
+the package <A
+	HREF="http://java.sun.com/j2se/1.5.0/docs/api/java/net/package-summary.html"
+	TARGET="_blank">java.net</A>, in an appropriate instance of an IEC <A
+	HREF="s1.htm#61499-1">61499-1</A> Communication Service Interface
+Function Block (CSIFB). The encapsulated class corresponding to each
+generic CSIFB type is listed in Table 5.3. Implementation-specific
+details of CSIFB types are given in subclause <A HREF="#3.5">5.5</A>.</P>
+<CENTER>
+<P><A NAME="t3.3"></A><B>Table 5.3 - Equivalent encapsulated
+Java&#8482; classes</B><BR>
+<TABLE BORDER="1">
+	<TBODY>
+		<TR>
+			<TD>
+			<P ALIGN="center"><B>Generic CSIFB type</B></P>
+			</TD>
+			<TD>
+			<P ALIGN="center"><B>Encapsulated class</B></P>
+			</TD>
+		</TR>
+		<TR>
+			<TD ALIGN="center"><TT>PUBLISH</TT></TD>
+			<TD ALIGN="center"><A
+				HREF="http://java.sun.com/j2se/1.5.0/docs/api/java/net/DatagramSocket.html"
+				TARGET="_blank">java.net.DatagramSocket</A></TD>
+		</TR>
+		<TR>
+			<TD ALIGN="center"><TT>SUBSCRIBE</TT></TD>
+			<TD ALIGN="center"><A
+				HREF="http://java.sun.com/j2se/1.5.0/docs/api/java/net/MulticastSocket.html"
+				TARGET="_blank">java.net.MulticastSocket</A></TD>
+		</TR>
+		<TR>
+			<TD ALIGN="center"><TT>CLIENT</TT></TD>
+			<TD ALIGN="center"><A
+				HREF="http://java.sun.com/j2se/1.5.0/docs/api/java/net/Socket.html"
+				TARGET="_blank">java.net.Socket</A></TD>
+		</TR>
+		<TR>
+			<TD ALIGN="center"><TT>SERVER</TT></TD>
+			<TD ALIGN="center"><A
+				HREF="http://java.sun.com/j2se/1.5.0/docs/api/java/net/Socket.html"
+				TARGET="_blank">java.net.Socket</A></TD>
+		</TR>
+	</TBODY>
+</TABLE>
+</CENTER>
+<H3><A NAME="3.4"></A>5.4 Presentation layer</H3>
+<P>Data shall be exchanged among devices using the <TT>IEC61499-FBDATA</TT>
+syntax and the <TT>COMPACT</TT> encoding defined in Annexes E.3.2 and
+E.3.3.2 of IEC <A HREF="s1.htm#61499-1">61499-1</A>, respectively. The
+data transferred shall correspond to the <A HREF="s1.htm#8824">ASN.1</A>
+expression</P>
+<P ALIGN="center"><TT>CHOICE{NULL, FBData, FBDataSequence}</TT>.</P>
+<H4><A NAME="3.4.1"></A>5.4.1 Encoding of <TT>FBDataSequence</TT>
+elements</H4>
+<P>The encoding of an <TT>FBDataSequence</TT> element shall be <B>constructed</B>,
+and shall not include a type or length field. That is, this type shall
+be encoded simply as a sequence of <TT>FBData</TT> elements.</P>
+<H4><A NAME="3.4.2"></A>5.4.2 Encoding of the <TT>NULL</TT> element</H4>
+<P>The <TT>NULL</TT> element shall be encoded as a single byte
+containing the tag of the <TT>NULL</TT> type (<TT>16#05</TT>) as defined
+in <A HREF="s1.htm#8825">ISO/IEC 8825</A>.</P>
+<H4><A NAME="3.4.3"></A>5.4.3 Unsupported types</H4>
+<P>Since many run-time systems do not support unsigned 64-bit
+integer values, it is not required that the <TT>ULINT</TT> type be
+supported.</P>
+<P>It is not required that the data types <TT>DATE</TT> and <TT>TIME_OF_DAY</TT>
+be supported, since strings representing their values can always be
+derived as substrings of a full string representation of the
+corresponding <TT>DATE_AND_TIME</TT> type.</P>
+<H4><A NAME="3.4.4"></A>5.4.4 Encoding of values of elementary data
+types</H4>
+<P>The values of elementary data type elements shall be transferred
+according to the following modified <A HREF="s1.htm#8824">ASN.1</A>
+syntax:</P>
+<BLOCKQUOTE>
+<P><TT>ElementaryData ::= CHOICE{<BR>
+BOOL,<BR>
+FixedLengthInteger,<BR>
+FixedLengthReal,<BR>
+TIME,<BR>
+AnyDate,<BR>
+AnyString,<BR>
+FixedLengthBitString,<BR>
+ARRAY}</TT></P>
+</BLOCKQUOTE>
+
+<H4><A NAME="3.4.4.1"></A>5.4.4.1 Encoding of time-related values</H4>
+<P>Values of the time-related data types shall be encoded as
+specified in the syntax of Annex E.3.2 and the encoding rules of Table
+E.1 of IEC <A HREF="s1.htm#61499-1">61499-1</A>, with the exception that
+the value of <TT>DATE_AND_TIME</TT> type shall be encoded as for type <TT>LINT</TT>
+rather than <TT>ULINT</TT> (see <A HREF="#3.4.3">5.4.3</A>).</P>
+
+<H4><A NAME="3.4.4.2"></A>5.4.4.2 Encoding of string elements</H4>
+<P>The length field of <TT>STRING</TT> and <TT>WSTRING</TT> elements
+shall be encoded as for the <TT>UINT</TT> type, i.e., a 16-bit unsigned
+integer.</P>
+
+
+<BLOCKQUOTE>
+<P><I>NOTE</I> - This would appear to restrict the maximum number of
+elements of a <TT>STRING</TT> or <TT>WSTRING</TT> to 65535. However, the
+actual length may be further restricted by the maximum number of octets
+that can be transferred by the underlying transport protocol. For UDP,
+this number is 65508. Thus, the maximum transmittable length of a <TT>STRING</TT>
+element using UDP would be (maximum octets - tag octets - length
+octets)/(character length) = (65508-1-2)/1 = 65505 characters, and the
+maximum transmittable length of a <TT>WSTRING</TT> element would be
+(65508-1-2)/2 = 32752 characters.</P>
+</BLOCKQUOTE>
+
+<P>The encoded character sequence for both <TT>STRING</TT> and <TT>WSTRING</TT>
+values shall be such that the first character in the string is the first
+encoded value, e.g., for the string "<TT>ABC</TT>" the first encoded
+character shall be "<TT>A</TT>" and the last shall be "<TT>C</TT>". The
+values of the individual character elements of the <TT>STRING</TT> and <TT>WSTRING</TT>
+types shall be encoded in the same way as the values of the <TT>USINT</TT>
+and <TT>UINT</TT> types, respectively.</P>
+<H4><A NAME="3.4.4.3"></A>5.4.4.3 Encoding of <TT>ARRAY</TT>
+elements</H4>
+<P><TT>ARRAY</TT> elements shall be transferred according to the
+following modified <A HREF="s1.htm#8824">ASN.1</A> syntax:</P>
+
+
+<BLOCKQUOTE>
+<P><TT>ARRAY ::= [APPLICATION 22] IMPLICIT SEQUENCE OF FBData</TT></P>
+<P><I>NOTE -</I> Since <TT>ARRAY</TT> is a subclass of <TT>FBData</TT>,
+a multidimensional <TT>ARRAY</TT> may be encoded recursively as an <TT>ARRAY</TT>
+whose elements are <TT>ARRAY</TT> elements.</P>
+</BLOCKQUOTE>
+
+<P>The encoding of <TT>ARRAY</TT> elements shall be <B>constructed</B>
+in the sense of <A HREF="s1.htm#8825">ISO/IEC 8825</A>, with the
+following provisions for COMPACT encoding:</P>
+<OL>
+	<LI>The "length" subfield of the <TT>ARRAY</TT> element shall be
+	encoded as a value of the <TT>UINT</TT> type without identifier or
+	length octets, i.e., as a 16-bit unsigned integer.
+	<P><I>NOTE -</I> This would appear to restrict the maximum number
+	of elements of an <TT>ARRAY</TT> to 65535. However, the actual length
+	may be further restricted by the maximum number of octets that can be
+	transferred by the underlying transport protocol. For UDP, this number
+	is 65508. Then, for instance, the maximum transmittable length of an <TT>ARRAY</TT>
+	of <TT>BYTE</TT> elements using UDP would be (maximum octets - tag
+	octets - length octets - element type octets)/(element length) =
+	(65508-1-2-1)/1 = 65504 elements.</P>
+	</LI>
+	<LI>The COMPACT encoding specified in <A
+		HREF="http://www.holobloc.com/stds/iec/sc65bwg7tf3/html/news.htm">IEC
+	61499-1</A> shall be used for the first element of the values field.</LI>
+	<LI>Subsequent elements, if any, shall be encoded using the
+	COMPACT syntax without an identifier subfield.</LI>
+	<LI>If the specified length of the received <TT>ARRAY</TT> is less
+	than the locally allocated space, the remaining elements of the local
+	array shall be unaffected; if the length of the received <TT>ARRAY</TT>
+	is greater than the locally allocated space, the remaining received
+	elements shall be ignored.</LI>
+</OL>
+
+<H4><A NAME="3.4.5"></A>5.4.5 Encoding of values of derived data
+types</H4>
+<P>Values of derived data types shall be transferred according to
+the following modified <A HREF="s1.htm#8824">ASN.1</A> syntax:</P>
+
+
+<BLOCKQUOTE>
+<P><TT>DerivedData ::= CHOICE{<BR>
+DirectlyDerivedData,<BR>
+EnumeratedData,<BR>
+SubrangeData,<BR>
+ArrayData,<BR>
+STRUCT}</TT></P>
+</BLOCKQUOTE>
+
+<H4><A NAME="3.4.5.1"></A>5.4.5.1 Encoding of structured data type
+elements</H4>
+<P>The encoding of instances of structured data types shall be <B>constructed</B>
+in the sense of <A HREF="s1.htm#8825">ISO/IEC 8825</A>, with the
+following provisions for COMPACT encoding:</P>
+<OL>
+	<LI>The "length" subfield shall not be used in the encoding of the
+	main element.</LI>
+	<LI>Elements of the structure shall be encoded in the order given
+	in the declaration of the structured data type, using the COMPACT
+	encoding rules without an identifier subfield.</LI>
+</OL>
+
+<H4><A NAME="3.4.5.2"></A>5.4.5.2 Encoding of enumerated data type
+elements</H4>
+<P>The encoding of values of enumerated data types shall use the
+COMPACT encoding rules, according to the following modified <A
+	HREF="s1.htm#8824">ASN.1</A> syntax:</P>
+
+
+<BLOCKQUOTE>
+<P><TT>EnumeratedData ::= [typeID] IMPLICIT USINT</TT></P>
+</BLOCKQUOTE>
+
+<P>The encoded value zero (0) shall correspond to the first
+enumerated value, with subsequent encoded values corresponding to the
+subsequent enumerated values.</P>
+
+
+<BLOCKQUOTE>
+<P><I>NOTE -</I> This limits the maximum number of enumerated values
+to 256.</P>
+</BLOCKQUOTE>
+
+<H4><A NAME="3.4.5.3"></A>5.4.5.3 Encoding of subrange data type
+elements</H4>
+<P>The encoding of values of subrange data types shall use the
+COMPACT encoding rules, according to the <TT>IEC61499-FBDATA</TT> syntax
+given in IEC <A HREF="s1.htm#61499-1">61499-1</A>-F.3.1.1.</P>
+<H4><A NAME="3.4.5.4"></A>5.4.5.4 Encoding of array data type
+elements</H4>
+<P>Values of array data types shall be transferred according to the
+following modified <A HREF="s1.htm#8824">ASN.1</A> syntax:</P>
+
+
+<CENTER>
+<P><TT>ArrayData ::= [typeID] IMPLICIT ARRAY</TT></P>
+</CENTER>
+
+<P>The encoding of values of array data types shall follow the rules
+given in <A HREF="#3.4.4.3">5.4.4.3</A>, where the <TT>[APPLICATION
+22]</TT> tag is replaced by the assigned tag of the array type.</P>
+<H3><A NAME="3.5"></A>5.5 Application layer</H3>
+<OL>
+	<LI>Communication service interface function blocks (CSIFBs) for
+	unidirectional data exchange among devices shall be instances of the <A
+		HREF="../common/pubsub.htm"><TT>PUBLISH/SUBSCRIBE</TT></A> function
+	block types defined in Annex F.2.1 of IEC <A HREF="s1.htm#61499-1">61499-1</A>.</LI>
+	<LI>CSIFBs for bidirectional data exchange among devices shall be
+	instances of the <A HREF="../common/cliserve.htm"><TT>CLIENT/SERVER</TT></A>
+	function blocks defined in Annex F.2.2 of IEC 61499-1.</LI>
+	<LI>CSIFB types for the exchange of defined numbers of data items
+	shall have the following type name formats:
+	<UL>
+		<LI><TT>CLIENT_NI_NO</TT> or <TT>SERVER_NI_NO,</TT> where <TT>NI</TT>
+		is the number of data items to be transmitted and <TT>NO</TT> is the
+		number of data items to be received.</LI>
+		<LI><TT>CLIENT_N</TT> or <TT>SERVER_N,</TT> where <TT>N</TT> is
+		the number of data items to be both transmitted and received.</LI>
+		<LI><TT>PUBLISH_N</TT> or <TT>SUBSCRIBE_N,</TT> where <TT>N</TT>
+		is the number of data items to be transmitted or received,
+		respectively.</LI>
+	</UL>
+	</LI>
+	<LI>A value of zero (0) for <TT>N, NI</TT> or <TT>NO</TT> in the
+	above formats indicates that a corresponding NULL data item, encoded as
+	specified in subclause <A HREF="#3.4.2">5.4.2</A>, is to be transmitted
+	or received.
+	<UL>
+		<LI><I>EXAMPLE</I> - A <TT>SERVER</TT> function block type with
+		two data inputs <TT>SD_1 </TT>and <TT>SD_2</TT> and a single data
+		output <TT>RD_1</TT> would have the type name <TT>SERVER_2_1</TT>. A
+		corresponding <TT>CLIENT</TT> function block type would have a single
+		data input <TT>SD_1</TT> and two data outputs <TT>RD_1</TT> and <TT>RD_2</TT>,
+		and would have the type name <TT>CLIENT_1_2</TT>.</LI>
+	</UL>
+	</LI>
+	<LI>The <TT>PARAMS</TT> input of the standard CSIFBs shall be
+	renamed <TT>ID</TT> and shall be of type <TT>WSTRING</TT> (this
+	substitution is allowed by Table 3.1.1 of IEC 61499-1). The contents of
+	this string shall correspond to the syntax and semantics of the <TT>hostport</TT>
+	element defined in <A HREF="s1.htm#IETF">IETF RFC 1630</A>.
+	<UL>
+		<LI><I>EXAMPLE 1</I> - The <TT>ID</TT> input for a <TT>SERVER</TT>
+		block at port number <TT>1499</TT> of a host device named <TT>m51568</TT>
+		with IP address <TT>"161.153.19.227"</TT> could be represented as <TT>"m51568:1499",
+		"161.153.19.227:1499", "localhost:1499"</TT> or <TT>"127.0.0.1:1499"</TT>.
+		The <TT>ID</TT> input of a <TT>CLIENT</TT> block desiring access to
+		this <TT>SERVER</TT> could be <TT>"m51568:1499"</TT> or <TT>"161.153.19.227:1499"</TT>.
+		If it were located in the same device as the <TT>SERVER </TT>block,
+		its <TT>ID</TT> input could also have the form <TT>"localhost:1499"</TT>
+		or <TT>"127.0.0.1:1499"</TT>.</LI>
+		<LI><I>EXAMPLE 2</I> - If a Domain Name System (DNS) server were
+		not available in the case of Example 1 , the value of the ID input of
+		the SERVER block would be limited to be <TT>"127.0.0.1:1499"</TT> or <TT>"161.153.19.227:1499"</TT>,
+		and the value of the <TT>ID</TT> input of the <TT>CLIENT</TT> would be
+		limited to <TT>"161.153.19.227:1499"</TT> or additionally <TT>"127.0.0.1:1499"</TT>
+		if <TT>CLIENT</TT> and <TT>SERVER</TT> blocks were located in the same
+		device.</LI>
+		<LI><I>EXAMPLE 3</I> - The <TT>ID</TT> input for a <TT>PUBLISH</TT>
+		function block desiring to publish data at UDP (User Datagram
+		Protocol) port number <TT>230.0.0.1:4445</TT> would be represented as
+		<TT>"230.0.0.1:4445"</TT>. This would be identical to the <TT>ID</TT>
+		input(s) of the corresponding <TT>SUBSCRIBE</TT> block(s).</LI>
+		<LI><I>NOTE -</I> The range of IP addresses for <TT>PUBLISH</TT>
+		and <TT>SUBSCRIBE</TT> function blocks is limited to the IP multicast
+		address range, namely <TT>224.0.0.1</TT> through<TT>
+		239.255.255.255</TT>, and the socket number is limited to the range <TT>{1..65535}</TT>.</LI>
+	</UL>
+	</LI>
+	<LI>The <TT>STATUS</TT> output of the standard CSIFBs shall be of
+	type <TT>WSTRING</TT>. The values of this string and their
+	corresponding semantics shall be as shown in <A HREF="#t35">Table
+	5.5</A>.</LI>
+</OL>
+
+<CENTER><A NAME="t35"></A>
+<P><B>Table 5.5 - STATUS output values</B></P>
+<TABLE BORDER="1">
+	<TR>
+		<TD ALIGN="center"><B>Value</B></TD>
+		<TD ALIGN="center"><B>Corresponds to</B></TD>
+		<TD ALIGN="center"><B>Semantics</B></TD>
+	</TR>
+	<TR>
+		<TD ALIGN="center"><TT>"OK"</TT></TD>
+		<TD ALIGN="center"><TT>INITO+, CNF+, IND+</TT></TD>
+		<TD ALIGN="center">Valid operation</TD>
+	</TR>
+	<TR>
+		<TD ALIGN="center"><TT>"INVALID_ID"</TT></TD>
+		<TD ALIGN="center"><TT> INITO-</TT></TD>
+		<TD ALIGN="center">Invalid <TT>ID</TT> input</TD>
+	</TR>
+	<TR>
+		<TD ALIGN="center"><TT>"TERMINATED"</TT></TD>
+		<TD ALIGN="center"><TT>INITO-</TT></TD>
+		<TD ALIGN="center">Service termination</TD>
+	</TR>
+	<TR>
+		<TD ALIGN="center"><TT>"INVALID_OBJECT"</TT></TD>
+		<TD ALIGN="center"><TT>CNF-, IND-</TT></TD>
+		<TD ALIGN="center">Invalid object type received or requested to
+		be sent</TD>
+	</TR>
+	<TR>
+		<TD ALIGN="center"><TT>"DATA_TYPE_ERROR"</TT></TD>
+		<TD ALIGN="center"><TT>CNF-, IND-</TT></TD>
+		<TD>Received object type does not match actual output type</TD>
+	</TR>
+	<TR>
+		<TD ALIGN="center"><TT>"INHIBITED"</TT></TD>
+		<TD ALIGN="center"><TT>CNF-</TT></TD>
+		<TD ALIGN="center">Caused by <TT>REQ-</TT></TD>
+	</TR>
+	<TR>
+		<TD ALIGN="center"><TT>"NO_SOCKET"</TT></TD>
+		<TD ALIGN="center"><TT>CNF-</TT></TD>
+		<TD ALIGN="center">No socket available to serve <TT>REQ+</TT></TD>
+	</TR>
+	<TR>
+		<TD ALIGN="center">Other values</TD>
+		<TD ALIGN="center"><TT>INITO-, CNF-, IND-</TT></TD>
+		<TD ALIGN="center">Socket service errors</TD>
+	</TR>
+</TABLE>
+</CENTER>
+<DIV STYLE="font-size: 10pt; text-align: center; padding-left: 1.0em"><I>Last
+updated: 2007-11-27.</I><BR>
+&copy;2006 <A HREF="http://www.holobloc.com" TARGET="_blank">Holobloc
+Inc</A>.<BR>
+Licensed under the <A
+	HREF="http://www.opensource.org/licenses/afl-3.0.php" TARGET="_blank">Academic
+Free License version 3.0</A><BR>
+Java is a trademark or registered trademark of Sun Microsystems, Inc. in
+the U.S. or other countries.</DIV>
+</BODY>
+</HTML>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="E_CTUD" Comment="Event-Driven Up/Down Counter" >
+  <Identification Standard="61499-1-A" Classification="Event-driven blocks" Function="Up/Down counter" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.0" Author="JHC" Date="2006-09-07" />
+  <CompilerInfo header="package fb.rt.events;" >
+    <Compiler Language="Java" Vendor="Sun" Product="JDK" Version="1.5.0" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="CU" Comment="Count Up" >
+        <With Var="PV" />
+      </Event>
+      <Event Name="CD" Comment="Count Down" >
+      </Event>
+      <Event Name="R" Comment="Reset" >
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="CUO" Comment="Count Up Output Event" >
+        <With Var="Q" />
+        <With Var="CV" />
+        <With Var="Q0" />
+      </Event>
+      <Event Name="CDO" Comment="Count Down Output Event" >
+        <With Var="Q" />
+        <With Var="CV" />
+        <With Var="Q0" />
+      </Event>
+      <Event Name="RO" Comment="Reset Output Event" >
+        <With Var="Q" />
+        <With Var="CV" />
+        <With Var="Q0" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="PV" Type="UINT" Comment="Preset Value" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="Q0" Type="BOOL" Comment="CV==0" />
+      <VarDeclaration Name="Q" Type="BOOL" Comment="CV>=PV" />
+      <VarDeclaration Name="CV" Type="UINT" />
+    </OutputVars>
+  </InterfaceList>
+</FBType>

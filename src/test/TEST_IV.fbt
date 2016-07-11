@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="TEST_IV" Comment="Test use of internal variables in FBD algorithm" >
+  <Identification Standard="IEC 61499" ApplicationDomain="Discrete Assembly" Function="Pick&#38;Place" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.0" Author="JHC" Date="2006-09-18" Remarks="Adapted from PNP_CTL_LD." />
+  <CompilerInfo header="package fb.rt.test;" classdef="SimpleFB" >
+    <Compiler Language="Java" Vendor="Sun" Product="JDK" Version="1.5.0" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="REQ" Comment="Execute control if AUTO mode is ON" >
+        <With Var="HOMEx" />
+        <With Var="ENDx" />
+        <With Var="HOMEy" />
+        <With Var="ENDy" />
+        <With Var="PRESENT" />
+        <With Var="LOADED" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="CNF" Comment="AUTO mode control executed" >
+        <With Var="FWDx" />
+        <With Var="FWDy" />
+        <With Var="REVy" />
+        <With Var="REVx" />
+        <With Var="MAGNET" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="PRESENT" Type="BOOL" Comment="Workpiece Sensor at end of Conveyor" />
+      <VarDeclaration Name="LOADED" Type="BOOL" Comment="Workpiece Sensor on XY transport" />
+      <VarDeclaration Name="HOMEx" Type="BOOL" Comment="x-axis at HOME position" />
+      <VarDeclaration Name="ENDx" Type="BOOL" Comment="x-axis at END position" />
+      <VarDeclaration Name="HOMEy" Type="BOOL" Comment="y-axis at HOME position" />
+      <VarDeclaration Name="ENDy" Type="BOOL" Comment="y-axis at END position" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="FWDx" Type="BOOL" Comment="Drive x-axis Motor Forward (toward ENDx)" />
+      <VarDeclaration Name="REVx" Type="BOOL" Comment="Drive x-axis Motor 1 in Reverse (toward HOMEx)" />
+      <VarDeclaration Name="FWDy" Type="BOOL" Comment="Drive y-axis Motor Forward (toward ENDy)" />
+      <VarDeclaration Name="REVy" Type="BOOL" Comment="Drive y-axis Motor 2 in Reverse (toward HOMEy)" />
+      <VarDeclaration Name="MAGNET" Type="BOOL" Comment="Electromagnet ON (grasp workpiece)" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <InternalVars>
+      <VarDeclaration Name="NOT_LOADED" Type="BOOL" />
+      <VarDeclaration Name="NOT_ENDX" Type="BOOL" />
+      <VarDeclaration Name="NOT_ENDY" Type="BOOL" />
+    </InternalVars>
+  <Algorithm Name="REQ" Comment="AUTO control algorithm" >
+    <FBD >
+      <FB Name="UNLOADED" Type="NOT_BOOL" x="311.11108" y="11.111111" />
+      <FB Name="NOTHOMEX" Type="NOT_BOOL" x="461.11108" y="1388.8888" />
+      <FB Name="NOTHOMEY" Type="NOT_BOOL" x="1361.1111" y="1216.6666" />
+      <FB Name="NOTENDX" Type="NOT_BOOL" x="2038.8888" y="11.111111" />
+      <FB Name="NOTENDY" Type="NOT_BOOL" x="1205.5555" y="11.111111" />
+      <FB Name="AND11" Type="AND_BOOL" x="472.2222" y="400.0" />
+      <FB Name="AND12" Type="AND_BOOL" x="905.55554" y="400.0" />
+      <FB Name="AND13" Type="AND_BOOL" x="1338.8888" y="400.0" />
+      <FB Name="OR12" Type="OR_BOOL" x="1616.6666" y="400.0" />
+      <FB Name="OR11" Type="OR_BOOL" x="466.66666" y="866.6666" />
+      <FB Name="AND14" Type="AND_BOOL" x="961.1111" y="866.6666" />
+      <FB Name="AND21" Type="AND_BOOL" x="2327.7776" y="550.0" />
+      <FB Name="AND31" Type="AND_BOOL" x="2333.3333" y="1055.5555" />
+      <FB Name="AND32" Type="AND_BOOL" x="2572.2222" y="1222.2222" />
+      <FB Name="AND41" Type="AND_BOOL" x="761.1111" y="1388.8888" />
+      <FB Name="AND51" Type="AND_BOOL" x="1683.3333" y="1216.6666" />
+      <DataConnections>
+        <Connection Source="LOADED" Destination="UNLOADED.in" dx1="144.44444" />
+        <Connection Source="HOMEx" Destination="NOTHOMEX.in" dx1="311.11108" />
+        <Connection Source="HOMEy" Destination="NOTHOMEY.in" dx1="1211.1111" />
+        <Connection Source="ENDx" Destination="NOTENDX.in" dx1="1916.6666" />
+        <Connection Source="ENDy" Destination="NOTENDY.in" dx1="1083.3333" />
+        <Connection Source="PRESENT" Destination="AND11.i2" dx1="283.3333" />
+        <Connection Source="AND11.Q" Destination="AND12.i1" dx1="38.888885" />
+        <Connection Source="HOMEx" Destination="AND12.i2" dx1="755.55554" />
+        <Connection Source="AND12.Q" Destination="AND13.i1" dx1="33.333332" />
+        <Connection Source="HOMEy" Destination="AND13.i2" dx1="1188.8888" />
+        <Connection Source="AND13.Q" Destination="OR12.i1" dx1="50.0" />
+        <Connection Source="OR12.Q" Destination="MAGNET" dx1="1927.7777" />
+        <Connection Source="OR11.Q" Destination="AND14.i1" dx1="66.666664" />
+        <Connection Source="LOADED" Destination="AND14.i2" dx1="794.4444" />
+        <Connection Source="AND14.Q" Destination="OR12.i2" dx1="444.44443" />
+        <Connection Source="LOADED" Destination="AND21.i2" dx1="2161.111" />
+        <Connection Source="AND21.Q" Destination="FWDx" dx1="2588.8887" />
+        <Connection Source="LOADED" Destination="AND31.i1" dx1="2138.889" />
+        <Connection Source="ENDx" Destination="AND31.i2" dx1="2211.111" />
+        <Connection Source="AND32.Q" Destination="FWDy" dx1="2833.3333" />
+        <Connection Source="AND41.Q" Destination="REVx" dx1="1022.22217" />
+        <Connection Source="AND51.Q" Destination="REVy" dx1="1944.4443" />
+        <Connection Source="NOTHOMEY.Q" Destination="AND51.i1" dx1="83.33333" />
+        <Connection Source="NOT_LOADED" Destination="AND51.i2" dx1="1438.8888" />
+        <Connection Source="UNLOADED.Q" Destination="NOT_LOADED" dx1="700.0" />
+        <Connection Source="NOT_LOADED" Destination="AND11.i1" dx1="227.77777" />
+        <Connection Source="NOT_ENDY" Destination="OR11.i2" dx1="261.1111" />
+        <Connection Source="NOTENDY.Q" Destination="NOT_ENDY" dx1="1555.5555" />
+        <Connection Source="NOT_ENDX" Destination="AND21.i1" dx1="2122.2222" />
+        <Connection Source="NOT_ENDX" Destination="OR11.i1" dx1="261.1111" />
+        <Connection Source="NOTENDX.Q" Destination="NOT_ENDX" dx1="2388.889" />
+        <Connection Source="AND31.Q" Destination="AND32.i1" dx1="27.777777" />
+        <Connection Source="NOT_ENDY" Destination="AND32.i2" dx1="2366.6665" />
+        <Connection Source="NOT_LOADED" Destination="AND41.i2" dx1="516.6666" />
+        <Connection Source="NOTHOMEX.Q" Destination="AND41.i1" dx1="27.777777" />
+      </DataConnections>
+    </FBD>
+  </Algorithm>
+  </BasicFB>
+</FBType>

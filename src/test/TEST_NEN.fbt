@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="TEST_NEN" Comment="Test NE functions of numerical values" >
+  <Identification Standard="IEC 61499-1" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.0" Author="JHC" Date="2006-09-11" />
+  <CompilerInfo header="package fb.rt.test;" classdef="SimpleFB" >
+    <Compiler Language="Java" Vendor="Sun" Product="JDK" Version="1.5.0" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="REQ" >
+        <With Var="INI" />
+        <With Var="INL" />
+        <With Var="INU" />
+        <With Var="IND" />
+        <With Var="INR" />
+        <With Var="IN1T" />
+        <With Var="IN2T" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="CNF" >
+        <With Var="QI" />
+        <With Var="QD" />
+        <With Var="QL" />
+        <With Var="QU" />
+        <With Var="QR" />
+        <With Var="QT" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="INI" Type="INT" />
+      <VarDeclaration Name="IND" Type="DINT" />
+      <VarDeclaration Name="INL" Type="LINT" />
+      <VarDeclaration Name="INU" Type="UINT" />
+      <VarDeclaration Name="INR" Type="REAL" />
+      <VarDeclaration Name="IN1T" Type="TIME" />
+      <VarDeclaration Name="IN2T" Type="TIME" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="QI" Type="BOOL" />
+      <VarDeclaration Name="QD" Type="BOOL" />
+      <VarDeclaration Name="QL" Type="BOOL" />
+      <VarDeclaration Name="QU" Type="BOOL" />
+      <VarDeclaration Name="QR" Type="BOOL" />
+      <VarDeclaration Name="QT" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+  <Algorithm Name="REQ" >
+    <FBD >
+      <FB Name="NEI" Type="NE_INT" x="200.0" y="11.111111" >
+        <Parameter Name="IN2" Value="5" />
+      </FB>
+      <FB Name="NED" Type="NE_DINT" x="755.55554" y="11.111111" >
+        <Parameter Name="IN2" Value="5" />
+      </FB>
+      <FB Name="NEL" Type="NE_LINT" x="1344.4443" y="11.111111" >
+        <Parameter Name="IN2" Value="5" />
+      </FB>
+      <FB Name="NEU" Type="NE_UINT" x="183.33333" y="538.88885" >
+        <Parameter Name="IN2" Value="5" />
+      </FB>
+      <FB Name="NER" Type="NE_REAL" x="788.88885" y="538.88885" >
+        <Parameter Name="IN2" Value="5.0" />
+      </FB>
+      <FB Name="NET" Type="NE_TIME" x="1444.4443" y="516.6666" />
+      <DataConnections>
+        <Connection Source="INI" Destination="NEI.IN1" dx1="116.666664" />
+        <Connection Source="IND" Destination="NED.IN1" dx1="661.1111" />
+        <Connection Source="INL" Destination="NEL.IN1" dx1="1250.0" />
+        <Connection Source="INU" Destination="NEU.IN1" dx1="88.888885" />
+        <Connection Source="INR" Destination="NER.IN1" dx1="694.4444" />
+        <Connection Source="NEI.OUT" Destination="QI" dx1="533.3333" />
+        <Connection Source="NED.OUT" Destination="QD" dx1="1111.1111" />
+        <Connection Source="NEL.OUT" Destination="QL" dx1="1694.4443" />
+        <Connection Source="NEU.OUT" Destination="QU" dx1="538.88885" />
+        <Connection Source="NER.OUT" Destination="QR" dx1="1161.1111" />
+        <Connection Source="NET.OUT" Destination="QT" dx1="1811.1111" />
+        <Connection Source="IN1T" Destination="NET.IN1" dx1="1333.3333" />
+        <Connection Source="IN2T" Destination="NET.IN2" dx1="1333.3333" />
+      </DataConnections>
+    </FBD>
+  </Algorithm>
+  </BasicFB>
+</FBType>

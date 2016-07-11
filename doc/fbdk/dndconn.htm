@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+
+<HEAD>
+	<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+	<META NAME="GENERATOR" Content="Eclipse HTML Editor">
+	<TITLE>Drag-and-Drop Connection Editing</TITLE>
+</HEAD>
+
+<BODY>
+
+<H2 ALIGN="CENTER">Drag-and-Drop Connection Editing</H2>
+<H3><A NAME="Creating"></A>Creating [<A HREF="#Deleting">Deleting</A>] connections</H3>
+<CENTER>
+<P>
+<TABLE BORDER="1">
+	<TR>
+		<TD>1. While holding down the <B>Alt</B> key, click and drag on an FB data, event or plug output.</TD>
+		<TD>
+			<P ALIGN="CENTER">2. Drag the target over the data, event or socket input.
+		</TD>
+	</TR>
+	<TR>
+		<TD>
+			<P ALIGN="CENTER"><IMG SRC="dndconn1.gif" WIDTH="336" HEIGHT="263" ALIGN="BOTTOM" BORDER="0">
+		</TD>
+		<TD>
+			<P ALIGN="CENTER"><IMG SRC="dndconn2.gif" WIDTH="325" HEIGHT="263" ALIGN="BOTTOM" BORDER="0">
+		</TD>
+	</TR>
+	<TR>
+		<TD>
+			<P ALIGN="CENTER">3. Release the mouse button and the connection is made.
+		</TD>
+		<TD VALIGN="TOP" ROWSPAN="2">
+			<UL>
+				<LI>This works for data, event and adapter connections in a function block diagram (FBD), as well as <A HREF="transition.htm">transitions</A>
+				in an Execution Control Chart (ECC).
+				<LI>Invalid connections are automatically rejected:
+				<UL>
+					<LI>Data to event or adapter.
+					<LI>Incompatible data or adapter types.
+					<LI>Event to data or adapter.
+					<LI>Adapter to event or data.
+				</UL>
+				<LI>&quot;Auto-routing&quot; is performed when an input is to the left of the associated output:
+				<UL>
+					<LI>Event connections are routed &quot;up and over.&quot;
+					<LI>Data and adapter connections are routed &quot;down and under.&quot;
+				</UL>
+			</UL>
+		</TD>
+	</TR>
+	<TR>
+		<TD>
+			<P ALIGN="CENTER"><IMG SRC="dndconn3.gif" WIDTH="321" HEIGHT="260" ALIGN="BOTTOM" BORDER="0">
+		</TD>
+	</TR>
+</TABLE>
+</P>
+</CENTER>
+<P>
+<H3><A NAME="Deleting"></A>Deleting and Re-routing [<A HREF="#Creating">Creating</A>] connections</H3>
+<P>A connection can be selected in the worksheet by a mouse click on the center (vertical) section of a three-segment
+line, on one of the three center sections of a five-segment line, or on the transition condition of an EC transition.
+The connection can then be deleted with the <B>Alt+Del</B> keychord, or the selected segment can be dragged. The
+connection can also be deleted, or changed back and forth between 3- and 5-segment representations, by a pop-up
+menu obtained by right-clicking on an appropriate section.</P>
+<CENTER>
+<TABLE BORDER="1">
+	<TR>
+		<TD ALIGN="center">1. A connection is selected.</TD>
+		<TD ALIGN="center">2. The connection is converted to 5-segment style.</TD>
+	</TR>
+	<TR>
+		<TD ALIGN="center"><IMG SRC="dndconn4.gif"></TD>
+		<TD ALIGN="center"><IMG SRC="dndconn5.gif"></TD>
+	</TR>
+	<TR>
+		<TD ALIGN="center">3. The connection is re-routed.</TD>
+		<TD ALIGN="center">4. The connection is deleted.</TD>
+	</TR>
+	<TR>
+		<TD ALIGN="center"><IMG SRC="dndconn6.gif"></TD>
+		<TD><IMG SRC="dndconn7.gif"></TD>
+	</TR>
+</TABLE>
+<HR>
+<I>Updated: 2005-02-17.</I><BR>
+&copy;2003-2005 Rockwell Automation. All rights reserved.
+</CENTER>
+ </BODY>
+
+</HTML>

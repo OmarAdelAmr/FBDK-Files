@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="NAND_BOOL" Comment="Boolean NOT_AND" >
+  <Identification Standard="61131-3" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.0" Author="JHC" Date="2006-09-19" Remarks="Derived from AND_BOOL." />
+  <CompilerInfo header="package fb.rt.plc.bits;" classdef="(!( i1 &#38;&#38; i2 ))" >
+  </CompilerInfo>
+  <InterfaceList>
+    <InputVars>
+      <VarDeclaration Name="i1" Type="BOOL" />
+      <VarDeclaration Name="i2" Type="BOOL" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="Q" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+</FBType>

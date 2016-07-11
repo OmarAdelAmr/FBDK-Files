@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="MultiAgentSystemConnector" Comment="JADE WORKER" >
+  <Identification Standard="61499-1" />
+  <VersionInfo Organization="Fraunhofer IGD" Version="1.0" Author="Ahmed" Date="2014-04-22" />
+  <CompilerInfo header="package fb.rt;" >
+    <Compiler Language="Java" Vendor="Sun" Product="JDK" Version="1.5.0" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="ie_init_MAS" >
+      </Event>
+      <Event Name="ie_new_task_start_stop" >
+      </Event>
+      <Event Name="ie_execute_products_order" >
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="oe_new_task_start_stop" >
+      </Event>
+      <Event Name="oe_execute_products_order" >
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="iv_new_task_name" Type="WSTRING" />
+      <VarDeclaration Name="iv_products_order" Type="WSTRING" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="ov_new_task_name" Type="WSTRING" />
+    </OutputVars>
+  </InterfaceList>
+</FBType>

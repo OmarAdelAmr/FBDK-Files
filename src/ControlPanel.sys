@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE System SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<System Name="ControlPanel" Comment="System Configuration" >
+  <Identification Standard="61499-1" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.3" Author="JHC" Date="2003-12-05" Remarks="Renamed from NEWSYSTEM." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.2" Author="JHC" Date="2002-11-05" Remarks="Fixed missing (empty) FBD in Application." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2002-01-17" Remarks="Minor cleanup" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2000-05-27" />
+  <Application Name="APP1" >
+    <FBNetwork >
+    </FBNetwork>
+  </Application>
+  <Device Name="WorkerHMI" Type="FRAME_DEVICE" x="711.1111" y="155.55554" >
+    <Parameter Name="BOUNDS" Value="[500,300,300,300]" />
+    <Parameter Name="GRID" Value="[1,1]" />
+    <Resource Name="Worker_1_HMI" Type="PANEL_RESOURCE" x="1144.4445" y="177.77777" >
+      <Parameter Name="ROWS" Value="4" />
+      <Parameter Name="COLS" Value="2" />
+      <FBNetwork >
+        <FB Name="NameInput" Type="IN_EVENT" x="872.22217" y="205.55554" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;ADD NAME&#34;" />
+        </FB>
+        <FB Name="SkillPoll" Type="IN_CHOICE" x="1677.7777" y="1100.0" >
+          <Parameter Name="CHOICES" Value="&#34;Drilling,Shaping,Machining&#34;" />
+          <Parameter Name="QI" Value="1" />
+        </FB>
+        <FB Name="StatusIND" Type="OUT_BOOL" x="4122.222" y="1644.4443" >
+          <Parameter Name="LABEL" Value="&#34;Status&#34;" />
+          <Parameter Name="C0" Value="[255,0,0]" />
+          <Parameter Name="C1" Value="[255,255,255]" />
+          <Parameter Name="IN" Value="1" />
+          <Parameter Name="QI" Value="1" />
+        </FB>
+        <FB Name="OFF" Type="IN_EVENT" x="2444.4443" y="2105.5554" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;OFF&#34;" />
+        </FB>
+        <FB Name="SkillsLabel" Type="IN_TEXT" x="3055.5554" y="2066.6665" >
+          <Parameter Name="IVAL" Value="&#34;&#34;" />
+        </FB>
+        <FB Name="ADDSKILL" Type="IN_EVENT" x="1694.4443" y="172.22221" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;ADD SKILL&#34;" />
+        </FB>
+        <FB Name="WorkerName" Type="IN_TEXT_S" x="822.22217" y="1177.7777" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="SIZE" Value="[5,5]" />
+          <Parameter Name="IVAL" Value="&#34;    &#34;" />
+        </FB>
+        <FB Name="ProductPoll" Type="IN_CHOICE" x="2588.8887" y="1083.3333" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="CHOICES" Value="&#34;Product_1,Prodcut_2&#34;" />
+        </FB>
+        <FB Name="ADDPRODUCT" Type="IN_EVENT" x="2638.8887" y="155.55554" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;ADD PRODUCT&#34;" />
+        </FB>
+        <FB Name="StatusSpace" Type="XSPACE" x="3988.8887" y="483.3333" >
+          <Parameter Name="LBLS" Value="[&#34;&#34;,&#34;ASSIGNED&#34;,&#34;JOB&#34;,&#34;&#34;,&#34;&#34;]" />
+          <Parameter Name="DIMS" Value="[0,0]" />
+          <Parameter Name="DIA" Value="0" />
+        </FB>
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="NameInput.INIT" dx1="283.3333" />
+          <Connection Source="ADDSKILL.IND" Destination="SkillPoll.REQ" dx1="27.777777" dx2="0.0" dy="-344.44443" />
+          <Connection Source="ADDSKILL.INITO" Destination="SkillPoll.INIT" dx1="27.777777" dx2="0.0" dy="-233.33333" />
+          <Connection Source="NameInput.IND" Destination="WorkerName.REQ" dx1="133.33333" dx2="94.44444" dy="-383.3333" />
+          <Connection Source="START.COLD" Destination="ADDSKILL.INIT" dx1="1849.9999" />
+          <Connection Source="NameInput.INITO" Destination="WorkerName.INIT" dx1="27.777777" dx2="227.77777" dy="-266.66666" />
+          <Connection Source="ADDPRODUCT.INITO" Destination="ProductPoll.INIT" dx1="27.777777" dx2="0.0" dy="-216.66666" />
+          <Connection Source="ADDPRODUCT.IND" Destination="ProductPoll.REQ" dx1="27.777777" dx2="0.0" dy="-327.77777" />
+          <Connection Source="START.COLD" Destination="ADDPRODUCT.INIT" dx1="3861.111" />
+          <Connection Source="ProductPoll.INITO" Destination="StatusSpace.INIT" dx1="405.55554" />
+        </EventConnections>
+      </FBNetwork>
+    </Resource>
+  </Device>
+</System>

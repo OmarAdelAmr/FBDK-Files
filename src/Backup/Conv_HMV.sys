@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE System SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<System Name="Conv_HMV" Comment="System Configuration" >
+  <Identification Standard="61499-1" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.3" Author="JHC" Date="2003-12-05" Remarks="Renamed from NEWSYSTEM." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.2" Author="JHC" Date="2002-11-05" Remarks="Fixed missing (empty) FBD in Application." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2002-01-17" Remarks="Minor cleanup" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2000-05-27" />
+  <Application Name="APP1" >
+    <FBNetwork >
+    </FBNetwork>
+  </Application>
+  <Device Name="View" Type="FRAME_DEVICE" x="616.6666" y="194.44444" >
+    <Parameter Name="BOUNDS" Value="[100,100,200,100]" />
+    <Resource Name="viewPanel" Type="PANEL_RESOURCE" x="761.1111" y="50.0" >
+      <FBNetwork >
+        <FB Name="ConvyorView" Type="MECH_VIEW" x="4238.8887" y="50.0" >
+          <Parameter Name="STYLE" Value="VSTYLE#PALLET" />
+          <Parameter Name="WKPC" Value="[255,255,0]" />
+          <Parameter Name="BKGD" Value="[0,0,0]" />
+          <Parameter Name="LEN" Value="8" />
+          <Parameter Name="DIA" Value="20" />
+          <Parameter Name="DIR" Value="0" />
+        </FB>
+        <FB Name="palletPosition" Type="SUBL_1" x="1316.6666" y="1027.7777" >
+          <Parameter Name="ID" Value="&#34;Pallet position&#34;" />
+        </FB>
+        <FB Name="convrt" Type="FB_INT_UINT" x="2133.3333" y="1138.8888" />
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="palletPosition.INIT" dx1="305.55554" />
+          <Connection Source="palletPosition.INITO" Destination="ConvyorView.INIT" dx1="305.55554" />
+          <Connection Source="palletPosition.IND" Destination="convrt.REQ" dx1="72.22222" />
+          <Connection Source="convrt.CNF" Destination="ConvyorView.REQ" dx1="722.22217" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="palletPosition.RD_1" Destination="convrt.IN" dx1="244.44443" />
+          <Connection Source="convrt.OUT" Destination="ConvyorView.POS" dx1="938.88885" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+  </Device>
+  <Device Name="HMI" Type="FRAME_DEVICE" x="1827.7777" y="183.33333" >
+    <Parameter Name="BOUNDS" Value="[300,100,200,100]" />
+    <Resource Name="hmiPanel" Type="PANEL_RESOURCE" x="355.55554" y="38.888885" >
+      <FBNetwork >
+        <FB Name="out" Type="OUT_BOOL" x="5138.8887" y="127.77777" >
+          <Parameter Name="QI" Value="1" />
+          <Parameter Name="LABEL" Value="&#34;MOTOR STATUS&#34;" />
+        </FB>
+        <FB Name="MotorState" Type="IN_CHOICE" x="1172.2222" y="94.44444" >
+          <Parameter Name="CHOICES" Value="&#34;OFF,ON&#34;" />
+          <Parameter Name="QI" Value="1" />
+        </FB>
+        <FB Name="index" Type="E_SEL_UINT" x="2227.7776" y="1094.4445" >
+          <Parameter Name="IN0" Value="1" />
+        </FB>
+        <FB Name="cmp" Type="FB_EQ" x="3216.6665" y="427.77777" />
+        <FB Name="motorStatus" Type="PUBL_1" x="6155.555" y="127.77777" >
+          <Parameter Name="ID" Value="&#34;Status of the motor&#34;" />
+        </FB>
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="MotorState.INIT" dx1="611.1111" />
+          <Connection Source="MotorState.IND" Destination="index.EI0" dx1="272.2222" />
+          <Connection Source="MotorState.INITO" Destination="out.INIT" dx1="572.2222" />
+          <Connection Source="index.EO" Destination="cmp.REQ" dx1="377.77777" />
+          <Connection Source="cmp.CNF" Destination="out.REQ" dx1="522.2222" />
+          <Connection Source="out.INITO" Destination="motorStatus.INIT" dx1="350.0" />
+          <Connection Source="out.CNF" Destination="motorStatus.REQ" dx1="327.77777" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="index.OUT" Destination="cmp.IN2" dx1="499.99997" />
+          <Connection Source="MotorState.I" Destination="cmp.IN1" dx1="750.0" />
+          <Connection Source="cmp.OUT" Destination="out.IN" dx1="777.7778" />
+          <Connection Source="cmp.OUT" Destination="motorStatus.SD_1" dx1="2194.4443" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+  </Device>
+  <Device Name="Model" Type="FRAME_DEVICE" x="1238.8888" y="994.4444" >
+    <Parameter Name="BOUNDS" Value="[200,200,100,100]" Comment="Model that checks the status of the motor." />
+    <Resource Name="modelPanel" Type="PANEL_RESOURCE" x="472.2222" y="1088.8888" >
+      <FBNetwork >
+        <FB Name="motorStatus" Type="SUBL_1" x="1266.6666" y="372.2222" >
+          <Parameter Name="ID" Value="&#34;Status of the motor&#34;" />
+        </FB>
+        <FB Name="add" Type="FB_ADD_INT" x="3794.4443" y="194.44444" >
+          <Parameter Name="IN1" Value="5" />
+        </FB>
+        <FB Name="enabler" Type="E_SELECT" x="2350.0" y="655.55554" />
+        <FB Name="palletPosition" Type="PUBL_1" x="7633.333" y="366.66666" >
+          <Parameter Name="ID" Value="&#34;Pallet position&#34;" />
+        </FB>
+        <FB Name="clk" Type="E_CYCLE" x="3083.3333" y="1422.2222" >
+          <Parameter Name="DT" Value="t#1s" />
+        </FB>
+        <FB Name="diabler" Type="E_SELECT" x="2338.889" y="1533.3333" />
+        <FB Name="limitCheck" Type="FB_EQ" x="5366.6665" y="1188.8888" />
+        <FB Name="threshhold" Type="FB_SEL_INT" x="4500.0" y="1188.8888" >
+          <Parameter Name="IN1" Value="0" />
+          <Parameter Name="IN0" Value="100" />
+          <Parameter Name="G" Value="0" />
+        </FB>
+        <FB Name="selector" Type="FB_SEL_INT" x="6316.6665" y="2188.889" />
+        <FB Name="initValue" Type="FB_SEL_INT" x="4544.4443" y="2411.111" >
+          <Parameter Name="G" Value="1" />
+          <Parameter Name="IN0" Value="100" />
+          <Parameter Name="IN1" Value="0" />
+        </FB>
+        <EventConnections>
+          <Connection Source="START.COLD" Destination="motorStatus.INIT" dx1="94.44444" />
+          <Connection Source="enabler.EO" Destination="clk.START" dx1="138.88889" />
+          <Connection Source="clk.EO" Destination="add.REQ" dx1="138.88889" />
+          <Connection Source="diabler.EO" Destination="clk.STOP" dx1="122.22221" />
+          <Connection Source="motorStatus.IND" Destination="enabler.EI1" dx1="538.88885" />
+          <Connection Source="motorStatus.IND" Destination="diabler.EI0" dx1="533.3333" />
+          <Connection Source="threshhold.CNF" Destination="limitCheck.REQ" dx1="211.1111" />
+          <Connection Source="limitCheck.CNF" Destination="selector.REQ" dx1="294.44443" />
+          <Connection Source="selector.CNF" Destination="palletPosition.REQ" dx1="344.44443" />
+          <Connection Source="motorStatus.INITO" Destination="palletPosition.INIT" dx1="1300.0" />
+          <Connection Source="add.CNF" Destination="initValue.REQ" dx1="33.333332" />
+          <Connection Source="initValue.CNF" Destination="threshhold.REQ" dx1="27.777777" dx2="188.88889" dy="-333.3333" />
+        </EventConnections>
+        <DataConnections>
+          <Connection Source="motorStatus.RD_1" Destination="enabler.G" dx1="122.22221" />
+          <Connection Source="add.OUT" Destination="palletPosition.SD_1" dx1="800.0" />
+          <Connection Source="motorStatus.RD_1" Destination="diabler.G" dx1="122.22221" />
+          <Connection Source="threshhold.OUT" Destination="limitCheck.IN2" dx1="66.666664" />
+          <Connection Source="add.OUT" Destination="limitCheck.IN1" dx1="800.0" />
+          <Connection Source="limitCheck.OUT" Destination="selector.G" dx1="138.88889" />
+          <Connection Source="add.OUT" Destination="selector.IN0" dx1="800.0" />
+          <Connection Source="selector.OUT" Destination="add.IN2" dx1="249.99998" dx2="211.1111" dy="677.7778" />
+          <Connection Source="initValue.OUT" Destination="selector.IN1" dx1="266.66666" />
+        </DataConnections>
+      </FBNetwork>
+    </Resource>
+  </Device>
+</System>

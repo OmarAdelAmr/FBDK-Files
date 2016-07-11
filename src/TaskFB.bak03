@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="TaskFB" Comment="JADE WORKER" >
+  <Identification Standard="61499-1" />
+  <VersionInfo Organization="Fraunhofer IGD" Version="1.0" Author="Ahmed" Date="2014-04-22" />
+  <CompilerInfo header="package fb.rt;" >
+    <Compiler Language="Java" Vendor="Sun" Product="JDK" Version="1.5.0" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventOutputs>
+      <Event Name="TEACH" >
+      </Event>
+      <Event Name="RETEACH" >
+      </Event>
+      <Event Name="EXECUTE" >
+      </Event>
+    </EventOutputs>
+    <OutputVars>
+      <VarDeclaration Name="NewTaskName" Type="WSTRING" />
+      <VarDeclaration Name="ReteachTaskName" Type="WSTRING" />
+      <VarDeclaration Name="ExecuteTaskName" Type="WSTRING" />
+    </OutputVars>
+  </InterfaceList>
+</FBType>

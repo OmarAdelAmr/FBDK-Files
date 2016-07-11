@@ -1,0 +1,104 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+<META NAME="GENERATOR" CONTENT="Eclipse HTML Editor">
+<TITLE>Local Multicast Design Pattern</TITLE>
+</HEAD>
+
+<BODY>
+
+<H2 ALIGN="CENTER">Design Pattern: Local&nbsp;Multicast</H2>
+<H3><A NAME="Problem"></A>Problem Statement</H3>
+<P>Provide efficient intraprocess multicasting of data without
+resorting to more expensive interprocess communication methods such as
+UDP multicast.</P>
+<H3><A NAME="Framework"></A>Framework</H3>
+<P>In contrast to the <TT>PUBLISH </TT>and<TT> SUBSCRIBE</TT> types
+described in Annex F.2.1 of <A
+	HREF="http://www.holobloc.com/stds/iec/sc65bwg7tf3/html/news.htm"
+	TARGET="_blank">IEC 61499-1</A>, which use communication networks for
+exchange of data, instances of <TT>PUBL_n</TT> and <TT>SUBL_n</TT>
+service interface types are used for local (within the same runtime
+process) multicast publishing and subscribing of data. The service
+interface types for <TT>n=1</TT> are illustrated <A HREF="#Viewer">below</A>.
+In addition to increased speed of data transfer vs. <TT>PUBLISH/SUBSCRIBE</TT>,
+these blocks offer the following convenience features:</P>
+
+<UL>
+	<LI>The local multicast group is identified by the <TT>ID</TT>
+	input. For convenience, the default value of this input is set to the
+	function block's instance name. This can be overridden by connection to
+	a non-default variable or configuration parameter.
+	<LI>The number of data elements is given by the <TT>n</TT> suffix
+	of the function block type. The number of data elements, say n<TT><SUB>P</SUB></TT>,
+	transmitted by a <TT>PUBL_n </TT>instance on a given channel need not
+	match the number of output elements, say <TT>n<SUB>S</SUB></TT>, of a <TT>SUBL_n</TT>
+	instance on the same channel. If n<TT><SUB>P</SUB>&gt;</TT>n<TT><SUB>S</SUB></TT>,
+	the <TT>SUBL_n</TT> instance will ignore the extra data elements; if n<TT><SUB>P</SUB>&lt;</TT>n<TT><SUB>S</SUB></TT>
+	the extra outputs of the <TT>SUBL_n</TT> instance will remain at their
+	initial values.
+	<LI>If a <TT>RD_i</TT> output of a <TT>SUBL_n</TT> block is not
+	connected or is connected to a variable of a different data type than
+	that of the corresponding <TT>SD_i</TT> input of a <TT>PUBL_n</TT>
+	block on the same local mulitcast channel, the <TT>SD_i</TT> value will
+	not be copied to the <TT>RD_i</TT> variable and no error condition will
+	result.
+</UL>
+
+<CENTER>
+<P>[<A NAME="Viewer"></A><A HREF="../../FBViewer.html">Viewer
+Help</A>]<BR>
+<TABLE BORDER="1">
+	<TR>
+		<TD><APPLET CODE="FBViewer" WIDTH="425" HEIGHT="375"
+			ALIGN="BOTTOM" ARCHIVE="../../viewer.jar">
+			<PARAM NAME="SRC" VALUE="PUBL_1">
+		</APPLET></TD>
+		<TD><APPLET CODE="FBViewer" WIDTH="425" HEIGHT="375"
+			ALIGN="BOTTOM" ARCHIVE="../../viewer.jar">
+			<PARAM NAME="SRC" VALUE="SUBL_1">
+		</APPLET></TD>
+	</TR>
+</TABLE>
+</P>
+</CENTER>
+<H3><A NAME="Methodology"></A>Methodology</H3>
+<P>As noted <A HREF="#Framework">above</A>, the use of the local
+multicast function block types <TT>PUBL_n/SUBL_n</TT> is subject to
+substantially fewer restrictions than the use of the corresponding
+distributed multicast types <TT>PUBLISH_n/SUBSCRIBE_n</TT>. As a result,
+care must be exercised when converting from a design which uses local
+multicast to a design using distributed multicast. In particular, for
+distributed multicast:</P>
+
+<UL>
+	<LI>The <TT>ID</TT> input must be an appropriate identifier for a
+	distributed multicast group, such as a UDP multicast group address.
+	<LI>The number of data elements given by the <TT>n</TT> suffix of
+	the function block type must be identical for all publishers and
+	subscribers in distributed multicast group.
+	<LI>The <TT>SD_i (i=0,1,...,n-1)</TT> inputs of <TT>PUBLISH_n</TT>
+	instances must be connected to variables of concrete type, i.e., not
+	the abstract <TT>ANY</TT> type, in order to permit their proper
+	encoding for transmission. Similar restrictions apply to the
+	corresponding <TT>RD_i (i=0,1,...,n-1)</TT> outputs of <TT>SUBSCRIBE_n</TT>
+	instances, and the types of each <TT>SD_i </TT>variable and the
+	corresponding <TT>RD_i</TT> variable must match at both ends of the
+	multicast connection for each value of<TT> i</TT>.
+</UL>
+
+<P>For examples of the application of this methodology see the
+documentation of the <A HREF="../mvc/index.htm" TARGET="_top">layered
+MVC</A> design pattern.</P>
+<CENTER>
+<P><I>Last updated: 2007-09-11.</I><BR>
+&copy;2006,2007 <A HREF="http://www.holobloc.com" TARGET="_blank">Holobloc
+Inc</A><BR>
+Licensed under the <A
+	HREF="http://www.opensource.org/licenses/afl-3.0.php">Academic Free
+License version 3.0</A>.</P>
+</CENTER>
+</BODY>
+</HTML>

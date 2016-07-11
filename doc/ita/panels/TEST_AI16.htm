@@ -1,0 +1,71 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+<META NAME="GENERATOR" CONTENT="Eclipse HTML Editor">
+<TITLE>APPLICATION TEST_AI16</TITLE>
+</HEAD>
+<BODY>
+<CENTER>
+<H2>APPLICATION TEST_AI16</H2>
+<TABLE BORDER="1">
+	<TR>
+		<TD><A HREF="#Viewer">This application</A> is part of the <A
+			HREF="CODEC_TEST2.htm"><TT>CODEC_TEST2</TT></A> system configuration.
+		It utilizes instances of <A HREF="../../common/IN_ANY.htm"><TT>IN_ANY</TT></A> and
+		<A HREF="../../common/OUT_ANY.htm"><TT>OUT_ANY</TT></A> for input and
+		output of transmitted data, respectively. This data is of the derived
+		data type <TT>ANALOG_16_INPUT_DATAI</TT> as shown at the right and
+		further described in subclause 2.3.3.1 and Table 12 of <A
+			HREF="http://www.holobloc.com/stds/iec/sc65bwg7tf3/html/news.htm">IEC
+		61131-3</A>.</TD>
+		<TD><APPLET CODE="FBViewer" WIDTH="401" HEIGHT="283" ALIGN="BOTTOM"
+			ARCHIVE="../../viewer.jar">
+			<PARAM NAME="src" VALUE="ANALOG_16_INPUT_DATAI">
+		</APPLET></TD>
+	</TR>
+	<TR>
+		<TD>This is the initial situation before transmission of data. Note
+		that the partial array <TT>[1,2,3]</TT> to be transmitted is different
+		from the initialized value of <TT>[0,1,2,3]</TT> in the receiver.</TD>
+		<TD><IMG SRC="images/TEST_AI16.gif" WIDTH="397" HEIGHT="262"></TD>
+	</TR>
+	<TR>
+		<TD>Here is the situation after data transmission has been triggered
+		by pressing the <B>Enter</B> key in the lower left text field (data in
+		the monitor window has been reformatted for easier reading). The array
+		data has been transmitted with an ASN.1 tag of <TT>PRIVATE 15
+		CONSTRUCTED (EF</TT> hexadecimal), with a length of 16 items (<TT>0010</TT>
+		hexadecimal), and an item tag of <TT>CE (PRIVATE 14)</TT> for items of
+		type <TT>ANALOG_DATA</TT>. Note that the first 5 items for which
+		values are not given in the lower left field are filled with the
+		default value for the first 8 data positions of <TT>-4095</TT> (<TT>F001</TT>
+		hexadecimal), while the last 8 items are filled with their default
+		values of <TT>4095</TT> (<TT>0FFF</TT>).</TD>
+		<TD><IMG SRC="images/TEST_AI162.gif" WIDTH="398" HEIGHT="267"></TD>
+	</TR>
+</TABLE>
+</P>
+
+<P>[<A NAME="Viewer"></A><A HREF="../../FBViewer.html" TARGET="help">Viewer
+Help</A>]<BR>
+<TABLE BORDER="1">
+	<TR>
+		<TD><APPLET CODE="FBViewer" WIDTH="660" HEIGHT="460"
+			ARCHIVE="../../viewer.jar">
+			<PARAM NAME="src" VALUE="CODEC_TEST2">
+			<PARAM NAME="fbd" VALUE="CODEC_TEST2.TEST_AI16">
+		</APPLET></TD>
+	</TR>
+</TABLE>
+</P>
+<P><I>Last updated: 2006-04-17.</I><BR>
+&copy;2006 <A HREF="http://www.holobloc.com" TARGET="_blank">Holobloc
+Inc</A><BR>
+Licensed under the <A
+	HREF="http://www.opensource.org/licenses/afl-3.0.php">Academic Free
+License version 3.0</A>.</P>
+</CENTER>
+</BODY>
+</HTML>

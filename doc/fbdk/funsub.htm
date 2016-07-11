@@ -1,0 +1,109 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<HTML>
+<HEAD>
+<META CONTENT="text/html; charset=ISO-8859-1" HTTP-EQUIV="content-type">
+<TITLE>FBDK - Functional Substitutions</TITLE>
+<LINK REL="icon" HREF="../../fbicon.png" TYPE="image/png">
+<META CONTENT="JHC" NAME="author">
+</HEAD>
+<BODY>
+<H2 ALIGN="CENTER">Functional Substitutions</H2>
+<CENTER>
+<TABLE BORDER="1" WIDTH="640">
+	<TR>
+		<TD COLSPAN="2">This table documents the recommended
+		substitutions of IEC 61499-style function block types for those IEC
+		61131-3 function block types and functions that are no longer
+		supported by the <A HREF="funcprog.htm">Functional Programming</A>
+		pattern for programming in the IEC 61131-3 FBD language.</TD>
+	</TR>
+	<TR>
+		<TH>Unsupported IEC 61131-3<BR>
+		Function Block Type</TH>
+		<TH>Recommended IEC 61499<BR>
+		Function Block Type</TH>
+	</TR>
+	<TR ALIGN="CENTER">
+		<TD><TT>CTD</TT></TD>
+		<TD><TT>E_CTD</TT></TD>
+	</TR>
+	<TR ALIGN="CENTER">
+		<TD><TT>CTU</TT></TD>
+		<TD><TT>E_CTU</TT></TD>
+	</TR>
+	<TR ALIGN="CENTER">
+		<TD><TT>CTUD</TT></TD>
+		<TD><TT>E_CTUD</TT></TD>
+	</TR>
+	<TR ALIGN="CENTER">
+		<TD><TT>CTUD</TT></TD>
+		<TD><TT>E_CTUD</TT></TD>
+	</TR>
+	<TR ALIGN="CENTER">
+		<TD><TT>F_TRIG</TT></TD>
+		<TD><TT>E_F_TRIG</TT></TD>
+	</TR>
+	<TR ALIGN="CENTER">
+		<TD><TT>R_TRIG</TT></TD>
+		<TD><TT>E_R_TRIG</TT></TD>
+	</TR>
+	<TR ALIGN="CENTER">
+		<TD><TT>RS</TT></TD>
+		<TD><TT>E_RS</TT></TD>
+	</TR>
+	<TR ALIGN="CENTER">
+		<TD><TT>SR</TT></TD>
+		<TD><TT>E_SR</TT></TD>
+	</TR>
+</TABLE>
+<P>In the table below, the notation <TT>xxx</TT> represents a
+supported data type, e.g., <TT>REAL</TT>.</P>
+<TABLE BORDER="1" WIDTH="640">
+	<TR>
+		<TH>Unsupported<BR>
+		IEC 61131-3 Function</TH>
+		<TH>Recommended IEC 61499<BR>
+		Function Block Type</TH>
+	</TR>
+	<TR ALIGN="CENTER">
+		<TD><TT>DATE_AND_TIME</TT> functions,<BR>
+		e.g., <TT>MAX_DATE_AND_TIME</TT></TD>
+		<TD><TT>FB_xxx_DT</TT>,<BR>
+		e.g., <TT>FB_MAX_DT</TT></TD>
+	</TR>
+	<TR ALIGN="CENTER">
+		<TD><TT>GE, GT, LE, LT, LIMIT, MIN, MAX</TT><BR>
+		for bit strings</TD>
+		<TD>Not supported for<BR>
+		<TT>BOOL, BYTE, WORD, DWORD, LWORD</TT></TD>
+	</TR>
+	<TR ALIGN="CENTER">
+		<TD><TT>DIV_xxx</TT></TD>
+		<TD><TT>FB_DIV_xxx</TT></TD>
+	</TR>
+	<TR ALIGN="CENTER">
+		<TD><TT>MOD_xxx</TT></TD>
+		<TD><TT>FB_MOD_xxx</TT></TD>
+	</TR>
+	<TR ALIGN="CENTER">
+		<TD><TT>ROL_xxx</TT></TD>
+		<TD><TT>FB_ROL_xxx</TT></TD>
+	</TR>
+	<TR ALIGN="CENTER">
+		<TD><TT>ROR_xxx</TT></TD>
+		<TD><TT>FB_ROR_xxx</TT></TD>
+	</TR>
+	<TR ALIGN="CENTER">
+		<TD><TT>SINT</TT> operations</TD>
+		<TD>Not supported</TD>
+	</TR>
+	<TR ALIGN="CENTER">
+		<TD><TT>WSTRING</TT> functions (<TT>CONCAT</TT>, etc.)</TD>
+		<TD><TT>FB_CONCAT</TT>, etc.</TD>
+	</TR>
+</TABLE>
+<P><I>Last updated:&nbsp; 2006-09-14.</I><BR>
+&copy;2006 Holobloc Inc. All rights reserved.</P>
+</CENTER>
+</BODY>
+</HTML>

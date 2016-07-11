@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="ConveyorControl" Comment="Decides Conveyor contorl" >
+  <Identification Standard="61499-2" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.2" Author="JHC" Date="2003-12-04" Remarks="Renamed for better indexing." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.1" Author="JHC" Date="2002-11-05" Remarks="Corrected missing ST element in Algorithm REQ." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2000-05-30" />
+  <CompilerInfo header="package fb.rt.template;" >
+    <Compiler Language="Java" Vendor="IBM" Product="Jikes" Version="1.06" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" >
+        <With Var="QI" />
+      </Event>
+      <Event Name="TransportFinish" Comment="ConveyorEndsTransportationOfPallet" >
+        <With Var="NextBsy" />
+      </Event>
+      <Event Name="NextGetsIdle" >
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" Comment="Initialization Confirm" >
+        <With Var="ConvState" />
+      </Event>
+      <Event Name="Unload" >
+      </Event>
+      <Event Name="UpdateConvState" >
+        <With Var="ConvState" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="QI" Type="BOOL" Comment="Input event qualifier" />
+      <VarDeclaration Name="NextBsy" Type="BOOL" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="ConvState" Type="BOOL" Comment="Output event qualifier" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <ECC >
+      <ECState Name="START" Comment="Initial State" x="461.11108" y="772.22217" >
+      </ECState>
+      <ECState Name="INIT" Comment="Initialization" x="688.88885" y="61.111107" >
+        <ECAction Algorithm="INIT" Output="INITO" />
+      </ECState>
+      <ECState Name="Change" x="2644.4443" y="1244.4443" >
+        <ECAction Algorithm="TransEx" Output="Unload" />
+      </ECState>
+      <ECState Name="Block" x="2583.3333" y="238.88889" >
+      </ECState>
+      <ECTransition Source="START" Destination="INIT" Condition="INIT" x="783.3333" y="383.3333" />
+      <ECTransition Source="INIT" Destination="START" Condition="1" x="461.11108" y="177.77777" />
+      <ECTransition Source="Change" Destination="START" Condition="1" x="1400.0" y="1311.1111" />
+      <ECTransition Source="Block" Destination="Change" Condition="NextGetsIdle" x="2738.8887" y="622.22217" />
+      <ECTransition Source="START" Destination="Block" Condition="TransportFinish&#38;NextBsy" x="1705.5555" y="238.88889" />
+      <ECTransition Source="START" Destination="Change" Condition="TransportFinish&#38;NOT NextBsy" x="1572.2222" y="772.22217" />
+    </ECC>
+  <Algorithm Name="INIT" Comment="Initialization algorithm" >
+    <ST Text="" />
+  </Algorithm>
+  <Algorithm Name="TransEx" Comment="Normally executed algorithm" >
+    <ST Text="ConvState := TRUE;&#10;" />
+  </Algorithm>
+  </BasicFB>
+</FBType>

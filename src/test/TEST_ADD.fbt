@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="TEST_ADD" Comment="Test ADD functions" >
+  <Identification Standard="IEC 61499-1" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.0" Author="JHC" Date="2006-09-11" />
+  <CompilerInfo header="package fb.rt.test;" classdef="SimpleFB" >
+    <Compiler Language="Java" Vendor="Sun" Product="JDK" Version="1.5.0" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="REQ" >
+        <With Var="IN1I" />
+        <With Var="IN2I" />
+        <With Var="IN2D" />
+        <With Var="IN1L" />
+        <With Var="IN2L" />
+        <With Var="IN1U" />
+        <With Var="IN2U" />
+        <With Var="IN1D" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="CNF" >
+        <With Var="OUTI" />
+        <With Var="OUTD" />
+        <With Var="OUTL" />
+        <With Var="OUTU" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="IN1I" Type="INT" />
+      <VarDeclaration Name="IN2I" Type="INT" />
+      <VarDeclaration Name="IN1D" Type="DINT" />
+      <VarDeclaration Name="IN2D" Type="DINT" />
+      <VarDeclaration Name="IN1L" Type="LINT" />
+      <VarDeclaration Name="IN2L" Type="LINT" />
+      <VarDeclaration Name="IN1U" Type="UINT" />
+      <VarDeclaration Name="IN2U" Type="UINT" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="OUTI" Type="INT" />
+      <VarDeclaration Name="OUTD" Type="DINT" />
+      <VarDeclaration Name="OUTL" Type="LINT" />
+      <VarDeclaration Name="OUTU" Type="UINT" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+  <Algorithm Name="REQ" >
+    <FBD >
+      <FB Name="ADDI" Type="ADD_INT" x="238.88889" y="11.111111" />
+      <FB Name="ADDD" Type="ADD_DINT" x="966.6666" y="11.111111" />
+      <FB Name="ADDL" Type="ADD_LINT" x="238.88889" y="555.55554" />
+      <FB Name="ADDU" Type="ADD_UINT" x="1005.55554" y="544.4444" />
+      <DataConnections>
+        <Connection Source="IN1I" Destination="ADDI.IN1" dx1="138.88889" />
+        <Connection Source="IN2I" Destination="ADDI.IN2" dx1="138.88889" />
+        <Connection Source="ADDI.OUT" Destination="OUTI" dx1="622.22217" />
+        <Connection Source="IN1D" Destination="ADDD.IN1" dx1="855.55554" />
+        <Connection Source="IN2D" Destination="ADDD.IN2" dx1="855.55554" />
+        <Connection Source="ADDD.OUT" Destination="OUTD" dx1="1400.0" />
+        <Connection Source="IN1L" Destination="ADDL.IN1" dx1="127.77777" />
+        <Connection Source="IN2L" Destination="ADDL.IN2" dx1="127.77777" />
+        <Connection Source="ADDL.OUT" Destination="OUTL" dx1="666.6666" />
+        <Connection Source="IN1U" Destination="ADDU.IN1" dx1="894.4444" />
+        <Connection Source="IN2U" Destination="ADDU.IN2" dx1="894.4444" />
+        <Connection Source="ADDU.OUT" Destination="OUTU" dx1="1438.8888" />
+      </DataConnections>
+    </FBD>
+  </Algorithm>
+  </BasicFB>
+</FBType>

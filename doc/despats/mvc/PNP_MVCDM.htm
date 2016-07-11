@@ -1,0 +1,59 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+<META NAME="GENERATOR" CONTENT="Eclipse HTML Editor">
+<META NAME="Standard" CONTENT="IEC 61499">
+<META NAME="Classification" CONTENT="Simulation">
+<META NAME="ApplicationDomain" CONTENT="Assembly">
+<META NAME="Function" CONTENT="Control/Diagnostics">
+<META NAME="Type" CONTENT="Pick &amp; Place">
+<META NAME="Description" CONTENT="Mechatronic Configuration">
+<TITLE>SYSTEM PNP_MVCDM</TITLE>
+</HEAD>
+<BODY>
+<H3>8. Perform Mechatronic Design</H3>
+<P><A HREF="#Viewer">This system configuration</A> illustrates a <A
+	HREF="syseng2.htm#9">mechatronic design</A> of the <A
+	HREF="pnpsket.htm">pick and place</A> example. This is done by
+modifying the distributed <A HREF="PNP_MVCDR.htm"><TT>PNP_MVCDR</TT></A>
+configuration as follows:</P>
+<UL>
+	<LI><B>Model+View</B> functions for the conveyor and
+	pick-and-place unit are partitioned into separate, distributed <TT>CNV</TT>
+	and <TT>PNP</TT> devices, respectively.</LI>
+	<LI><B>Control</B> of the conveyor is already localized in the <TT>CNV</TT>
+	device.</LI>
+	<LI><B>Control</B> of the pick-and-place unit is moved from the <TT>CONTROL.AUTO_CTL</TT>
+	resource of the <A HREF="PNP_MVCDR.htm"><TT>PNP_MVCDR</TT></A>
+	configuration to the <TT>PNP.AUTO_CTL</TT> resource of the <TT>PNP_MVCDM</TT>
+	configuration.</LI>
+	<LI><B>Diagnostics</B> for the pick-and-place unit are moved from
+	the <TT>DIAGNOSTICS.MONITOR</TT> resource of the <A
+		HREF="PNP_MVCDR.htm"><TT>PNP_MVCDR</TT></A> configuration to the <TT>PNP.DIAGNOSTICS</TT>
+	resource of the <TT>PNP_MVCDM</TT> configuration.</LI>
+	<LI><B>HMI</B> and mode control functions from the <A
+		HREF="PNP_MVCDR.htm"><TT>PNP_MVCDR</TT></A> configuration are
+	allocated to the <TT>HMI</TT> device of the <TT>PNP_MVCDM</TT>
+	configuration.</LI>
+	<LI><A HREF="../tags/index.htm" TARGET="_blank">Tagged data</A> is
+	easily re-allocated in the new functional distribution, using a <TT>TAGS</TT>
+	resource in each device.</LI>
+</UL>
+<CENTER>[<A NAME="Viewer" HREF="../../FBViewer.html"
+	TARGET="_blank">Viewer Help</A>]<BR>
+<TABLE BORDER="1">
+	<TR>
+		<TD><APPLET CODE="FBViewer" ARCHIVE="../../viewer.jar"
+			WIDTH="990" HEIGHT="614"></APPLET></TD>
+	</TR>
+</TABLE>
+<BR>
+<I>Last updated: 2007-10-16.</I><BR>
+&copy;2006,2007 <A HREF="http://www.holobloc.com" TARGET="_blank">Holobloc
+Inc</A><BR>
+Licensed under the <A
+	HREF="http://www.opensource.org/licenses/afl-3.0.php">Academic Free
+License version 3.0</A>.</CENTER>
+</BODY>
+</HTML>

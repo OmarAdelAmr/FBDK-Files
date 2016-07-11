@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="FB_MUX_DT" Comment="See FB_MUX_ANY" >
+  <Identification Standard="IEC 61499" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.1" Author="JHC" Date="2006-09-13" Remarks="Moved to fb.rt.select." />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2004-12-15" Remarks="Converted from SRC format." />
+  <CompilerInfo header="package fb.rt.select;" >
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="REQ" >
+        <With Var="K" />
+        <With Var="IN0" />
+        <With Var="IN1" />
+        <With Var="IN2" />
+        <With Var="IN3" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="CNF" >
+        <With Var="OUT" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="K" Type="UINT" />
+      <VarDeclaration Name="IN0" Type="DATE_AND_TIME" />
+      <VarDeclaration Name="IN1" Type="DATE_AND_TIME" />
+      <VarDeclaration Name="IN2" Type="DATE_AND_TIME" />
+      <VarDeclaration Name="IN3" Type="DATE_AND_TIME" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="OUT" Type="DATE_AND_TIME" />
+    </OutputVars>
+  </InterfaceList>
+</FBType>

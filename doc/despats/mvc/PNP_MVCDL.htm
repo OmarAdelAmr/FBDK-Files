@@ -1,0 +1,51 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+<META NAME="GENERATOR" CONTENT="Eclipse HTML Editor">
+<META NAME="Standard" CONTENT="IEC 61499">
+<META NAME="Classification" CONTENT="Simulation">
+<META NAME="ApplicationDomain" CONTENT="Assembly">
+<META NAME="Function" CONTENT="Control/Diagnostics">
+<META NAME="Type" CONTENT="Pick &amp; Place">
+<TITLE>SYSTEM PNP_MVCDL</TITLE>
+</HEAD>
+<BODY>
+<H3>6. Develop and Test Diagnostics</H3>
+<P><A HREF="#Viewer">This system configuration</A> implements the
+layered <A HREF="syseng2.htm#6"><B>Model+View+Control+Diagnostics</B>
+testing architecture</A> for the <A HREF="pnpsket.htm">pick and place
+example</A>.</P>
+
+<CENTER><IMG SRC="images/PNP_MVCDL.png"></CENTER>
+<UL>
+	<LI>The <TT>PNP</TT> and <TT>CONTROL</TT> devices encapsulate
+	combined architectural functions in the same manner as in the <TT><A
+		HREF="PNP_MVCL.htm">PNP_MVCL</A></TT> example.</LI>
+	<LI>The <TT>DIAGNOSTICS</TT> device implements the <B>Diagnostic</B>
+	functions. These are implemented in the <TT>MONITOR</TT> resource by
+	four instances of the <A HREF="MECH1_DIAGL.htm"><TT>MECH1_DIAGL</TT></A>
+	type for forward and reverse motion of the <I>x</I> and <I>y</I> axes,
+	respectively. Diagnostic messages are logged in the <TT>LOG</TT>
+	resource by an instance of the <A HREF="DIAG_LOG.htm"><TT>DIAG_LOG</TT></A>
+	type.</LI>
+	<LI>Inter-layer communication is implemented with the <A
+		HREF="../publsubl/index.htm">local multicast</A> pattern.</LI>
+</UL>
+<CENTER>[<A NAME="Viewer" HREF="../../FBViewer.html"
+	TARGET="_blank">Viewer Help</A>]<BR>
+<TABLE BORDER="1">
+	<TR>
+		<TD><APPLET CODE="FBViewer" ARCHIVE="../../viewer.jar"
+			WIDTH="922" HEIGHT="591"></APPLET></TD>
+	</TR>
+</TABLE>
+<BR>
+<I>Last updated: 2007-09-25.</I><BR>
+&copy;2006,2007 <A HREF="http://www.holobloc.com" TARGET="_blank">Holobloc
+Inc</A><BR>
+Licensed under the <A
+	HREF="http://www.opensource.org/licenses/afl-3.0.php">Academic Free
+License version 3.0</A>.</CENTER>
+</BODY>
+</HTML>

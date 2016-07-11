@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="VIEW_HMI" Comment="HMI for testing Views with Position and Color" >
+  <Identification Standard="61499-1" ApplicationDomain="MVA_CDA" Function="HMI" />
+  <VersionInfo Organization="Rockwell Automation" Version="0.0" Author="JHC" Date="2001-03-04" />
+  <CompilerInfo header="package fb.rt.omac;
+import fb.rt.hmi.*;" >
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" >
+        <With Var="LBL" />
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="INITO" >
+        <With Var="POS" />
+        <With Var="WKPC" />
+      </Event>
+      <Event Name="IND" >
+        <With Var="POS" />
+        <With Var="WKPC" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="LBL" Type="WSTRING" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="POS" Type="UINT" />
+      <VarDeclaration Name="WKPC" Type="COLOR" />
+    </OutputVars>
+  </InterfaceList>
+  <FBNetwork >
+    <FB Name="LABEL" Type="FB_LABEL" x="223.5294" y="11.7647" />
+    <FB Name="CLR" Type="IN_COLOR" x="747.0588" y="11.7647" />
+    <FB Name="POSIT" Type="FB_SLIDER" x="1364.7058" y="11.7647" />
+    <EventConnections>
+      <Connection Source="INIT" Destination="LABEL.INIT" dx1="117.6471" />
+      <Connection Source="LABEL.INITO" Destination="CLR.INIT" dx1="23.5294" dx2="47.0588" dy="-64.7059" />
+      <Connection Source="CLR.INITO" Destination="POSIT.INIT" dx1="35.2941" />
+      <Connection Source="POSIT.INITO" Destination="INITO" dx1="1847.0588" />
+      <Connection Source="CLR.IND" Destination="IND" dx1="1170.5883" />
+      <Connection Source="POSIT.IND" Destination="IND" dx1="1811.7646" />
+    </EventConnections>
+    <DataConnections>
+      <Connection Source="LBL" Destination="LABEL.LABEL" dx1="117.6471" />
+      <Connection Source="CLR.OUT" Destination="WKPC" dx1="1211.7646" />
+      <Connection Source="POSIT.OUT" Destination="POS" dx1="1829.4117" />
+      <Connection Source="1" Destination="LABEL.QI" dx1="158.8235" />
+      <Connection Source="1" Destination="CLR.QI" dx1="682.3529" />
+      <Connection Source="20" Destination="POSIT.H" dx1="1282.3529" />
+      <Connection Source="75" Destination="POSIT.W" dx1="1282.3529" />
+    </DataConnections>
+  </FBNetwork>
+</FBType>

@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE FBType SYSTEM "http://www.holobloc.com/xml/LibraryElement.dtd" >
+<FBType Name="MODE_AMS" Comment="AUTO/MANUAL/STOP Mode Control" >
+  <Identification Standard="IEC 61499" ApplicationDomain="Machine Control" Function="Mode Control" Type="AUTO/MANUAL/FAULTED" />
+  <VersionInfo Organization="Holobloc Inc" Version="0.1" Author="JHC" Date="2006-07-03" Remarks="Changed FAULT to STOP; renamed from MODE_AMF." />
+  <VersionInfo Organization="Holobloc Inc" Version="0.0" Author="JHC" Date="2006-06-26" />
+  <CompilerInfo header="package fb.rt.mach;" >
+    <Compiler Language="Java" Vendor="Sun" Product="JDK" Version="1.5.0" />
+  </CompilerInfo>
+  <InterfaceList>
+    <EventInputs>
+      <Event Name="INIT" Comment="Initialization Request" >
+        <With Var="STOP" />
+      </Event>
+      <Event Name="SENSE" >
+        <With Var="STOP" />
+      </Event>
+      <Event Name="TOGGLE" Comment="Toggle Auto/Manual mode" >
+      </Event>
+    </EventInputs>
+    <EventOutputs>
+      <Event Name="IND" Comment="Mode change indication" >
+        <With Var="AUTO" />
+        <With Var="MANUAL" />
+      </Event>
+    </EventOutputs>
+    <InputVars>
+      <VarDeclaration Name="STOP" Type="BOOL" Comment="STOP condition, e.g., FAULT sensor or STOP pushbutton" />
+    </InputVars>
+    <OutputVars>
+      <VarDeclaration Name="AUTO" Type="BOOL" />
+      <VarDeclaration Name="MANUAL" Type="BOOL" />
+    </OutputVars>
+  </InterfaceList>
+  <BasicFB>
+    <ECC >
+      <ECState Name="START" Comment="Initial State" x="216.66666" y="61.111107" >
+      </ECState>
+      <ECState Name="MANUAL" x="1416.6666" y="61.111107" >
+        <ECAction Algorithm="MANUAL" Output="IND" />
+      </ECState>
+      <ECState Name="STOPPED" x="216.66666" y="755.55554" >
+        <ECAction Algorithm="STOPPING" Output="IND" />
+      </ECState>
+      <ECState Name="AUTO" x="1877.7777" y="527.7778" >
+        <ECAction Algorithm="AUTO" Output="IND" />
+      </ECState>
+      <ECTransition Source="START" Destination="MANUAL" Condition="INIT&#38;NOT STOP" x="722.22217" y="61.111107" />
+      <ECTransition Source="START" Destination="STOPPED" Condition="INIT&#38;STOP" x="216.66666" y="361.11108" />
+      <ECTransition Source="MANUAL" Destination="STOPPED" Condition="SENSE&#38;STOP" x="811.1111" y="366.66666" />
+      <ECTransition Source="AUTO" Destination="STOPPED" Condition="SENSE&#38;STOP" x="1222.2222" y="527.7778" />
+      <ECTransition Source="STOPPED" Destination="MANUAL" Condition="SENSE&#38;NOT STOP" x="594.4444" y="216.66666" />
+      <ECTransition Source="MANUAL" Destination="AUTO" Condition="TOGGLE&#38;NOT STOP" x="1416.6666" y="388.8889" />
+      <ECTransition Source="AUTO" Destination="MANUAL" Condition="TOGGLE&#38;NOT STOP" x="1877.7777" y="255.55554" />
+    </ECC>
+  <Algorithm Name="MANUAL" >
+    <ST Text="AUTO := FALSE;&#10;MANUAL := TRUE;&#10;" />
+  </Algorithm>
+  <Algorithm Name="STOPPING" >
+    <ST Text="AUTO := FALSE;&#10;MANUAL := FALSE;&#10;" />
+  </Algorithm>
+  <Algorithm Name="AUTO" >
+    <ST Text="AUTO := TRUE;&#10;MANUAL := FALSE;&#10;" />
+  </Algorithm>
+  </BasicFB>
+</FBType>

@@ -1,0 +1,107 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html;CHARSET=iso-8859-1">
+<META NAME="GENERATOR" CONTENT="Eclipse HTML Editor">
+<TITLE>Tagged Data Design Pattern</TITLE>
+</HEAD>
+<BODY>
+<H2 ALIGN="CENTER">Design Pattern: Tagged&nbsp;Data</H2>
+<H3><A NAME="Problem"></A>Problem Statement</H3>
+<P><B>Ensure that:</B></P>
+<UL>
+	<LI>Data used in a <A HREF="../publsubl/index.htm">local
+	multicast</A> channel is consistent with that used in the corresponding
+	distributed multicast channel.</LI>
+	<LI>Data subscribed from a multicast channel is consistent with
+	that published on the channel.</LI>
+</UL>
+<H3><A NAME="Framework"></A>Framework</H3>
+<P>In addition to the <A HREF="../../common/pubsub.htm"><TT>PUBLISH_n/SUBSCRIBE_n</TT></A>
+service interface types, which use communication networks for exchange
+of data, and the <TT>PUBL_n/SUBL_n</TT> service interface types
+described under the <A HREF="../publsubl/index.htm">Local Multicast</A>
+pattern, only the two additional functional block types shown <A
+	HREF="#Viewer">below</A> are required. The function of these these
+blocks is to translate data from a local multicast group to a remote
+multicast group (<TT>TAGOUT</TT>) or vice versa (<TT>TAGIN</TT>)
+according to the following features:</P>
+<UL>
+	<LI>As in the <A HREF="../publsubl/index.htm">Local Multicast</A>
+	framework, the local multicast group is identified by the <TT>ID</TT>
+	input. For convenience, the default value of this input is set to the
+	function block's instance name. This can be overridden by connection to
+	a non-default variable or configuration parameter.
+	<LI>The number, order and types of data elements being transferred
+	is given by the <TT>TYPE</TT> input as a comma-separated list of data
+	types, e.g., <TT>"BOOL,UINT,WSTRING"</TT>.
+	<LI>The remote multicast group address is given by the <TT>CHANNEL</TT>
+	input, e.g., <TT>"225.0.0.1:1025"</TT>.
+</UL>
+<P>An example internal implementation of each of these function
+block types is shown below for the case when a single data element is
+being transferred. The actual number and types of data being transferred
+is determined by the <TT>TYPE</TT> input as explained above.</P>
+<CENTER>[<A NAME="Viewer"></A><A HREF="../../FBViewer.html">Viewer
+Help</A>]<BR>
+<TABLE BORDER="1">
+	<TR>
+		<TD><APPLET CODE="FBViewer" WIDTH="425" HEIGHT="375"
+			ALIGN="BOTTOM" ARCHIVE="../../viewer.jar">
+			<PARAM NAME="SRC" VALUE="TAGOUT">
+		</APPLET></TD>
+		<TD><APPLET CODE="FBViewer" WIDTH="425" HEIGHT="375"
+			ALIGN="BOTTOM" ARCHIVE="../../viewer.jar">
+			<PARAM NAME="SRC" VALUE="TAGIN">
+		</APPLET></TD>
+	</TR>
+</TABLE>
+</CENTER>
+<H3><A NAME="Tools">Tool Support</A></H3>
+<P>The <A HREF="../../fbdk/FBEditor.html" TARGET="_blank">FBDK</A>
+provides built-in support for the use of tagged data. When a <A
+	HREF="../../fbdk/howtosys.htm">system configuration</A> is being
+edited:</P>
+<UL>
+	<LI>A <I>tag data base</I> is maintained in the form of a <B>Tags</B>
+	table as illustrated below (see the <A HREF="../mvc/index.htm"
+		TARGET="_top">MVCD</A> design pattern for other examples). The data
+	for this table is derived from the instances of the <TT><A
+		HREF="../../common/pubsub.htm">PUBLISH_n/SUBSCRIBE_n</A>, <A
+		HREF="../publsubl/index.htm">PUBL_n/SUBL_n</A></TT> and <A HREF="#Viewer"><TT>TAGOUT/TAGIN</TT></A>
+	service interface types in the system configuration.</LI>
+	<LI>Inconsistencies among usages of instances of function block
+	types using the same tag are detected and flagged as errors when
+	reading or editing a system configuration. Such inconsistencies
+	include:
+	<UL>
+		<LI>Inconsistent numbers or types of data being transferred</LI>
+		<LI>Inconsistent multicast channel IDs among <TT>TAGOUT/TAGIN</TT>
+		and <TT>PUBLISH_n/SUBSCRIBE_n</TT> blocks using the same tag
+	</UL>
+	</LI>
+	<LI>If a tag is selected and visible in the tag table when a new
+	FB instance is created, the initial FB name in the <A
+		HREF="../../fbdk/fb.htm">FB creation dialog</A> is set to the tag
+	name.</LI>
+	<LI>An <B>Apply Tag</B> (<IMG SRC="apply.png">)button is
+	supplied to enable the application of a selected tag to a given FB
+	instance. For instance, this button would apply the tag name, type
+	list, multicast channel, and comment to a selected <TT>TAGOUT</TT>
+	instance.</LI>
+</UL>
+<CENTER><IMG SRC="tags.png"></CENTER>
+<H3><A NAME="Methodology"></A>Methodology</H3>
+<P>This design pattern can be used to simplify and avoid errors in
+the <A HREF="../mvc/index.htm" TARGET="_top">layered MVC</A>
+methodology. It can be similarly used with other methodologies.</P>
+<CENTER>
+<P><I>Last updated: 2007-09-19.</I><BR>
+&copy;2007 <A HREF="http://www.holobloc.com" TARGET="_blank">Holobloc
+Inc</A><BR>
+Licensed under the <A
+	HREF="http://www.opensource.org/licenses/afl-3.0.php">Academic Free
+License version 3.0</A>.</P>
+</CENTER>
+</BODY>
+</HTML>
