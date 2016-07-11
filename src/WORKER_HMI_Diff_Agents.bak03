@@ -36,9 +36,9 @@
       <Parameter Name="ROWS" Value="6" />
       <Parameter Name="COLS" Value="2" />
       <FBNetwork >
-        <FB Name="InitExecuteAgent" Type="InitExecuteAgent" x="1170.5883" y="11.764706" />
+        <FB Name="agents" Type="agentinit" x="1305.8823" y="11.764706" />
         <EventConnections>
-          <Connection Source="START.COLD" Destination="InitExecuteAgent.ie_init_execute_agent" dx1="129.41176" />
+          <Connection Source="START.COLD" Destination="agents.ie_init_execute_product" dx1="152.94118" />
         </EventConnections>
       </FBNetwork>
     </Resource>
